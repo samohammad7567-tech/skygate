@@ -1,0 +1,6591 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Skygate API Documentation",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "UMRAH"
+    }
+  ],
+  "paths": {
+    "/api/v1/app/bookings": {
+      "post": {
+        "summary": "postApiV1AppBookings",
+        "deprecated": false,
+        "description": "",
+        "operationId": "postApiV1AppBookings",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "trip_id": {
+                    "type": "integer",
+                    "description": "Must match an existing stored value.",
+                    "example": 16
+                  },
+                  "rooms": {
+                    "type": "array",
+                    "description": "Must have at least 1 items.",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "package_id": {
+                          "type": "integer",
+                          "description": "Must match an existing stored value.",
+                          "example": 16
+                        },
+                        "locked_beds_count": {
+                          "type": "integer",
+                          "description": "Must be at least 0.",
+                          "nullable": true,
+                          "example": 39
+                        },
+                        "pilgrims": {
+                          "type": "array",
+                          "description": "Must have at least 1 items.",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "pilgrim_id": {
+                                "type": "integer",
+                                "description": "Must match an existing stored value.",
+                                "example": 16
+                              },
+                              "guardian_pilgrim_id": {
+                                "type": "integer",
+                                "description": "Must match an existing stored value.",
+                                "nullable": true,
+                                "example": 16
+                              }
+                            },
+                            "required": [
+                              "pilgrim_id"
+                            ]
+                          },
+                          "example": [
+                            []
+                          ]
+                        }
+                      },
+                      "required": [
+                        "package_id",
+                        "pilgrims"
+                      ]
+                    },
+                    "example": [
+                      []
+                    ]
+                  }
+                },
+                "required": [
+                  "trip_id",
+                  "rooms"
+                ]
+              },
+              "example": {
+                "trip_id": 1,
+                "rooms": [
+                  {
+                    "package_id": 1,
+                    "locked_beds_count": 0,
+                    "pilgrims": [
+                      {
+                        "pilgrim_id": 1
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/BookingResource"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "summary": "getApiV1AppBookings",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getApiV1AppBookings",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to perform this action."
+                    },
+                    "status_code": {
+                      "type": "integer",
+                      "example": 0
+                    }
+                  },
+                  "example": {
+                    "message": "You are not authorized to perform this action.",
+                    "status_code": 0
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/bookings/{id}": {
+      "get": {
+        "summary": "getApiV1AppBookingsId",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getApiV1AppBookingsId",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the booking.",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to perform this action."
+                    },
+                    "status_code": {
+                      "type": "integer",
+                      "example": 0
+                    }
+                  },
+                  "example": {
+                    "message": "You are not authorized to perform this action.",
+                    "status_code": 0
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/booking-change-requests": {
+      "post": {
+        "summary": "postApiV1AppBookingChangeRequests",
+        "deprecated": false,
+        "description": "",
+        "operationId": "postApiV1AppBookingChangeRequests",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "booking_id": {
+                    "type": "integer",
+                    "description": "Must match an existing stored value.",
+                    "example": 16
+                  },
+                  "request_type": {
+                    "type": "string",
+                    "description": "",
+                    "enum": [
+                      "modify_date",
+                      "add_pilgrims",
+                      "change_room",
+                      "partial_cancel",
+                      "full_cancel"
+                    ],
+                    "example": "change_room"
+                  },
+                  "details": {
+                    "type": "object",
+                    "description": "",
+                    "properties": {},
+                    "nullable": true,
+                    "example": null
+                  }
+                },
+                "required": [
+                  "booking_id",
+                  "request_type"
+                ]
+              },
+              "example": {
+                "booking_id": 1,
+                "request_type": "modify_date",
+                "details": {
+                  "new_date": "2026-10-01",
+                  "reason": "تغيير موعد السفر"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/BookingChangeRequestResource"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "summary": "getApiV1AppBookingChangeRequests",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getApiV1AppBookingChangeRequests",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to perform this action."
+                    },
+                    "status_code": {
+                      "type": "integer",
+                      "example": 0
+                    }
+                  },
+                  "example": {
+                    "message": "You are not authorized to perform this action.",
+                    "status_code": 0
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/BookingChangeRequestResource"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "pagination": {
+                          "type": "object",
+                          "properties": {
+                            "per_page": {
+                              "type": "integer"
+                            },
+                            "count": {
+                              "type": "integer"
+                            },
+                            "next_cursor": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "prev_cursor": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "has_more_pages": {
+                              "type": "boolean"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/booking-change-requests/{id}": {
+      "get": {
+        "summary": "getApiV1AppBookingChangeRequestsId",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getApiV1AppBookingChangeRequestsId",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the booking change request.",
+            "required": true,
+            "example": 16,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to perform this action."
+                    },
+                    "status_code": {
+                      "type": "integer",
+                      "example": 0
+                    }
+                  },
+                  "example": {
+                    "message": "You are not authorized to perform this action.",
+                    "status_code": 0
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/BookingChangeRequestResource"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/notifications": {
+      "get": {
+        "summary": "getApiV1AppNotifications",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getApiV1AppNotifications",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to perform this action."
+                    },
+                    "status_code": {
+                      "type": "integer",
+                      "example": 0
+                    }
+                  },
+                  "example": {
+                    "message": "You are not authorized to perform this action.",
+                    "status_code": 0
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AppNotificationResource"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "pagination": {
+                          "type": "object",
+                          "properties": {
+                            "per_page": {
+                              "type": "integer"
+                            },
+                            "count": {
+                              "type": "integer"
+                            },
+                            "next_cursor": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "prev_cursor": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "has_more_pages": {
+                              "type": "boolean"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/notifications/{id}/read": {
+      "post": {
+        "summary": "postApiV1AppNotificationsIdRead",
+        "deprecated": false,
+        "description": "",
+        "operationId": "postApiV1AppNotificationsIdRead",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the notification.",
+            "required": true,
+            "example": "architecto",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/AppNotificationResource"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/room-assignments": {
+      "get": {
+        "summary": "getApiV1AppRoomAssignments",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getApiV1AppRoomAssignments",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to perform this action."
+                    },
+                    "status_code": {
+                      "type": "integer",
+                      "example": 0
+                    }
+                  },
+                  "example": {
+                    "message": "You are not authorized to perform this action.",
+                    "status_code": 0
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/activities": {
+      "get": {
+        "summary": "getApiV1AppActivities",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getApiV1AppActivities",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to perform this action."
+                    },
+                    "status_code": {
+                      "type": "integer",
+                      "example": 0
+                    }
+                  },
+                  "example": {
+                    "message": "You are not authorized to perform this action.",
+                    "status_code": 0
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ActivityResource"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "pagination": {
+                          "type": "object",
+                          "properties": {
+                            "per_page": {
+                              "type": "integer"
+                            },
+                            "count": {
+                              "type": "integer"
+                            },
+                            "next_cursor": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "prev_cursor": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "has_more_pages": {
+                              "type": "boolean"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/sos-events": {
+      "post": {
+        "summary": "postApiV1AppSosEvents",
+        "deprecated": false,
+        "description": "",
+        "operationId": "postApiV1AppSosEvents",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "latitude": {
+                    "type": "number",
+                    "description": "Must be between -90 and 90.",
+                    "example": -89
+                  },
+                  "longitude": {
+                    "type": "number",
+                    "description": "Must be between -180 and 180.",
+                    "example": -179
+                  }
+                },
+                "required": [
+                  "latitude",
+                  "longitude"
+                ]
+              },
+              "example": {
+                "latitude": 21.4225,
+                "longitude": 39.8262,
+                "type": "medical",
+                "notes": "أحتاج مساعدة طبية عاجلة"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/SosEventResource"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/sos-events/{id}": {
+      "get": {
+        "summary": "getApiV1AppSosEventsId",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getApiV1AppSosEventsId",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the sos event.",
+            "required": true,
+            "example": 16,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to perform this action."
+                    },
+                    "status_code": {
+                      "type": "integer",
+                      "example": 0
+                    }
+                  },
+                  "example": {
+                    "message": "You are not authorized to perform this action.",
+                    "status_code": 0
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/SosEventResource"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/activities/{activityId}/feedback": {
+      "post": {
+        "summary": "postApiV1AppActivitiesActivityIdFeedback",
+        "deprecated": false,
+        "description": "",
+        "operationId": "postApiV1AppActivitiesActivityIdFeedback",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "activityId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "example": 16,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "rating_stars": {
+                    "type": "integer",
+                    "description": "Must be between 1 and 5.",
+                    "example": 2
+                  },
+                  "comment": {
+                    "type": "string",
+                    "description": "",
+                    "nullable": true,
+                    "example": "architecto"
+                  }
+                },
+                "required": [
+                  "rating_stars"
+                ]
+              },
+              "example": {
+                "rating": 5,
+                "comment": "رحلة ممتازة وتنظيم رائع"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/activities/{activityId}/attendance": {
+      "post": {
+        "summary": "postApiV1AppActivitiesActivityIdAttendance",
+        "deprecated": false,
+        "description": "",
+        "operationId": "postApiV1AppActivitiesActivityIdAttendance",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "activityId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "example": 16,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "description": "",
+                    "enum": [
+                      "confirmed",
+                      "absent"
+                    ],
+                    "example": "absent"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "example": {
+                "status": "present"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/luggage-tags": {
+      "get": {
+        "summary": "getApiV1AppLuggageTags",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getApiV1AppLuggageTags",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to perform this action."
+                    },
+                    "status_code": {
+                      "type": "integer",
+                      "example": 0
+                    }
+                  },
+                  "example": {
+                    "message": "You are not authorized to perform this action.",
+                    "status_code": 0
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/LuggageTagResource"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "pagination": {
+                          "type": "object",
+                          "properties": {
+                            "per_page": {
+                              "type": "integer"
+                            },
+                            "count": {
+                              "type": "integer"
+                            },
+                            "next_cursor": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "prev_cursor": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "has_more_pages": {
+                              "type": "boolean"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/lost-items": {
+      "get": {
+        "summary": "getApiV1AppLostItems",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getApiV1AppLostItems",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to perform this action."
+                    },
+                    "status_code": {
+                      "type": "integer",
+                      "example": 0
+                    }
+                  },
+                  "example": {
+                    "message": "You are not authorized to perform this action.",
+                    "status_code": 0
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/LostItemResource"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "pagination": {
+                          "type": "object",
+                          "properties": {
+                            "per_page": {
+                              "type": "integer"
+                            },
+                            "count": {
+                              "type": "integer"
+                            },
+                            "next_cursor": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "prev_cursor": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "has_more_pages": {
+                              "type": "boolean"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "postApiV1AppLostItems",
+        "deprecated": false,
+        "description": "",
+        "operationId": "postApiV1AppLostItems",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "example": {
+                "item_name": "حقيبة سوداء صغيرة",
+                "description": "تحتوي على جواز السفر وبعض النقود",
+                "location": "المسجد الحرام - الرواق السعودي",
+                "contact_number": "+966512345678"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/LostItemResource"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/location-pings": {
+      "post": {
+        "summary": "postApiV1AppLocationPings",
+        "deprecated": false,
+        "description": "",
+        "operationId": "postApiV1AppLocationPings",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "latitude": {
+                    "type": "number",
+                    "description": "Must be between -90 and 90.",
+                    "example": -89
+                  },
+                  "longitude": {
+                    "type": "number",
+                    "description": "Must be between -180 and 180.",
+                    "example": -179
+                  }
+                },
+                "required": [
+                  "latitude",
+                  "longitude"
+                ]
+              },
+              "example": {
+                "latitude": 21.4225,
+                "longitude": 39.8262
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/LocationPingResource"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/trip-segments/{id}/boarding-pass": {
+      "get": {
+        "summary": "getApiV1AppTripSegmentsIdBoardingPass",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getApiV1AppTripSegmentsIdBoardingPass",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the trip segment.",
+            "required": true,
+            "example": "architecto",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to perform this action."
+                    },
+                    "status_code": {
+                      "type": "integer",
+                      "example": 0
+                    }
+                  },
+                  "example": {
+                    "message": "You are not authorized to perform this action.",
+                    "status_code": 0
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/pilgrim-tickets": {
+      "get": {
+        "summary": "getApiV1AppPilgrimTickets",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getApiV1AppPilgrimTickets",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to perform this action."
+                    },
+                    "status_code": {
+                      "type": "integer",
+                      "example": 0
+                    }
+                  },
+                  "example": {
+                    "message": "You are not authorized to perform this action.",
+                    "status_code": 0
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PilgrimTicketResource"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "pagination": {
+                          "type": "object",
+                          "properties": {
+                            "per_page": {
+                              "type": "integer"
+                            },
+                            "count": {
+                              "type": "integer"
+                            },
+                            "next_cursor": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "prev_cursor": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "has_more_pages": {
+                              "type": "boolean"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/pilgrim-tickets/{id}": {
+      "get": {
+        "summary": "getApiV1AppPilgrimTicketsId",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getApiV1AppPilgrimTicketsId",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the pilgrim ticket.",
+            "required": true,
+            "example": 16,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to perform this action."
+                    },
+                    "status_code": {
+                      "type": "integer",
+                      "example": 0
+                    }
+                  },
+                  "example": {
+                    "message": "You are not authorized to perform this action.",
+                    "status_code": 0
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/PilgrimTicketResource"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/pilgrims/{id}/id-card": {
+      "get": {
+        "summary": "getApiV1AppPilgrimsIdIdCard",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getApiV1AppPilgrimsIdIdCard",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the pilgrim.",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to perform this action."
+                    },
+                    "status_code": {
+                      "type": "integer",
+                      "example": 0
+                    }
+                  },
+                  "example": {
+                    "message": "You are not authorized to perform this action.",
+                    "status_code": 0
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/public/id-card/{pilgrim}": {
+      "get": {
+        "summary": "getApiV1PublicIdCardPilgrim",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getApiV1PublicIdCardPilgrim",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "pilgrim",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "example": "architecto",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Invalid signature."
+                    }
+                  },
+                  "example": {
+                    "message": "Invalid signature."
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/pilgrims/{id}/id-card-pdf": {
+      "get": {
+        "summary": "getApiV1AppPilgrimsIdIdCardPdf",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getApiV1AppPilgrimsIdIdCardPdf",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the pilgrim.",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to perform this action."
+                    },
+                    "status_code": {
+                      "type": "integer",
+                      "example": 0
+                    }
+                  },
+                  "example": {
+                    "message": "You are not authorized to perform this action.",
+                    "status_code": 0
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/passport-ocr/scan": {
+      "post": {
+        "summary": "postApiV1AppPassportOcrScan",
+        "deprecated": false,
+        "description": "",
+        "operationId": "postApiV1AppPassportOcrScan",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "passport_image": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Must be an image. Must not be greater than 5120 kilobytes.",
+                    "example": ""
+                  }
+                },
+                "required": [
+                  "passport_image"
+                ]
+              },
+              "example": {
+                "passport_image": ""
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/payment-methods": {
+      "get": {
+        "summary": "getApiV1AppPaymentMethods",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getApiV1AppPaymentMethods",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to perform this action."
+                    },
+                    "status_code": {
+                      "type": "integer",
+                      "example": 0
+                    }
+                  },
+                  "example": {
+                    "message": "You are not authorized to perform this action.",
+                    "status_code": 0
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PaymentMethodResource"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "pagination": {
+                          "type": "object",
+                          "properties": {
+                            "per_page": {
+                              "type": "integer"
+                            },
+                            "count": {
+                              "type": "integer"
+                            },
+                            "next_cursor": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "prev_cursor": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "has_more_pages": {
+                              "type": "boolean"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/private-trip-requests": {
+      "get": {
+        "summary": "getApiV1AppPrivateTripRequests",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getApiV1AppPrivateTripRequests",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to perform this action."
+                    },
+                    "status_code": {
+                      "type": "integer",
+                      "example": 0
+                    }
+                  },
+                  "example": {
+                    "message": "You are not authorized to perform this action.",
+                    "status_code": 0
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PrivateTripRequestResource"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "pagination": {
+                          "type": "object",
+                          "properties": {
+                            "per_page": {
+                              "type": "integer"
+                            },
+                            "count": {
+                              "type": "integer"
+                            },
+                            "next_cursor": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "prev_cursor": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "has_more_pages": {
+                              "type": "boolean"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "postApiV1AppPrivateTripRequests",
+        "deprecated": false,
+        "description": "",
+        "operationId": "postApiV1AppPrivateTripRequests",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "people_count": {
+                    "type": "integer",
+                    "description": "Must be at least 1.",
+                    "nullable": true,
+                    "example": 16
+                  },
+                  "adult_count": {
+                    "type": "integer",
+                    "description": "Must be at least 0.",
+                    "nullable": true,
+                    "example": 39
+                  },
+                  "child_count": {
+                    "type": "integer",
+                    "description": "Must be at least 0.",
+                    "nullable": true,
+                    "example": 84
+                  },
+                  "infant_count": {
+                    "type": "integer",
+                    "description": "Must be at least 0.",
+                    "nullable": true,
+                    "example": 12
+                  },
+                  "preferred_start_date": {
+                    "type": "string",
+                    "description": "Must be a valid date. Must be a date after <code>today</code>.",
+                    "nullable": true,
+                    "example": "2052-09-17"
+                  },
+                  "preferred_end_date": {
+                    "type": "string",
+                    "description": "Must be a valid date. Must be a date after <code>preferred_start_date</code>.",
+                    "nullable": true,
+                    "example": "2052-09-17"
+                  },
+                  "hotel_ids": {
+                    "type": "array",
+                    "description": "Must match an existing stored value.",
+                    "items": {
+                      "type": "integer"
+                    },
+                    "example": [
+                      16
+                    ]
+                  },
+                  "room_type_ids": {
+                    "type": "array",
+                    "description": "Must match an existing stored value.",
+                    "items": {
+                      "type": "integer"
+                    },
+                    "example": [
+                      16
+                    ]
+                  },
+                  "requirements": {
+                    "type": "string",
+                    "description": "Must not be greater than 1000 characters.",
+                    "nullable": true,
+                    "example": "n"
+                  }
+                }
+              },
+              "example": {
+                "trip_id": 1,
+                "notes": "رحلة خاصة مع العائلة",
+                "preferred_date": "2026-12-01"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/PrivateTripRequestResource"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/private-trip-requests/{id}": {
+      "get": {
+        "summary": "getApiV1AppPrivateTripRequestsId",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getApiV1AppPrivateTripRequestsId",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the private trip request.",
+            "required": true,
+            "example": 16,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to perform this action."
+                    },
+                    "status_code": {
+                      "type": "integer",
+                      "example": 0
+                    }
+                  },
+                  "example": {
+                    "message": "You are not authorized to perform this action.",
+                    "status_code": 0
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/PrivateTripRequestResource"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/private-trip-requests/{id}/cancel": {
+      "post": {
+        "summary": "postApiV1AppPrivateTripRequestsIdCancel",
+        "deprecated": false,
+        "description": "",
+        "operationId": "postApiV1AppPrivateTripRequestsIdCancel",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the private trip request.",
+            "required": true,
+            "example": 16,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/PrivateTripRequestResource"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/private-trip-requests/{id}/accept": {
+      "post": {
+        "summary": "postApiV1AppPrivateTripRequestsIdAccept",
+        "deprecated": false,
+        "description": "",
+        "operationId": "postApiV1AppPrivateTripRequestsIdAccept",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the private trip request.",
+            "required": true,
+            "example": 16,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/PrivateTripRequestResource"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/private-trip-requests/{id}/reject": {
+      "post": {
+        "summary": "postApiV1AppPrivateTripRequestsIdReject",
+        "deprecated": false,
+        "description": "",
+        "operationId": "postApiV1AppPrivateTripRequestsIdReject",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the private trip request.",
+            "required": true,
+            "example": 16,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/PrivateTripRequestResource"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/pilgrim-documents": {
+      "get": {
+        "summary": "getApiV1AppPilgrimDocuments",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getApiV1AppPilgrimDocuments",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to perform this action."
+                    },
+                    "status_code": {
+                      "type": "integer",
+                      "example": 0
+                    }
+                  },
+                  "example": {
+                    "message": "You are not authorized to perform this action.",
+                    "status_code": 0
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PilgrimDocumentResource"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "pagination": {
+                          "type": "object",
+                          "properties": {
+                            "per_page": {
+                              "type": "integer"
+                            },
+                            "count": {
+                              "type": "integer"
+                            },
+                            "next_cursor": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "prev_cursor": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "has_more_pages": {
+                              "type": "boolean"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "postApiV1AppPilgrimDocuments",
+        "deprecated": false,
+        "description": "",
+        "operationId": "postApiV1AppPilgrimDocuments",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/PilgrimDocumentResource"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/financial-transactions": {
+      "post": {
+        "summary": "postApiV1AppFinancialTransactions",
+        "deprecated": false,
+        "description": "",
+        "operationId": "postApiV1AppFinancialTransactions",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "booking_id": {
+                    "type": "integer",
+                    "description": "Must match an existing stored value.",
+                    "example": 16
+                  },
+                  "payment_method_id": {
+                    "type": "integer",
+                    "description": "Must match an existing stored value.",
+                    "example": 16
+                  },
+                  "amount": {
+                    "type": "number",
+                    "description": "Must be at least 0.01.",
+                    "example": 39
+                  },
+                  "currency": {
+                    "type": "string",
+                    "description": "Must not be greater than 10 characters.",
+                    "example": "gzmiyv",
+                    "nullable": true
+                  },
+                  "reference_number": {
+                    "type": "string",
+                    "description": "Must not be greater than 100 characters.",
+                    "example": "d",
+                    "nullable": true
+                  },
+                  "receipt": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Must be an image. Must not be greater than 2048 kilobytes.",
+                    "example": "",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "booking_id",
+                  "payment_method_id",
+                  "amount"
+                ]
+              },
+              "example": {
+                "booking_id": 16,
+                "payment_method_id": 16,
+                "amount": 39,
+                "currency": "gzmiyv",
+                "reference_number": "d",
+                "receipt": ""
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/FinancialTransactionResource"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/financial-transactions/{id}/receipt": {
+      "post": {
+        "summary": "postApiV1AppFinancialTransactionsIdReceipt",
+        "deprecated": false,
+        "description": "",
+        "operationId": "postApiV1AppFinancialTransactionsIdReceipt",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the financial transaction.",
+            "required": true,
+            "example": 16,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/FinancialTransactionResource"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/trip-chat/messages": {
+      "post": {
+        "summary": "Post a message to the group.",
+        "deprecated": false,
+        "description": "",
+        "operationId": "postAMessageToTheGroup",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "body": {
+                    "type": "string",
+                    "description": "Must not be greater than 5000 characters.",
+                    "example": "b"
+                  },
+                  "attachment_url": {
+                    "type": "string",
+                    "description": "Must not be greater than 255 characters.",
+                    "nullable": true,
+                    "example": "http://bailey.com/"
+                  }
+                },
+                "required": [
+                  "body"
+                ]
+              },
+              "example": {
+                "message": "السلام عليكم، متى موعد الانطلاق؟"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/TripChatMessageResource"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "summary": "Thread history, oldest first. Page backwards with ?before_id=<id>.",
+        "deprecated": false,
+        "description": "",
+        "operationId": "threadHistoryOldestFirstPageBackwardsWithbeforeIdid",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to perform this action."
+                    },
+                    "status_code": {
+                      "type": "integer",
+                      "example": 0
+                    }
+                  },
+                  "example": {
+                    "message": "You are not authorized to perform this action.",
+                    "status_code": 0
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TripChatMessageResource"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "pagination": {
+                          "type": "object",
+                          "properties": {
+                            "per_page": {
+                              "type": "integer"
+                            },
+                            "count": {
+                              "type": "integer"
+                            },
+                            "next_cursor": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "prev_cursor": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "has_more_pages": {
+                              "type": "boolean"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/trip-chat/read": {
+      "post": {
+        "summary": "Mark the thread read up to now, clearing the unread badge.",
+        "deprecated": false,
+        "description": "",
+        "operationId": "markTheThreadReadUpToNowClearingTheUnreadBadge",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "example": {
+                "last_read_message_id": 1
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/trip-chat": {
+      "get": {
+        "summary": "The pilgrim's current trip chat, with unread count.",
+        "deprecated": false,
+        "description": "",
+        "operationId": "thePilgrimsCurrentTripChatWithUnreadCount",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to perform this action."
+                    },
+                    "status_code": {
+                      "type": "integer",
+                      "example": 0
+                    }
+                  },
+                  "example": {
+                    "message": "You are not authorized to perform this action.",
+                    "status_code": 0
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/TripChatResource"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/trip-geofences": {
+      "get": {
+        "summary": "getApiV1AppTripGeofences",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getApiV1AppTripGeofences",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to perform this action."
+                    },
+                    "status_code": {
+                      "type": "integer",
+                      "example": 0
+                    }
+                  },
+                  "example": {
+                    "message": "You are not authorized to perform this action.",
+                    "status_code": 0
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "postApiV1AppTripGeofences",
+        "deprecated": false,
+        "description": "",
+        "operationId": "postApiV1AppTripGeofences",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Must not be greater than 150 characters.",
+                    "example": "b"
+                  },
+                  "latitude": {
+                    "type": "number",
+                    "description": "Must be between -90 and 90.",
+                    "example": -89
+                  },
+                  "longitude": {
+                    "type": "number",
+                    "description": "Must be between -180 and 180.",
+                    "example": -180
+                  },
+                  "radius_meters": {
+                    "type": "integer",
+                    "description": "Must be at least 25. Must not be greater than 50000.",
+                    "example": 16
+                  }
+                },
+                "required": [
+                  "name",
+                  "latitude",
+                  "longitude",
+                  "radius_meters"
+                ]
+              },
+              "example": {
+                "trip_id": 1,
+                "name": "المنطقة الآمنة - مكة",
+                "latitude": 21.4225,
+                "longitude": 39.8262,
+                "radius": 500
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/trip-geofences/{id}": {
+      "put": {
+        "summary": "putApiV1AppTripGeofencesId",
+        "deprecated": false,
+        "description": "",
+        "operationId": "putApiV1AppTripGeofencesId",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the trip geofence.",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Must not be greater than 150 characters.",
+                    "example": "b"
+                  },
+                  "latitude": {
+                    "type": "number",
+                    "description": "Must be between -90 and 90.",
+                    "example": -89
+                  },
+                  "longitude": {
+                    "type": "number",
+                    "description": "Must be between -180 and 180.",
+                    "example": -180
+                  },
+                  "radius_meters": {
+                    "type": "integer",
+                    "description": "Must be at least 25. Must not be greater than 50000.",
+                    "example": 16
+                  },
+                  "is_active": {
+                    "type": "boolean",
+                    "description": "",
+                    "example": false
+                  }
+                }
+              },
+              "example": {
+                "name": "المنطقة الآمنة - مكة (معدل)",
+                "radius": 700
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/trip-geofences/breaches": {
+      "get": {
+        "summary": "Who is outside the safe area right now.",
+        "deprecated": false,
+        "description": "",
+        "operationId": "whoIsOutsideTheSafeAreaRightNow",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to perform this action."
+                    },
+                    "status_code": {
+                      "type": "integer",
+                      "example": 0
+                    }
+                  },
+                  "example": {
+                    "message": "You are not authorized to perform this action.",
+                    "status_code": 0
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/pilgrims": {
+      "post": {
+        "summary": "postApiV1AppPilgrims",
+        "deprecated": false,
+        "description": "",
+        "operationId": "postApiV1AppPilgrims",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/PilgrimResource"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/visas": {
+      "get": {
+        "summary": "getApiV1AppVisas",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getApiV1AppVisas",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to perform this action."
+                    },
+                    "status_code": {
+                      "type": "integer",
+                      "example": 0
+                    }
+                  },
+                  "example": {
+                    "message": "You are not authorized to perform this action.",
+                    "status_code": 0
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/trips": {
+      "get": {
+        "summary": "getApiV1AppTrips",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getApiV1AppTrips",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to perform this action."
+                    },
+                    "status_code": {
+                      "type": "integer",
+                      "example": 0
+                    }
+                  },
+                  "example": {
+                    "message": "You are not authorized to perform this action.",
+                    "status_code": 0
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TripResource"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "pagination": {
+                          "type": "object",
+                          "properties": {
+                            "per_page": {
+                              "type": "integer"
+                            },
+                            "count": {
+                              "type": "integer"
+                            },
+                            "next_cursor": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "prev_cursor": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "has_more_pages": {
+                              "type": "boolean"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/app/trips/{id}": {
+      "get": {
+        "summary": "getApiV1AppTripsId",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getApiV1AppTripsId",
+        "tags": [
+          "UMRAH"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the trip.",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "0": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to perform this action."
+                    },
+                    "status_code": {
+                      "type": "integer",
+                      "example": 0
+                    }
+                  },
+                  "example": {
+                    "message": "You are not authorized to perform this action.",
+                    "status_code": 0
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/TripDetailResource"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status_code": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/auth/register": {
+      "post": {
+        "summary": "Register - Create Account",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "example": {
+                "full_name": "نورة عبدالله الفهد",
+                "mobile": "+966512398765",
+                "password": "Noura@2026Secure",
+                "email": "nora.alfahd@example.com",
+                "passport_number": "C12398765",
+                "passport_expiry_date": "2033-06-15",
+                "dob": "1988-03-22",
+                "national_number": "1098765433",
+                "nationality": "SA",
+                "lang": "ar",
+                "gender": "female"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/auth/login": {
+      "post": {
+        "summary": "Login",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "example": {
+                "mobile": "+966512398765",
+                "password": "Noura@2026Secure"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ActivityResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "activity_date": {
+            "type": "string",
+            "nullable": true
+          },
+          "start_time": {
+            "type": "string",
+            "nullable": true
+          },
+          "end_time": {
+            "type": "string",
+            "nullable": true
+          },
+          "meeting_point_lat": {
+            "type": "string",
+            "nullable": true
+          },
+          "meeting_point_lng": {
+            "type": "string",
+            "nullable": true
+          },
+          "meeting_point_text": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "activity_type": {
+            "$ref": "#/components/schemas/ActivityTypeResource"
+          }
+        }
+      },
+      "ActivityTypeResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "color": {
+            "type": "string",
+            "nullable": true
+          },
+          "icon": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "AppNotificationResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "body": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "related_entity_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "related_entity_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "read_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sent_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "BookingChangeRequestResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "booking_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "request_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "admin_notes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "reviewed_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "BookingResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "total_amount": {
+            "type": "number",
+            "nullable": true
+          },
+          "draft_expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "FinancialTransactionResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "amount": {
+            "type": "string",
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "receipt_photo_url": {
+            "type": "string",
+            "nullable": true
+          },
+          "reference_number": {
+            "type": "string",
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "LocationPingResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "pilgrim_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "trip_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "latitude": {
+            "type": "number",
+            "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "nullable": true
+          },
+          "recorded_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "LostItemResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "trip_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "reported_by_pilgrim_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "handled_by": {
+            "type": "string",
+            "nullable": true
+          },
+          "item_description": {
+            "type": "string",
+            "nullable": true
+          },
+          "photo_url": {
+            "type": "string",
+            "nullable": true
+          },
+          "location_hint": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "LuggageTagResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "booking_pilgrim_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "tag_number": {
+            "type": "string",
+            "nullable": true
+          },
+          "qr_url": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "PaymentMethodResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "subtitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "instructions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "image": {
+            "type": "string",
+            "nullable": true
+          },
+          "is_active": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PilgrimDocumentResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "pilgrim_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "document_type_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "file_url": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "rejection_reason": {
+            "type": "string",
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "PilgrimResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "full_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "passport_number": {
+            "type": "string",
+            "nullable": true
+          },
+          "photo_url": {
+            "type": "string",
+            "nullable": true
+          },
+          "linked_to_account": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "PilgrimTicketResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "ticket_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "file_url": {
+            "type": "string",
+            "nullable": true
+          },
+          "issued_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "booking_pilgrim_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "trip_segment_id": {
+            "type": "integer",
+            "nullable": true
+          }
+        }
+      },
+      "PrivateTripRequestResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "user_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "people_count": {
+            "type": "integer",
+            "nullable": true
+          },
+          "adult_count": {
+            "type": "integer",
+            "nullable": true
+          },
+          "child_count": {
+            "type": "integer",
+            "nullable": true
+          },
+          "infant_count": {
+            "type": "integer",
+            "nullable": true
+          },
+          "preferred_start_date": {
+            "type": "string",
+            "nullable": true
+          },
+          "preferred_end_date": {
+            "type": "string",
+            "nullable": true
+          },
+          "hotel_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "room_type_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "requirements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "quote_details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "converted_trip_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "SosEventResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "pilgrim_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "trip_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "latitude": {
+            "type": "number",
+            "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "nullable": true
+          },
+          "status": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "acknowledged_by": {
+            "type": "string",
+            "nullable": true
+          },
+          "acknowledged_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "resolved_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "resolution_notes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "TripChatMessageResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "trip_chat_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "sender_pilgrim_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "sender_user_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "sender_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "is_mine": {
+            "type": "boolean"
+          },
+          "body": {
+            "type": "string",
+            "nullable": true
+          },
+          "attachment_url": {
+            "type": "string",
+            "nullable": true
+          },
+          "sent_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "TripChatResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "trip_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "status": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "opened_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "participants_count": {
+            "type": "integer",
+            "nullable": true
+          },
+          "unread_count": {
+            "type": "integer",
+            "nullable": true
+          },
+          "last_read_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "TripDetailResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "trip_number": {
+            "type": "string",
+            "nullable": true
+          },
+          "campaign_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "booking_deadline": {
+            "type": "string",
+            "nullable": true
+          },
+          "start_date_g": {
+            "type": "string",
+            "nullable": true
+          },
+          "start_date_h": {
+            "type": "string",
+            "nullable": true
+          },
+          "end_date_g": {
+            "type": "string",
+            "nullable": true
+          },
+          "end_date_h": {
+            "type": "string",
+            "nullable": true
+          },
+          "access_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "trip_program_pdf_url": {
+            "type": "string",
+            "nullable": true
+          },
+          "map_center_lat": {
+            "type": "string",
+            "nullable": true
+          },
+          "map_center_lng": {
+            "type": "string",
+            "nullable": true
+          },
+          "packages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TripPackageResource"
+            }
+          },
+          "hotels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TripHotelResource"
+            }
+          },
+          "itinerary": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TripItineraryResource"
+            }
+          },
+          "staff": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TripStaffResource"
+            }
+          }
+        }
+      },
+      "TripHotelResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "rating": {
+            "type": "string",
+            "nullable": true
+          },
+          "latitude": {
+            "type": "string",
+            "nullable": true
+          },
+          "longitude": {
+            "type": "string",
+            "nullable": true
+          },
+          "address_details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "contact_phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "check_in_date": {
+            "type": "string",
+            "nullable": true
+          },
+          "check_out_date": {
+            "type": "string",
+            "nullable": true
+          },
+          "is_default": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TripItineraryResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "sequence_order": {
+            "type": "string",
+            "nullable": true
+          },
+          "segment_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "origin_city": {
+            "type": "string",
+            "nullable": true
+          },
+          "destination_city": {
+            "type": "string",
+            "nullable": true
+          },
+          "carrier": {
+            "type": "string",
+            "nullable": true
+          },
+          "departure_time": {
+            "type": "string",
+            "nullable": true
+          },
+          "arrival_time": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "TripPackageResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "room_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "audience": {
+            "type": "string",
+            "nullable": true
+          },
+          "price_adult": {
+            "type": "string",
+            "nullable": true
+          },
+          "price_child": {
+            "type": "string",
+            "nullable": true
+          },
+          "price_infant": {
+            "type": "string",
+            "nullable": true
+          },
+          "price_infant_with_seat": {
+            "type": "string",
+            "nullable": true
+          },
+          "bed_lock_fee": {
+            "type": "string",
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "TripResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "trip_number": {
+            "type": "string",
+            "nullable": true
+          },
+          "campaign_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "booking_deadline": {
+            "type": "string",
+            "nullable": true
+          },
+          "start_date_g": {
+            "type": "string",
+            "nullable": true
+          },
+          "start_date_h": {
+            "type": "string",
+            "nullable": true
+          },
+          "end_date_g": {
+            "type": "string",
+            "nullable": true
+          },
+          "end_date_h": {
+            "type": "string",
+            "nullable": true
+          },
+          "access_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "trip_program_pdf_url": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "TripStaffResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      }
+    },
+    "responses": {},
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "servers": [],
+  "security": []
+}
