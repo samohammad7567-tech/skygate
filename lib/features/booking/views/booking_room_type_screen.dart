@@ -6,10 +6,10 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/empty_state.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/booking/controller/cubit/booking_cubit.dart';
-import 'package:skygate/features/booking/models/booking_city.dart';
+import 'package:skygate/core/models/booking_city.dart';
 import 'package:skygate/features/booking/views/booking_hotel_screen.dart';
 import 'package:skygate/features/booking/widgets/booking_room_card.dart';
-import 'package:skygate/features/booking/widgets/booking_section_title.dart';
+import 'package:skygate/core/components/booking_section_title.dart';
 import 'package:skygate/features/booking/widgets/booking_step_scaffold.dart';
 
 /// Step 4 — "اختر نوع الغرفة". The choice applies to both cities.

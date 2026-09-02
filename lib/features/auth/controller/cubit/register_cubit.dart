@@ -10,6 +10,7 @@ import 'package:skygate/core/models/passport_form.dart';
 import 'package:skygate/core/models/umrah_document_model.dart';
 import 'package:skygate/core/services/dio_service.dart';
 import 'package:skygate/core/services/image_picker_service.dart';
+import 'package:skygate/core/utils/app_phone.dart';
 import 'package:skygate/core/utils/cache_util.dart';
 import 'package:skygate/features/auth/controller/cubit/auth_cubit.dart';
 import 'package:skygate/features/auth/models/auth_user_model.dart';
@@ -34,7 +35,11 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   // -- Step 1 - personal info ---------------------------------------------
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
+
+  /// Opens on the dial code, like the login card's. See [AppPhone].
+  final TextEditingController phoneController = TextEditingController(
+    text: AppPhone.defaultDialCode,
+  );
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
@@ -201,7 +206,7 @@ class RegisterCubit extends Cubit<RegisterState> {
 
     return {
       'full_name': nameController.text.trim(),
-      'mobile': phoneController.text.trim(),
+      'mobile': AppPhone.normalize(phoneController.text),
       'password': passwordController.text,
       'email': emailController.text.trim(),
       'passport_number': passportData.passportNumber,

@@ -2,12 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/custom_button.dart';
-import 'package:skygate/features/group_booking/models/group_room_type.dart';
+import 'package:skygate/core/models/group_room_type.dart';
 import 'package:skygate/features/group_booking/models/group_traveler_model.dart';
 import 'package:skygate/features/group_booking/widgets/group_dialogs.dart';
 import 'package:skygate/features/group_booking/widgets/group_picker_header.dart';
 import 'package:skygate/features/group_booking/widgets/group_picker_row.dart';
-import 'package:skygate/features/group_booking/widgets/group_sheet_handle.dart';
+import 'package:skygate/core/components/sheet_handle.dart';
 
 /// "من ترغب بإضافته إلى الغرفة الثنائية ؟" — seats travellers in one room.
 ///
@@ -104,7 +104,7 @@ class _PickerSheetState extends State<_PickerSheet> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const GroupSheetHandle(),
+            const SheetHandle(),
             const Gap(14),
             GroupPickerHeader(type: widget.type, onSelectAll: _selectAll),
             Flexible(child: _list()),

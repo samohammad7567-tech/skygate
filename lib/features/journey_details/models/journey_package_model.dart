@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
+import 'package:skygate/core/constants/payment_assets.dart';
 import 'package:skygate/core/models/trip_model.dart';
 
 /// "رحلة مكة" — the trip overview behind the hero photo.
@@ -117,11 +118,22 @@ class JourneySectionModel {
       section: JourneySection.offers,
       titleKey: 'trip_offers',
       descKey: 'section_offers_desc',
-      // The design's gift glyph was not part of the Figma export.
-      icon: Icons.card_giftcard_rounded,
+      asset: PaymentAssets.offers,
     ),
   ];
+
+  /// The single row of "حجوزاتي و المدفوعات".
+  ///
+  /// Shown only on a trip the pilgrim has already booked — it opens that
+  /// booking's payments — so it is kept out of [catalogue] rather than being
+  /// filtered back out of it.
+  static const JourneySectionModel booking = JourneySectionModel(
+    section: JourneySection.booking,
+    titleKey: 'booking_details',
+    descKey: 'section_booking_desc',
+    asset: PaymentAssets.bookingTicket,
+  );
 }
 
 /// Destination a "تفاصيل الرحلة" row opens.
-enum JourneySection { routes, hotels, activities, offers }
+enum JourneySection { routes, hotels, activities, offers, booking }

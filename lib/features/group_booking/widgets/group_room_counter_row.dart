@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:skygate/features/group_booking/models/group_room_type.dart';
+import 'package:skygate/core/models/group_room_type.dart';
 
 /// One line of "حدد عدد الغرف و أنواعها": the room size on the start side and
 /// its − 0 + stepper on the end.

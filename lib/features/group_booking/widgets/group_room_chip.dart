@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/features/group_booking/models/group_room_allocation.dart';
-import 'package:skygate/features/group_booking/models/group_room_type.dart';
+import 'package:skygate/core/models/group_room_type.dart';
 
 /// "غرفة ثنائية ①" pills under a hotel card — one per size the hotel took.
 class GroupRoomChips extends StatelessWidget {

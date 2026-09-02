@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
-import 'package:skygate/features/booking/widgets/room_beds_row.dart';
+import 'package:skygate/core/components/room_beds_row.dart';
 import 'package:skygate/features/group_booking/models/group_room_model.dart';
 import 'package:skygate/features/group_booking/models/group_room_seat.dart';
 import 'package:skygate/features/group_booking/widgets/group_add_traveler_button.dart';

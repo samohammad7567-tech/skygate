@@ -4,7 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
 import 'package:skygate/core/utils/app_format.dart';
 import 'package:skygate/features/group_booking/models/group_traveler_model.dart';
-import 'package:skygate/features/group_booking/widgets/group_audience_chip.dart';
+import 'package:skygate/core/components/audience_chip.dart';
 import 'package:skygate/features/group_booking/widgets/group_detail_row.dart';
 
 /// One card on "تكوين المجموعة": the numbered header with the traveller's
@@ -112,7 +112,7 @@ class _Header extends StatelessWidget {
       ),
       child: Row(
         children: [
-          GroupPositionBadge(position: position),
+          PositionBadge(position: position),
           const Gap(12),
           Expanded(
             child: Column(
@@ -137,7 +137,7 @@ class _Header extends StatelessWidget {
             ),
           ),
           const Gap(10),
-          GroupAudienceChip(audience: traveler.audience),
+          AudienceChip(audience: traveler.audience),
         ],
       ),
     );

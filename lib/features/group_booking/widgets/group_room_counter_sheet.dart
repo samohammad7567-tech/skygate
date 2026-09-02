@@ -4,9 +4,9 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
-import 'package:skygate/features/group_booking/models/group_room_type.dart';
+import 'package:skygate/core/models/group_room_type.dart';
 import 'package:skygate/features/group_booking/widgets/group_room_counter_row.dart';
-import 'package:skygate/features/group_booking/widgets/group_sheet_handle.dart';
+import 'package:skygate/core/components/sheet_handle.dart';
 
 /// "حدد عدد الغرف و أنواعها :" — the stepper sheet shared by the rooms step
 /// and the per-hotel allocation on the hotels step.
@@ -69,7 +69,7 @@ class _CounterSheetState extends State<_CounterSheet> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const GroupSheetHandle(),
+            const SheetHandle(),
             const Gap(14),
             Row(
               children: [

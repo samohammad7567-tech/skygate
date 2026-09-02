@@ -66,10 +66,8 @@ class _SegmentDetailsBody extends StatelessWidget {
       ),
       bottomNavigationBar: JourneyBottomBar(
         label: 'go_to_activities'.tr(),
-        onPressed: () => NaivgatorHelper.pushNavigation(
-          context,
-          const ActivitiesScreen(),
-        ),
+        onPressed: () =>
+            NaivgatorHelper.pushNavigation(context, const ActivitiesScreen()),
       ),
     );
   }

@@ -7,6 +7,7 @@ import 'package:skygate/core/components/app_text_field.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/components/or_divider.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
+import 'package:skygate/core/utils/app_phone.dart';
 import 'package:skygate/core/utils/app_validators.dart';
 
 /// The white "تسجيل الدخول" card. The same layout serves both credentials —
@@ -56,6 +57,7 @@ class LoginCard extends StatelessWidget {
                   ? TextInputType.phone
                   : TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
+              inputFormatters: isPhoneLogin ? AppPhone.formatters : null,
               validator: isPhoneLogin
                   ? AppValidators.phone
                   : AppValidators.email,

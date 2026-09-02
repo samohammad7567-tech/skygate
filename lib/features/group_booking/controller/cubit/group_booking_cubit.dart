@@ -15,15 +15,15 @@ import 'package:skygate/core/services/dio_service.dart';
 import 'package:skygate/core/services/image_picker_service.dart';
 import 'package:skygate/core/services/trip_service.dart';
 import 'package:skygate/core/utils/api_error.dart';
-import 'package:skygate/features/booking/models/booking_city.dart';
-import 'package:skygate/features/booking/models/booking_route_model.dart';
+import 'package:skygate/core/models/booking_city.dart';
+import 'package:skygate/core/models/booking_route_model.dart';
 import 'package:skygate/features/group_booking/models/group_room_allocation.dart';
 import 'package:skygate/features/group_booking/models/group_room_model.dart';
 import 'package:skygate/features/group_booking/models/group_room_price_model.dart';
 import 'package:skygate/features/group_booking/models/group_room_seat.dart';
-import 'package:skygate/features/group_booking/models/group_room_type.dart';
+import 'package:skygate/core/models/group_room_type.dart';
 import 'package:skygate/features/group_booking/models/group_traveler_model.dart';
-import 'package:skygate/features/group_booking/models/traveler_audience.dart';
+import 'package:skygate/core/models/traveler_audience.dart';
 
 part 'group_booking_state.dart';
 
@@ -663,9 +663,7 @@ class GroupBookingCubit extends Cubit<GroupBookingState> {
         data: FormData.fromMap(
           traveler.toPilgrimJson(
             isSelf: traveler == leader,
-            guardianPilgrimId: travelerOf(
-              traveler.guardianLocalId,
-            )?.pilgrimId,
+            guardianPilgrimId: travelerOf(traveler.guardianLocalId)?.pilgrimId,
           ),
         ),
       );

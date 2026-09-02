@@ -6,7 +6,7 @@ import 'package:skygate/core/components/document_upload_card.dart';
 import 'package:skygate/core/components/image_source_sheet.dart';
 import 'package:skygate/core/components/toast.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
-import 'package:skygate/features/booking/widgets/booking_section_title.dart';
+import 'package:skygate/core/components/booking_section_title.dart';
 import 'package:skygate/features/booking/widgets/booking_step_scaffold.dart';
 import 'package:skygate/features/group_booking/controller/cubit/group_booking_cubit.dart';
 import 'package:skygate/features/group_booking/views/group_composition_screen.dart';

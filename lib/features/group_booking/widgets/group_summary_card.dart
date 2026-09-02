@@ -2,8 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/models/booking_type.dart';
-import 'package:skygate/features/booking/widgets/payment_detail_row.dart';
-import 'package:skygate/features/group_booking/models/traveler_audience.dart';
+import 'package:skygate/core/components/payment_detail_row.dart';
+import 'package:skygate/core/models/traveler_audience.dart';
 
 /// "تفاصيل الحجز" on the group summary: the trip, its route, the booking type
 /// and the head count, then a block per room and the grand total.

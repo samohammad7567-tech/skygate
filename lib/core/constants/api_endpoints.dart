@@ -42,6 +42,23 @@ class ApiEndpoints {
   /// OpenAPI document either.
   static const String forgotPassword = 'auth/forgot-password';
 
+  /// The endpoints called without a session.
+  ///
+  /// A 401 from one of these means the credentials were rejected, not that a
+  /// session ran out — so neither [AuthInterceptor] nor [ApiError] treats them
+  /// the way it treats an authenticated call. Kept here so both read the same
+  /// list.
+  static const List<String> publicPaths = [
+    login,
+    register,
+    forgotPassword,
+    refreshToken,
+  ];
+
+  /// Whether [path] is one of [publicPaths]. Takes the full request path,
+  /// which carries the `/api/v1/` prefix the constants above leave off.
+  static bool isPublicPath(String path) => publicPaths.any(path.contains);
+
   // ── Pilgrims ─────────────────────────────────────────────────────────────
   /// `POST app/passport-ocr/scan` — multipart `passport_image`, max 5 MB. The
   /// API returns the parsed MRZ.
@@ -69,6 +86,26 @@ class ApiEndpoints {
   /// `package_id` and the pilgrims seated in it.
   static const String bookings = 'app/bookings';
 
+  /// `GET app/bookings/{id}` — one booking. `BookingResource` carries only an
+  /// id, a status, a total and `draft_expires_at`, so "المدفوعات" reads its
+  /// total here and takes the rest from what the caller hands it.
+  static String booking(int id) => 'app/bookings/$id';
+
+  // ── Payments ─────────────────────────────────────────────────────────────
+  /// `GET app/payment-methods` — the options of "طريقة التحويل", each with the
+  /// bullet list of steps the payer follows.
+  static const String paymentMethods = 'app/payment-methods';
+
+  /// `POST app/financial-transactions` — multipart `booking_id`,
+  /// `payment_method_id`, `amount`, and optionally `currency`,
+  /// `reference_number` and a `receipt` image of at most 2 MB.
+  static const String financialTransactions = 'app/financial-transactions';
+
+  /// `POST app/financial-transactions/{id}/receipt` — attaches the receipt to
+  /// a transaction that was created without one.
+  static String transactionReceipt(int id) =>
+      'app/financial-transactions/$id/receipt';
+
   // ── Home ─────────────────────────────────────────────────────────────────
   // The pre-booking browse funnel the home screen was built against is not in
   // the OpenAPI document. The pill row, the offer carousel and the services
@@ -88,14 +125,10 @@ class ApiEndpoints {
   //   GET  app/trips                           — the home browse list
   //   POST app/private-trip-requests           — "اطلب رحلتك الخاصة"
   //   GET  app/bookings                        — "رحلاتي" tab
-  //   GET  app/bookings/{id}
   //   POST app/booking-change-requests         — booking amendment
   //   GET  app/notifications                   — the bell
   //   POST app/notifications/{id}/read
   //   GET  app/room-assignments                — room allocation
-  //   GET  app/payment-methods                 — payment step
-  //   POST app/financial-transactions          — payment step
-  //   POST app/financial-transactions/{id}/receipt
   //   POST app/sos-events                      — field SOS button
   //   POST app/activities/{id}/attendance      — field attendance
   //   POST app/activities/{id}/feedback        — field feedback

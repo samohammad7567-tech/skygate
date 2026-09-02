@@ -16,9 +16,9 @@ import 'package:skygate/core/services/dio_service.dart';
 import 'package:skygate/core/services/image_picker_service.dart';
 import 'package:skygate/core/services/trip_service.dart';
 import 'package:skygate/core/utils/api_error.dart';
-import 'package:skygate/features/booking/models/booking_city.dart';
+import 'package:skygate/core/models/booking_city.dart';
 import 'package:skygate/features/booking/models/booking_option_model.dart';
-import 'package:skygate/features/booking/models/booking_route_model.dart';
+import 'package:skygate/core/models/booking_route_model.dart';
 import 'package:skygate/features/booking/models/booking_summary_model.dart';
 import 'package:skygate/features/booking/models/room_type_model.dart';
 

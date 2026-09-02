@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/features/booking/models/room_type_model.dart';
-import 'package:skygate/features/booking/widgets/booking_selectable_card.dart';
-import 'package:skygate/features/booking/widgets/room_beds_row.dart';
+import 'package:skygate/core/components/booking_selectable_card.dart';
+import 'package:skygate/core/components/room_beds_row.dart';
 
 /// One card on "اختر نوع الغرفة": the tinted title strip with a bed per
 /// sleeper, then the adult price and the "شارفت على الانتهاء" warning.

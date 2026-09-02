@@ -1,6 +1,6 @@
 import 'package:skygate/core/models/trip_model.dart';
-import 'package:skygate/features/group_booking/models/group_room_type.dart';
-import 'package:skygate/features/group_booking/models/traveler_audience.dart';
+import 'package:skygate/core/models/group_room_type.dart';
+import 'package:skygate/core/models/traveler_audience.dart';
 
 /// The price sheet of one room size — the orange column on a room card.
 ///

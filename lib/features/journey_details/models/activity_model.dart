@@ -8,7 +8,11 @@ import 'package:skygate/core/utils/api_parse.dart';
 /// `GET app/activities` answers with one flat list covering the whole trip, so
 /// the days are cut here rather than on the backend.
 class ActivityDayModel {
-  ActivityDayModel({required this.number, required this.date, required this.activities});
+  ActivityDayModel({
+    required this.number,
+    required this.date,
+    required this.activities,
+  });
 
   /// 1-based place in the programme, printed on the tab.
   final int number;
@@ -80,7 +84,9 @@ class ActivityModel {
     fromTime = ApiParse.timeOf(json['start_time']);
     toTime = ApiParse.timeOf(json['end_time']);
     typeName = ApiParse.stringOf(typeJson['name']);
-    kind = ActivityKind.fromApi(typeName ?? ApiParse.stringOf(typeJson['icon']));
+    kind = ActivityKind.fromApi(
+      typeName ?? ApiParse.stringOf(typeJson['icon']),
+    );
   }
 
   static String? _coordinates(num? lat, num? lng) =>
@@ -144,7 +150,16 @@ enum ActivityKind {
     bool has(List<String> words) => words.any(value.contains);
 
     if (has(['pray', 'salah', 'صلا', 'صلو'])) return prayers;
-    if (has(['stay', 'rest', 'hotel', 'sleep', 'إقام', 'اقام', 'راح', 'فندق'])) {
+    if (has([
+      'stay',
+      'rest',
+      'hotel',
+      'sleep',
+      'إقام',
+      'اقام',
+      'راح',
+      'فندق',
+    ])) {
       return stay;
     }
     return rituals;

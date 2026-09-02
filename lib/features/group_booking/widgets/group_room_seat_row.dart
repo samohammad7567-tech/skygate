@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/features/group_booking/models/group_room_seat.dart';
-import 'package:skygate/features/group_booking/widgets/group_audience_chip.dart';
+import 'package:skygate/core/components/audience_chip.dart';
 
 /// One line of a filled room card: the seat number, the traveller with their
 /// class chip, then the price they pay in that room.
@@ -28,7 +28,7 @@ class GroupRoomSeatRow extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         children: [
-          GroupPositionBadge(position: position, size: 28),
+          PositionBadge(position: position, size: 28),
           const Gap(10),
           Expanded(
             child: Column(
@@ -48,12 +48,12 @@ class GroupRoomSeatRow extends StatelessWidget {
                     ),
                     if (seat.isSecondInfant) ...[
                       const Gap(6),
-                      const GroupSecondInfantBadge(),
+                      const SecondInfantBadge(),
                     ],
                   ],
                 ),
                 const Gap(4),
-                GroupAudienceChip(audience: seat.traveler.audience),
+                AudienceChip(audience: seat.traveler.audience),
               ],
             ),
           ),

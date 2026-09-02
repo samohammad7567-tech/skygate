@@ -8,7 +8,7 @@ import 'package:skygate/core/components/toast.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/booking/controller/cubit/booking_cubit.dart';
 import 'package:skygate/features/booking/views/booking_route_screen.dart';
-import 'package:skygate/features/booking/widgets/booking_section_title.dart';
+import 'package:skygate/core/components/booking_section_title.dart';
 import 'package:skygate/features/booking/widgets/booking_step_scaffold.dart';
 
 /// Step 2 (last card) — "إرفاق الملفات". Attaching files is optional; the

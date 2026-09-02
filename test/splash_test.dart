@@ -15,11 +15,12 @@ void main() {
     expect(missing, isEmpty, reason: 'Missing asset files: $missing');
   });
 
-  test('pubspec bundles the splash asset folder', () {
-    expect(
-      File('pubspec.yaml').readAsStringSync(),
-      contains('- assets/images/splash/png/'),
-    );
+  test('every splash asset sits in a folder pubspec bundles', () {
+    final pubspec = File('pubspec.yaml').readAsStringSync();
+    for (final path in SplashAssets.all) {
+      final folder = '${path.substring(0, path.lastIndexOf('/'))}/';
+      expect(pubspec, contains('- $folder'), reason: '$path is not bundled');
+    }
   });
 
   test('service cache values round-trip and stay distinct', () {

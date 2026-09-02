@@ -44,8 +44,7 @@ final Map<String, dynamic> _trip = {
   'access_type': 'public',
   'status': 'published',
   'staff': [
-    for (var i = 0; i < 4; i++)
-      {'id': i + 1, 'name': 'الشيخ محمد محمد حسان'},
+    for (var i = 0; i < 4; i++) {'id': i + 1, 'name': 'الشيخ محمد محمد حسان'},
   ],
   'packages': [
     for (var i = 0; i < 3; i++)

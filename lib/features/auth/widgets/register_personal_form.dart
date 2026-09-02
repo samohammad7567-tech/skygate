@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_text_field.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
+import 'package:skygate/core/utils/app_phone.dart';
 import 'package:skygate/core/utils/app_validators.dart';
 import 'package:skygate/features/auth/controller/cubit/register_cubit.dart';
 
@@ -39,6 +40,7 @@ class RegisterPersonalForm extends StatelessWidget {
           icon: AuthAssets.phone,
           keyboardType: TextInputType.phone,
           textInputAction: TextInputAction.next,
+          inputFormatters: AppPhone.formatters,
           validator: AppValidators.phone,
         ),
         const Gap(12),

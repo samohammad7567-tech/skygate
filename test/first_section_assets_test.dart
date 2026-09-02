@@ -18,13 +18,14 @@ void main() {
     );
   });
 
-  test('every file on disk is declared in FirstSectionAssets', () {
-    final onDisk = Directory('assets/images/firstsection')
-        .listSync(recursive: true)
-        .whereType<File>()
-        .map((f) => f.path.replaceAll(r'\', '/'))
-        .toSet();
-    final declared = FirstSectionAssets.all.toSet();
-    expect(onDisk.difference(declared), isEmpty);
+  test('every first-section asset sits in a folder pubspec bundles', () {
+    // The old check — that nothing stray sat in assets/images/firstsection —
+    // no longer applies now the images are flat and shared between features.
+    // The repo-wide version of that guard lives in app_assets_test.dart.
+    final pubspec = File('pubspec.yaml').readAsStringSync();
+    for (final path in FirstSectionAssets.all) {
+      final folder = '${path.substring(0, path.lastIndexOf('/'))}/';
+      expect(pubspec, contains('- $folder'), reason: '$path is not bundled');
+    }
   });
 }

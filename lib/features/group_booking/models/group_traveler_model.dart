@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:skygate/core/models/passport_data_model.dart';
-import 'package:skygate/features/group_booking/models/traveler_audience.dart';
+import 'package:skygate/core/models/traveler_audience.dart';
 
 /// One pilgrim in "تكوين المجموعة": their passport, the files attached to it,
 /// and the adult answering for them when they are a child or an infant.

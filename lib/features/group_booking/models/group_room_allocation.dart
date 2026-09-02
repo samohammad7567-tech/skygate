@@ -1,4 +1,4 @@
-import 'package:skygate/features/group_booking/models/group_room_type.dart';
+import 'package:skygate/core/models/group_room_type.dart';
 
 /// How many rooms of each size one hotel takes — the chips printed under a
 /// hotel card on "اختر فندق مكة المكرمة".

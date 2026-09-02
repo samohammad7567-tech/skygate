@@ -1,5 +1,5 @@
 import 'package:skygate/core/models/trip_model.dart';
-import 'package:skygate/features/group_booking/models/group_room_type.dart';
+import 'package:skygate/core/models/group_room_type.dart';
 
 /// One card on "اختر نوع الغرفة".
 ///

@@ -17,14 +17,11 @@ void main() {
     expect(AuthAssets.all.toSet().length, AuthAssets.all.length);
   });
 
-  test('pubspec bundles the auth asset folders', () {
+  test('every auth asset sits in a folder pubspec bundles', () {
     final pubspec = File('pubspec.yaml').readAsStringSync();
-    for (final folder in [
-      'assets/images/auth/',
-      'assets/images/auth/png/',
-      'assets/images/auth/svgs/',
-    ]) {
-      expect(pubspec, contains('- $folder'), reason: '$folder not bundled');
+    for (final path in AuthAssets.all) {
+      final folder = '${path.substring(0, path.lastIndexOf('/'))}/';
+      expect(pubspec, contains('- $folder'), reason: '$path is not bundled');
     }
   });
 

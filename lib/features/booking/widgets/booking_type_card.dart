@@ -4,7 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_glyph_plate.dart';
 import 'package:skygate/features/booking/models/booking_option_model.dart';
 import 'package:skygate/features/booking/widgets/booking_criteria_list.dart';
-import 'package:skygate/features/booking/widgets/booking_selectable_card.dart';
+import 'package:skygate/core/components/booking_selectable_card.dart';
 
 /// One of the two cards on "نوع الحجز": the radio and title strip, the
 /// description, then the accepted criteria.

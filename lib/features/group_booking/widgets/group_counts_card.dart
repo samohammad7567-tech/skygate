@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:skygate/features/group_booking/models/traveler_audience.dart';
+import 'package:skygate/core/models/traveler_audience.dart';
 
 /// "أجمالي المسافرين" card on "تكوين المجموعة": the head count over one tile
 /// per class of traveller.

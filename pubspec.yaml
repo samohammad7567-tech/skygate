@@ -46,24 +46,8 @@ flutter:
 
   assets:
     - assets/lang/
-    - assets/images/
-    - assets/images/onboarding/
-    # Splash entry screen backgrounds.
-    - assets/images/splash/png/
-    # Auth / signup exports.
-    - assets/images/auth/
-    - assets/images/auth/png/
-    - assets/images/auth/svgs/
-    # Home screen exports (hero photography, service illustrations, glyphs).
-    - assets/images/home/
-    - assets/images/home/svgs/
-    # Figma export: section "قسم تسجيل الدخول و انشاء حساب جديد" (node 1:3335).
-    # Flutter does not recurse into subfolders, so each one is listed.
-    - assets/images/firstsection/photos/
-    - assets/images/firstsection/illustrations/
-    - assets/images/firstsection/icons/
-    - assets/images/firstsection/decor/
-    # Figma export: "تفاصيل الرحلة" flow (package, itinerary, hotels,
-    # activities, offers). Glyphs are SVG, photography and logos are PNG.
-    - assets/images/journy_details/
-    - assets/images/journy_details/png/
+    # Every image lives in one flat folder per file type; the registries
+    # in lib/core/constants give them their names.
+    - assets/images/svgs/
+    - assets/images/pngs/
+    - assets/images/jpgs/

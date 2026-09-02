@@ -9,7 +9,7 @@ import 'package:skygate/core/components/passport_fields_form.dart';
 import 'package:skygate/core/components/pledge_checkbox.dart';
 import 'package:skygate/core/components/toast.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
-import 'package:skygate/features/booking/widgets/booking_section_title.dart';
+import 'package:skygate/core/components/booking_section_title.dart';
 import 'package:skygate/features/booking/widgets/booking_step_scaffold.dart';
 import 'package:skygate/features/group_booking/controller/cubit/group_booking_cubit.dart';
 import 'package:skygate/features/group_booking/views/group_documents_screen.dart';

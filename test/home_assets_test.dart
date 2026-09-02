@@ -20,10 +20,11 @@ void main() {
     expect(HomeAssets.all.toSet().length, HomeAssets.all.length);
   });
 
-  test('pubspec bundles the home asset folders', () {
+  test('every home asset sits in a folder pubspec bundles', () {
     final pubspec = File('pubspec.yaml').readAsStringSync();
-    for (final folder in ['assets/images/home/', 'assets/images/home/svgs/']) {
-      expect(pubspec, contains('- $folder'), reason: '$folder not bundled');
+    for (final path in HomeAssets.all) {
+      final folder = '${path.substring(0, path.lastIndexOf('/'))}/';
+      expect(pubspec, contains('- $folder'), reason: '$path is not bundled');
     }
   });
 

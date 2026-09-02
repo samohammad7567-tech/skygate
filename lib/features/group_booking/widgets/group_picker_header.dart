@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:skygate/features/group_booking/models/group_room_type.dart';
+import 'package:skygate/core/models/group_room_type.dart';
 
 /// Top of the traveller picker: "من ترغب بإضافته إلى الغرفة الثنائية ؟" over
 /// the rule, with "اختيار الكل" on the end side.

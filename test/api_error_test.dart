@@ -8,13 +8,17 @@ import 'package:skygate/core/utils/api_error.dart';
 void main() {
   final request = RequestOptions(path: 'auth/login');
 
-  DioException dio(DioExceptionType type, {Object? error, Response? response}) =>
-      DioException(
-        requestOptions: request,
-        type: type,
-        error: error,
-        response: response,
-      );
+  DioException dio(
+    DioExceptionType type, {
+    Object? error,
+    Response? response,
+    String path = 'auth/login',
+  }) => DioException(
+    requestOptions: RequestOptions(path: path),
+    type: type,
+    error: error,
+    response: response,
+  );
 
   Response body(int status, Object? data) =>
       Response(requestOptions: request, statusCode: status, data: data);
@@ -68,15 +72,52 @@ void main() {
     expect(ApiError.messageOf(error), 'بيانات الدخول غير صحيحة');
   });
 
-  test('401 and 403 read as an expired session', () {
+  test('401 and 403 on an authenticated call read as an expired session', () {
     for (final status in [401, 403]) {
       expect(
         ApiError.messageOf(
-          dio(DioExceptionType.badResponse, response: body(status, null)),
+          dio(
+            DioExceptionType.badResponse,
+            response: body(status, null),
+            path: 'app/bookings',
+          ),
         ),
         ApiError.sessionExpired,
       );
     }
+  });
+
+  test('a rejected sign-in is not reported as an expired session', () {
+    // Signing in with a wrong password used to read "انتهت الجلسة", which is
+    // both untrue and unactionable.
+    for (final path in [
+      'auth/login',
+      'auth/register',
+      'auth/forgot-password',
+    ]) {
+      expect(
+        ApiError.messageOf(
+          dio(
+            DioExceptionType.badResponse,
+            response: body(401, null),
+            path: path,
+          ),
+        ),
+        ApiError.invalidCredentials,
+      );
+    }
+  });
+
+  test('a rejected sign-in prefers the message the API sent', () {
+    expect(
+      ApiError.messageOf(
+        dio(
+          DioExceptionType.badResponse,
+          response: body(401, {'message': 'رقم الهاتف غير مسجل'}),
+        ),
+      ),
+      'رقم الهاتف غير مسجل',
+    );
   });
 
   test('a 5xx reads as a server error even with an empty body', () {

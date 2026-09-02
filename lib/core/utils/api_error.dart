@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:skygate/core/constants/api_endpoints.dart';
 
 /// Turns whatever a failed request threw into one line the UI can show.
 ///
@@ -17,6 +18,11 @@ class ApiError {
   static const String certificate = 'error_bad_certificate';
   static const String server = 'error_server';
   static const String sessionExpired = 'error_session_expired';
+
+  /// A 401 from a public auth endpoint — the credentials were wrong. Only used
+  /// when the API sent no message of its own to show instead.
+  static const String invalidCredentials = 'error_invalid_credentials';
+
   static const String generic = 'something_went_wrong';
 
   static String messageOf(Object? error) {
@@ -32,16 +38,29 @@ class ApiError {
       DioExceptionType.cancel => generic,
       DioExceptionType.unknown =>
         error.error is SocketException ? offline : generic,
-      DioExceptionType.badResponse => _fromResponse(error.response),
+      DioExceptionType.badResponse => _fromResponse(
+        error.response,
+        // Signing in is not a session that ran out, so a 401 here must not be
+        // reported as one.
+        isPublic: ApiEndpoints.isPublicPath(error.requestOptions.path),
+      ),
     };
   }
 
-  /// Reads the body of a 4xx/5xx. Laravel answers a failed validation with a
+  /// Reads the body of a 4xx/5xx. Laravel answers a failed validation with an
   /// `errors` bag keyed by field, which is far more useful than its generic
   /// `message`, so that wins when both are present.
-  static String _fromResponse(Response? response) {
+  ///
+  /// [isPublic] marks a call made without a session — signing in, registering,
+  /// resetting a password. There the API's own message is the useful one, and a
+  /// 401 is a rejected credential rather than an expired session.
+  static String _fromResponse(Response? response, {required bool isPublic}) {
     final status = response?.statusCode ?? 0;
-    if (status == 401 || status == 403) return sessionExpired;
+    final isRejected = status == 401 || status == 403;
+
+    // On an authenticated call a 401 means the token is no longer good, and
+    // Laravel's own copy for it ("Unauthenticated.") is no use to the pilgrim.
+    if (isRejected && !isPublic) return sessionExpired;
 
     final body = response?.data;
     if (body is Map) {
@@ -51,6 +70,9 @@ class ApiError {
       final message = body['message']?.toString().trim();
       if (message != null && message.isNotEmpty) return message;
     }
+
+    // A sign-in the backend turned down without saying why.
+    if (isRejected) return invalidCredentials;
 
     return status >= 500 ? server : generic;
   }

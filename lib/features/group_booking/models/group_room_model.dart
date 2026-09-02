@@ -1,6 +1,6 @@
 import 'package:skygate/features/group_booking/models/group_room_price_model.dart';
-import 'package:skygate/features/group_booking/models/group_room_type.dart';
-import 'package:skygate/features/group_booking/models/traveler_audience.dart';
+import 'package:skygate/core/models/group_room_type.dart';
+import 'package:skygate/core/models/traveler_audience.dart';
 
 /// One room created on "اختر عدد الغرف و أنواعها", with the travellers put in
 /// it and the beds paid for but left empty.

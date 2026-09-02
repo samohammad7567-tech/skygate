@@ -4,6 +4,7 @@ import 'package:skygate/core/constants/api_endpoints.dart';
 import 'package:skygate/core/services/dio_service.dart';
 import 'package:skygate/core/services/trip_service.dart';
 import 'package:skygate/core/utils/api_error.dart';
+import 'package:skygate/core/utils/app_phone.dart';
 import 'package:skygate/core/utils/cache_util.dart';
 import 'package:skygate/features/auth/models/auth_user_model.dart';
 
@@ -39,7 +40,11 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   // ── Form ───────────────────────────────────────────────────────────────
-  final TextEditingController phoneController = TextEditingController();
+  /// Opens on the dial code so the common case is no extra typing; a pilgrim
+  /// abroad edits it. Nothing is ever assumed on their behalf — see [AppPhone].
+  final TextEditingController phoneController = TextEditingController(
+    text: AppPhone.defaultDialCode,
+  );
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -70,7 +75,7 @@ class AuthCubit extends Cubit<AuthState> {
           ApiEndpoints.login,
           data: {
             if (isPhoneLogin)
-              'mobile': phoneController.text.trim()
+              'mobile': AppPhone.normalize(phoneController.text)
             else
               'email': emailController.text.trim(),
             'password': passwordController.text,
@@ -95,7 +100,7 @@ class AuthCubit extends Cubit<AuthState> {
       ApiEndpoints.forgotPassword,
       data: {
         if (isPhoneLogin)
-          'mobile': phoneController.text.trim()
+          'mobile': AppPhone.normalize(phoneController.text)
         else
           'email': emailController.text.trim(),
       },

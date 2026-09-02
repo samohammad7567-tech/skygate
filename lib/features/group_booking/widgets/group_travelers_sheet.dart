@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/features/group_booking/models/group_room_seat.dart';
 import 'package:skygate/features/group_booking/widgets/group_room_seat_row.dart';
-import 'package:skygate/features/group_booking/widgets/group_sheet_handle.dart';
+import 'package:skygate/core/components/sheet_handle.dart';
 
 /// "تفاصيل المسافرون" — who is in one room and what each of them pays, opened
 /// by the "التفاصيل" chip on the summary.
@@ -40,7 +40,7 @@ class _TravelersSheet extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const GroupSheetHandle(),
+            const SheetHandle(),
             const Gap(14),
             Text(
               'travelers_details'.tr(),

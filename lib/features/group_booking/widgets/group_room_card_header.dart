@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:skygate/features/booking/widgets/room_beds_row.dart';
+import 'package:skygate/core/components/room_beds_row.dart';
 import 'package:skygate/features/group_booking/models/group_room_model.dart';
 
 /// Tinted strip of a room card: the size and its beds on the start side, the

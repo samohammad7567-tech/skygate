@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/features/group_booking/models/group_traveler_model.dart';
-import 'package:skygate/features/group_booking/widgets/group_audience_chip.dart';
+import 'package:skygate/core/components/audience_chip.dart';
 
 /// One line of "من ترغب بإضافته إلى الغرفة ؟": the traveller with the price
 /// they would pay in this room, and the tick that seats them.
@@ -41,7 +41,7 @@ class GroupPickerRow extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Row(
           children: [
-            GroupPositionBadge(position: position, size: 30),
+            PositionBadge(position: position, size: 30),
             const Gap(12),
             Expanded(
               child: Column(
@@ -61,7 +61,7 @@ class GroupPickerRow extends StatelessWidget {
                       ),
                       if (isSecondInfant) ...[
                         const Gap(6),
-                        const GroupSecondInfantBadge(),
+                        const SecondInfantBadge(),
                       ],
                     ],
                   ),
@@ -76,7 +76,7 @@ class GroupPickerRow extends StatelessWidget {
                         ),
                       ),
                       const Gap(10),
-                      GroupAudienceChip(audience: traveler.audience),
+                      AudienceChip(audience: traveler.audience),
                     ],
                   ),
                 ],

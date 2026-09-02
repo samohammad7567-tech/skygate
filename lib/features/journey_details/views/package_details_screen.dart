@@ -15,25 +15,33 @@ import 'package:skygate/features/journey_details/widgets/journey_hero_header.dar
 import 'package:skygate/features/journey_details/widgets/journey_section_tile.dart';
 import 'package:skygate/features/journey_details/widgets/journey_stays_row.dart';
 import 'package:skygate/features/journey_details/widgets/journey_supervisors_card.dart';
+import 'package:skygate/features/payments/views/payments_screen.dart';
 
-/// "رحلة مكة" — the package overview and the four rows that open the rest of
-/// the flow.
+/// "رحلة مكة" — the package overview and the rows that open the rest of the
+/// flow.
+///
+/// Opened with a [bookingId] when the pilgrim already holds a booking on this
+/// trip — reached from "رحلاتي" — which adds the "حجوزاتي و المدفوعات" section
+/// and turns the bottom action into "اضافة حجز جديد".
 class PackageDetailsScreen extends StatelessWidget {
-  const PackageDetailsScreen({super.key, required this.tripId});
+  const PackageDetailsScreen({super.key, required this.tripId, this.bookingId});
 
   final int tripId;
+  final int? bookingId;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => JourneyDetailsCubit(tripId)..getPackage(),
-      child: const _PackageDetailsBody(),
+      child: _PackageDetailsBody(bookingId: bookingId),
     );
   }
 }
 
 class _PackageDetailsBody extends StatelessWidget {
-  const _PackageDetailsBody();
+  const _PackageDetailsBody({required this.bookingId});
+
+  final int? bookingId;
 
   /// "إبدأ عملية الحجز" — hands the package over to the six-step wizard.
   void _startBooking(BuildContext context) {
@@ -51,6 +59,9 @@ class _PackageDetailsBody extends StatelessWidget {
       JourneySection.hotels => HotelsScreen(tripId: tripId),
       JourneySection.activities => const ActivitiesScreen(),
       JourneySection.offers => TripOffersScreen(tripId: tripId),
+      // Only reachable while `bookingId` is set, which is what put the row on
+      // the page in the first place.
+      JourneySection.booking => PaymentsScreen(bookingId: bookingId!),
     });
   }
 
@@ -120,6 +131,25 @@ class _PackageDetailsBody extends StatelessWidget {
                       onTap: () => _openSection(context, section.section),
                     ),
                   ),
+                if (bookingId != null) ...[
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 8, 20, 12),
+                    child: Text(
+                      'my_bookings_and_payments'.tr(),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.titleLarge,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
+                    child: JourneySectionTile(
+                      section: JourneySectionModel.booking,
+                      onTap: () =>
+                          _openSection(context, JourneySection.booking),
+                    ),
+                  ),
+                ],
               ],
               const SizedBox(height: 12),
             ],
@@ -127,7 +157,9 @@ class _PackageDetailsBody extends StatelessWidget {
         },
       ),
       bottomNavigationBar: JourneyBottomBar(
-        label: 'start_booking'.tr(),
+        label: bookingId == null
+            ? 'start_booking'.tr()
+            : 'add_new_booking'.tr(),
         onPressed: () => _startBooking(context),
       ),
     );

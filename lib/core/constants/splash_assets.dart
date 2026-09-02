@@ -7,22 +7,22 @@
 class SplashAssets {
   SplashAssets._();
 
-  static const String _png = 'assets/images/splash/png';
+  static const String _pngs = 'assets/images/pngs';
 
   /// Kaaba and the Makkah clock tower.
-  static const String background1 = '$_png/back_ground1.png';
+  static const String background1 = '$_pngs/back_ground1.png';
 
   /// Bahrain World Trade Center at dusk.
-  static const String background2 = '$_png/back_ground2.png';
+  static const String background2 = '$_pngs/back_ground2.png';
 
   /// Dubai Marina skyline from the water.
-  static const String background3 = '$_png/back_ground3.png';
+  static const String background3 = '$_pngs/back_ground3.png';
 
   /// Airliner on take-off.
-  static const String background4 = '$_png/back_ground4.png';
+  static const String background4 = '$_pngs/back_ground4.png';
 
   /// Wing above the clouds at sunset.
-  static const String background5 = '$_png/back_ground5.png';
+  static const String background5 = '$_pngs/back_ground5.png';
 
   /// The slideshow, in design order. Slide 1 is the first one shown; with the
   /// RTL locale the indicator therefore highlights its right-most dot.

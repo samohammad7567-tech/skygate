@@ -43,3 +43,59 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# ── Added for this project ───────────────────────────────────────────────────
+
+# Claude Code workspace settings — machine-specific, not shared.
+.claude/
+
+# Golden-test failure artifacts. Regenerated on every failing run of
+# `flutter test`; the expected images in test/goldens/ ARE committed.
+test/failures/
+
+# Secrets and signing material. Never commit these — a leaked keystore or
+# service-account JSON cannot be rotated out of git history.
+*.jks
+*.keystore
+*.p12
+*.p8
+*.mobileprovision
+android/key.properties
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
+ios/Runner/firebase_app_id_file.json
+lib/firebase_options.dart
+.env
+.env.*
+!.env.example
+
+# Fastlane working files (the Fastfile/Appfile themselves stay tracked).
+**/fastlane/report.xml
+**/fastlane/Preview.html
+**/fastlane/screenshots
+**/fastlane/test_output
+**/fastlane/README.md
+
+# Built or downloaded binaries. `/build/` already covers Flutter output; these
+# catch installers and archives dropped into the tree by hand.
+*.exe
+*.msi
+*.dmg
+*.apk
+*.aab
+*.ipa
+*.zip
+*.7z
+
+# Windows / macOS shell droppings.
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store?
+._*
+
+# CocoaPods — the Pods tree is restored by `pod install`.
+ios/Pods/
+macos/Pods/
+ios/.symlinks/
+macos/.symlinks/

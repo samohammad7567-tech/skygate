@@ -26,11 +26,18 @@ class AuthInterceptor extends Interceptor {
     ErrorInterceptorHandler handler,
   ) async {
     final isUnauthorized = err.response?.statusCode == 401;
-    final isRefreshCall = err.requestOptions.path.contains(
-      ApiEndpoints.refreshToken,
-    );
 
-    if (!isUnauthorized || isRefreshCall || _isRefreshing) {
+    // Signing in, registering and resetting a password are called without a
+    // session, so a 401 from one of them is a rejected credential. Trying to
+    // refresh would fail and then clear the session as if it had expired,
+    // which is how a wrong password used to log the pilgrim out.
+    final isPublic = ApiEndpoints.isPublicPath(err.requestOptions.path);
+
+    // Nothing to refresh when the request never carried a token.
+    final token = CacheUtil.get(key: 'token') as String?;
+    final hasSession = token != null && token.isNotEmpty;
+
+    if (!isUnauthorized || isPublic || !hasSession || _isRefreshing) {
       return handler.next(err);
     }
 

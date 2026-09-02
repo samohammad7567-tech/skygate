@@ -6,7 +6,7 @@ import 'package:skygate/core/components/icon_text_row.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
 import 'package:skygate/core/models/hotel_model.dart';
-import 'package:skygate/features/booking/widgets/booking_selectable_card.dart';
+import 'package:skygate/core/components/booking_selectable_card.dart';
 
 /// One card on "اختر فندق مكة المكرمة": the radio, the hotel summary, then the
 /// cover photo on the end side.
