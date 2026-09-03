@@ -6,7 +6,7 @@ import 'package:skygate/core/components/toast.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/core/models/booking_city.dart';
 import 'package:skygate/core/components/booking_section_title.dart';
-import 'package:skygate/features/booking/widgets/booking_step_scaffold.dart';
+import 'package:skygate/core/components/booking_step_scaffold.dart';
 import 'package:skygate/features/group_booking/controller/cubit/group_booking_cubit.dart';
 import 'package:skygate/features/group_booking/models/group_room_model.dart';
 import 'package:skygate/core/models/traveler_audience.dart';

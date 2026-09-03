@@ -14,11 +14,16 @@ class SplashPanel extends StatelessWidget {
     required this.slideCount,
     required this.currentIndex,
     required this.onServiceSelected,
+    this.isBootingTourism = false,
   });
 
   final int slideCount;
   final int currentIndex;
   final ValueChanged<SplashService> onServiceSelected;
+
+  /// The tourism module is starting up: its button shows a spinner and both
+  /// buttons stop responding until it is ready.
+  final bool isBootingTourism;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +48,10 @@ class SplashPanel extends StatelessWidget {
         const Gap(26),
         SplashOutlinedButton(
           label: SplashService.tourism.labelKey.tr(),
-          onPressed: () => onServiceSelected(SplashService.tourism),
+          isLoading: isBootingTourism,
+          onPressed: isBootingTourism
+              ? null
+              : () => onServiceSelected(SplashService.tourism),
         ),
         const Gap(16),
         const SplashOrDivider(),
@@ -54,7 +62,9 @@ class SplashPanel extends StatelessWidget {
           height: 47,
           radius: 8,
           backgroundColor: theme.colorScheme.secondary,
-          onPressed: () => onServiceSelected(SplashService.umrah),
+          onPressed: isBootingTourism
+              ? null
+              : () => onServiceSelected(SplashService.umrah),
         ),
       ],
     );

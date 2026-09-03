@@ -9,7 +9,7 @@ import 'package:skygate/features/booking/controller/cubit/booking_cubit.dart';
 import 'package:skygate/features/booking/models/booking_summary_model.dart';
 import 'package:skygate/features/booking/views/booking_confirmation_screen.dart';
 import 'package:skygate/core/components/booking_section_title.dart';
-import 'package:skygate/features/booking/widgets/booking_step_scaffold.dart';
+import 'package:skygate/core/components/booking_step_scaffold.dart';
 import 'package:skygate/features/booking/widgets/payment_countdown_card.dart';
 import 'package:skygate/features/booking/widgets/payment_details_card.dart';
 import 'package:skygate/features/booking/widgets/payment_schedule_card.dart';
@@ -51,6 +51,7 @@ class _BookingSummaryScreenState extends State<BookingSummaryScreen> {
 
         return BookingStepScaffold(
           step: 6,
+          total: BookingCubit.totalSteps,
           isLoading: state is BookingSubmitLoading,
           onContinue: summary == null ? null : cubit.submit,
           children: [

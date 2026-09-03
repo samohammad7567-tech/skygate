@@ -38,7 +38,24 @@ class AppAssets {
   /// Shown by [AppImage] / [CachedImage] while loading or on error.
   static const String placeholder = '$_pngs/placeholder.png';
 
-  /// Every asset above, in declaration order. Handy for smoke tests that
-  /// assert the bundle actually contains each file.
+  // ── Empty states (pending generation) ────────────────────────────────────
+  /// Illustrations for the screens that can come up with nothing to show.
+  /// Not in the mockups — generate them as one matching set (same palette,
+  /// same line weight) so the four never look borrowed from each other.
+  ///
+  /// Spec: 1024x1024 source, exported at 512x512, PNG with a real alpha
+  /// channel so the screen's own surface colour shows through.
+  ///
+  /// Deliberately absent from [all]: the files do not exist yet and the bundle
+  /// smoke test asserts every path in that list resolves. Move each one into
+  /// the list as it lands.
+  static const String emptyTrips = '$_pngs/empty_trips.png';
+  static const String emptyNotifications = '$_pngs/empty_notifications.png';
+  static const String emptySearch = '$_pngs/empty_search.png';
+  static const String emptyBookings = '$_pngs/empty_bookings.png';
+
+  /// Every shipped asset above, in declaration order. Handy for smoke tests
+  /// that assert the bundle actually contains each file. The empty-state
+  /// illustrations are held out until their files exist.
   static const List<String> all = [logo, placeholder, ...onboarding];
 }

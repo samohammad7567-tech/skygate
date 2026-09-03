@@ -1,5 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart' hide Trans;
+import 'package:skygate/core/components/toast.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/auth/views/auth_landing_screen.dart';
 import 'package:skygate/features/main/views/main_screen.dart';
@@ -71,6 +74,12 @@ class _SplashBodyState extends State<_SplashBody> {
               context,
               _nextScreen(cubit),
             );
+          } else if (state is SplashTourismReady) {
+            // The tourism module routes with GetX; this screen stays under it
+            // so the back gesture returns to the service choice.
+            Get.toNamed(state.route);
+          } else if (state is SplashTourismFailed) {
+            showToast(context, state.errorKey.tr(), isError: true);
           }
         },
         builder: (context, state) {
@@ -94,6 +103,7 @@ class _SplashBodyState extends State<_SplashBody> {
                       child: SplashPanel(
                         slideCount: cubit.backgrounds.length,
                         currentIndex: cubit.activeIndex,
+                        isBootingTourism: cubit.isBootingTourism,
                         onServiceSelected: (service) =>
                             _onServiceSelected(context, service),
                       ),

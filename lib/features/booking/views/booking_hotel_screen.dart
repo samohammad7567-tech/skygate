@@ -11,7 +11,7 @@ import 'package:skygate/features/booking/views/booking_summary_screen.dart';
 import 'package:skygate/features/booking/widgets/booking_hotel_card.dart';
 import 'package:skygate/core/components/booking_section_title.dart';
 import 'package:skygate/core/components/booking_stay_row.dart';
-import 'package:skygate/features/booking/widgets/booking_step_scaffold.dart';
+import 'package:skygate/core/components/booking_step_scaffold.dart';
 
 /// Step 5 — "اختر فندق مكة المكرمة", then the same screen again for
 /// "المدينة المنورة". The last city hands over to the summary.
@@ -62,6 +62,7 @@ class _BookingHotelScreenState extends State<BookingHotelScreen> {
 
         return BookingStepScaffold(
           step: 5,
+          total: BookingCubit.totalSteps,
           onContinue: cubit.selectedHotelIn(widget.city) == null
               ? null
               : _continue,

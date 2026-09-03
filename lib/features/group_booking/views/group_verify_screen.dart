@@ -11,7 +11,7 @@ import 'package:skygate/core/components/scan_launcher.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/core/components/booking_section_title.dart';
-import 'package:skygate/features/booking/widgets/booking_step_scaffold.dart';
+import 'package:skygate/core/components/booking_step_scaffold.dart';
 import 'package:skygate/core/components/capture_instructions_card.dart';
 import 'package:skygate/features/group_booking/controller/cubit/group_booking_cubit.dart';
 import 'package:skygate/features/group_booking/views/group_passport_manual_screen.dart';

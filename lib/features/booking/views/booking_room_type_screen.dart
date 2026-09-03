@@ -10,7 +10,7 @@ import 'package:skygate/core/models/booking_city.dart';
 import 'package:skygate/features/booking/views/booking_hotel_screen.dart';
 import 'package:skygate/features/booking/widgets/booking_room_card.dart';
 import 'package:skygate/core/components/booking_section_title.dart';
-import 'package:skygate/features/booking/widgets/booking_step_scaffold.dart';
+import 'package:skygate/core/components/booking_step_scaffold.dart';
 
 /// Step 4 — "اختر نوع الغرفة". The choice applies to both cities.
 class BookingRoomTypeScreen extends StatefulWidget {
@@ -48,6 +48,7 @@ class _BookingRoomTypeScreenState extends State<BookingRoomTypeScreen> {
 
         return BookingStepScaffold(
           step: 4,
+          total: BookingCubit.totalSteps,
           onContinue: cubit.selectedRoom == null ? null : _continue,
           children: [
             BookingSectionTitle(

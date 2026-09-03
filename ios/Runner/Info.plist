@@ -66,5 +66,15 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<!-- Tourism module: passport scanning, biometric login, attachments and
+	     the airport map. -->
+	<key>NSCameraUsageDescription</key>
+	<string>Sky Gate wants to use your camera to scan your passport barcode, to fill your data for registration form.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Skygate wants to access your fingerprint for app login only.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Sky Gate needs access to your photos so you can attach documents and set a profile picture.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Sky Gate uses your location to show nearby airports and pick-up points on the map.</string>
 </dict>
 </plist>

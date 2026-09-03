@@ -9,7 +9,7 @@ import 'package:skygate/features/booking/controller/cubit/booking_cubit.dart';
 import 'package:skygate/features/booking/views/booking_room_type_screen.dart';
 import 'package:skygate/core/components/booking_route_card.dart';
 import 'package:skygate/core/components/booking_section_title.dart';
-import 'package:skygate/features/booking/widgets/booking_step_scaffold.dart';
+import 'package:skygate/core/components/booking_step_scaffold.dart';
 
 /// Step 3 — "اختر المسار".
 class BookingRouteScreen extends StatefulWidget {
@@ -43,6 +43,7 @@ class _BookingRouteScreenState extends State<BookingRouteScreen> {
 
         return BookingStepScaffold(
           step: 3,
+          total: BookingCubit.totalSteps,
           onContinue: cubit.selectedRoute == null ? null : _continue,
           children: [
             BookingSectionTitle(

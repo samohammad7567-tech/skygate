@@ -14,7 +14,7 @@ import 'package:skygate/features/booking/controller/cubit/booking_cubit.dart';
 import 'package:skygate/features/booking/views/booking_passport_manual_screen.dart';
 import 'package:skygate/features/booking/views/booking_passport_scan_screen.dart';
 import 'package:skygate/core/components/booking_section_title.dart';
-import 'package:skygate/features/booking/widgets/booking_step_scaffold.dart';
+import 'package:skygate/core/components/booking_step_scaffold.dart';
 import 'package:skygate/core/components/capture_instructions_card.dart';
 
 /// Step 2 (entry) — "التحقق من البيانات". Offers the camera, or the typed
@@ -53,6 +53,7 @@ class BookingVerifyScreen extends StatelessWidget {
 
     return BookingStepScaffold(
       step: 2,
+      total: BookingCubit.totalSteps,
       onContinue: () => _scan(context),
       children: [
         BookingSectionTitle(

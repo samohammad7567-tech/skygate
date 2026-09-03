@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1016963884485",
+    "project_id": "skygate-1a526",
+    "storage_bucket": "skygate-1a526.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1016963884485:android:570fdaca03543d602497ac",
+        "android_client_info": {
+          "package_name": "com.eliasdahi.skygate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0EGkAoRR8EMIBChmlV8_yUZy3OS6KdVQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

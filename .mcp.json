@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "free-image-gen": {
+      "command": "node",
+      "args": ["tool/image_mcp.mjs"],
+      "env": {}
+    }
+  }
+}
