@@ -4,8 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/room_beds_row.dart';
 import 'package:skygate/features/group_booking/models/group_room_model.dart';
 
-/// Tinted strip of a room card: the size and its beds on the start side, the
-/// delete and edit chips on the end.
 class GroupRoomCardHeader extends StatelessWidget {
   const GroupRoomCardHeader({
     super.key,
@@ -16,8 +14,6 @@ class GroupRoomCardHeader extends StatelessWidget {
 
   final GroupRoomModel room;
   final VoidCallback onDelete;
-
-  /// `null` until the room holds someone — an empty room has nothing to edit.
   final VoidCallback? onEdit;
 
   @override
@@ -60,7 +56,6 @@ class GroupRoomCardHeader extends StatelessWidget {
   }
 }
 
-/// Round outlined chip carrying one of the card's actions.
 class _ActionChip extends StatelessWidget {
   const _ActionChip({required this.icon, required this.onTap});
 

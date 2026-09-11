@@ -4,8 +4,6 @@ import 'package:skygate/core/components/app_card.dart';
 import 'package:skygate/core/components/app_glyph_plate.dart';
 import 'package:skygate/features/journey_details/models/journey_package_model.dart';
 
-/// One row of "تفاصيل الرحلة" — glyph, title, description, and a chevron
-/// pointing the way the page reads.
 class JourneySectionTile extends StatelessWidget {
   const JourneySectionTile({super.key, required this.section, this.onTap});
 

@@ -2,30 +2,21 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_image.dart';
+import 'package:skygate/core/components/app_sheet.dart';
 import 'package:skygate/core/components/custom_button.dart';
+import 'package:skygate/core/components/sheet_handle.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
 import 'package:skygate/core/models/group_room_type.dart';
 import 'package:skygate/features/group_booking/widgets/group_room_counter_row.dart';
-import 'package:skygate/core/components/sheet_handle.dart';
 
-/// "حدد عدد الغرف و أنواعها :" — the stepper sheet shared by the rooms step
-/// and the per-hotel allocation on the hotels step.
-///
-/// Returns the counts the user settled on, or `null` when the sheet is
-/// dismissed without confirming.
 Future<Map<GroupRoomType, int>?> showGroupRoomCounterSheet(
   BuildContext context, {
   required List<GroupRoomType> types,
   required Map<GroupRoomType, int> initial,
   Map<GroupRoomType, int>? maxCounts,
 }) {
-  return showModalBottomSheet<Map<GroupRoomType, int>>(
-    context: context,
-    isScrollControlled: true,
-    backgroundColor: Theme.of(context).colorScheme.surface,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-    ),
+  return showAppSheet<Map<GroupRoomType, int>>(
+    context,
     builder: (_) => _CounterSheet(
       types: types,
       initial: initial,
@@ -53,9 +44,6 @@ class _CounterSheetState extends State<_CounterSheet> {
   late final Map<GroupRoomType, int> _counts = {
     for (final type in widget.types) type: widget.initial[type] ?? 0,
   };
-
-  /// A size with no ceiling is only bounded by what the group can sensibly
-  /// book, which the rooms step leaves open.
   int _maxOf(GroupRoomType type) => widget.maxCounts[type] ?? 99;
 
   @override

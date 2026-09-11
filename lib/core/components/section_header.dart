@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// Row with a section title on the start side and an optional "عرض الكل"
-/// outlined action on the end side.
 class SectionHeader extends StatelessWidget {
   const SectionHeader({
     super.key,

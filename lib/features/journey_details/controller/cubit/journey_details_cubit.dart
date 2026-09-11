@@ -8,11 +8,6 @@ import 'package:skygate/features/journey_details/models/journey_route_model.dart
 
 part 'journey_details_state.dart';
 
-/// Owns "رحلة مكة" and its "مسارات الرحلة" tabs, plus the leg behind the
-/// "تفاصيل القسم" screen.
-///
-/// All three read the same call — `GET app/trips/{id}` — which carries the
-/// campaign, its staff, its hotels and its itinerary in one response.
 class JourneyDetailsCubit extends Cubit<JourneyDetailsState> {
   JourneyDetailsCubit(this.tripId) : super(JourneyDetailsInitial());
 
@@ -30,8 +25,6 @@ class JourneyDetailsCubit extends Cubit<JourneyDetailsState> {
 
   // ── Trip overview ──────────────────────────────────────────────────────
   JourneyPackageModel? package;
-
-  /// The four "تفاصيل الرحلة" rows are fixed design content.
   final List<JourneySectionModel> sections = JourneySectionModel.catalogue;
 
   Future<void> getPackage() async {
@@ -47,8 +40,6 @@ class JourneyDetailsCubit extends Cubit<JourneyDetailsState> {
 
   // ── Routes / itinerary ─────────────────────────────────────────────────
   List<JourneyRouteModel> routes = [];
-
-  /// Index of the highlighted "المسار" tab; the first one in the design.
   int selectedRouteIndex = 0;
 
   JourneyRouteModel? get selectedRoute =>
@@ -60,11 +51,6 @@ class JourneyDetailsCubit extends Cubit<JourneyDetailsState> {
     emit(RouteSelected());
   }
 
-  /// The trip's itinerary as the one route it publishes.
-  ///
-  /// The endpoint hands back a single flat `itinerary[]` rather than
-  /// alternative routes, so the tab row shows one tab today and starts
-  /// showing more the moment the backend groups the legs.
   Future<void> getRoutes() async {
     emit(RoutesLoading());
     try {
@@ -81,11 +67,6 @@ class JourneyDetailsCubit extends Cubit<JourneyDetailsState> {
   }
 
   // ── One leg ────────────────────────────────────────────────────────────
-  /// The leg opened from the itinerary.
-  ///
-  /// The API has no endpoint for a single segment: everything it knows about
-  /// a leg already travelled down with the trip, so the screen renders the
-  /// card it was handed.
   JourneySegmentModel? segment;
 
   void showSegment(JourneySegmentModel selected) {

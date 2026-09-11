@@ -41,7 +41,7 @@ class AccountView extends GetView<AccountController> {
                     blurRadius: 5.0,
                   )
                 ]),
-            child: Image.asset("assets/images/person.png"),
+            child: Image.asset("assets/images/pngs/person.png"),
           ),
           Padding(padding: EdgeInsets.only(bottom: 23.0.h)),
           // Personal Info

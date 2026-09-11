@@ -2,8 +2,6 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-/// Rounded rectangle with a dashed outline — the drop zone used by the profile
-/// photo picker and by every "ملفات المعتمر" card.
 class DashedBox extends StatelessWidget {
   const DashedBox({
     super.key,

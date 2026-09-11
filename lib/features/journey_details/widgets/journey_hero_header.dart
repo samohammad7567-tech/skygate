@@ -5,8 +5,6 @@ import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/components/cached_image.dart';
 import 'package:skygate/core/constants/home_assets.dart';
 
-/// Full-bleed trip photo with the back chip on the end side and the trip
-/// length badge on the start side.
 class JourneyHeroHeader extends StatelessWidget {
   const JourneyHeroHeader({super.key, this.image, this.durationDays});
 
@@ -48,7 +46,6 @@ class JourneyHeroHeader extends StatelessWidget {
   }
 }
 
-/// Orange "٧ أيام" pill floating over the photo.
 class _DurationBadge extends StatelessWidget {
   const _DurationBadge({required this.days});
 

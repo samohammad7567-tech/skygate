@@ -51,70 +51,57 @@ class SigninController extends GetxController {
   Future<void> signIn({BuildContext? context}) async {
     signInStatus = SignInStatus.loading;
     update();
-    bool signInSuccess = false;
 
-    (await signInRepository.signIn(mobile: mobileNum!, password: passwordController.text))
-    .fold((left) {
+    final result = await signInRepository.signIn(
+        mobile: mobileNum!, password: passwordController.text);
+
+    await result.fold((left) async {
       signInFailure = left;
-      String? error = FailureParser.mapFailureToString(failure: left, context: context!);
+      String? error =
+          FailureParser.mapFailureToString(failure: left, context: context!);
       signInStatus = SignInStatus.error;
       update();
-      signInSuccess = false;
-      toastification.show(
-        context: context,
-        title: const Text("طلب تسجيل الدخول"),
-        description: Text(error),
-        type: ToastificationType.error,
-        style: ToastificationStyle.fillColored,
-        autoCloseDuration: const Duration(seconds: 8),
-      );
+      _showToast(context: context, message: error, isError: true);
     }, (right) async {
-      if(right.code == "1") {
-        await localStorageHelper.storeUserData(userModel: right.data!);
-        (await signInRepository.updateFCMToken(user_id: SharedClass.userId, fcmToken: SharedClass.fcmToken))
-        .fold((left) {
-          signInFailure = left;
-          signInStatus = SignInStatus.error;
-          update;
-        }, (right) {
-            if(right.code == "1") {
-              signInSuccess = true;
-              signInStatus = SignInStatus.success;
-              update();
-            }
-        });
-      } else {
-        signInSuccess = false;
-        signInFailure = CustomFailure(message: right.message!);
+      // Any code other than "1" (e.g. -15000 "no account / wrong mobile")
+      // comes back with a null data payload, so it must never be unwrapped.
+      if (right.code != "1" || right.data == null) {
+        signInFailure = CustomFailure(message: right.message ?? "");
         signInStatus = SignInStatus.error;
         update();
-        toastification.show(
-          context: context,
-          title: const Text("طلب تسجيل الدخول"),
-          description: Text(right.message!),
-          type: ToastificationType.error,
-          style: ToastificationStyle.fillColored,
-          autoCloseDuration: const Duration(seconds: 8),
-        );
+        _showToast(
+            context: context, message: right.message ?? "", isError: true);
+        return;
       }
 
-      if (signInSuccess == true) {
-        signInStatus = SignInStatus.success;
-        update();
-        toastification.show(
-          context: context,
-          title: const Text("طلب تسجيل الدخول"),
-          description: Text(right.message!),
-          type: ToastificationType.success,
-          style: ToastificationStyle.fillColored,
-          autoCloseDuration: const Duration(seconds: 8),
-        );
-        Get.offAllNamed(Routes.HOME);
-      } else {
-        signInStatus = SignInStatus.error;
-        update();
-      }
+      await localStorageHelper.storeUserData(userModel: right.data!);
+
+      // The fcm token update must not block the login itself.
+      (await signInRepository.updateFCMToken(
+              user_id: SharedClass.userId, fcmToken: SharedClass.fcmToken))
+          .fold((left) {
+        signInFailure = left;
+      }, (_) {});
+
+      signInStatus = SignInStatus.success;
+      update();
+      _showToast(
+          context: context, message: right.message ?? "", isError: false);
+      Get.offAllNamed(Routes.HOME);
     });
+  }
+
+  void _showToast(
+      {BuildContext? context, required String message, required bool isError}) {
+    if (context == null) return;
+    toastification.show(
+      context: context,
+      title: const Text("طلب تسجيل الدخول"),
+      description: Text(message),
+      type: isError ? ToastificationType.error : ToastificationType.success,
+      style: ToastificationStyle.fillColored,
+      autoCloseDuration: const Duration(seconds: 8),
+    );
   }
 
   Future<void> updateUserFCMToken() async {}

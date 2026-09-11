@@ -3,21 +3,31 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:skygate/core/constants/app_assets.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
+import 'package:skygate/core/constants/drawer_assets.dart';
 import 'package:skygate/core/constants/first_section_assets.dart';
 import 'package:skygate/core/constants/home_assets.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
+import 'package:skygate/core/constants/map_assets.dart';
 import 'package:skygate/core/constants/payment_assets.dart';
+import 'package:skygate/core/constants/profile_assets.dart';
+import 'package:skygate/core/constants/sos_assets.dart';
 import 'package:skygate/core/constants/splash_assets.dart';
+import 'package:skygate/core/constants/vip_trip_assets.dart';
 
 /// Every path any registry declares, across the whole app.
 final Set<String> _declared = {
   ...AppAssets.all,
   ...AuthAssets.all,
+  ...DrawerAssets.all,
   ...FirstSectionAssets.all,
   ...HomeAssets.all,
   ...JourneyAssets.all,
+  ...MapAssets.all,
   ...PaymentAssets.all,
+  ...ProfileAssets.all,
+  ...SosAssets.all,
   ...SplashAssets.all,
+  ...VipTripAssets.all,
 };
 
 void main() {
@@ -56,11 +66,16 @@ void main() {
     for (final list in [
       AppAssets.all,
       AuthAssets.all,
+      DrawerAssets.all,
       FirstSectionAssets.all,
       HomeAssets.all,
       JourneyAssets.all,
+      MapAssets.all,
       PaymentAssets.all,
+      ProfileAssets.all,
+      SosAssets.all,
       SplashAssets.all,
+      VipTripAssets.all,
     ]) {
       for (final path in list.toSet()) {
         counts[path] = (counts[path] ?? 0) + 1;

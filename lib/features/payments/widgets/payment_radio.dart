@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// The ring the design draws instead of a Material radio — filled blue with a
-/// white core when picked, a plain grey outline when not.
-///
-/// Both lists of options in "معلومات الدفع" — the currencies and the transfer
-/// methods — use it, so the two rows of choices look identical.
 class PaymentRadio extends StatelessWidget {
   const PaymentRadio({super.key, required this.isSelected});
 

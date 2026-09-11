@@ -19,17 +19,8 @@ import 'package:skygate/tourism/modules/main/controllers/main_controller.dart';
 import 'package:skygate/tourism/modules/notifications/controllers/notifications_controller.dart';
 import 'package:skygate/tourism/routes/app_pages.dart';
 
-/// Boots the tourism module the first time the user picks that service line.
-///
-/// The module was its own app: everything here used to run in its `main()` and
-/// in the splash binding before any tourism screen was built. It stays lazy so
-/// an Umrah user never pays for Firebase, FCM, sqflite or the tourism session
-/// lookup on launch — nothing below runs until the tourism button is tapped.
 class TourismBootstrap {
   TourismBootstrap._();
-
-  /// Held so a second tap awaits the first run instead of registering the
-  /// permanent controllers twice.
   static Future<void>? _bootstrap;
 
   static bool get isInitialized => _bootstrap != null;
@@ -43,12 +34,6 @@ class TourismBootstrap {
     });
   }
 
-  /// Route the module opens on, once booted.
-  ///
-  /// [MainController.init] resolves the stored session into a target page:
-  /// home for a live session, the waiting screen for an account still under
-  /// review. `Routes.SPLASH` was its "nothing stored" marker — the shell owns
-  /// the splash now, so that case starts the module at its own entry page.
   static String get entryRoute {
     final target = SharedClass.targetPage;
     if (target.isEmpty || target == Routes.SPLASH) return Routes.START_PAGE;
@@ -85,13 +70,6 @@ class TourismBootstrap {
     Get.put(AuthHandler()..listenForAuthState(), permanent: true);
   }
 
-  /// Push setup is best-effort.
-  ///
-  /// The controller is registered either way — screens resolve it with
-  /// `Get.find` — but FCM registration is allowed to fail: an emulator without
-  /// Play Services answers `SERVICE_NOT_AVAILABLE`, and a denied permission or
-  /// an offline first run fail just as easily. None of that is a reason to keep
-  /// the user out of the module; they lose notifications, not the app.
   static Future<void> _initializePushMessaging() async {
     final notifications = Get.put(NotificationsController(), permanent: true);
     try {
@@ -108,7 +86,6 @@ class TourismBootstrap {
     }
   }
 
-  /// Guarded because the shell may already have started the default app.
   static Future<void> _initializeFirebase() async {
     if (Firebase.apps.isNotEmpty) return;
     await Firebase.initializeApp(

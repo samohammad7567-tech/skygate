@@ -10,8 +10,6 @@ import 'package:skygate/core/constants/auth_assets.dart';
 import 'package:skygate/core/utils/app_phone.dart';
 import 'package:skygate/core/utils/app_validators.dart';
 
-/// The white "تسجيل الدخول" card. The same layout serves both credentials —
-/// only the identifier field and the two button labels swap.
 class LoginCard extends StatelessWidget {
   const LoginCard({
     super.key,

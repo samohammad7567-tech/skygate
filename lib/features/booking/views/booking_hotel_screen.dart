@@ -13,8 +13,6 @@ import 'package:skygate/core/components/booking_section_title.dart';
 import 'package:skygate/core/components/booking_stay_row.dart';
 import 'package:skygate/core/components/booking_step_scaffold.dart';
 
-/// Step 5 — "اختر فندق مكة المكرمة", then the same screen again for
-/// "المدينة المنورة". The last city hands over to the summary.
 class BookingHotelScreen extends StatefulWidget {
   const BookingHotelScreen({super.key, required this.city});
 

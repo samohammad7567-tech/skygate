@@ -3,19 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/models/group_room_type.dart';
 
-/// Top of the traveller picker: "من ترغب بإضافته إلى الغرفة الثنائية ؟" over
-/// the rule, with "اختيار الكل" on the end side.
 class GroupPickerHeader extends StatelessWidget {
   const GroupPickerHeader({
     super.key,
     required this.type,
     required this.onSelectAll,
   });
-
-  /// The room being filled, named in the question.
   final GroupRoomType type;
-
-  /// Seats as many travellers as the room takes, in list order.
   final VoidCallback onSelectAll;
 
   @override

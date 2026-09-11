@@ -17,15 +17,10 @@ import 'package:skygate/features/payments/widgets/payment_sheet.dart';
 import 'package:skygate/features/payments/widgets/payment_summary_card.dart';
 import 'package:skygate/features/payments/widgets/payment_timeline_card.dart';
 
-/// "المدفوعات" — what the booking costs against what has been settled, the
-/// instalments it falls due in, and the way to pay the next one.
 class PaymentsScreen extends StatelessWidget {
   const PaymentsScreen({super.key, required this.bookingId, this.details});
 
   final int bookingId;
-
-  /// "تفاصيل الحجز", handed in by whoever opened the flow — the API publishes
-  /// no endpoint the screen could fetch it from. Null hides its button.
   final BookingDetailsModel? details;
 
   @override
@@ -40,8 +35,6 @@ class PaymentsScreen extends StatelessWidget {
 
 class _PaymentsBody extends StatelessWidget {
   const _PaymentsBody();
-
-  /// Opens "معلومات الدفع" and files whatever transfer it created.
   Future<void> _pay(BuildContext context) async {
     final cubit = context.read<PaymentsCubit>();
     final transaction = await showPaymentSheet(

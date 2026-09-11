@@ -1,10 +1,5 @@
 import 'package:flutter/widgets.dart';
 
-/// The silhouette of `HomeAssets.artworkPlate`, so the Kaaba photo on the
-/// custom-trip card can be cut to the same shape as the blue plate it sits on.
-///
-/// Coordinates are copied straight from the export's path and scaled from its
-/// viewBox onto whatever box the clipper is given.
 class ArtworkPlateClipper extends CustomClipper<Path> {
   const ArtworkPlateClipper();
 

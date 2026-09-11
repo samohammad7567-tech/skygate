@@ -33,7 +33,7 @@ class MyTripsAgendaView extends GetView<MyTripsAgendaController> {
           centerTitle: true,
           elevation: 0.0,
           title: SvgPicture.asset(
-            "assets/images/big-logo.svg",
+            "assets/images/svgs/big_logo.svg",
             width: 105.0.w,
             height: 47.0.h,
           ),
@@ -43,7 +43,7 @@ class MyTripsAgendaView extends GetView<MyTripsAgendaController> {
           height: 1 * 1.sh,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/seko.png"),
+              image: AssetImage("assets/images/pngs/seko.png"),
               fit: BoxFit.fill,
             ),
           ),
@@ -149,7 +149,7 @@ class MyTripsAgendaView extends GetView<MyTripsAgendaController> {
                                     top: 50.0.h,
                                     start: 310.0.w,
                                     child: Image.asset(
-                                      "assets/images/arrow.png",
+                                      "assets/images/pngs/arrow.png",
                                     ),
                                   ),
                                   Column(

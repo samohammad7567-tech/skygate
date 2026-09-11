@@ -8,8 +8,6 @@ import 'package:skygate/core/components/dashed_box.dart';
 import 'package:skygate/core/components/upload_size_chip.dart';
 import 'package:skygate/core/constants/payment_assets.dart';
 
-/// "صورة إيصال الحوالة" — the dashed drop zone the receipt photo goes into,
-/// showing the picked image back once there is one.
 class PaymentReceiptField extends StatelessWidget {
   const PaymentReceiptField({
     super.key,

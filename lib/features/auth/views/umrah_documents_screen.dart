@@ -14,8 +14,6 @@ import 'package:skygate/features/auth/controller/cubit/register_cubit.dart';
 import 'package:skygate/features/auth/views/register_success_screen.dart';
 import 'package:skygate/features/auth/widgets/register_stepper.dart';
 
-/// Step 3 — "ملفات المعتمر". Attaching files is optional; the orange link
-/// skips straight to account creation.
 class UmrahDocumentsScreen extends StatelessWidget {
   const UmrahDocumentsScreen({super.key});
 

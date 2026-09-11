@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// Full-bleed photo slideshow behind the entry panel.
-///
-/// The page count is unbounded on purpose: the builder resolves the photo with
-/// a modulo, so the timer can keep calling "next page" forever and the last
-/// photo rolls over to the first without rewinding through the set.
 class SplashBackgroundCarousel extends StatelessWidget {
   const SplashBackgroundCarousel({
     super.key,
@@ -14,8 +9,6 @@ class SplashBackgroundCarousel extends StatelessWidget {
   });
 
   final PageController controller;
-
-  /// Resolves a raw page index to a bundled photo.
   final String Function(int index) backgroundAt;
 
   final ValueChanged<int> onPageChanged;

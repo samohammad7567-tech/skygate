@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// Blue section heading inside a form card ("المعلومات الشخصية :",
-/// "معلومات جواز السفر:", "تأكد من صحة البيانات أدناه:").
 class FormSectionTitle extends StatelessWidget {
   const FormSectionTitle({super.key, required this.text, this.subtitle});
 

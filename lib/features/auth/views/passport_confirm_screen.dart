@@ -9,14 +9,13 @@ import 'package:skygate/core/components/app_title_header.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/components/form_section_title.dart';
 import 'package:skygate/core/components/passport_fields_form.dart';
-import 'package:skygate/core/components/passport_success_banner.dart';
+import 'package:skygate/core/components/passport_scan_banner.dart';
 import 'package:skygate/core/components/scan_launcher.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/auth/controller/cubit/register_cubit.dart';
 import 'package:skygate/features/auth/views/umrah_documents_screen.dart';
 import 'package:skygate/features/auth/widgets/register_stepper.dart';
 
-/// Step 2 (scanned path) — "تأكيد بيانات الجواز".
 class PassportConfirmScreen extends StatefulWidget {
   const PassportConfirmScreen({super.key});
 
@@ -70,7 +69,7 @@ class _PassportConfirmScreenState extends State<PassportConfirmScreen> {
                             const RegisterStepper(currentStep: 2),
                             const Gap(18),
                             if (cubit.isScanned) ...[
-                              const PassportSuccessBanner(),
+                              const PassportScanBanner(),
                               const Gap(18),
                             ],
                             FormSectionTitle(text: 'confirm_data_below'.tr()),

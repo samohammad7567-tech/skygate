@@ -6,12 +6,6 @@ import 'package:skygate/core/utils/api_error.dart';
 
 part 'hotels_state.dart';
 
-/// Owns the "الفنادق" list — its search text and sort order — plus the single
-/// hotel behind "تفاصيل الحجز".
-///
-/// `GET app/trips/{id}` carries every hotel of the trip in one response and
-/// takes no `search`, `sort` or `page` parameter, so the list is filtered and
-/// ordered here and there is nothing to paginate.
 class HotelsCubit extends Cubit<HotelsState> {
   HotelsCubit(this.tripId) : super(HotelsInitial());
 
@@ -20,14 +14,8 @@ class HotelsCubit extends Cubit<HotelsState> {
   final int tripId;
 
   // ── List ───────────────────────────────────────────────────────────────
-  /// Every hotel of the trip, in the order it lists them.
   List<HotelModel> _all = [];
-
-  /// What the list prints — [_all] narrowed by [query] and put in [sort].
   List<HotelModel> hotels = [];
-
-  /// Text typed into the search field. The field itself is uncontrolled, so
-  /// the cubit only keeps the value it last searched for.
   String query = '';
 
   HotelSort sort = HotelSort.rating;
@@ -66,11 +54,6 @@ class HotelsCubit extends Cubit<HotelsState> {
   }
 
   // ── One hotel ──────────────────────────────────────────────────────────
-  /// The hotel behind "تفاصيل الحجز".
-  ///
-  /// The API has no hotel endpoint: every field the screen prints already
-  /// travelled down with the trip, so the card it was tapped from is the whole
-  /// record.
   HotelModel? hotel;
 
   void showHotel(HotelModel selected) {

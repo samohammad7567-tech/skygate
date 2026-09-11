@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 
-/// "بالغ : $750" — one traveller class and its price.
 class TripOfferPriceRow extends StatelessWidget {
   const TripOfferPriceRow({
     super.key,

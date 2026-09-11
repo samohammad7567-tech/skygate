@@ -12,9 +12,6 @@ import 'package:skygate/features/booking/widgets/booking_type_card.dart';
 import 'package:skygate/features/group_booking/controller/cubit/group_booking_cubit.dart';
 import 'package:skygate/features/group_booking/views/group_verify_screen.dart';
 
-/// Step 1 — "نوع الحجز". Entry point of both booking wizards: "حجز فردي فقط"
-/// carries on through the six individual steps, while "حجز مجموعة /عائلة"
-/// hands over to the nine-step group wizard and its own cubit.
 class BookingTypeScreen extends StatelessWidget {
   const BookingTypeScreen({super.key, required this.tripId});
 
@@ -47,8 +44,6 @@ class _BookingTypeBody extends StatelessWidget {
     );
   }
 
-  /// Opens the group wizard on its own cubit, which owns everything from the
-  /// first traveller through to the booking it creates.
   void _startGroupBooking(BuildContext context, int tripId) {
     NaivgatorHelper.pushNavigation(
       context,

@@ -2,10 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 
-/// Network image with a bundled fallback.
-///
-/// Falls straight back to [fallbackAsset] when [url] is null or empty, which is
-/// what happens while the API is still stubbed.
 class CachedImage extends StatelessWidget {
   const CachedImage({
     super.key,

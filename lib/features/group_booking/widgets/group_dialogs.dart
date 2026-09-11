@@ -6,7 +6,6 @@ import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
 import 'package:skygate/features/group_booking/widgets/group_dialog_buttons.dart';
 
-/// "هل أنت متأكد من أنك تريد حذف هذه الغرفة؟" — answers `true` for "نعم".
 Future<bool> showGroupDeleteRoomDialog(BuildContext context) async {
   final confirmed = await _show(
     context,
@@ -20,8 +19,6 @@ Future<bool> showGroupDeleteRoomDialog(BuildContext context) async {
   return confirmed ?? false;
 }
 
-/// "يلزم دفع رسوم الأسرة المتبقية غير المحجوزة لإتمام حجز الغرفة." — answers
-/// `true` once the spare beds are paid for.
 Future<bool> showGroupLockBedsDialog(BuildContext context) async {
   final confirmed = await _show(
     context,
@@ -33,16 +30,12 @@ Future<bool> showGroupLockBedsDialog(BuildContext context) async {
   return confirmed ?? false;
 }
 
-/// "لقد وصلت سعة الغرفة الى الحد الأقصى" — a notice, with nothing to decide.
 Future<void> showGroupRoomFullDialog(BuildContext context) => _show(
   context,
   icon: Icons.info_outline,
   message: 'room_capacity_reached'.tr(),
   confirmKey: 'ok',
 );
-
-/// The card every dialog in the flow shares: the tinted glyph, the message,
-/// then its actions — the confirming one on the start side.
 Future<bool?> _show(
   BuildContext context, {
   required String message,

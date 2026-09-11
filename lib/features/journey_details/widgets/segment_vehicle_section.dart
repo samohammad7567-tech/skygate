@@ -4,9 +4,8 @@ import 'package:skygate/core/components/cached_image.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
 import 'package:skygate/core/models/journey_transport.dart';
 import 'package:skygate/features/journey_details/models/journey_route_model.dart';
-import 'package:skygate/features/journey_details/widgets/vehicle_spec_tile.dart';
+import 'package:skygate/core/components/vehicle_spec_tile.dart';
 
-/// "تفاصيل المركبة :" — the operator line plus the three spec tiles.
 class SegmentVehicleSection extends StatelessWidget {
   const SegmentVehicleSection({
     super.key,

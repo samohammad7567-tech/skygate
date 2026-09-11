@@ -3,63 +3,81 @@ import 'package:skygate/core/constants/journey_assets.dart';
 import 'package:skygate/core/constants/payment_assets.dart';
 import 'package:skygate/core/models/trip_model.dart';
 
-/// "رحلة مكة" — the trip overview behind the hero photo.
-///
-/// Built from `GET app/trips/{id}`: the title is the campaign, the duration is
-/// the span between the trip's two dates, the supervisors are its staff and
-/// the stay chips are its hotels folded together per city.
 class JourneyPackageModel {
   int? id;
   String? title;
-
-  /// The trip endpoint publishes no cover photo, so the hero falls back to the
-  /// bundled artwork while this stays null.
   String? image;
 
   int? durationDays;
-
-  /// Names printed under "بإشراف", two per row in the design.
-  List<String> supervisors = const [];
-
-  /// City stays shown as the pair of chips under the supervisors card.
+  List<JourneyStaffModel> supervisors = const [];
   List<JourneyStayModel> stays = const [];
+  String? programPdfUrl;
 
   JourneyPackageModel.fromTrip(TripModel trip) {
     id = trip.id;
     title = trip.title;
     durationDays = trip.durationDays;
-    supervisors = [for (final member in trip.staff) ?member.name];
-    stays = JourneyStayModel.fromHotels(trip.hotels);
+    programPdfUrl = trip.programPdfUrl;
+    supervisors = [
+      for (final member in trip.staff)
+        JourneyStaffModel(name: member.name, role: member.role),
+    ];
+    stays = JourneyStayModel.fromTrip(trip);
   }
 }
 
-/// One "مكة المكرمة · 4 أيام" chip.
+class JourneyStaffModel {
+  JourneyStaffModel({this.name, this.role});
+
+  final String? name;
+  final String? role;
+}
+
 class JourneyStayModel {
-  JourneyStayModel({required this.city, required this.days})
-    : icon = _iconOf(city);
+  JourneyStayModel({
+    required this.city,
+    required this.days,
+    this.hotels = const [],
+  }) : icon = _iconOf(city);
 
   final String? city;
-
-  /// Nights the trip sleeps in the city, added up over its hotels there.
   final int? days;
-
-  /// Bundled glyph resolved from the city's name.
+  final List<String> hotels;
   final String icon;
+  static List<JourneyStayModel> fromTrip(TripModel trip) {
+    if (trip.citiesSummary.isNotEmpty) {
+      return [
+        for (final summary in trip.citiesSummary)
+          JourneyStayModel(
+            city: summary.city,
+            days: summary.nights,
+            hotels: summary.hotels,
+          ),
+      ];
+    }
+    return fromHotels(trip.hotels);
+  }
 
-  /// Folds the trip's hotels into one chip per city, in the order the trip
-  /// lists them — which is the order the itinerary visits them in.
   static List<JourneyStayModel> fromHotels(List<TripHotelModel> hotels) {
     final nights = <String, int>{};
+    final names = <String, List<String>>{};
 
     for (final hotel in hotels) {
       final city = hotel.city;
       if (city == null) continue;
       nights[city] = (nights[city] ?? 0) + (hotel.nights ?? 0);
+      if (hotel.name != null) {
+        names.putIfAbsent(city, () => []).add(hotel.name!);
+      }
     }
 
     return [
       for (final entry in nights.entries)
-        JourneyStayModel(city: entry.key, days: entry.value),
+        JourneyStayModel(
+          city: entry.key,
+          days: entry.value,
+          hotels: names[entry.key] ?? const [],
+        ),
     ];
   }
 
@@ -71,20 +89,11 @@ class JourneyStayModel {
   }
 }
 
-/// One row of the "تفاصيل الرحلة" list.
-///
-/// The four rows are fixed design content — label, description and glyph are
-/// all known up front — so they ship as a local [catalogue] rather than coming
-/// down from the API, the same way `TravelCategoryModel.catalogue` does.
 class JourneySectionModel {
   final JourneySection section;
   final String titleKey;
   final String descKey;
-
-  /// Bundled glyph. Null for the sections whose icon is a Material one.
   final String? asset;
-
-  /// Used when [asset] is null.
   final IconData? icon;
 
   const JourneySectionModel({
@@ -121,12 +130,6 @@ class JourneySectionModel {
       asset: PaymentAssets.offers,
     ),
   ];
-
-  /// The single row of "حجوزاتي و المدفوعات".
-  ///
-  /// Shown only on a trip the pilgrim has already booked — it opens that
-  /// booking's payments — so it is kept out of [catalogue] rather than being
-  /// filtered back out of it.
   static const JourneySectionModel booking = JourneySectionModel(
     section: JourneySection.booking,
     titleKey: 'booking_details',
@@ -135,5 +138,4 @@ class JourneySectionModel {
   );
 }
 
-/// Destination a "تفاصيل الرحلة" row opens.
 enum JourneySection { routes, hotels, activities, offers, booking }

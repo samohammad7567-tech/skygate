@@ -4,8 +4,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-/// "أكمل الدفع خلال (24 ساعة)" card: the ticking clock over the note saying
-/// what happens when it runs out.
 class PaymentCountdownCard extends StatelessWidget {
   const PaymentCountdownCard({
     super.key,
@@ -13,14 +11,8 @@ class PaymentCountdownCard extends StatelessWidget {
     required this.windowHours,
     required this.firstInstallmentNumber,
   });
-
-  /// Time left on the hold, refreshed once a second by the cubit.
   final Duration remaining;
-
-  /// Hours the hold lasts, printed in the header and the note.
   final int windowHours;
-
-  /// The instalment that must be paid before the hold expires.
   final int firstInstallmentNumber;
 
   String get _clock {

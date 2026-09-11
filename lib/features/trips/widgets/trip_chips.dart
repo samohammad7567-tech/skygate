@@ -2,11 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_image.dart';
+import 'package:skygate/core/components/app_status_chip.dart';
 import 'package:skygate/core/constants/payment_assets.dart';
 import 'package:skygate/core/utils/app_format.dart';
 import 'package:skygate/features/trips/models/booking_trip_model.dart';
 
-/// "حالية / بانتظار الدفع / منتهية" — the pill floating on a card's photo.
 class TripStatusChip extends StatelessWidget {
   const TripStatusChip({super.key, required this.status});
 
@@ -14,27 +14,15 @@ class TripStatusChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-      decoration: BoxDecoration(
-        color: status.background,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: status.foreground.withValues(alpha: 0.5)),
-      ),
-      child: Text(
-        status.labelKey.tr(),
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-        style: Theme.of(
-          context,
-        ).textTheme.bodySmall?.copyWith(color: status.foreground),
-      ),
+    return AppStatusChip(
+      labelKey: status.labelKey,
+      background: status.background,
+      foreground: status.foreground,
+      borderAlpha: 0.5,
     );
   }
 }
 
-/// "الذهاب — 3 مارس 2026" — one of the two tinted date blocks on a card, with
-/// the trip length printed between them.
 class TripDateChip extends StatelessWidget {
   const TripDateChip({super.key, required this.labelKey, required this.date});
 
@@ -76,7 +64,6 @@ class TripDateChip extends StatelessWidget {
   }
 }
 
-/// The orange "7 أيام" between the two date blocks, on its own hairline.
 class TripDurationDivider extends StatelessWidget {
   const TripDurationDivider({super.key, required this.days});
 
@@ -105,10 +92,6 @@ class TripDurationDivider extends StatelessWidget {
   }
 }
 
-/// The row of service glyphs above a card's title.
-///
-/// These are the six things every Sky Gate package covers, so the row is
-/// design content rather than anything the booking carries.
 class TripInclusionsRow extends StatelessWidget {
   const TripInclusionsRow({super.key});
 

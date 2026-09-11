@@ -1,8 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-/// Centred message shown where a list has nothing to render, with an optional
-/// "إعادة المحاولة" action.
 class EmptyState extends StatelessWidget {
   const EmptyState({super.key, required this.message, this.onRetry});
 

@@ -1,13 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:skygate/core/components/app_page_indicator.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/features/splash/models/splash_service.dart';
-import 'package:skygate/features/splash/widgets/splash_indicator.dart';
 import 'package:skygate/features/splash/widgets/splash_or_divider.dart';
 import 'package:skygate/features/splash/widgets/splash_outlined_button.dart';
 
-/// Copy and the two service buttons, stacked over the bottom of the photo.
 class SplashPanel extends StatelessWidget {
   const SplashPanel({
     super.key,
@@ -20,9 +19,6 @@ class SplashPanel extends StatelessWidget {
   final int slideCount;
   final int currentIndex;
   final ValueChanged<SplashService> onServiceSelected;
-
-  /// The tourism module is starting up: its button shows a spinner and both
-  /// buttons stop responding until it is ready.
   final bool isBootingTourism;
 
   @override
@@ -32,7 +28,13 @@ class SplashPanel extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SplashIndicator(count: slideCount, currentIndex: currentIndex),
+        AppPageIndicator(
+          count: slideCount,
+          currentIndex: currentIndex,
+          dotSize: 7,
+          activeWidth: 18,
+          inactiveColor: Colors.white.withValues(alpha: 0.55),
+        ),
         const Gap(18),
         Text(
           'journey_starts_here'.tr(),

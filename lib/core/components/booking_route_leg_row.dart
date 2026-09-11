@@ -3,8 +3,6 @@ import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/components/dashed_line.dart';
 import 'package:skygate/core/models/booking_route_model.dart';
 
-/// One leg of a route card: the transport glyph on the start side, then the
-/// two city names either side of the dashed arrow.
 class BookingRouteLegRow extends StatelessWidget {
   const BookingRouteLegRow({
     super.key,
@@ -13,9 +11,6 @@ class BookingRouteLegRow extends StatelessWidget {
   });
 
   final BookingRouteLegModel leg;
-
-  /// The rail alternates between the two brand colours, exactly as the design
-  /// prints it, so neighbouring legs stay easy to tell apart.
   final Color glyphColor;
 
   @override
@@ -62,7 +57,6 @@ class BookingRouteLegRow extends StatelessWidget {
   }
 }
 
-/// Dashed rule ending in the direction arrow, pointing the way the page reads.
 class _Arrow extends StatelessWidget {
   const _Arrow();
 

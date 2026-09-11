@@ -15,12 +15,6 @@ class AddPassportsRepository {
   AddPassportsRepository() {
     httpHelper = Get.find<HttpHelper>();
   }
-
-  /// JSON / scan mode:
-  /// Sends passports data only (no files) as application/json.
-  ///
-  /// This matches the "scan passport" scenario and must NOT be
-  /// combined with file uploads in the same request.
   Future<Either<Failure, BaseResponse<bool>>> addPassports({
     String? bookingRequestId,
     List<PassportModel>? passports,
@@ -32,43 +26,41 @@ class AddPassportsRepository {
     // Convert passports to the format expected by the backend
     if (passports != null) {
       requestBody["passports"] = passports
-          .map((passport) => {
-                "first_name": passport.firstName,
-                "last_name": passport.lastName,
-                "national_number": passport.nationalNumber,
-                "date_of_birth": passport.dateOfBirth,
-                "passport_number": passport.passportNumber,
-                "passport_expiry_date": passport.passportExpiryDate,
-                "nationality": passport.nationality,
-                "gender": passport.gender,
-              })
+          .map(
+            (passport) => {
+              "first_name": passport.firstName,
+              "last_name": passport.lastName,
+              "national_number": passport.nationalNumber,
+              "date_of_birth": passport.dateOfBirth,
+              "passport_number": passport.passportNumber,
+              "passport_expiry_date": passport.passportExpiryDate,
+              "nationality": passport.nationality,
+              "gender": passport.gender,
+            },
+          )
           .toList();
     }
 
     try {
-      return right(await httpHelper.post(NetworkRoutesControl.addPassports,
+      return right(
+        await httpHelper.post(
+          NetworkRoutesControl.addPassports,
           headers: HttpHelper.basicHeaderWithToken(SharedClass.apiToken),
-          body: requestBody, decoder: (json) {
-        if (json != null) {
-          return json;
-        } else {
-          return false;
-        }
-      }));
+          body: requestBody,
+          decoder: (json) {
+            if (json != null) {
+              return json;
+            } else {
+              return false;
+            }
+          },
+        ),
+      );
     } on Failure catch (e) {
       return left(e);
     }
   }
 
-  /// Files-only mode:
-  /// Uploads images / PDF files for passports as multipart/form-data.
-  ///
-  /// IMPORTANT:
-  /// - This MUST NOT be called together with [addPassports] for the same
-  ///   operation. The backend expects either JSON (scan) OR files, not both
-  ///   in a single request.
-  /// - The index of each file in [passportFiles] will be used server-side
-  ///   to update the corresponding passport entry by index.
   Future<Either<Failure, BaseResponse<bool>>> uploadPassportFiles({
     String? bookingRequestId,
     required List<File> passportFiles,
@@ -105,7 +97,6 @@ class AddPassportsRepository {
     }
   }
 
-  /// Remove passport files from backend by indices or file URLs
   Future<Either<Failure, BaseResponse<bool>>> removePassportFiles({
     String? bookingRequestId,
     List<int>? deletedIndices,
@@ -124,15 +115,20 @@ class AddPassportsRepository {
     }
 
     try {
-      return right(await httpHelper.post(NetworkRoutesControl.addPassports,
+      return right(
+        await httpHelper.post(
+          NetworkRoutesControl.addPassports,
           headers: HttpHelper.basicHeaderWithToken(SharedClass.apiToken),
-          body: requestBody, decoder: (json) {
-        if (json != null) {
-          return json;
-        } else {
-          return false;
-        }
-      }));
+          body: requestBody,
+          decoder: (json) {
+            if (json != null) {
+              return json;
+            } else {
+              return false;
+            }
+          },
+        ),
+      );
     } on Failure catch (e) {
       return left(e);
     }

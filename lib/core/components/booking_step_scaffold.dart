@@ -4,8 +4,6 @@ import 'package:skygate/core/components/app_page_header.dart';
 import 'package:skygate/core/components/booking_bottom_bar.dart';
 import 'package:skygate/core/components/booking_step_scaffold_body.dart';
 
-/// The frame every wizard step shares: the "تفاصيل الحجز" header, the progress
-/// card, the step's own body, and the "متابعة / عودة" strip.
 class BookingStepScaffold extends StatelessWidget {
   const BookingStepScaffold({
     super.key,
@@ -16,33 +14,39 @@ class BookingStepScaffold extends StatelessWidget {
     this.onBack,
     this.isLoading = false,
     this.continueLabel,
+    this.titleKey = 'booking_details',
+    this.drawer,
   });
-
-  /// 1-based index of the step being shown.
   final int step;
-
-  /// Steps the wizard has in total — six for the individual flow, nine for the
-  /// group one.
   final int total;
-
-  /// The step's body, laid out under the progress card.
   final List<Widget> children;
-
-  /// `null` disables "متابعة" — used while the step has nothing selected yet.
   final VoidCallback? onContinue;
 
   final VoidCallback? onBack;
   final bool isLoading;
   final String? continueLabel;
+  final String titleKey;
+  final Widget? drawer;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: drawer,
       body: SafeArea(
         bottom: false,
         child: Column(
           children: [
-            AppPageHeader(title: 'booking_details'.tr(), onBack: onBack),
+            // Below the Scaffold, so `Scaffold.of` finds the one above rather
+            // than whatever the caller was built under.
+            Builder(
+              builder: (inner) => AppPageHeader(
+                title: titleKey.tr(),
+                onBack: onBack,
+                onMenuTap: drawer == null
+                    ? null
+                    : () => Scaffold.of(inner).openDrawer(),
+              ),
+            ),
             Expanded(
               child: BookingStepScaffoldBody(
                 step: step,

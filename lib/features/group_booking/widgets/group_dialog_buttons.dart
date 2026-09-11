@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-/// The confirming action of a group dialog — "نعم", "إغلاق الأسرة", "حسناً".
 class GroupDialogConfirm extends StatelessWidget {
   const GroupDialogConfirm({
     super.key,
@@ -11,8 +10,6 @@ class GroupDialogConfirm extends StatelessWidget {
   });
 
   final String labelKey;
-
-  /// Red on a destructive dialog, the brand blue elsewhere.
   final Color color;
 
   final VoidCallback onPressed;
@@ -45,7 +42,6 @@ class GroupDialogConfirm extends StatelessWidget {
   }
 }
 
-/// The way out of a group dialog — "لا", "إلغاء".
 class GroupDialogCancel extends StatelessWidget {
   const GroupDialogCancel({
     super.key,

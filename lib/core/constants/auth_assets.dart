@@ -1,7 +1,3 @@
-/// Assets used by the login / signup flow, exported to `assets/images/auth/`.
-///
-/// Load them with `AppImage`, which picks the SVG or raster decoder from the
-/// file extension.
 class AuthAssets {
   AuthAssets._();
 
@@ -9,13 +5,8 @@ class AuthAssets {
   static const String _pngs = 'assets/images/pngs';
 
   // ── Backdrop & brand ─────────────────────────────────────────────────────
-  /// Makkah photo behind every auth screen.
   static const String background = '$_pngs/auth_background.png';
-
-  /// Sky Gate wordmark shown in the floating header card.
   static const String logo = '$_svgs/logo.svg';
-
-  /// Success illustration on "تم إنشاء الحساب".
   static const String successCheck =
       '$_pngs/center_image_correct_icon_with_stars.png';
 
@@ -24,19 +15,13 @@ class AuthAssets {
   static const String correctIcon = '$_svgs/correct_icon.svg';
   static const String upload = '$_svgs/upload.svg';
   static const String addAccount = '$_svgs/add_account.svg';
-
-  /// Passport scanner viewfinder brackets. Placement is physical, not
-  /// directional — the bracket shapes do not mirror under RTL.
   static const String cornerTopLeft = '$_svgs/top_left.svg';
   static const String cornerTopRight = '$_svgs/top_right.svg';
   static const String cornerBottomLeft = '$_svgs/buttom_left.svg';
   static const String cornerBottomRight = '$_svgs/buttom_right.svg';
-
-  /// Frame drawn on the "use the camera" scan trigger.
   static const String imageScanner = '$_svgs/image_scanner.svg';
 
   // ── Form field icons ─────────────────────────────────────────────────────
-  static const String profile = '$_svgs/profile.svg';
   static const String accountCircle = '$_svgs/account_circle.svg';
   static const String phone = '$_svgs/phone_enabled.svg';
   static const String mail = '$_svgs/mail.svg';
@@ -55,8 +40,6 @@ class AuthAssets {
   static const String localPolice = '$_svgs/local_police.svg';
   static const String menuBook = '$_svgs/menu_book.svg';
   static const String personBook = '$_svgs/person_book.svg';
-
-  /// Every asset above, for bundle smoke tests.
   static const List<String> all = [
     background,
     logo,
@@ -70,7 +53,6 @@ class AuthAssets {
     cornerBottomLeft,
     cornerBottomRight,
     imageScanner,
-    profile,
     accountCircle,
     phone,
     mail,

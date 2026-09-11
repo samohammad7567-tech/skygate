@@ -14,7 +14,6 @@ import 'package:skygate/features/booking/views/booking_documents_screen.dart';
 import 'package:skygate/core/components/booking_section_title.dart';
 import 'package:skygate/core/components/booking_step_scaffold.dart';
 
-/// Step 2 (typed path) — "إدخال يدوي" of the passport rows.
 class BookingPassportManualScreen extends StatefulWidget {
   const BookingPassportManualScreen({super.key});
 

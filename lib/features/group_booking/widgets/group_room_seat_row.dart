@@ -3,8 +3,6 @@ import 'package:gap/gap.dart';
 import 'package:skygate/features/group_booking/models/group_room_seat.dart';
 import 'package:skygate/core/components/audience_chip.dart';
 
-/// One line of a filled room card: the seat number, the traveller with their
-/// class chip, then the price they pay in that room.
 class GroupRoomSeatRow extends StatelessWidget {
   const GroupRoomSeatRow({
     super.key,
@@ -14,8 +12,6 @@ class GroupRoomSeatRow extends StatelessWidget {
   });
 
   final GroupRoomSeat seat;
-
-  /// 1-based place inside the room.
   final int position;
 
   final String? currency;

@@ -6,7 +6,7 @@ import 'package:skygate/core/components/app_outlined_button.dart';
 import 'package:skygate/core/components/app_panel.dart';
 import 'package:skygate/core/components/form_section_title.dart';
 import 'package:skygate/core/components/passport_fields_form.dart';
-import 'package:skygate/core/components/passport_success_banner.dart';
+import 'package:skygate/core/components/passport_scan_banner.dart';
 import 'package:skygate/core/components/scan_launcher.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/booking/controller/cubit/booking_cubit.dart';
@@ -14,8 +14,6 @@ import 'package:skygate/features/booking/views/booking_documents_screen.dart';
 import 'package:skygate/core/components/booking_section_title.dart';
 import 'package:skygate/core/components/booking_step_scaffold.dart';
 
-/// Step 2 (scanned path) — the MRZ read back from the passport, ready to be
-/// checked before the documents are attached.
 class BookingPassportConfirmScreen extends StatefulWidget {
   const BookingPassportConfirmScreen({super.key});
 
@@ -67,7 +65,7 @@ class _BookingPassportConfirmScreenState
                 child: Column(
                   children: [
                     if (cubit.isScanned) ...[
-                      const PassportSuccessBanner(),
+                      const PassportScanBanner(),
                       const Gap(18),
                     ],
                     FormSectionTitle(text: 'confirm_data_below'.tr()),

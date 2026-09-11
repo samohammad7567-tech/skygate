@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// White rounded container with the soft border used across the home screen.
 class AppCard extends StatelessWidget {
   const AppCard({
     super.key,

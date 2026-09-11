@@ -1,13 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
+import 'package:skygate/core/components/app_page_indicator.dart';
 import 'package:skygate/features/on_boarding/models/on_boarding_page_model.dart';
-import 'package:skygate/features/on_boarding/widgets/on_boarding_indicator.dart';
 
-/// A single onboarding page: illustration on top, copy card below.
-///
-/// The indicator lives inside the card, as in the design, and takes the live
-/// page index so it keeps animating while this page is on screen.
 class OnBoardingPageView extends StatelessWidget {
   const OnBoardingPageView({
     super.key,
@@ -108,7 +104,7 @@ class _CopyCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          OnBoardingIndicator(count: pageCount, currentIndex: currentIndex),
+          AppPageIndicator(count: pageCount, currentIndex: currentIndex),
         ],
       ),
     );

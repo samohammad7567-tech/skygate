@@ -2,8 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/features/journey_details/models/journey_route_model.dart';
 
-/// "تفاصيل موقع الانطلاق :" — heading, terminal name, and the descriptive
-/// paragraph under it.
 class SegmentPlaceSection extends StatelessWidget {
   const SegmentPlaceSection({
     super.key,

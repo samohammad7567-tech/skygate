@@ -16,11 +16,8 @@ final class PayMethodsError extends PayState {
   final String message;
 }
 
-/// Emitted by every choice the sheet holds — currency, method, receipt — so
-/// the form rebuilds from the cubit's fields.
 final class PayFormChanged extends PayState {}
 
-/// The picked receipt is over the 2 MB the API accepts.
 final class PayReceiptTooLarge extends PayState {}
 
 // ── ارسال ──────────────────────────────────────────────────────────────────

@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/features/home/models/offer_model.dart';
 
-/// "تبدأ من" over the starting price, on the end side of the offer card.
 class OfferPrice extends StatelessWidget {
   const OfferPrice({super.key, required this.offer});
 
@@ -30,7 +29,7 @@ class OfferPrice extends StatelessWidget {
             ),
           ),
           Text(
-            '${offer.priceFrom} ${'currency'.tr()}',
+            '${offer.priceFrom} ${offer.currency ?? 'currency'.tr()}',
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: theme.textTheme.titleLarge?.copyWith(

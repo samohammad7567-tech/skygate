@@ -6,8 +6,6 @@ import 'package:skygate/core/components/payment_detail_row.dart';
 import 'package:skygate/features/group_booking/models/group_room_model.dart';
 import 'package:skygate/core/models/traveler_audience.dart';
 
-/// One room block on "ملخص الحجز": who sleeps in it, the size, the hotel it
-/// takes in each city and what the room costs.
 class GroupSummaryRoomCard extends StatelessWidget {
   const GroupSummaryRoomCard({
     super.key,
@@ -20,17 +18,11 @@ class GroupSummaryRoomCard extends StatelessWidget {
   });
 
   final GroupRoomModel room;
-
-  /// Travellers in the room per class, printed in the header.
   final Map<TravelerAudience, int> counts;
-
-  /// The hotel the room takes in each city.
   final Map<BookingCity, String?> hotelNames;
 
   final num total;
   final String? currency;
-
-  /// Opens "تفاصيل المسافرون" for this room.
   final VoidCallback onDetails;
 
   @override
@@ -81,7 +73,6 @@ class GroupSummaryRoomCard extends StatelessWidget {
   }
 }
 
-/// "1 بالغ - 2 طفل - 1 رضيع" with the orange "التفاصيل" chip after it.
 class _Header extends StatelessWidget {
   const _Header({required this.counts, required this.onDetails});
 

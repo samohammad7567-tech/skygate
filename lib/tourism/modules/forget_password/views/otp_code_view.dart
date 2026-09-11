@@ -30,7 +30,7 @@ class OTPCodeView extends GetView<ForgetPasswordController> {
           fit: StackFit.passthrough,
           children: [
             Image.asset(
-              "assets/images/login-img.png",
+              "assets/images/pngs/login_img.png",
               fit: BoxFit.fill,
               width: double.infinity,
               height: double.infinity,

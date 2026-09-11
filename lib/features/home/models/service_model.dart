@@ -1,17 +1,11 @@
 import 'package:skygate/core/constants/app_assets.dart';
 import 'package:skygate/core/constants/home_assets.dart';
 
-/// One tile in the "ماذا تشمل خدماتنا" grid.
-///
-/// Fixed marketing content: localized copy plus a bundled illustration.
 class ServiceModel {
   final String id;
   final String titleKey;
   final String descriptionKey;
   final String image;
-
-  /// Optional badge stretched over [image] at the same width — only the VIP
-  /// tile carries one.
   final String? overlay;
 
   const ServiceModel({
@@ -28,10 +22,6 @@ class ServiceModel {
       descriptionKey = json['description'] ?? '',
       image = json['image'] ?? AppAssets.placeholder,
       overlay = json['overlay'];
-
-  /// Reading order matches the design: row by row, right to left. The grid
-  /// lays the tiles out under RTL, so the first entry lands on the right edge
-  /// of the first row.
   static const List<ServiceModel> catalogue = [
     // ── Row 1 ──────────────────────────────────────────────────────────────
     ServiceModel(

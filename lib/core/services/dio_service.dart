@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:skygate/core/constants/api_endpoints.dart';
 import 'package:skygate/core/interceptors/auth_interceptor.dart';
 
-/// Single HTTP entry point. Features must never construct their own [Dio].
 class DioService {
   DioService._();
 
@@ -14,10 +13,13 @@ class DioService {
         baseUrl: ApiEndpoints.baseUrl,
         connectTimeout: const Duration(seconds: 30),
         receiveTimeout: const Duration(seconds: 30),
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
+        // Laravel branches on `Accept` — without it the API is free to answer
+        // a browser: `auth/login` redirects instead of returning the session,
+        // which reached Dio as a 302 it refuses to follow on a POST. Set here
+        // so no call can go out without it. `Content-Type` is left to Dio's
+        // ImplyContentTypeInterceptor, which sends JSON for a Map body and
+        // still switches to `multipart/form-data` for the FormData uploads.
+        headers: const {'Accept': 'application/json'},
       ),
     );
     dio.interceptors.add(AuthInterceptor());
@@ -31,8 +33,10 @@ class DioService {
     }
   }
 
-  static void updateLanguage(String languageCode) =>
-      dio.options.headers['Accept-Language'] = languageCode;
+  static void updateLanguage(String languageCode) {
+    dio.options.headers['X-localization'] = languageCode;
+    dio.options.headers['Accept-Language'] = languageCode;
+  }
 
   static Future<Response> get(
     String path, {

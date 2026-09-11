@@ -1,19 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:skygate/core/components/app_circle_badge.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/utils/app_format.dart';
 import 'package:skygate/features/booking/models/booking_summary_model.dart';
 
-/// One row of "جدول دفعات الرحلة": the amount, the due copy, then the round
-/// percentage badge.
 class PaymentInstallmentTile extends StatelessWidget {
   const PaymentInstallmentTile({super.key, required this.installment});
 
   final BookingInstallmentModel installment;
-
-  /// A relative deadline ("خلال 24 ساعة") is the urgent one the design tints
-  /// orange; a fixed date stays on the calm blue tile.
   bool get _isUrgent => installment.dueWithinHours != null;
 
   @override
@@ -46,7 +42,10 @@ class PaymentInstallmentTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  'installment_number'.tr(args: ['${installment.number ?? 0}']),
+                  installment.name ??
+                      'installment_number'.tr(
+                        args: ['${installment.number ?? 0}'],
+                      ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.bodySmall,
@@ -71,7 +70,6 @@ class PaymentInstallmentTile extends StatelessWidget {
   }
 }
 
-/// "خلال 24 ساعة" or "30 أغسطس 2026", with the matching glyph after it.
 class _Deadline extends StatelessWidget {
   const _Deadline({required this.installment, required this.accent});
 
@@ -110,7 +108,6 @@ class _Deadline extends StatelessWidget {
   }
 }
 
-/// Filled round badge printing the share of the total this instalment settles.
 class _PercentBadge extends StatelessWidget {
   const _PercentBadge({required this.percentage, required this.color});
 
@@ -119,21 +116,10 @@ class _PercentBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Container(
-      height: 48,
-      width: 48,
-      alignment: Alignment.center,
-      decoration: BoxDecoration(color: color, shape: BoxShape.circle),
-      child: Text(
-        '${percentage ?? 0}%',
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-        style: theme.textTheme.titleSmall?.copyWith(
-          color: theme.colorScheme.onPrimary,
-        ),
-      ),
+    return AppCircleBadge(
+      text: '${percentage ?? 0}%',
+      size: 48,
+      background: color,
     );
   }
 }

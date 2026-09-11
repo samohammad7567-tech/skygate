@@ -1,11 +1,5 @@
 import 'package:skygate/core/models/group_room_type.dart';
 
-/// How many rooms of each size one hotel takes — the chips printed under a
-/// hotel card on "اختر فندق مكة المكرمة".
-///
-/// The rooms themselves were created on the previous step; this only records
-/// where each city puts them, so the counts here can never add up to more than
-/// the rooms the group booked.
 class GroupRoomAllocation {
   GroupRoomAllocation();
 
@@ -16,9 +10,6 @@ class GroupRoomAllocation {
   int get total => counts.values.fold(0, (sum, count) => sum + count);
 
   bool get isEmpty => total == 0;
-
-  /// Replaces the whole sheet, dropping the sizes set back to zero so an empty
-  /// allocation really is [isEmpty].
   void replaceWith(Map<GroupRoomType, int> next) {
     counts
       ..clear()

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/custom_button.dart';
 
-/// White strip pinned under the body holding the screen's primary action.
 class JourneyBottomBar extends StatelessWidget {
   const JourneyBottomBar({super.key, required this.label, this.onPressed});
 

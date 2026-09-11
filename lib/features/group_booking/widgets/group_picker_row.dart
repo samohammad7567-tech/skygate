@@ -3,8 +3,6 @@ import 'package:gap/gap.dart';
 import 'package:skygate/features/group_booking/models/group_traveler_model.dart';
 import 'package:skygate/core/components/audience_chip.dart';
 
-/// One line of "من ترغب بإضافته إلى الغرفة ؟": the traveller with the price
-/// they would pay in this room, and the tick that seats them.
 class GroupPickerRow extends StatelessWidget {
   const GroupPickerRow({
     super.key,
@@ -18,14 +16,10 @@ class GroupPickerRow extends StatelessWidget {
   });
 
   final GroupTravelerModel traveler;
-
-  /// 1-based place in the group, as the badge prints it.
   final int position;
 
   final num price;
   final String? currency;
-
-  /// Charged the "الرضيع الثاني" rate, which the pink badge marks.
   final bool isSecondInfant;
 
   final bool isSelected;

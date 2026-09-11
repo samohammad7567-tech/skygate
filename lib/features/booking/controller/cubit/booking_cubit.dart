@@ -24,32 +24,13 @@ import 'package:skygate/features/booking/models/room_type_model.dart';
 
 part 'booking_state.dart';
 
-/// Drives the whole six-step booking wizard, so the same instance is handed
-/// down to every screen after "إبدأ عملية الحجز" with `BlocProvider.value`.
-///
-/// Every screen reads its data from the public fields here; the states only
-/// signal transitions.
-///
-/// Steps 3 to 6 are all slices of one call — `GET app/trips/{id}` — kept by
-/// [TripService] between them. Submitting walks the documented contract:
-/// `POST app/pilgrims` creates the traveller, `POST app/bookings` seats them
-/// in a room of the package they picked, and `POST app/pilgrim-documents`
-/// attaches their files.
 class BookingCubit extends Cubit<BookingState> {
   BookingCubit(this.tripId) : super(BookingInitial());
 
   BookingCubit get(BuildContext context) => BlocProvider.of(context);
-
-  /// The trip being booked — it keys the routes, the packages and the hotels.
   final int tripId;
-
-  /// Steps printed by the progress card.
   static const int totalSteps = 6;
-
-  /// Hours the hold on the booking lasts.
   static const int paymentWindowHours = 24;
-
-  /// 1-based index of the step being shown.
   int currentStep = 1;
 
   void goToStep(int step) {
@@ -58,7 +39,6 @@ class BookingCubit extends Cubit<BookingState> {
     emit(BookingStepChanged());
   }
 
-  /// The trip behind every step from the route onwards.
   TripModel? trip;
 
   Future<TripModel> _loadTrip({bool refresh = false}) async {
@@ -68,10 +48,7 @@ class BookingCubit extends Cubit<BookingState> {
   }
 
   // ── Step 1 — booking type ────────────────────────────────────────────────
-  /// The two cards are fixed design content.
   final List<BookingOptionModel> options = BookingOptionModel.catalogue;
-
-  /// Pre-selected, matching the mockup where "حجز فردي فقط" starts ticked.
   BookingType selectedType = BookingType.individual;
 
   void selectType(BookingType type) {
@@ -81,13 +58,10 @@ class BookingCubit extends Cubit<BookingState> {
   }
 
   // ── Step 2 — passport ────────────────────────────────────────────────────
-  /// The ten passport rows, shared with the signup wizard.
   final PassportForm passportForm = PassportForm();
 
   bool get isScanned => passportForm.isScanned;
   bool get pledgeAccepted => passportForm.pledgeAccepted;
-
-  /// Rebuilds the card after `PassportFieldsForm` wrote into [passportForm].
   void passportChanged() => emit(PassportFieldChanged());
 
   void togglePledge(bool? value) {
@@ -95,7 +69,6 @@ class BookingCubit extends Cubit<BookingState> {
     emit(PassportFieldChanged());
   }
 
-  /// Picks the passport photo, then hands it to [scanPassport].
   Future<void> scanPassportFrom(ImageSource source) async {
     final file = await ImagePickerService.pick(source);
     if (file == null) {
@@ -109,8 +82,6 @@ class BookingCubit extends Cubit<BookingState> {
     await scanPassport(file);
   }
 
-  /// Uploads the passport photo and fills the confirmation screen from the MRZ
-  /// the API reads back.
   Future<void> scanPassport(File image) async {
     emit(PassportScanLoading());
     return DioService.post(
@@ -135,7 +106,6 @@ class BookingCubit extends Cubit<BookingState> {
         });
   }
 
-  /// Clears the scan result so the user lands back on an empty scanner.
   void resetScan() {
     passportForm.resetScan();
     emit(PassportFieldChanged());
@@ -143,8 +113,6 @@ class BookingCubit extends Cubit<BookingState> {
 
   // ── Step 2 — attached documents ──────────────────────────────────────────
   final List<UmrahDocumentModel> documentTypes = UmrahDocumentModel.catalogue;
-
-  /// Attached file per [UmrahDocumentModel.id].
   final Map<String, File> documents = {};
 
   Future<void> pickDocument(String id, ImageSource source) async {
@@ -165,8 +133,6 @@ class BookingCubit extends Cubit<BookingState> {
 
   // ── Step 3 — route ───────────────────────────────────────────────────────
   List<BookingRouteModel> routes = [];
-
-  /// Index of the ticked route card; the first one in the design.
   int selectedRouteIndex = 0;
 
   BookingRouteModel? get selectedRoute =>
@@ -178,7 +144,6 @@ class BookingCubit extends Cubit<BookingState> {
     emit(BookingRoutesLoaded());
   }
 
-  /// The trip's itinerary as the one route it offers.
   Future<void> getRoutes() async {
     emit(BookingRoutesLoading());
     try {
@@ -195,7 +160,6 @@ class BookingCubit extends Cubit<BookingState> {
   }
 
   // ── Step 4 — room type ───────────────────────────────────────────────────
-  /// One card per package the trip sells — the room type at its adult rate.
   List<RoomTypeModel> roomTypes = [];
 
   int selectedRoomIndex = 0;
@@ -227,13 +191,8 @@ class BookingCubit extends Cubit<BookingState> {
   }
 
   // ── Step 5 — one hotel per city ──────────────────────────────────────────
-  /// Hotels offered in each city, keyed by [BookingCity].
   final Map<BookingCity, List<HotelModel>> hotels = {};
-
-  /// The ticked hotel per city.
   final Map<BookingCity, int> selectedHotelIndex = {};
-
-  /// Nights the trip stays in each city, printed next to its name.
   final Map<BookingCity, int> stayDays = {};
 
   List<HotelModel> hotelsIn(BookingCity city) => hotels[city] ?? const [];
@@ -252,8 +211,6 @@ class BookingCubit extends Cubit<BookingState> {
     emit(BookingHotelsLoaded());
   }
 
-  /// The trip's hotels in [city]. The endpoint takes no `city` filter, so the
-  /// list is sorted into the two steps here.
   Future<void> getHotels(BookingCity city) async {
     emit(BookingHotelsLoading());
     try {
@@ -279,23 +236,18 @@ class BookingCubit extends Cubit<BookingState> {
 
   // ── Step 6 — summary ─────────────────────────────────────────────────────
   BookingSummaryModel? summary;
-
-  /// Time left on the hold, refreshed once a second by [_countdown].
   Duration remaining = Duration.zero;
 
   Timer? _countdown;
-
-  /// Builds "ملخص الحجز" from what the wizard already holds.
-  ///
-  /// Nothing is posted: the API publishes no priced summary for the
-  /// `trip_id` + `rooms[]` contract, so the review adds up the package the
-  /// room type came from — one adult, the traveller booking — and starts the
-  /// hold clock the design counts down.
   Future<void> getSummary() async {
     emit(BookingSummaryLoading());
     try {
       final loaded = await _loadTrip();
       final room = selectedRoom;
+      final schedules = loaded.paymentSchedules;
+      final windowHours =
+          BookingInstallmentModel.windowHoursOf(schedules) ??
+          paymentWindowHours;
 
       summary = BookingSummaryModel(
         tripTitle: loaded.title,
@@ -306,9 +258,12 @@ class BookingCubit extends Cubit<BookingState> {
         madinahHotel: selectedHotelIn(BookingCity.madinah)?.name,
         total: room?.adultPrice,
         currency: room?.currency,
-        paymentWindowHours: paymentWindowHours,
-        expiresAt: DateTime.now().add(
-          const Duration(hours: paymentWindowHours),
+        paymentWindowHours: windowHours,
+        expiresAt: DateTime.now().add(Duration(hours: windowHours)),
+        installments: BookingInstallmentModel.scheduleOf(
+          schedules,
+          total: room?.adultPrice,
+          currency: room?.currency,
         ),
       );
       _startCountdown();
@@ -319,7 +274,6 @@ class BookingCubit extends Cubit<BookingState> {
     }
   }
 
-  /// Ticks the "أكمل الدفع خلال (24 ساعة)" clock down to the hold's expiry.
   void _startCountdown() {
     _countdown?.cancel();
     remaining = _timeLeft();
@@ -341,15 +295,7 @@ class BookingCubit extends Cubit<BookingState> {
   }
 
   // ── Submit ───────────────────────────────────────────────────────────────
-  /// Backend id of the traveller, kept so a retry after a failed booking does
-  /// not create them twice.
   int? pilgrimId;
-
-  /// Creates the pilgrim, then the booking that seats them, then uploads
-  /// whatever documents were attached.
-  ///
-  /// A failed document upload does not fail the booking — the pilgrim can
-  /// retry from their profile later.
   Future<void> submit() async {
     emit(BookingSubmitLoading());
     try {
@@ -363,28 +309,16 @@ class BookingCubit extends Cubit<BookingState> {
     }
   }
 
-  /// `POST app/pilgrims` — the passport the wizard collected, as the account
-  /// holder's own pilgrim record.
   Future<void> _createPilgrim() async {
     if (pilgrimId != null) return;
-
     final response = await DioService.post(
       ApiEndpoints.pilgrims,
-      data: FormData.fromMap(
-        passportForm.toModel().toPilgrimJson(isSelf: true),
-      ),
+      data: passportForm.toModel().toPilgrimJson(isSelf: true),
     );
     final created = response.data['data'];
     pilgrimId = created is Map ? created['id'] as int? : null;
   }
 
-  /// The `POST app/bookings` body.
-  ///
-  /// `trip_id` and `rooms[]` are the documented contract; an individual
-  /// booking is one room holding one pilgrim, priced by the package the room
-  /// type came from. The hotels the wizard collected have no home in it yet —
-  /// they are sent anyway so the choice is not dropped on the floor once the
-  /// backend starts accepting them.
   Map<String, dynamic> bookingBody() => {
     'trip_id': tripId,
     'rooms': [
@@ -402,13 +336,6 @@ class BookingCubit extends Cubit<BookingState> {
       },
     ],
   };
-
-  /// `POST app/pilgrim-documents`, one call per attached file.
-  ///
-  /// The endpoint keys the document by a numeric `document_type_id`, and the
-  /// design only ever names one — there is no document-types lookup in the
-  /// OpenAPI document to translate between them — so the slug goes out as
-  /// `document_type` until one exists.
   Future<void> _uploadDocuments() async {
     if (documents.isEmpty || pilgrimId == null) return;
 

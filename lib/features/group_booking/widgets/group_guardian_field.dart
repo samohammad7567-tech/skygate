@@ -6,11 +6,6 @@ import 'package:skygate/core/components/labeled_field.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
 import 'package:skygate/features/group_booking/models/group_traveler_model.dart';
 
-/// "اسم ولي الأمر" — the adult a child or an infant travels under, picked from
-/// the adults already on the booking.
-///
-/// The field is offered to every traveller after the leader, and only insisted
-/// on when the passport says the traveller cannot stand on their own.
 class GroupGuardianField extends StatelessWidget {
   const GroupGuardianField({
     super.key,
@@ -21,13 +16,9 @@ class GroupGuardianField extends StatelessWidget {
   });
 
   final List<GroupTravelerModel> adults;
-
-  /// `GroupTravelerModel.localId` of the guardian, or `null` while unset.
   final int? value;
 
   final ValueChanged<int?> onChanged;
-
-  /// Turns the validator on for children and infants.
   final bool isRequired;
 
   @override
@@ -71,7 +62,6 @@ class GroupGuardianField extends StatelessWidget {
   }
 }
 
-/// "معلومة مهمة • يرجى إضافة اسم ولي الأمر" note printed above the field.
 class GroupGuardianNote extends StatelessWidget {
   const GroupGuardianNote({super.key});
 

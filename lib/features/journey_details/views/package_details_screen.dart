@@ -17,12 +17,6 @@ import 'package:skygate/features/journey_details/widgets/journey_stays_row.dart'
 import 'package:skygate/features/journey_details/widgets/journey_supervisors_card.dart';
 import 'package:skygate/features/payments/views/payments_screen.dart';
 
-/// "رحلة مكة" — the package overview and the rows that open the rest of the
-/// flow.
-///
-/// Opened with a [bookingId] when the pilgrim already holds a booking on this
-/// trip — reached from "رحلاتي" — which adds the "حجوزاتي و المدفوعات" section
-/// and turns the bottom action into "اضافة حجز جديد".
 class PackageDetailsScreen extends StatelessWidget {
   const PackageDetailsScreen({super.key, required this.tripId, this.bookingId});
 
@@ -42,8 +36,6 @@ class _PackageDetailsBody extends StatelessWidget {
   const _PackageDetailsBody({required this.bookingId});
 
   final int? bookingId;
-
-  /// "إبدأ عملية الحجز" — hands the package over to the six-step wizard.
   void _startBooking(BuildContext context) {
     NaivgatorHelper.pushNavigation(
       context,
@@ -57,7 +49,7 @@ class _PackageDetailsBody extends StatelessWidget {
     NaivgatorHelper.pushNavigation(context, switch (section) {
       JourneySection.routes => ItineraryScreen(tripId: tripId),
       JourneySection.hotels => HotelsScreen(tripId: tripId),
-      JourneySection.activities => const ActivitiesScreen(),
+      JourneySection.activities => ActivitiesScreen(tripId: tripId),
       JourneySection.offers => TripOffersScreen(tripId: tripId),
       // Only reachable while `bookingId` is set, which is what put the row on
       // the page in the first place.

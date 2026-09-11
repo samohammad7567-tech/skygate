@@ -32,7 +32,7 @@ class StartPageView extends GetView<StartPageController> {
           ),
           PositionedDirectional(
             top: 105.0.h,
-            child: SvgPicture.asset("assets/images/big-logo-white.svg"),
+            child: SvgPicture.asset("assets/images/svgs/big_logo_white.svg"),
           ),
           PositionedDirectional(
             top: 517.0.h,
@@ -59,7 +59,6 @@ class StartPageView extends GetView<StartPageController> {
                   "ابدأ الآن",
                   style: context.textTheme.titleSmall!.copyWith(
                     fontWeight: FontWeight.w900,
-                    fontFamily: "Inter",
                     fontSize: 20.0,
                   ),
                 ),

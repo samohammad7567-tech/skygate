@@ -4,7 +4,6 @@ import 'package:skygate/core/components/app_card.dart';
 import 'package:skygate/core/components/app_glyph_plate.dart';
 import 'package:skygate/features/journey_details/models/journey_package_model.dart';
 
-/// The pair of "مكة المكرمة · 4 أيام" chips under the supervisors card.
 class JourneyStaysRow extends StatelessWidget {
   const JourneyStaysRow({super.key, required this.stays});
 
@@ -57,11 +56,23 @@ class _StayChip extends StatelessWidget {
                   style: theme.textTheme.titleSmall,
                 ),
                 Text(
-                  'days_count'.tr(namedArgs: {'count': '${stay.days ?? 0}'}),
+                  'nights_count'.tr(namedArgs: {'count': '${stay.days ?? 0}'}),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.bodySmall,
                 ),
+                // `cities_summary` names the hotels booked in the city; older
+                // responses carry none, and the chip simply stays two lines.
+                if (stay.hotels.isNotEmpty)
+                  Text(
+                    stay.hotels.join('، '),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                      fontSize: 11,
+                    ),
+                  ),
               ],
             ),
           ),

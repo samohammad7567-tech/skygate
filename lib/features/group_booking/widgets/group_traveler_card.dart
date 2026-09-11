@@ -7,8 +7,6 @@ import 'package:skygate/features/group_booking/models/group_traveler_model.dart'
 import 'package:skygate/core/components/audience_chip.dart';
 import 'package:skygate/features/group_booking/widgets/group_detail_row.dart';
 
-/// One card on "تكوين المجموعة": the numbered header with the traveller's
-/// class, then the passport rows read off their scan.
 class GroupTravelerCard extends StatelessWidget {
   const GroupTravelerCard({
     super.key,
@@ -18,11 +16,7 @@ class GroupTravelerCard extends StatelessWidget {
   });
 
   final GroupTravelerModel traveler;
-
-  /// 1-based place in the group; the leader is always first.
   final int position;
-
-  /// Name of the adult this traveller travels under, or `null` for an adult.
   final String? guardianName;
 
   @override
@@ -87,8 +81,6 @@ class GroupTravelerCard extends StatelessWidget {
   }
 }
 
-/// Tinted strip: the position badge, the name with the leader caption under
-/// it, then the class chip on the end side.
 class _Header extends StatelessWidget {
   const _Header({
     required this.traveler,

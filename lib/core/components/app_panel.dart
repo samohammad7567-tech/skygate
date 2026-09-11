@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// The white rounded sheet the auth and booking forms sit on.
 class AppPanel extends StatelessWidget {
   const AppPanel({
     super.key,

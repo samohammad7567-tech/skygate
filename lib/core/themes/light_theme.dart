@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:skygate/core/constants/app_colors.dart';
+import '../constants/app_colors.dart';
+import '../constants/app_fonts.dart';
 
 class LightTheme {
   LightTheme._();
 
   static ThemeData get theme => ThemeData(
     useMaterial3: true,
+    // Hacen Saudi Arabia is the brand face; setting it here lets ThemeData
+    // push it through textTheme and primaryTextTheme for the whole app.
+    fontFamily: AppFonts.hacen,
     brightness: Brightness.light,
     scaffoldBackgroundColor: AppColors.background,
     colorScheme: const ColorScheme.light(

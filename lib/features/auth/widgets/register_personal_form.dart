@@ -7,7 +7,6 @@ import 'package:skygate/core/utils/app_phone.dart';
 import 'package:skygate/core/utils/app_validators.dart';
 import 'package:skygate/features/auth/controller/cubit/register_cubit.dart';
 
-/// The five personal-detail fields on step 1 of the signup wizard.
 class RegisterPersonalForm extends StatelessWidget {
   const RegisterPersonalForm({
     super.key,
@@ -15,9 +14,6 @@ class RegisterPersonalForm extends StatelessWidget {
     required this.onTogglePassword,
     required this.onToggleConfirmPassword,
   });
-
-  /// Read for its controllers and obscure flags only; taps are forwarded back
-  /// through the callbacks so the widget stays dumb.
   final RegisterCubit cubit;
   final VoidCallback onTogglePassword;
   final VoidCallback onToggleConfirmPassword;
@@ -28,8 +24,8 @@ class RegisterPersonalForm extends StatelessWidget {
       children: [
         AppTextField(
           controller: cubit.nameController,
-          hint: 'full_name_triple'.tr(),
-          icon: AuthAssets.profile,
+          hint: 'user_name'.tr(),
+          icon: AuthAssets.accountCircle,
           textInputAction: TextInputAction.next,
           validator: AppValidators.required,
         ),

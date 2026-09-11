@@ -9,10 +9,6 @@ import 'package:skygate/features/group_booking/widgets/group_price_row.dart';
 import 'package:skygate/features/group_booking/widgets/group_room_card_header.dart';
 import 'package:skygate/features/group_booking/widgets/group_room_seat_row.dart';
 
-/// One card on "اختر عدد الغرف و أنواعها".
-///
-/// An empty room shows the price sheet of its size and asks for travellers; a
-/// filled one lists who sleeps in it, what each of them pays and the total.
 class GroupRoomCard extends StatelessWidget {
   const GroupRoomCard({
     super.key,
@@ -24,13 +20,9 @@ class GroupRoomCard extends StatelessWidget {
   });
 
   final GroupRoomModel room;
-
-  /// Who sleeps in the room, priced in the order they were seated.
   final List<GroupRoomSeat> seats;
 
   final num total;
-
-  /// Opens "من ترغب بإضافته إلى الغرفة ؟".
   final VoidCallback onAssign;
 
   final VoidCallback onDelete;
@@ -81,8 +73,6 @@ class GroupRoomCard extends StatelessWidget {
     );
   }
 
-  /// The orange column of an unfilled room: what each class of traveller costs
-  /// in this size, and what an empty bed costs to hold.
   List<Widget> _priceSheet() {
     final price = room.price;
 
@@ -122,8 +112,6 @@ class GroupRoomCard extends StatelessWidget {
     ];
   }
 
-  /// The filled room: a line per sleeper, the beds paid for empty, then the
-  /// room's own total.
   List<Widget> _occupants() => [
     for (var i = 0; i < seats.length; i++)
       GroupRoomSeatRow(

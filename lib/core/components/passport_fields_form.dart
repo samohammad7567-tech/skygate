@@ -9,15 +9,6 @@ import 'package:skygate/core/constants/auth_assets.dart';
 import 'package:skygate/core/models/passport_form.dart';
 import 'package:skygate/core/utils/app_validators.dart';
 
-/// The ten passport rows, shared by the scan-confirmation card and the manual
-/// entry card of both the signup and the booking wizard.
-///
-/// [labeled] switches between the two treatments in the design: the confirm
-/// screen captions every row, the manual form leans on placeholders. It also
-/// swaps the passport / national number order, matching the mockups.
-///
-/// The widget writes straight into [form] and calls [onChanged] afterwards, so
-/// the cubit that owns the form decides when to rebuild.
 class PassportFieldsForm extends StatelessWidget {
   const PassportFieldsForm({
     super.key,
@@ -28,9 +19,6 @@ class PassportFieldsForm extends StatelessWidget {
 
   final PassportForm form;
   final bool labeled;
-
-  /// Called after a date or the gender changes; the text rows keep their own
-  /// controllers and do not need it.
   final VoidCallback onChanged;
 
   Widget _wrap(String labelKey, Widget child) =>

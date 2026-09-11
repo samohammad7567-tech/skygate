@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/features/home/models/travel_category_model.dart';
 
-/// Horizontally scrolling pill row (عمرة، طيران، فنادق، قطارات، نقل بحري).
 class TravelCategoriesBar extends StatelessWidget {
   const TravelCategoriesBar({
     super.key,

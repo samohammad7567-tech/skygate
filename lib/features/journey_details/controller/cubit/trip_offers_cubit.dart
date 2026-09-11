@@ -7,11 +7,6 @@ import 'package:skygate/features/journey_details/models/trip_offer_model.dart';
 
 part 'trip_offers_state.dart';
 
-/// Owns "عروض الرحلة" — the price sets and which booking type the traveller
-/// picked on each of them.
-///
-/// An offer is one entry of the trip's `packages[]`: the room type it prices
-/// and the `package_id` a booking is created against.
 class TripOffersCubit extends Cubit<TripOffersState> {
   TripOffersCubit(this.tripId) : super(TripOffersInitial());
 
@@ -20,8 +15,6 @@ class TripOffersCubit extends Cubit<TripOffersState> {
   final int tripId;
 
   List<TripOfferModel> offers = [];
-
-  /// Booking type highlighted on each offer, keyed by the offer's index.
   final Map<int, BookingType> selectedBookingTypes = {};
 
   BookingType? selectedBookingTypeAt(int index) =>
@@ -40,10 +33,7 @@ class TripOffersCubit extends Cubit<TripOffersState> {
     emit(TripOffersLoading());
     try {
       final trip = await TripService.trip(tripId, refresh: refresh);
-      offers = [
-        for (final package in trip.packages)
-          TripOfferModel.fromPackage(package),
-      ];
+      offers = TripOfferModel.allOf(trip);
       selectedBookingTypes.clear();
       emit(TripOffersLoaded());
     } catch (error) {

@@ -2,14 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/models/booking_city.dart';
 
-/// "مكة المكرمة" on the start side with "4 أيام" pushed to the end, printed
-/// under the hotel step's heading.
 class BookingStayRow extends StatelessWidget {
   const BookingStayRow({super.key, required this.city, this.days});
 
   final BookingCity city;
-
-  /// Nights the package stays in [city]; the row hides when it is unknown.
   final int? days;
 
   @override

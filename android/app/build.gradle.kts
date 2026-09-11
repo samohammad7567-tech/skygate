@@ -10,8 +10,10 @@ android {
     // Matches the package_name in google-services.json; changing it breaks FCM.
     namespace = "com.eliasdahi.skygate"
     compileSdk = flutter.compileSdkVersion
-    // Pinned by the tourism module's native dependencies (maps, mrz scanner).
-    ndkVersion = "27.0.12077973"
+    // Highest NDK required by the plugin set (maps, mrz scanner, local
+    // notifications). NDK releases are backward compatible, so this covers the
+    // tourism module's native dependencies too.
+    ndkVersion = "28.2.13676358"
 
     compileOptions {
         // flutter_local_notifications needs the desugared java.time APIs.
@@ -35,6 +37,12 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.getByName("debug")
+            // R8 needs the local rules to resolve the ML Kit script recognizers
+            // that google_mlkit_text_recognition references but we don't bundle.
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro",
+            )
         }
     }
 }

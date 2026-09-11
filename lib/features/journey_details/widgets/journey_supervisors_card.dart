@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_card.dart';
 import 'package:skygate/core/components/app_glyph_plate.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
+import 'package:skygate/features/journey_details/models/journey_package_model.dart';
 
-/// "بإشراف" card — the names run under the title, two to a row.
 class JourneySupervisorsCard extends StatelessWidget {
   const JourneySupervisorsCard({super.key, required this.supervisors});
 
-  final List<String> supervisors;
+  final List<JourneyStaffModel> supervisors;
 
   @override
   Widget build(BuildContext context) {
@@ -37,16 +37,32 @@ class JourneySupervisorsCard extends StatelessWidget {
             const SizedBox(height: 10),
             Wrap(
               spacing: 16,
-              runSpacing: 4,
+              runSpacing: 8,
               children: [
-                for (final name in supervisors)
+                for (final member in supervisors)
                   SizedBox(
                     width: 140,
-                    child: Text(
-                      name,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.bodySmall,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          member.name ?? '—',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: theme.textTheme.bodySmall,
+                        ),
+                        if (member.role != null)
+                          Text(
+                            member.role!,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: theme.colorScheme.secondary,
+                              fontSize: 11,
+                            ),
+                          ),
+                      ],
                     ),
                   ),
               ],

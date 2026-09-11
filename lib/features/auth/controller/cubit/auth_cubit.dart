@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skygate/core/constants/api_endpoints.dart';
@@ -10,17 +11,12 @@ import 'package:skygate/features/auth/models/auth_user_model.dart';
 
 part 'auth_state.dart';
 
-/// Which credential the login card is asking for. The design ships both
-/// variants of the same card and swaps them with the outlined button.
 enum LoginMethod { phone, email }
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
 
   AuthCubit get(BuildContext context) => BlocProvider.of(context);
-
-  /// Cache key holding the bearer token; `main.dart` reads it to decide
-  /// whether the app opens on the auth flow or on the home tabs.
   static const String tokenKey = 'token';
 
   static bool get isLoggedIn {
@@ -28,11 +24,7 @@ class AuthCubit extends Cubit<AuthState> {
     return token is String && token.isNotEmpty;
   }
 
-  /// Cache key holding the pilgrim id created with the account.
   static const String pilgrimIdKey = 'pilgrim_id';
-
-  /// Re-attaches the token when one survived the last run. Called once from
-  /// `main.dart`, after [CacheUtil.init].
   static void restoreSession() {
     final token = CacheUtil.get(key: tokenKey);
     if (token is! String || token.isEmpty) return;
@@ -40,8 +32,6 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   // ── Form ───────────────────────────────────────────────────────────────
-  /// Opens on the dial code so the common case is no extra typing; a pilgrim
-  /// abroad edits it. Nothing is ever assumed on their behalf — see [AppPhone].
   final TextEditingController phoneController = TextEditingController(
     text: AppPhone.defaultDialCode,
   );
@@ -52,8 +42,6 @@ class AuthCubit extends Cubit<AuthState> {
   bool obscurePassword = true;
 
   bool get isPhoneLogin => method == LoginMethod.phone;
-
-  /// Swaps the card between "تسجيل باستخدام رقم الهاتف" and "... الإيميل".
   void switchMethod() {
     method = isPhoneLogin ? LoginMethod.email : LoginMethod.phone;
     emit(LoginMethodChanged());
@@ -66,9 +54,6 @@ class AuthCubit extends Cubit<AuthState> {
 
   // ── Login ──────────────────────────────────────────────────────────────
   AuthUserModel? user;
-
-  /// `POST auth/login`. The documented body is `mobile` + `password`; the
-  /// design's second card variant sends `email` instead.
   Future<void> login() async {
     emit(LoginLoading());
     return DioService.post(
@@ -87,13 +72,12 @@ class AuthCubit extends Cubit<AuthState> {
           emit(LoginLoaded());
         })
         .catchError((error) {
-          debugPrint('login error: $error');
+          debugPrint('login error: ${_describe(error)}');
           emit(LoginError(message: messageOf(error)));
         });
   }
 
   // ── Forgot password ────────────────────────────────────────────────────
-  /// Not part of the OpenAPI document — the path and body are still a guess.
   Future<void> forgotPassword() async {
     emit(ForgotPasswordLoading());
     return DioService.post(
@@ -105,16 +89,11 @@ class AuthCubit extends Cubit<AuthState> {
           'email': emailController.text.trim(),
       },
     ).then((_) => emit(ForgotPasswordSent())).catchError((error) {
-      debugPrint('forgotPassword error: $error');
+      debugPrint('forgotPassword error: ${_describe(error)}');
       emit(ForgotPasswordError(message: messageOf(error)));
     });
   }
 
-  /// Stores the token — and the pilgrim id `app/pilgrim-documents` needs —
-  /// then attaches the token to every later request.
-  ///
-  /// The trip kept from the previous session is dropped first: the next
-  /// account must not open the browse screens on someone else's trip.
   static void _persistSession(AuthUserModel user) {
     TripService.clear();
 
@@ -135,11 +114,42 @@ class AuthCubit extends Cubit<AuthState> {
     DioService.updateToken(token);
   }
 
-  /// Shared by [RegisterCubit]. Delegates to [ApiError] so error copy lives in
-  /// exactly one place.
-  static String messageOf(dynamic error) => ApiError.messageOf(error);
+  // ── Logout ─────────────────────────────────────────────────────────────
+  Future<void> logout() async {
+    emit(LogoutLoading());
+    try {
+      await DioService.post(ApiEndpoints.logout);
+    } catch (error) {
+      debugPrint('logout error: ${_describe(error)}');
+    }
+    clearSession();
+    emit(LogoutDone());
+  }
 
-  /// Called by [RegisterCubit] once the signup response comes back.
+  static void clearSession() {
+    TripService.clear();
+    CacheUtil.remove(key: tokenKey);
+    CacheUtil.remove(key: pilgrimIdKey);
+    CacheUtil.remove(key: 'refresh_token');
+    DioService.updateToken(null);
+  }
+
+  static String messageOf(dynamic error) => ApiError.messageOf(error);
+  static String _describe(Object? error) {
+    if (error is! DioException) return '$error';
+
+    final request = error.requestOptions;
+    final response = error.response;
+    final location = response?.headers.value('location');
+
+    return [
+      '${request.method} ${request.uri}',
+      if (response != null) '-> ${response.statusCode}',
+      if (location != null) 'Location: $location',
+      error.message ?? error.type.name,
+    ].join(' | ');
+  }
+
   static void persist(AuthUserModel user) => _persistSession(user);
 
   @override

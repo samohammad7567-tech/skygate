@@ -4,7 +4,6 @@ import 'package:skygate/features/journey_details/models/journey_route_model.dart
 import 'package:skygate/features/journey_details/widgets/journey_duration_row.dart';
 import 'package:skygate/features/journey_details/widgets/journey_leg_row.dart';
 
-/// Top block of "تفاصيل القسم": the carrier strip, the leg, and its length.
 class SegmentSummaryCard extends StatelessWidget {
   const SegmentSummaryCard({super.key, required this.segment});
 
@@ -35,8 +34,6 @@ class SegmentSummaryCard extends StatelessWidget {
   }
 }
 
-/// Tinted header: the operator on the start side, the trip number chip on the
-/// end side.
 class _CarrierStrip extends StatelessWidget {
   const _CarrierStrip({this.companyName, this.tripNumber});
 

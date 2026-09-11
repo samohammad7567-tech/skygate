@@ -1,7 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// Thin SharedPreferences wrapper. Call it from cubits and services only —
-/// never from a widget `build`.
 class CacheUtil {
   CacheUtil._();
 

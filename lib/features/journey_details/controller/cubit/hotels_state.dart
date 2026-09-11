@@ -15,6 +15,4 @@ final class HotelsError extends HotelsState {
   HotelsError({required this.message});
 }
 
-/// The hotel behind "تفاصيل الحجز" was handed to the cubit. It needs no
-/// loading or error twin: the record travelled down with the trip.
 final class HotelLoaded extends HotelsState {}

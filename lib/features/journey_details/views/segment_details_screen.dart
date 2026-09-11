@@ -15,8 +15,6 @@ import 'package:skygate/features/journey_details/widgets/segment_place_section.d
 import 'package:skygate/features/journey_details/widgets/segment_summary_card.dart';
 import 'package:skygate/features/journey_details/widgets/segment_vehicle_section.dart';
 
-/// "تفاصيل القسم" — one leg of a route: carrier, vehicle, both terminals and
-/// the instructions that come with it.
 class SegmentDetailsScreen extends StatelessWidget {
   const SegmentDetailsScreen({
     super.key,
@@ -25,9 +23,6 @@ class SegmentDetailsScreen extends StatelessWidget {
   });
 
   final int tripId;
-
-  /// The leg as the itinerary knows it — which is everything the API
-  /// publishes about it.
   final JourneySegmentModel segment;
 
   @override
@@ -66,8 +61,10 @@ class _SegmentDetailsBody extends StatelessWidget {
       ),
       bottomNavigationBar: JourneyBottomBar(
         label: 'go_to_activities'.tr(),
-        onPressed: () =>
-            NaivgatorHelper.pushNavigation(context, const ActivitiesScreen()),
+        onPressed: () => NaivgatorHelper.pushNavigation(
+          context,
+          ActivitiesScreen(tripId: context.read<JourneyDetailsCubit>().tripId),
+        ),
       ),
     );
   }

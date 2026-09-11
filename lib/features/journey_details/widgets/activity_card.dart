@@ -4,10 +4,8 @@ import 'package:skygate/core/components/app_card.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/components/icon_text_row.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
-import 'package:skygate/features/journey_details/models/activity_model.dart';
+import 'package:skygate/core/models/activity_model.dart';
 
-/// One card on the activities timeline: title, the two location fields, and
-/// the hours the activity runs for.
 class ActivityCard extends StatelessWidget {
   const ActivityCard({super.key, required this.activity});
 
@@ -22,13 +20,25 @@ class ActivityCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(
-            activity.title ?? '',
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: theme.textTheme.titleMedium?.copyWith(
-              color: theme.colorScheme.primary,
-            ),
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  activity.title ?? '',
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    color: theme.colorScheme.primary,
+                  ),
+                ),
+              ),
+              // `activity_type` names the kind and picks its colour; a
+              // programme that publishes neither keeps the plain title row.
+              if (activity.typeName != null) ...[
+                const SizedBox(width: 8),
+                _TypeChip(activity: activity),
+              ],
+            ],
           ),
           const SizedBox(height: 8),
           const Divider(height: 1),
@@ -73,7 +83,35 @@ class ActivityCard extends StatelessWidget {
   }
 }
 
-/// Label on the start side and a read-only tinted box holding the value.
+class _TypeChip extends StatelessWidget {
+  const _TypeChip({required this.activity});
+
+  final ActivityModel activity;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final color = activity.accentColor;
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+      decoration: BoxDecoration(
+        color: activity.surfaceColor,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      // The chip sits beside a two-line title, so it takes at most a third of
+      // the row rather than pushing the title into an ellipsis.
+      constraints: const BoxConstraints(maxWidth: 110),
+      child: Text(
+        activity.typeName!,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: theme.textTheme.bodySmall?.copyWith(color: color, fontSize: 11),
+      ),
+    );
+  }
+}
+
 class _Field extends StatelessWidget {
   const _Field({required this.asset, required this.labelKey, this.value});
 

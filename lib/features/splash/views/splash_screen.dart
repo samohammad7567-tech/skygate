@@ -12,8 +12,6 @@ import 'package:skygate/features/splash/models/splash_service.dart';
 import 'package:skygate/features/splash/widgets/splash_background_carousel.dart';
 import 'package:skygate/features/splash/widgets/splash_panel.dart';
 
-/// App entry: a photo slideshow over which the user picks the service line
-/// their journey starts with.
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
@@ -36,7 +34,6 @@ class _SplashBody extends StatefulWidget {
 }
 
 class _SplashBodyState extends State<_SplashBody> {
-  /// Owned by the screen; the cubit only holds the resulting page.
   final PageController _controller = PageController();
 
   @override
@@ -54,8 +51,6 @@ class _SplashBodyState extends State<_SplashBody> {
     );
   }
 
-  /// Where the chosen service line drops the user: onboarding on a first run,
-  /// then the home tabs or the auth flow depending on the stored session.
   Widget _nextScreen(SplashCubit cubit) {
     if (!cubit.hasSeenOnBoarding) return const OnBoardingScreen();
     return cubit.isLoggedIn ? const MainScreen() : const AuthLandingScreen();

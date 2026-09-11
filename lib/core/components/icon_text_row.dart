@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 
-/// Glyph on the start side with a single line of copy after it — the shape
-/// every hotel-card detail and activity time uses.
 class IconTextRow extends StatelessWidget {
   const IconTextRow({
     super.key,

@@ -57,7 +57,7 @@ class AvatarWidget extends StatelessWidget {
                   fit: BoxFit.fill,
                 );
               } else {
-                return Image.asset("assets/images/avatar.png");
+                return Image.asset("assets/images/pngs/avatar.png");
               }
             }),
           ),

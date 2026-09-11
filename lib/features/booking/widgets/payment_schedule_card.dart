@@ -6,7 +6,6 @@ import 'package:skygate/core/constants/journey_assets.dart';
 import 'package:skygate/features/booking/models/booking_summary_model.dart';
 import 'package:skygate/features/booking/widgets/payment_installment_tile.dart';
 
-/// "جدول دفعات الرحلة" — one tile per instalment, in the order they fall due.
 class PaymentScheduleCard extends StatelessWidget {
   const PaymentScheduleCard({super.key, required this.installments});
 

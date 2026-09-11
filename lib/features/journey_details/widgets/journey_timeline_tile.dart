@@ -2,11 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/components/dashed_line.dart';
 
-/// One row of a vertical timeline: a glyph dot on the start side, a dotted
-/// rail running down to the next row, and the row's card filling the rest.
-///
-/// Both the itinerary and the activities screen build on this, so the rail
-/// keeps the same rhythm on either.
 class JourneyTimelineTile extends StatelessWidget {
   const JourneyTimelineTile({
     super.key,
@@ -19,14 +14,9 @@ class JourneyTimelineTile extends StatelessWidget {
 
   final String icon;
   final Widget child;
-
-  /// Glyph tint. Defaults to white, which is what the itinerary's solid dots
-  /// need; the activity dots pass their kind's colour instead.
   final Color? iconColor;
 
   final Color? dotColor;
-
-  /// Hides the rail below the dot on the final row.
   final bool isLast;
 
   static const double _railWidth = 46;

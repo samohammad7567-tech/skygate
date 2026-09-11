@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// Grey text placeholder used by the mocked passport page on the scan screen.
 class PlaceholderBar extends StatelessWidget {
   const PlaceholderBar({super.key, required this.widthFactor, this.height = 8});
 

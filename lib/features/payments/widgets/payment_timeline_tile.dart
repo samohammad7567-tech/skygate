@@ -5,8 +5,6 @@ import 'package:skygate/core/utils/app_format.dart';
 import 'package:skygate/features/payments/models/payment_installment_model.dart';
 import 'package:skygate/features/payments/widgets/payment_timeline_rail.dart';
 
-/// One row of "جدول المدفوعات": the rail dot on the reading side, then the
-/// instalment number over its amount, share, due date and standing.
 class PaymentTimelineTile extends StatelessWidget {
   const PaymentTimelineTile({
     super.key,
@@ -16,8 +14,6 @@ class PaymentTimelineTile extends StatelessWidget {
   });
 
   final PaymentInstallmentModel installment;
-
-  /// Trims the connector so the rail starts and ends on a dot.
   final bool isFirst;
   final bool isLast;
 
@@ -90,7 +86,6 @@ class PaymentTimelineTile extends StatelessWidget {
   }
 }
 
-/// A value on the reading side with a secondary figure opposite it.
 class _Line extends StatelessWidget {
   const _Line({
     required this.leading,

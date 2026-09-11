@@ -4,8 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:skygate/features/trips/models/booking_trip_model.dart';
 import 'package:skygate/features/trips/widgets/trip_chips.dart';
 
-/// The block beside a card's photo: the inclusions row, the trip name over its
-/// number, then the departure and return dates with the length between them.
 class TripBookingSummary extends StatelessWidget {
   const TripBookingSummary({super.key, required this.booking});
 
@@ -65,8 +63,6 @@ class TripBookingSummary extends StatelessWidget {
   }
 }
 
-/// "المبلغ المتبقي / 1200$" — the outstanding figure on a card in
-/// "تحتاج دفعة".
 class TripRemainingAmount extends StatelessWidget {
   const TripRemainingAmount({super.key, required this.booking});
 

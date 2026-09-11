@@ -1,10 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:skygate/core/components/app_stepper_button.dart';
 import 'package:skygate/core/models/group_room_type.dart';
 
-/// One line of "حدد عدد الغرف و أنواعها": the room size on the start side and
-/// its − 0 + stepper on the end.
 class GroupRoomCounterRow extends StatelessWidget {
   const GroupRoomCounterRow({
     super.key,
@@ -16,9 +15,6 @@ class GroupRoomCounterRow extends StatelessWidget {
 
   final GroupRoomType type;
   final int count;
-
-  /// Ceiling for this size. On the hotel step it is what the other hotels
-  /// have left over; on the rooms step there is no practical limit.
   final int max;
 
   final ValueChanged<int> onChanged;
@@ -41,7 +37,7 @@ class GroupRoomCounterRow extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                _StepButton(
+                AppStepperButton(
                   icon: Icons.remove,
                   onTap: count > 0 ? () => onChanged(count - 1) : null,
                 ),
@@ -54,7 +50,7 @@ class GroupRoomCounterRow extends StatelessWidget {
                     style: theme.textTheme.titleMedium,
                   ),
                 ),
-                _StepButton(
+                AppStepperButton(
                   icon: Icons.add,
                   onTap: count < max ? () => onChanged(count + 1) : null,
                 ),
@@ -72,33 +68,6 @@ class GroupRoomCounterRow extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-/// Round − / + control; greyed out once the count hits either end.
-class _StepButton extends StatelessWidget {
-  const _StepButton({required this.icon, required this.onTap});
-
-  final IconData icon;
-  final VoidCallback? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final color = onTap == null
-        ? theme.colorScheme.outlineVariant
-        : theme.colorScheme.primary;
-
-    return InkResponse(
-      onTap: onTap,
-      radius: 20,
-      child: Container(
-        height: 26,
-        width: 26,
-        decoration: BoxDecoration(color: color, shape: BoxShape.circle),
-        child: Icon(icon, size: 16, color: theme.colorScheme.onPrimary),
       ),
     );
   }

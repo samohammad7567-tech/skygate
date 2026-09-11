@@ -1,11 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-/// The "إضافة مسافر" / "إضافة مسافرين" pill.
-///
-/// On "تكوين المجموعة" it is filled while the group is still just its leader —
-/// the one thing left to do on that card — and outlined afterwards. A room
-/// card reuses it outlined to ask for the travellers who sleep in it.
 class GroupAddTravelerButton extends StatelessWidget {
   const GroupAddTravelerButton({
     super.key,
@@ -16,9 +11,6 @@ class GroupAddTravelerButton extends StatelessWidget {
 
   final VoidCallback onTap;
   final bool filled;
-
-  /// Names what is being added — one traveller to the group, or several to a
-  /// room.
   final String labelKey;
 
   @override

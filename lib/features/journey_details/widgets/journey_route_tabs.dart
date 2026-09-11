@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/utils/app_format.dart';
 import 'package:skygate/features/journey_details/models/journey_route_model.dart';
 
-/// "المسار الأول / الثاني / الثالث" tabs above the itinerary timeline.
-///
-/// The row scrolls horizontally so a package with many routes never squeezes
-/// its labels.
 class JourneyRouteTabs extends StatelessWidget {
   const JourneyRouteTabs({
     super.key,

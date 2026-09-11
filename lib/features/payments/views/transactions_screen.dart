@@ -9,11 +9,6 @@ import 'package:skygate/features/payments/controller/cubit/payments_cubit.dart';
 import 'package:skygate/features/payments/widgets/payment_summary_card.dart';
 import 'package:skygate/features/payments/widgets/transaction_card.dart';
 
-/// "المعاملات المالية" — the same summary ring as "المدفوعات", over every
-/// transfer filed against the booking.
-///
-/// It is pushed with the [PaymentsCubit] the payments screen already built, so
-/// the booking is not fetched twice.
 class TransactionsScreen extends StatefulWidget {
   const TransactionsScreen({super.key});
 

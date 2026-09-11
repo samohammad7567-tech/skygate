@@ -3,14 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/features/home/models/service_model.dart';
 
-/// One tile of the "ماذا تشمل خدماتنا" grid.
 class ServiceCard extends StatelessWidget {
   const ServiceCard({super.key, required this.service});
 
   final ServiceModel service;
-
-  /// Box the illustration is drawn into. Sized from the widest export so no
-  /// tile is cropped, and shared by every tile so the grid stays on a baseline.
   static const double _artWidth = 54;
   static const double _artHeight = 48;
 
@@ -59,7 +55,6 @@ class ServiceCard extends StatelessWidget {
   }
 }
 
-/// The illustration, plus the "vip" banner for the tile that ships one.
 class _Artwork extends StatelessWidget {
   const _Artwork({required this.service});
 

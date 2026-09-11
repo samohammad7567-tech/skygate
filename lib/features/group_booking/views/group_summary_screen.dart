@@ -16,8 +16,6 @@ import 'package:skygate/features/group_booking/widgets/group_summary_card.dart';
 import 'package:skygate/features/group_booking/widgets/group_summary_room_card.dart';
 import 'package:skygate/features/group_booking/widgets/group_travelers_sheet.dart';
 
-/// Step 9 — "ملخص الحجز": the hold countdown and the priced review, then the
-/// button that creates the booking.
 class GroupSummaryScreen extends StatefulWidget {
   const GroupSummaryScreen({super.key});
 
@@ -89,7 +87,6 @@ class _GroupSummaryScreenState extends State<GroupSummaryScreen> {
     );
   }
 
-  /// One block per room, each carrying the hotel it takes in either city.
   List<Widget> _rooms(GroupBookingCubit cubit) => [
     for (var i = 0; i < cubit.rooms.length; i++)
       GroupSummaryRoomCard(

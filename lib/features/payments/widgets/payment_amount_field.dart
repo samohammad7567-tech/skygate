@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:skygate/features/payments/models/payment_currency.dart';
 
-/// "مقدار المبلغ المحول" — the amount transferred, with the picked currency
-/// stamped on it as a chip so the payer can see which one they are quoting.
 class PaymentAmountField extends StatelessWidget {
   const PaymentAmountField({
     super.key,
@@ -56,7 +54,6 @@ class PaymentAmountField extends StatelessWidget {
   );
 }
 
-/// The grey "USD" / "SYP" pill inside the field.
 class _CurrencyChip extends StatelessWidget {
   const _CurrencyChip({required this.currency});
 

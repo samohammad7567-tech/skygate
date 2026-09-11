@@ -2,20 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-/// "إبدأ حجزك من خطوات الحجز التالية : الخطوة 2 من 6" card, with the progress
-/// rule under it.
 class BookingStepBar extends StatelessWidget {
-  const BookingStepBar({
-    super.key,
-    required this.step,
-    required this.total,
-  });
-
-  /// 1-based index of the step being shown.
+  const BookingStepBar({super.key, required this.step, required this.total});
   final int step;
-
-  /// Steps the wizard has in total — six for the individual flow, nine for the
-  /// group one.
   final int total;
 
   @override
@@ -62,8 +51,6 @@ class BookingStepBar extends StatelessWidget {
   }
 }
 
-/// Rule filled from the start side — the right under Arabic — with the dot the
-/// design prints at the far end of the track.
 class _ProgressRule extends StatelessWidget {
   const _ProgressRule({required this.step, required this.total});
 

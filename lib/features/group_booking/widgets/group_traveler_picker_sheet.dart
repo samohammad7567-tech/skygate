@@ -1,19 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:skygate/core/components/app_sheet.dart';
 import 'package:skygate/core/components/custom_button.dart';
+import 'package:skygate/core/components/sheet_handle.dart';
 import 'package:skygate/core/models/group_room_type.dart';
 import 'package:skygate/features/group_booking/models/group_traveler_model.dart';
 import 'package:skygate/features/group_booking/widgets/group_dialogs.dart';
 import 'package:skygate/features/group_booking/widgets/group_picker_header.dart';
 import 'package:skygate/features/group_booking/widgets/group_picker_row.dart';
-import 'package:skygate/core/components/sheet_handle.dart';
 
-/// "من ترغب بإضافته إلى الغرفة الثنائية ؟" — seats travellers in one room.
-///
-/// Returns the ids that ended up ticked, in the order they were ticked, which
-/// is also the order the infant rates are applied in. `null` means the sheet
-/// was dismissed and the room keeps whoever it already had.
 Future<List<int>?> showGroupTravelerPickerSheet(
   BuildContext context, {
   required GroupRoomType type,
@@ -24,13 +20,8 @@ Future<List<int>?> showGroupTravelerPickerSheet(
   required num Function(List<int> selection, int localId) priceOf,
   required bool Function(List<int> selection, int localId) isSecondInfant,
 }) {
-  return showModalBottomSheet<List<int>>(
-    context: context,
-    isScrollControlled: true,
-    backgroundColor: Theme.of(context).colorScheme.surface,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-    ),
+  return showAppSheet<List<int>>(
+    context,
     builder: (_) => _PickerSheet(
       type: type,
       travelers: travelers,
@@ -68,9 +59,6 @@ class _PickerSheet extends StatefulWidget {
 
 class _PickerSheetState extends State<_PickerSheet> {
   late final List<int> _selection = [...widget.selected];
-
-  /// Ticking past the room's last bed is refused with the notice the design
-  /// prints rather than by silently dropping someone.
   Future<void> _toggle(int localId, bool isSelected) async {
     if (!isSelected) {
       setState(() => _selection.remove(localId));

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// Gives context-less callers (services, interceptors) a way to navigate.
 class NavigationService {
   NavigationService._();
 

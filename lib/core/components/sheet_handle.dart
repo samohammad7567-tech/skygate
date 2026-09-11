@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// The grey grab bar every bottom sheet opens with.
 class SheetHandle extends StatelessWidget {
   const SheetHandle({super.key});
 

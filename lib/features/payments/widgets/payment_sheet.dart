@@ -10,10 +10,6 @@ import 'package:skygate/features/payments/controller/cubit/pay_cubit.dart';
 import 'package:skygate/features/payments/models/financial_transaction_model.dart';
 import 'package:skygate/features/payments/widgets/payment_sheet_form.dart';
 
-/// "معلومات الدفع" — the sheet "ادفع الآن" opens.
-///
-/// Resolves to the transaction `POST app/financial-transactions` created, or
-/// `null` when the payer backs out.
 Future<FinancialTransactionModel?> showPaymentSheet(
   BuildContext context, {
   required int bookingId,

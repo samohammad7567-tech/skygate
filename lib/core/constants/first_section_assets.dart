@@ -1,11 +1,3 @@
-/// Assets exported from the Figma section
-/// "قسم تسجيل الدخول و انشاء حساب جديد" (login & signup), node `1:3335`.
-///
-/// Generated from the files under `assets/images/firstsection/`. Every entry is
-/// a real export — content-deduplicated, so each distinct graphic appears once.
-/// Names came from a visual pass over the exports; rename freely as the auth
-/// screens get built. Load them with [AppImage], which handles both SVG and
-/// raster from the file extension.
 class FirstSectionAssets {
   FirstSectionAssets._();
 
@@ -14,7 +6,6 @@ class FirstSectionAssets {
   static const String _jpgs = 'assets/images/jpgs';
 
   // ── photos (9) ────────────────────────────────────────
-  /// Photography exported from the design.
   static const String airplaneInSky =
       '$_jpgs/airplane_in_sky.jpg'; // 510x340, in 1 frame
   static const String airplaneLanding =
@@ -35,7 +26,6 @@ class FirstSectionAssets {
       '$_jpgs/marina_aerial.jpg'; // 240x360, in 1 frame
 
   // ── illustrations (5) ─────────────────────────────────
-  /// Composite illustrations and hero artwork.
   static const String illusSuccessCheck =
       '$_svgs/illus_success_check.svg'; // 289x278, in 1 frame
   static const String onboardingServicesLg =
@@ -48,7 +38,6 @@ class FirstSectionAssets {
       '$_pngs/onboarding_services_xl.png'; // 2816x1536, in 2 frames
 
   // ── icons (58) ─────────────────────────────────────────
-  /// UI icons and the Sky Gate logo lockups.
   static const String icAirplane =
       '$_svgs/ic_airplane.svg'; // 36x29, in 1 frame
   static const String icAirplaneXl =
@@ -151,8 +140,6 @@ class FirstSectionAssets {
       '$_svgs/logo_skygate_small.svg'; // 47x21, in 1 frame
 
   // ── decor (45) ─────────────────────────────────────────
-  /// Decorative fragments, placeholders, and iOS device-frame chrome.
-  /// Mostly reference material — you will usually draw these with widgets.
   static const String decoBandMint =
       '$_svgs/deco_band_mint.svg'; // 317x75, in 1 frame
   static const String decoBar80 = '$_svgs/deco_bar_80.svg'; // 80x8, in 1 frame
@@ -240,8 +227,6 @@ class FirstSectionAssets {
       '$_svgs/device_wifi_a.svg'; // 17x17, in 16 frames
   static const String deviceWifiB =
       '$_svgs/device_wifi_b.svg'; // 17x17, in 14 frames
-
-  /// Every asset above, for bundle smoke tests.
   static const List<String> all = [
     airplaneInSky,
     airplaneLanding,

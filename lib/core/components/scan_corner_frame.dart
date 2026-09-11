@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
 
-/// Viewfinder brackets drawn around the passport preview.
 class ScanCornerFrame extends StatelessWidget {
   const ScanCornerFrame({super.key, required this.child, this.size = 32});
 
   final Widget child;
-
-  /// Edge length of one bracket.
   final double size;
 
   @override

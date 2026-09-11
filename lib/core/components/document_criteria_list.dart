@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/models/umrah_document_model.dart';
 
-/// "شروط و المعايير المقبولة:" block repeated under every document drop zone.
 class DocumentCriteriaList extends StatelessWidget {
   const DocumentCriteriaList({super.key});
 

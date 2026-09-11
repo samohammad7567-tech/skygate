@@ -2,12 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-/// "تعليمات التقاط الصورة بدقة" box between the scan frame and the capture
-/// button.
 class CaptureInstructionsCard extends StatelessWidget {
   const CaptureInstructionsCard({super.key});
-
-  /// The three bullets are fixed design content.
   static const List<String> instructionKeys = [
     'capture_instruction_1',
     'capture_instruction_2',

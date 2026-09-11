@@ -3,12 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/models/traveler_audience.dart';
 
-/// "أجمالي المسافرين" card on "تكوين المجموعة": the head count over one tile
-/// per class of traveller.
 class GroupCountsCard extends StatelessWidget {
   const GroupCountsCard({super.key, required this.counts});
-
-  /// How many travellers fall into each class, filled in by the cubit.
   final Map<TravelerAudience, int> counts;
 
   int get _total => counts.values.fold(0, (sum, count) => sum + count);
@@ -72,7 +68,6 @@ class GroupCountsCard extends StatelessWidget {
   }
 }
 
-/// One tinted box under the head count.
 class _CountTile extends StatelessWidget {
   const _CountTile({required this.labelKey, required this.count});
 

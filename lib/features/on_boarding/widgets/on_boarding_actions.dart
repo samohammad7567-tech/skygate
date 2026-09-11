@@ -2,10 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/custom_button.dart';
 
-/// Skip and Next buttons below the copy card.
-///
-/// Order is semantic — skip first, next last — so RTL puts Next on the left
-/// and Skip on the right as designed, while LTR gets the usual arrangement.
 class OnBoardingActions extends StatelessWidget {
   const OnBoardingActions({super.key, this.onSkip, this.onNext});
 

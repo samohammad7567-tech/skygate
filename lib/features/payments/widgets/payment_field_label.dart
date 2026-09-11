@@ -4,8 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/payment_assets.dart';
 
-/// "نوع المبلغ المحول :" — the blue caption over each block of the payment
-/// sheet, with the grey line of guidance the design puts under some of them.
 class PaymentFieldLabel extends StatelessWidget {
   const PaymentFieldLabel({super.key, required this.labelKey, this.hintKey});
 
@@ -43,8 +41,6 @@ class PaymentFieldLabel extends StatelessWidget {
   }
 }
 
-/// The blue-bordered note the sheet opens with: "يرجى تعبئة بيانات التحويل و
-/// رفع صورة الوصل ليتم مراجعة الدفع و تأكيده".
 class PaymentNoteCard extends StatelessWidget {
   const PaymentNoteCard({super.key});
 

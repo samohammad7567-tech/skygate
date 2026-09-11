@@ -36,7 +36,7 @@ class SignupView extends GetView<SignupController> {
           height: double.infinity,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/seko.png"),
+              image: AssetImage("assets/images/pngs/seko.png"),
             ),
           ),
           child: SingleChildScrollView(
@@ -88,7 +88,7 @@ class SignupView extends GetView<SignupController> {
                           registerController.getCameraPermission();
                         },
                         child:
-                            SvgPicture.asset("assets/images/passport_scan.svg"),
+                            SvgPicture.asset("assets/images/svgs/passport_scan.svg"),
                       ),
                       Padding(padding: EdgeInsets.only(bottom: 10.0.h)),
                       // Divider Line
@@ -117,7 +117,7 @@ class SignupView extends GetView<SignupController> {
                               children: [
                                 // Full Name
                                 CustomFormField(
-                                  hintText: "الاسم الثلاثي",
+                                  hintText: " اسم المستخدم",
                                   maxLength: 20,
                                   keyboardType: TextInputType.text,
                                   autoValidate: false,
@@ -141,7 +141,7 @@ class SignupView extends GetView<SignupController> {
                                     borderRadius: BorderRadius.circular(30.0.r),
                                     image: const DecorationImage(
                                       image: AssetImage(
-                                          "assets/images/text-field.png"),
+                                          "assets/images/pngs/text_field.png"),
                                       fit: BoxFit.fitHeight,
                                     ),
                                   ),

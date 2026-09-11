@@ -26,7 +26,7 @@ class AddPassportsView extends StatelessWidget {
         centerTitle: true,
         elevation: 0.0,
         title: SvgPicture.asset(
-          "assets/images/big-logo.svg",
+          "assets/images/svgs/big_logo.svg",
           width: 105.0.w,
           height: 47.0.h,
         ),

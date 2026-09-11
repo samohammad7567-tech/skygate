@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/features/home/models/offer_model.dart';
 
-/// Inclusion glyphs on the end side, offer title on the start side.
 class OfferTitleRow extends StatelessWidget {
   const OfferTitleRow({super.key, required this.offer});
 

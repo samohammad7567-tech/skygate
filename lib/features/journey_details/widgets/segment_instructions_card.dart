@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_card.dart';
 
-/// "تعليمات مهمة" — the bulleted card under the segment details.
 class SegmentInstructionsCard extends StatelessWidget {
   const SegmentInstructionsCard({super.key, required this.instructions});
 

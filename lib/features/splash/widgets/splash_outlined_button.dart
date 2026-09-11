@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// Ghost button on the photo scrim — white outline, no fill.
 class SplashOutlinedButton extends StatelessWidget {
   const SplashOutlinedButton({
     super.key,
@@ -13,8 +12,6 @@ class SplashOutlinedButton extends StatelessWidget {
   final String label;
   final VoidCallback? onPressed;
   final double height;
-
-  /// Swaps the label for a spinner while the tapped section loads.
   final bool isLoading;
 
   @override

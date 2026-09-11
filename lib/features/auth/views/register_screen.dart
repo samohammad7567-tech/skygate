@@ -19,8 +19,6 @@ import 'package:skygate/features/auth/widgets/profile_photo_picker.dart';
 import 'package:skygate/features/auth/widgets/register_personal_form.dart';
 import 'package:skygate/features/auth/widgets/register_stepper.dart';
 
-/// Step 1 of "إنشاء حساب" — personal details, profile photo, and the two ways
-/// into the passport step. It owns the [RegisterCubit] the whole wizard shares.
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
 
@@ -42,8 +40,6 @@ class _RegisterBody extends StatefulWidget {
 
 class _RegisterBodyState extends State<_RegisterBody> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  /// Both routes into step 2 need complete personal details first.
   bool _validate() {
     FocusScope.of(context).unfocus();
     return _formKey.currentState?.validate() == true;

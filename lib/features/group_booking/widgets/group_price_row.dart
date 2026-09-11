@@ -1,10 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:skygate/core/components/app_circle_badge.dart';
 import 'package:skygate/core/components/app_image.dart';
 
-/// One priced line of a room card: the glyph and its caption on the start
-/// side, the amount pushed out to the end in orange.
 class GroupPriceRow extends StatelessWidget {
   const GroupPriceRow({
     super.key,
@@ -19,8 +18,6 @@ class GroupPriceRow extends StatelessWidget {
   final String labelKey;
   final num? price;
   final String? currency;
-
-  /// Small badge after the caption — how many beds "إغلاق الأسرة" paid for.
   final int? count;
 
   @override
@@ -64,7 +61,6 @@ class GroupPriceRow extends StatelessWidget {
   }
 }
 
-/// "المجموع النهائي" line closing a room card.
 class GroupTotalRow extends StatelessWidget {
   const GroupTotalRow({
     super.key,
@@ -110,7 +106,6 @@ class GroupTotalRow extends StatelessWidget {
   }
 }
 
-/// Small orange pill carrying the number of beds a lock covers.
 class _CountBadge extends StatelessWidget {
   const _CountBadge({required this.count});
 
@@ -120,21 +115,11 @@ class _CountBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Container(
-      height: 18,
-      width: 18,
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        color: theme.colorScheme.secondary.withValues(alpha: 0.15),
-        shape: BoxShape.circle,
-      ),
-      child: Text(
-        '$count',
-        maxLines: 1,
-        style: theme.textTheme.bodySmall?.copyWith(
-          color: theme.colorScheme.secondary,
-        ),
-      ),
+    return AppCircleBadge(
+      text: '$count',
+      background: theme.colorScheme.secondary.withValues(alpha: 0.15),
+      foreground: theme.colorScheme.secondary,
+      textStyle: theme.textTheme.bodySmall,
     );
   }
 }

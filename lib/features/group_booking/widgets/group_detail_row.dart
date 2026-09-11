@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_image.dart';
 
-/// One line of a traveller card: the glyph on the start side, then the grey
-/// caption over its value.
 class GroupDetailRow extends StatelessWidget {
   const GroupDetailRow({
     super.key,
@@ -16,8 +14,6 @@ class GroupDetailRow extends StatelessWidget {
   final String icon;
   final String label;
   final String? value;
-
-  /// The last row of a card drops its rule.
   final bool showDivider;
 
   @override

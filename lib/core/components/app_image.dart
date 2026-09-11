@@ -2,11 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:skygate/core/constants/app_assets.dart';
 
-/// Renders a bundled asset from [AppAssets], picking the right decoder from the
-/// file extension.
-///
-/// This keeps the Figma hand-off cheap: when an icon is re-exported as an SVG,
-/// only the constant in [AppAssets] changes — every call site keeps working.
 class AppImage extends StatelessWidget {
   const AppImage(
     this.asset, {
@@ -21,8 +16,6 @@ class AppImage extends StatelessWidget {
   final double? width;
   final double? height;
   final BoxFit fit;
-
-  /// Tints the asset. Applied to SVGs via a colour filter.
   final Color? color;
 
   bool get _isSvg => asset.toLowerCase().endsWith('.svg');

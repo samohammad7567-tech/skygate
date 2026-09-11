@@ -10,7 +10,6 @@ import 'package:skygate/core/constants/auth_assets.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/main/views/main_screen.dart';
 
-/// "تم إنشاء الحساب" — the last card of the signup wizard.
 class RegisterSuccessScreen extends StatelessWidget {
   const RegisterSuccessScreen({super.key});
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// Filled pill button used for "بحث", "عرض التفاصيل" and "اطلب رحلتك الخاصة".
 class CustomButton extends StatelessWidget {
   const CustomButton({
     super.key,

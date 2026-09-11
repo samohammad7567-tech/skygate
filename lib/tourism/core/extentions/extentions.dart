@@ -6,15 +6,14 @@ import '../utils/helpers/parse_helpers/failure_parser.dart';
 import '../utils/helpers/parse_helpers/field_failure_parser/field_failure_parser.dart';
 
 extension ContextMethods on BuildContext {
-  /// Parse General Failure To String Message
   String failureParser(Failure failure) =>
       FailureParser.mapFailureToString(failure: failure, context: this);
-
-  /// Parse Field Failure To String Message or Return null if failure null
   String? fieldFailureParser(FieldFailure? failure) => failure == null
       ? null
       : FieldFailureParser.mapFieldFailureToErrorMessage(
-          failure: failure, context: this);
+          failure: failure,
+          context: this,
+        );
 
   ThemeData get theme => Theme.of(this);
 
@@ -26,8 +25,11 @@ extension DoubleMethods on double {
 }
 
 extension StringMethods on String {
-  bool get isValidEmail => contains(RegExp(
-      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'));
+  bool get isValidEmail => contains(
+    RegExp(
+      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$',
+    ),
+  );
 }
 
 extension Date on DateTime {

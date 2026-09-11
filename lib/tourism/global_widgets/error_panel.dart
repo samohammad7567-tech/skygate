@@ -9,7 +9,6 @@ class ErrorPanel extends StatelessWidget {
   final Failure? failure;
   final onTryAgain;
 
-
   ErrorPanel({required this.failure, required this.onTryAgain});
 
   @override
@@ -21,7 +20,7 @@ class ErrorPanel extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              "assets/images/error.png",
+              "assets/images/pngs/error.png",
               height: 100.h,
               fit: BoxFit.cover,
             ),

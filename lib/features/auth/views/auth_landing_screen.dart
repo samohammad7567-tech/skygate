@@ -10,7 +10,6 @@ import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/auth/views/login_screen.dart';
 import 'package:skygate/features/auth/views/register_screen.dart';
 
-/// Entry card of the auth flow: log in, or start the three-step signup.
 class AuthLandingScreen extends StatelessWidget {
   const AuthLandingScreen({super.key});
 

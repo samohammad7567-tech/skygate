@@ -5,8 +5,6 @@ import 'package:skygate/features/journey_details/models/journey_route_model.dart
 import 'package:skygate/features/journey_details/widgets/journey_duration_row.dart';
 import 'package:skygate/features/journey_details/widgets/journey_leg_row.dart';
 
-/// "القسم الأول" card on the itinerary timeline. Tapping it opens the leg's
-/// own "تفاصيل القسم" screen.
 class JourneySegmentCard extends StatelessWidget {
   const JourneySegmentCard({
     super.key,
@@ -16,8 +14,6 @@ class JourneySegmentCard extends StatelessWidget {
   });
 
   final JourneySegmentModel segment;
-
-  /// 1-based place in the route, used for the "القسم الأول" title.
   final int position;
 
   final VoidCallback? onTap;

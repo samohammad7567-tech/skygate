@@ -22,14 +22,14 @@ class HomeView extends GetView<HomeController> {
                 automaticallyImplyLeading: true,
                 centerTitle: true,
                 elevation: 0.0,
-                title: SvgPicture.asset("assets/images/big-logo.svg",width: 105.0.w,height: 47.0.h,),
+                title: SvgPicture.asset("assets/images/svgs/big_logo.svg",width: 105.0.w,height: 47.0.h,),
               ),
               body: Container(
                 width: 1 * 1.sw,
                 height: 1 * 1.sh,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage("assets/images/seko.png"),
+                    image: AssetImage("assets/images/pngs/seko.png"),
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -64,8 +64,8 @@ class HomeView extends GetView<HomeController> {
                                       borderRadius: BorderRadius.circular(15.0.r),
                                       color: (homeController.currentIndex==0)? Colors.white:Colors.transparent,
                                     ),
-                                    child: (homeController.currentIndex==0)? SvgPicture.asset("assets/images/home-selected.svg")
-                                     : SvgPicture.asset("assets/images/home-selected.svg", color: Colors.white,),
+                                    child: (homeController.currentIndex==0)? SvgPicture.asset("assets/images/svgs/home_selected.svg")
+                                     : SvgPicture.asset("assets/images/svgs/home_selected.svg", color: Colors.white,),
                                   ),
                                   Text("الرئيسية", style: context.textTheme.titleSmall!.copyWith(
                                     color: Colors.white,
@@ -87,8 +87,8 @@ class HomeView extends GetView<HomeController> {
                                       borderRadius: BorderRadius.circular(15.0.r),
                                       color: (homeController.currentIndex==1)? Colors.white:Colors.transparent,
                                     ),
-                                    child: (homeController.currentIndex==1)? SvgPicture.asset("assets/images/trips-unselected.svg",color: AppColors.blue,fit: BoxFit.scaleDown,)
-                                        : SvgPicture.asset("assets/images/trips-unselected.svg"),
+                                    child: (homeController.currentIndex==1)? SvgPicture.asset("assets/images/svgs/trips_unselected.svg",color: AppColors.blue,fit: BoxFit.scaleDown,)
+                                        : SvgPicture.asset("assets/images/svgs/trips_unselected.svg"),
                                   ),
                                   Text("رحلاتي", style: context.textTheme.titleSmall!.copyWith(
                                     color: Colors.white,
@@ -110,8 +110,8 @@ class HomeView extends GetView<HomeController> {
                                       borderRadius: BorderRadius.circular(15.0.r),
                                       color: (homeController.currentIndex==2)? Colors.white:Colors.transparent,
                                     ),
-                                    child: (homeController.currentIndex==2)? SvgPicture.asset("assets/images/support-unselected.svg",color: AppColors.blue,fit: BoxFit.scaleDown,)
-                                        : SvgPicture.asset("assets/images/support-unselected.svg"),
+                                    child: (homeController.currentIndex==2)? SvgPicture.asset("assets/images/svgs/support_unselected.svg",color: AppColors.blue,fit: BoxFit.scaleDown,)
+                                        : SvgPicture.asset("assets/images/svgs/support_unselected.svg"),
                                   ),
                                   Text("الدعم", style: context.textTheme.titleSmall!.copyWith(
                                     color: Colors.white,
@@ -133,7 +133,7 @@ class HomeView extends GetView<HomeController> {
                                       borderRadius: BorderRadius.circular(15.0.r),
                                       color: (homeController.currentIndex==3)? Colors.white:Colors.transparent,
                                     ),
-                                    child: (homeController.currentIndex==3)? Image.asset("assets/images/notification.png"):Image.asset("assets/images/notification-white.png"),
+                                    child: (homeController.currentIndex==3)? Image.asset("assets/images/pngs/notification.png"):Image.asset("assets/images/pngs/notification_white.png"),
                                   ),
                                   Text("التنبيهات", style: context.textTheme.titleSmall!.copyWith(
                                     color: Colors.white,
@@ -155,8 +155,8 @@ class HomeView extends GetView<HomeController> {
                                       borderRadius: BorderRadius.circular(15.0.r),
                                       color: (homeController.currentIndex==4)? Colors.white:Colors.transparent,
                                     ),
-                                    child: (homeController.currentIndex==4)? SvgPicture.asset("assets/images/account-unselected.svg",color: AppColors.blue,fit: BoxFit.scaleDown,)
-                                        : SvgPicture.asset("assets/images/account-unselected.svg"),
+                                    child: (homeController.currentIndex==4)? SvgPicture.asset("assets/images/svgs/account_unselected.svg",color: AppColors.blue,fit: BoxFit.scaleDown,)
+                                        : SvgPicture.asset("assets/images/svgs/account_unselected.svg"),
                                   ),
                                   Text("حسابي", style: context.textTheme.titleSmall!.copyWith(
                                     color: Colors.white,

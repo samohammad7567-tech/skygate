@@ -13,29 +13,29 @@ import 'package:skygate/features/trips/models/booking_trip_model.dart';
 import 'package:skygate/features/trips/widgets/trip_booking_card.dart';
 import 'package:skygate/features/trips/widgets/trips_tab_bar.dart';
 
-/// "رحلاتي" — the pilgrim's bookings, split into the ones under way, the ones
-/// still owing a payment, and the ones that are over.
 class TripsScreen extends StatelessWidget {
-  const TripsScreen({super.key, this.showBack = false});
-
-  /// The bottom-nav tab has nowhere to go back to; a pushed copy does.
+  const TripsScreen({super.key, this.showBack = false, this.onMenuTap});
   final bool showBack;
+
+  /// Opens the shell's drawer. The shell owns the panel, so a tab only
+  /// forwards the tap.
+  final VoidCallback? onMenuTap;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => TripsCubit()..getBookings(),
-      child: _TripsBody(showBack: showBack),
+      child: _TripsBody(showBack: showBack, onMenuTap: onMenuTap),
     );
   }
 }
 
 class _TripsBody extends StatelessWidget {
-  const _TripsBody({required this.showBack});
+  const _TripsBody({required this.showBack, this.onMenuTap});
 
   final bool showBack;
+  final VoidCallback? onMenuTap;
 
-  /// "عرض التفاصيل" — the trip overview the booking was made against.
   void _openTrip(BuildContext context, BookingTripModel booking) {
     final tripId = booking.tripId;
     if (tripId == null) {
@@ -52,7 +52,6 @@ class _TripsBody extends StatelessWidget {
     );
   }
 
-  /// "استكمال الدفع" — straight into "المدفوعات" for that booking.
   void _openPayments(BuildContext context, BookingTripModel booking) {
     final bookingId = booking.id;
     if (bookingId == null) return;
@@ -78,6 +77,7 @@ class _TripsBody extends StatelessWidget {
                   child: AppTitleHeader(
                     title: 'nav_trips'.tr(),
                     showBack: showBack,
+                    onMenuTap: onMenuTap,
                   ),
                 ),
                 Padding(

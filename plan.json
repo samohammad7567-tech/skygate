@@ -1,0 +1,416 @@
+{
+ "move": [
+  [
+   "assets/images/VIP_TRIP/IMAGE.png",
+   "assets/images/pngs/IMAGE.png"
+  ],
+  [
+   "assets/images/VIP_TRIP/OK.svg",
+   "assets/images/svgs/OK.svg"
+  ],
+  [
+   "assets/images/VIP_TRIP/StaR.svg",
+   "assets/images/svgs/StaR.svg"
+  ],
+  [
+   "assets/images/VIP_TRIP/Star 5.svg",
+   "assets/images/svgs/Star_5.svg"
+  ],
+  [
+   "assets/images/VIP_TRIP/delete.svg",
+   "assets/images/svgs/delete.svg"
+  ],
+  [
+   "assets/images/VIP_TRIP/freepik--Lamp--inject.svg",
+   "assets/images/svgs/freepik--Lamp--inject.svg"
+  ],
+  [
+   "assets/images/VIP_TRIP/freepik--Plant--inject.svg",
+   "assets/images/svgs/freepik--Plant--inject.svg"
+  ],
+  [
+   "assets/images/VIP_TRIP/freepik.svg",
+   "assets/images/svgs/freepik.svg"
+  ],
+  [
+   "assets/images/VIP_TRIP/location.svg",
+   "assets/images/svgs/location.svg"
+  ],
+  [
+   "assets/images/VIP_TRIP/pencil.svg",
+   "assets/images/svgs/pencil.svg"
+  ],
+  [
+   "assets/images/account-unselected.svg",
+   "assets/images/svgs/account-unselected.svg"
+  ],
+  [
+   "assets/images/airport-map-btn.svg",
+   "assets/images/svgs/airport-map-btn.svg"
+  ],
+  [
+   "assets/images/arrow.png",
+   "assets/images/pngs/arrow.png"
+  ],
+  [
+   "assets/images/avatar.png",
+   "assets/images/pngs/avatar.png"
+  ],
+  [
+   "assets/images/big-logo-white.svg",
+   "assets/images/svgs/big-logo-white.svg"
+  ],
+  [
+   "assets/images/big-logo.svg",
+   "assets/images/svgs/big-logo.svg"
+  ],
+  [
+   "assets/images/child-notification-icon.svg",
+   "assets/images/svgs/child-notification-icon.svg"
+  ],
+  [
+   "assets/images/class-icon.svg",
+   "assets/images/svgs/class-icon.svg"
+  ],
+  [
+   "assets/images/confirm-regular.png",
+   "assets/images/pngs/confirm-regular.png"
+  ],
+  [
+   "assets/images/confirm-special.png",
+   "assets/images/pngs/confirm-special.png"
+  ],
+  [
+   "assets/images/customer-care-btn.png",
+   "assets/images/pngs/customer-care-btn.png"
+  ],
+  [
+   "assets/images/error.png",
+   "assets/images/pngs/error.png"
+  ],
+  [
+   "assets/images/handshake.png",
+   "assets/images/pngs/handshake.png"
+  ],
+  [
+   "assets/images/home-selected.png",
+   "assets/images/pngs/home-selected.png"
+  ],
+  [
+   "assets/images/home-selected.svg",
+   "assets/images/svgs/home-selected.svg"
+  ],
+  [
+   "assets/images/left-arrow-circle.svg",
+   "assets/images/svgs/left-arrow-circle.svg"
+  ],
+  [
+   "assets/images/left-arrow.svg",
+   "assets/images/svgs/left-arrow.svg"
+  ],
+  [
+   "assets/images/login-img.png",
+   "assets/images/pngs/login-img.png"
+  ],
+  [
+   "assets/images/no-notifications.png",
+   "assets/images/pngs/no-notifications.png"
+  ],
+  [
+   "assets/images/notification-white.png",
+   "assets/images/pngs/notification-white.png"
+  ],
+  [
+   "assets/images/notification.png",
+   "assets/images/pngs/notification.png"
+  ],
+  [
+   "assets/images/ok-request.svg",
+   "assets/images/svgs/ok-request.svg"
+  ],
+  [
+   "assets/images/passport_scan.svg",
+   "assets/images/svgs/passport_scan.svg"
+  ],
+  [
+   "assets/images/person.png",
+   "assets/images/pngs/person.png"
+  ],
+  [
+   "assets/images/plane.png",
+   "assets/images/pngs/plane.png"
+  ],
+  [
+   "assets/images/profile/camera.svg",
+   "assets/images/svgs/camera.svg"
+  ],
+  [
+   "assets/images/profile/edit.svg",
+   "assets/images/svgs/edit.svg"
+  ],
+  [
+   "assets/images/profile/error_get_data.svg",
+   "assets/images/svgs/error_get_data.svg"
+  ],
+  [
+   "assets/images/profile/lock.svg",
+   "assets/images/svgs/lock.svg"
+  ],
+  [
+   "assets/images/profile/logout.svg",
+   "assets/images/svgs/logout.svg"
+  ],
+  [
+   "assets/images/profile/more.svg",
+   "assets/images/svgs/more.svg"
+  ],
+  [
+   "assets/images/profile/phone.svg",
+   "assets/images/svgs/phone.svg"
+  ],
+  [
+   "assets/images/profile/productivity.svg",
+   "assets/images/svgs/productivity.svg"
+  ],
+  [
+   "assets/images/qr-code.svg",
+   "assets/images/svgs/qr-code.svg"
+  ],
+  [
+   "assets/images/request-ok.png",
+   "assets/images/pngs/request-ok.png"
+  ],
+  [
+   "assets/images/sales-btn.png",
+   "assets/images/pngs/sales-btn.png"
+  ],
+  [
+   "assets/images/seko.png",
+   "assets/images/pngs/seko.png"
+  ],
+  [
+   "assets/images/splash.png",
+   "assets/images/pngs/splash.png"
+  ],
+  [
+   "assets/images/start-page.svg",
+   "assets/images/svgs/start-page.svg"
+  ],
+  [
+   "assets/images/support-unselected.svg",
+   "assets/images/svgs/support-unselected.svg"
+  ],
+  [
+   "assets/images/taxi-btn.svg",
+   "assets/images/svgs/taxi-btn.svg"
+  ],
+  [
+   "assets/images/text-field.png",
+   "assets/images/pngs/text-field.png"
+  ],
+  [
+   "assets/images/tick.png",
+   "assets/images/pngs/tick.png"
+  ],
+  [
+   "assets/images/trip-btn.svg",
+   "assets/images/svgs/trip-btn.svg"
+  ],
+  [
+   "assets/images/trips-unselected.svg",
+   "assets/images/svgs/trips-unselected.svg"
+  ],
+  [
+   "assets/images/welcome-login.png",
+   "assets/images/pngs/welcome-login.png"
+  ]
+ ],
+ "delete": [
+  "assets/images/svgs/profile.svg",
+  "assets/images/MAPS/9c7e2e6a-aa8e-494c-8ef4-dce06849571b 1.png",
+  "assets/images/MAPS/ARROW_DROP_DOWN.zip",
+  "assets/images/MAPS/CHEVRON_FORWARD.svg",
+  "assets/images/MAPS/CHEVROV_BAXKWARD.svg",
+  "assets/images/MAPS/EDIT.svg",
+  "assets/images/MAPS/a3efec43-2c63-44f9-81a7-bf7b05fc9476 1.png",
+  "assets/images/MAPS/account_circle.svg",
+  "assets/images/MAPS/alert-triangle.svg",
+  "assets/images/MAPS/arrow_split.svg",
+  "assets/images/MAPS/bar-chart-2.svg",
+  "assets/images/MAPS/calendar.svg",
+  "assets/images/MAPS/calendar_today.svg",
+  "assets/images/MAPS/check-circle.svg",
+  "assets/images/MAPS/conversion_path.svg",
+  "assets/images/MAPS/file-text.svg",
+  "assets/images/MAPS/fmd_bad.svg",
+  "assets/images/MAPS/home.svg",
+  "assets/images/MAPS/image 3.png",
+  "assets/images/MAPS/image 4.png",
+  "assets/images/MAPS/location_on.svg",
+  "assets/images/MAPS/map-pin.svg",
+  "assets/images/MAPS/map_search.svg",
+  "assets/images/MAPS/menu.svg",
+  "assets/images/MAPS/move.svg",
+  "assets/images/MAPS/night_shelter.svg",
+  "assets/images/MAPS/notifications.svg",
+  "assets/images/MAPS/prayer_times.svg",
+  "assets/images/MAPS/settings.svg",
+  "assets/images/MAPS/shield.svg",
+  "assets/images/MAPS/sos.svg",
+  "assets/images/MAPS/timer.svg",
+  "assets/images/MAPS/trip.svg",
+  "assets/images/MAPS/x.svg",
+  "assets/images/VIP_TRIP/Frame.svg",
+  "assets/images/VIP_TRIP/INFO.svg",
+  "assets/images/VIP_TRIP/arrow_back.svg",
+  "assets/images/VIP_TRIP/bed.svg",
+  "assets/images/VIP_TRIP/bedroom_child.svg",
+  "assets/images/VIP_TRIP/calendar.svg",
+  "assets/images/VIP_TRIP/child_care.svg",
+  "assets/images/VIP_TRIP/child_hat.svg",
+  "assets/images/VIP_TRIP/man.svg",
+  "assets/images/VIP_TRIP/menu.svg",
+  "assets/images/profile/Group.svg",
+  "assets/images/profile/account.svg",
+  "assets/images/profile/arrow_back.svg",
+  "assets/images/profile/assignment_globe.svg",
+  "assets/images/profile/calendar.svg",
+  "assets/images/profile/data_featched_corrctly.svg",
+  "assets/images/profile/family_group.svg",
+  "assets/images/profile/family_restroom.svg",
+  "assets/images/profile/globe.svg",
+  "assets/images/profile/id_card.svg",
+  "assets/images/profile/local_police.svg",
+  "assets/images/profile/mail.svg",
+  "assets/images/profile/man.svg",
+  "assets/images/profile/menu.svg",
+  "assets/images/profile/menu_book.svg",
+  "assets/images/profile/passport.svg",
+  "assets/images/profile/person_book.svg",
+  "assets/images/profile/scan.svg",
+  "assets/images/profile/upload.svg",
+  "assets/images/profile/vaccines.svg",
+  "assets/images/profile/visibility.svg",
+  "assets/images/sos/5c93c549-dadb-4a87-9f2a-ac9ee1481896 2.png",
+  "assets/images/sos/Rectangle (1).png",
+  "assets/images/sos/Rectangle (2).png",
+  "assets/images/sos/Rectangle (3).png",
+  "assets/images/sos/Rectangle.png",
+  "assets/images/sos/account_circle.svg",
+  "assets/images/sos/calendar_today.svg",
+  "assets/images/sos/chat.svg",
+  "assets/images/sos/check-check.svg",
+  "assets/images/sos/chevron-right.svg",
+  "assets/images/sos/deployed_code_account.svg",
+  "assets/images/sos/description.svg",
+  "assets/images/sos/edit_square.svg",
+  "assets/images/sos/flag.svg",
+  "assets/images/sos/home.svg",
+  "assets/images/sos/home_work.svg",
+  "assets/images/sos/info.svg",
+  "assets/images/sos/location_on.svg",
+  "assets/images/sos/map_search.svg",
+  "assets/images/sos/mic.svg",
+  "assets/images/sos/my_location.svg",
+  "assets/images/sos/notifications.svg",
+  "assets/images/sos/paperclip.svg",
+  "assets/images/sos/person.svg",
+  "assets/images/sos/phone_enabled.svg",
+  "assets/images/sos/photo_camera.svg",
+  "assets/images/sos/settings.svg",
+  "assets/images/sos/sliders.svg",
+  "assets/images/sos/sos.svg",
+  "assets/images/sos/support_agent.svg",
+  "assets/images/sos/trip.svg"
+ ],
+ "remap": {
+  "assets/images/svgs/profile.svg": "assets/images/svgs/account_circle.svg",
+  "assets/images/VIP_TRIP/Frame.svg": "assets/images/svgs/helal.svg",
+  "assets/images/VIP_TRIP/IMAGE.png": "assets/images/pngs/IMAGE.png",
+  "assets/images/VIP_TRIP/INFO.svg": "assets/images/svgs/info.svg",
+  "assets/images/VIP_TRIP/OK.svg": "assets/images/svgs/OK.svg",
+  "assets/images/VIP_TRIP/StaR.svg": "assets/images/svgs/StaR.svg",
+  "assets/images/VIP_TRIP/Star 5.svg": "assets/images/svgs/Star_5.svg",
+  "assets/images/VIP_TRIP/arrow_back.svg": "assets/images/svgs/arrow_back.svg",
+  "assets/images/VIP_TRIP/bed.svg": "assets/images/svgs/bed.svg",
+  "assets/images/VIP_TRIP/bedroom_child.svg": "assets/images/svgs/bedroom_child.svg",
+  "assets/images/VIP_TRIP/calendar.svg": "assets/images/svgs/calendar.svg",
+  "assets/images/VIP_TRIP/child_care.svg": "assets/images/svgs/child_care.svg",
+  "assets/images/VIP_TRIP/child_hat.svg": "assets/images/svgs/child_hat.svg",
+  "assets/images/VIP_TRIP/delete.svg": "assets/images/svgs/delete.svg",
+  "assets/images/VIP_TRIP/freepik--Lamp--inject.svg": "assets/images/svgs/freepik--Lamp--inject.svg",
+  "assets/images/VIP_TRIP/freepik--Plant--inject.svg": "assets/images/svgs/freepik--Plant--inject.svg",
+  "assets/images/VIP_TRIP/freepik.svg": "assets/images/svgs/freepik.svg",
+  "assets/images/VIP_TRIP/location.svg": "assets/images/svgs/location.svg",
+  "assets/images/VIP_TRIP/man.svg": "assets/images/svgs/man.svg",
+  "assets/images/VIP_TRIP/menu.svg": "assets/images/svgs/menu.svg",
+  "assets/images/VIP_TRIP/pencil.svg": "assets/images/svgs/pencil.svg",
+  "assets/images/account-unselected.svg": "assets/images/svgs/account-unselected.svg",
+  "assets/images/airport-map-btn.svg": "assets/images/svgs/airport-map-btn.svg",
+  "assets/images/arrow.png": "assets/images/pngs/arrow.png",
+  "assets/images/avatar.png": "assets/images/pngs/avatar.png",
+  "assets/images/big-logo-white.svg": "assets/images/svgs/big-logo-white.svg",
+  "assets/images/big-logo.svg": "assets/images/svgs/big-logo.svg",
+  "assets/images/child-notification-icon.svg": "assets/images/svgs/child-notification-icon.svg",
+  "assets/images/class-icon.svg": "assets/images/svgs/class-icon.svg",
+  "assets/images/confirm-regular.png": "assets/images/pngs/confirm-regular.png",
+  "assets/images/confirm-special.png": "assets/images/pngs/confirm-special.png",
+  "assets/images/customer-care-btn.png": "assets/images/pngs/customer-care-btn.png",
+  "assets/images/error.png": "assets/images/pngs/error.png",
+  "assets/images/handshake.png": "assets/images/pngs/handshake.png",
+  "assets/images/home-selected.png": "assets/images/pngs/home-selected.png",
+  "assets/images/home-selected.svg": "assets/images/svgs/home-selected.svg",
+  "assets/images/left-arrow-circle.svg": "assets/images/svgs/left-arrow-circle.svg",
+  "assets/images/left-arrow.svg": "assets/images/svgs/left-arrow.svg",
+  "assets/images/login-img.png": "assets/images/pngs/login-img.png",
+  "assets/images/no-notifications.png": "assets/images/pngs/no-notifications.png",
+  "assets/images/notification-white.png": "assets/images/pngs/notification-white.png",
+  "assets/images/notification.png": "assets/images/pngs/notification.png",
+  "assets/images/ok-request.svg": "assets/images/svgs/ok-request.svg",
+  "assets/images/passport_scan.svg": "assets/images/svgs/passport_scan.svg",
+  "assets/images/person.png": "assets/images/pngs/person.png",
+  "assets/images/plane.png": "assets/images/pngs/plane.png",
+  "assets/images/profile/Group.svg": "assets/images/svgs/group.svg",
+  "assets/images/profile/account.svg": "assets/images/svgs/account_circle.svg",
+  "assets/images/profile/arrow_back.svg": "assets/images/svgs/arrow_back.svg",
+  "assets/images/profile/assignment_globe.svg": "assets/images/svgs/assignment_globe.svg",
+  "assets/images/profile/calendar.svg": "assets/images/svgs/calendar.svg",
+  "assets/images/profile/camera.svg": "assets/images/svgs/camera.svg",
+  "assets/images/profile/data_featched_corrctly.svg": "assets/images/svgs/correct_icon.svg",
+  "assets/images/profile/edit.svg": "assets/images/svgs/edit.svg",
+  "assets/images/profile/error_get_data.svg": "assets/images/svgs/error_get_data.svg",
+  "assets/images/profile/family_group.svg": "assets/images/svgs/family_group.svg",
+  "assets/images/profile/family_restroom.svg": "assets/images/svgs/family_restroom.svg",
+  "assets/images/profile/globe.svg": "assets/images/svgs/globel.svg",
+  "assets/images/profile/id_card.svg": "assets/images/svgs/id_card.svg",
+  "assets/images/profile/local_police.svg": "assets/images/svgs/local_police.svg",
+  "assets/images/profile/lock.svg": "assets/images/svgs/lock.svg",
+  "assets/images/profile/logout.svg": "assets/images/svgs/logout.svg",
+  "assets/images/profile/mail.svg": "assets/images/svgs/mail.svg",
+  "assets/images/profile/man.svg": "assets/images/svgs/man.svg",
+  "assets/images/profile/menu.svg": "assets/images/svgs/menu.svg",
+  "assets/images/profile/menu_book.svg": "assets/images/svgs/menu_book.svg",
+  "assets/images/profile/more.svg": "assets/images/svgs/more.svg",
+  "assets/images/profile/passport.svg": "assets/images/svgs/passport.svg",
+  "assets/images/profile/person_book.svg": "assets/images/svgs/person_book.svg",
+  "assets/images/profile/phone.svg": "assets/images/svgs/phone.svg",
+  "assets/images/profile/productivity.svg": "assets/images/svgs/productivity.svg",
+  "assets/images/profile/scan.svg": "assets/images/svgs/image_scanner.svg",
+  "assets/images/profile/upload.svg": "assets/images/svgs/upload.svg",
+  "assets/images/profile/vaccines.svg": "assets/images/svgs/vaccines.svg",
+  "assets/images/profile/visibility.svg": "assets/images/svgs/visibility.svg",
+  "assets/images/qr-code.svg": "assets/images/svgs/qr-code.svg",
+  "assets/images/request-ok.png": "assets/images/pngs/request-ok.png",
+  "assets/images/sales-btn.png": "assets/images/pngs/sales-btn.png",
+  "assets/images/seko.png": "assets/images/pngs/seko.png",
+  "assets/images/splash.png": "assets/images/pngs/splash.png",
+  "assets/images/start-page.svg": "assets/images/svgs/start-page.svg",
+  "assets/images/support-unselected.svg": "assets/images/svgs/support-unselected.svg",
+  "assets/images/taxi-btn.svg": "assets/images/svgs/taxi-btn.svg",
+  "assets/images/text-field.png": "assets/images/pngs/text-field.png",
+  "assets/images/tick.png": "assets/images/pngs/tick.png",
+  "assets/images/trip-btn.svg": "assets/images/svgs/trip-btn.svg",
+  "assets/images/trips-unselected.svg": "assets/images/svgs/trips-unselected.svg",
+  "assets/images/welcome-login.png": "assets/images/pngs/welcome-login.png"
+ }
+}

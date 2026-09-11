@@ -10,21 +10,17 @@ import 'package:skygate/core/models/passport_form.dart';
 import 'package:skygate/core/models/umrah_document_model.dart';
 import 'package:skygate/core/services/dio_service.dart';
 import 'package:skygate/core/services/image_picker_service.dart';
+import 'package:skygate/core/services/language_service.dart';
 import 'package:skygate/core/utils/app_phone.dart';
 import 'package:skygate/core/utils/cache_util.dart';
 import 'package:skygate/features/auth/controller/cubit/auth_cubit.dart';
 import 'package:skygate/features/auth/models/auth_user_model.dart';
 
 part 'register_state.dart';
-
-/// Drives the whole three-step signup wizard, so the same instance is handed
-/// down to every screen after the landing card with `BlocProvider.value`.
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitial());
 
   RegisterCubit get(BuildContext context) => BlocProvider.of(context);
-
-  /// 1 = personal info, 2 = passport, 3 = documents. Drives the stepper.
   int currentStep = 1;
 
   void goToStep(int step) {
@@ -35,8 +31,6 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   // -- Step 1 - personal info ---------------------------------------------
   final TextEditingController nameController = TextEditingController();
-
-  /// Opens on the dial code, like the login card's. See [AppPhone].
   final TextEditingController phoneController = TextEditingController(
     text: AppPhone.defaultDialCode,
   );
@@ -76,26 +70,18 @@ class RegisterCubit extends Cubit<RegisterState> {
   }
 
   // -- Step 2 - passport ---------------------------------------------------
-  /// The ten passport rows, shared with the booking wizard.
   final PassportForm passportForm = PassportForm();
 
   DateTime? get birthDate => passportForm.birthDate;
   String? get gender => passportForm.gender;
   bool get pledgeAccepted => passportForm.pledgeAccepted;
-
-  /// `true` once the MRZ came back from the scanner, which is what turns the
-  /// confirm screen's green banner on.
   bool get isScanned => passportForm.isScanned;
-
-  /// Rebuilds the card after `PassportFieldsForm` wrote into [passportForm].
   void passportChanged() => emit(PassportFieldChanged());
 
   void togglePledge(bool? value) {
     passportForm.pledgeAccepted = value ?? false;
     emit(PassportFieldChanged());
   }
-
-  /// Picks the passport photo, then hands it to [scanPassport].
   Future<void> scanPassportFrom(ImageSource source) async {
     final file = await ImagePickerService.pick(source);
     if (file == null) {
@@ -108,9 +94,6 @@ class RegisterCubit extends Cubit<RegisterState> {
     }
     await scanPassport(file);
   }
-
-  /// Uploads the passport photo and fills the confirm screen from the MRZ the
-  /// API reads back.
   Future<void> scanPassport(File image) async {
     emit(PassportScanLoading());
     return DioService.post(
@@ -134,8 +117,6 @@ class RegisterCubit extends Cubit<RegisterState> {
           emit(PassportScanError(message: AuthCubit.messageOf(error)));
         });
   }
-
-  /// Clears the scan result so the user lands back on an empty scanner.
   void resetScan() {
     passportForm.resetScan();
     emit(PassportFieldChanged());
@@ -145,8 +126,6 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   // -- Step 3 - pilgrim documents ------------------------------------------
   final List<UmrahDocumentModel> documentTypes = UmrahDocumentModel.catalogue;
-
-  /// Attached file per [UmrahDocumentModel.id].
   final Map<String, File> documents = {};
 
   Future<void> pickDocument(String id, ImageSource source) async {
@@ -167,11 +146,6 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   // -- Submit ---------------------------------------------------------------
   AuthUserModel? user;
-
-  /// Creates the account, then uploads whatever documents were attached.
-  ///
-  /// A failed document upload does not fail the signup — the user can retry
-  /// from their profile later.
   Future<void> submit() async {
     emit(RegisterLoading());
     try {
@@ -189,20 +163,8 @@ class RegisterCubit extends Cubit<RegisterState> {
       emit(RegisterError(message: AuthCubit.messageOf(error)));
     }
   }
-
-  /// The `auth/register` body.
-  ///
-  /// The eleven fields the OpenAPI document lists come first, in its order.
-  /// The four after them — the Arabic and English passport names, the issue
-  /// place and the issue date — are collected by the design but absent from
-  /// the contract; they are sent anyway so the data is not dropped on the
-  /// floor when the backend starts accepting them.
-  ///
-  /// The profile photo has no home here: the endpoint takes JSON, not
-  /// multipart, so it stays on the device until an upload path exists.
   Map<String, dynamic> registerBody() {
     final passportData = passport;
-    final cachedLang = CacheUtil.get(key: 'lang');
 
     return {
       'full_name': nameController.text.trim(),
@@ -214,7 +176,7 @@ class RegisterCubit extends Cubit<RegisterState> {
       'dob': _date(passportData.birthDate),
       'national_number': passportData.nationalNumber,
       'nationality': passportData.nationality,
-      'lang': cachedLang is String && cachedLang.isNotEmpty ? cachedLang : 'ar',
+      'lang': LanguageService.current,
       'gender': passportData.gender,
       'full_name_ar': passportData.fullNameAr,
       'full_name_en': passportData.fullNameEn,
@@ -222,24 +184,12 @@ class RegisterCubit extends Cubit<RegisterState> {
       'issue_date': _date(passportData.issueDate),
     };
   }
-
-  /// `1988-03-22` — the date format the register example uses.
   static String? _date(DateTime? value) =>
       value?.toIso8601String().split('T').first;
-
-  /// "تخطي هذه الخطوة الآن" — creates the account with no documents attached.
   Future<void> skipDocuments() {
     documents.clear();
     return submit();
   }
-
-  /// `POST app/pilgrim-documents`, one call per attached file.
-  ///
-  /// The endpoint keys the document by a numeric `document_type_id`, and the
-  /// document holds the design's slug instead — there is no document-types
-  /// lookup in the OpenAPI document to translate between them. The slug is
-  /// sent as `document_type` alongside, so the call starts working the moment
-  /// the backend exposes either.
   Future<void> _uploadDocuments() async {
     if (documents.isEmpty) return;
     final int? pilgrimId =

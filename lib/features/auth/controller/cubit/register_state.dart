@@ -13,14 +13,12 @@ final class ProfileImagePicked extends RegisterState {}
 
 final class DocumentPicked extends RegisterState {}
 
-/// The picked file is over `ImagePickerService.maxSizeInBytes`.
 final class FileTooLarge extends RegisterState {}
 
 final class PassportFieldChanged extends RegisterState {}
 
 final class PassportScanLoading extends RegisterState {}
 
-/// The user dismissed the camera / gallery picker without choosing a file.
 final class PassportScanCancelled extends RegisterState {}
 
 final class PassportScanned extends RegisterState {}

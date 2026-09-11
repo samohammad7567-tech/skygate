@@ -93,8 +93,6 @@ flutter:
     - assets/images/svgs/
     - assets/images/pngs/
     - assets/images/jpgs/
-    # Tourism module assets, kept at the paths its 171 references expect.
-    - assets/images/
     - assets/videos/
     - assets/sounds/
 

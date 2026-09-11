@@ -17,8 +17,6 @@ import 'package:skygate/core/components/booking_section_title.dart';
 import 'package:skygate/core/components/booking_step_scaffold.dart';
 import 'package:skygate/core/components/capture_instructions_card.dart';
 
-/// Step 2 (entry) — "التحقق من البيانات". Offers the camera, or the typed
-/// route through "إدخال يدوي".
 class BookingVerifyScreen extends StatelessWidget {
   const BookingVerifyScreen({super.key});
 

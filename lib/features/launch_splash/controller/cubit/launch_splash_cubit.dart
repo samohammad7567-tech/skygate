@@ -7,19 +7,10 @@ import 'package:video_player/video_player.dart';
 
 part 'launch_splash_state.dart';
 
-/// Plays the brand clip the app opens with, then hands over to the screen
-/// that lets the user pick a service line.
-///
-/// The clip is the only thing between a cold start and the first real screen,
-/// so nothing here is allowed to strand the user: a decode failure, a missing
-/// file or a clip that never reports completion all fall through to
-/// [LaunchSplashFinished] via [_failSafe].
 class LaunchSplashCubit extends Cubit<LaunchSplashState> {
   LaunchSplashCubit() : super(LaunchSplashInitial());
 
   LaunchSplashCubit get(BuildContext context) => BlocProvider.of(context);
-
-  /// Longest the splash may hold the app, however the clip behaves.
   static const Duration maxDuration = Duration(seconds: 6);
 
   VideoPlayerController? _video;
@@ -27,8 +18,6 @@ class LaunchSplashCubit extends Cubit<LaunchSplashState> {
   Timer? _failSafe;
 
   bool _finished = false;
-
-  /// `null` until the clip is ready — the screen shows the brand colour then.
   VideoPlayerController? get video =>
       _video?.value.isInitialized == true ? _video : null;
 
@@ -53,8 +42,6 @@ class LaunchSplashCubit extends Cubit<LaunchSplashState> {
     await controller.play();
   }
 
-  /// `VideoPlayerController` has no completion callback, so the end is read
-  /// off the position — `isCompleted` only reports on some platforms.
   void _watchForEnd() {
     final value = _video?.value;
     if (value == null || !value.isInitialized) return;
@@ -70,7 +57,6 @@ class LaunchSplashCubit extends Cubit<LaunchSplashState> {
     emit(LaunchSplashFinished());
   }
 
-  /// Lets the user tap past the clip.
   void skip() => _finish();
 
   @override

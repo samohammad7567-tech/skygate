@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 
-/// App-wide snack message. Use for every user-facing success/error notice.
 void showToast(BuildContext context, String message, {bool isError = false}) {
   ScaffoldMessenger.of(context)
     ..hideCurrentSnackBar()

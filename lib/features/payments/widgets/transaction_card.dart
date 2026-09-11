@@ -5,8 +5,6 @@ import 'package:skygate/core/utils/app_format.dart';
 import 'package:skygate/features/payments/models/financial_transaction_model.dart';
 import 'package:skygate/features/payments/widgets/transaction_status_chip.dart';
 
-/// One card of "المعاملات المالية": who transferred what, when, where it
-/// stands, and — when it was turned down — why.
 class TransactionCard extends StatelessWidget {
   const TransactionCard({
     super.key,
@@ -15,8 +13,6 @@ class TransactionCard extends StatelessWidget {
   });
 
   final FinancialTransactionModel transaction;
-
-  /// 1-based place in the list, printed as "المعاملة #1".
   final int position;
 
   @override
@@ -105,7 +101,6 @@ class TransactionCard extends StatelessWidget {
   }
 }
 
-/// A date or time with its glyph after it, on the reading side.
 class _Stamp extends StatelessWidget {
   const _Stamp({required this.value, required this.icon});
 

@@ -22,14 +22,14 @@ class WelcomeLoginView extends GetView<WelcomeLoginController> {
         fit: StackFit.passthrough,
         children: [
           Image.asset(
-            "assets/images/welcome-login.png",
+            "assets/images/pngs/welcome_login.png",
             fit: BoxFit.fill,
             width: double.infinity,
             height: double.infinity,
           ),
           PositionedDirectional(
             top: 242.0.h,
-            child: SvgPicture.asset("assets/images/big-logo.svg"),
+            child: SvgPicture.asset("assets/images/svgs/big_logo.svg"),
           ),
           PositionedDirectional(
             top: 466.0.h,

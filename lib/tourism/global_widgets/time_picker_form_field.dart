@@ -53,7 +53,7 @@ class _TimePickerFormFieldState extends State<TimePickerFormField> {
         borderRadius: BorderRadius.circular(30.0.r),
         image: const DecorationImage(
           scale: 0.5,
-          image: AssetImage("assets/images/text-field.png"),
+          image: AssetImage("assets/images/pngs/text_field.png"),
         ),
       ),
       child: TextFormField(

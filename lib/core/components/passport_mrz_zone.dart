@@ -4,7 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/dashed_box.dart';
 import 'package:skygate/core/components/placeholder_bar.dart';
 
-/// Dashed "منطقة الشيفرة (MRZ)" block at the foot of the mocked passport page.
 class PassportMrzZone extends StatelessWidget {
   const PassportMrzZone({super.key});
 

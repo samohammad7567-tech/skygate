@@ -1,2 +1,0 @@
-C:/Users/EVO.STORE/Desktop/mobile/sky_gate/android/app/.cxx/RelWithDebInfo/1x2w5f2w/x86/CMakeFiles/edit_cache.dir
-C:/Users/EVO.STORE/Desktop/mobile/sky_gate/android/app/.cxx/RelWithDebInfo/1x2w5f2w/x86/CMakeFiles/rebuild_cache.dir

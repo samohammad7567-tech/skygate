@@ -18,8 +18,6 @@ import 'package:skygate/features/group_booking/widgets/group_room_card.dart';
 import 'package:skygate/features/group_booking/widgets/group_room_counter_sheet.dart';
 import 'package:skygate/features/group_booking/widgets/group_traveler_picker_sheet.dart';
 
-/// Step 7 — "اختر عدد الغرف و أنواعها": how many rooms of each size the group
-/// takes, and who sleeps in each of them.
 class GroupRoomsScreen extends StatefulWidget {
   const GroupRoomsScreen({super.key});
 
@@ -44,8 +42,6 @@ class _GroupRoomsScreenState extends State<GroupRoomsScreen> {
     if (counts != null) cubit.setRoomCounts(counts);
   }
 
-  /// Seats travellers, then offers to pay for whatever beds are left empty so
-  /// the room can still be booked.
   Future<void> _assign(int index) async {
     final cubit = context.read<GroupBookingCubit>();
     final room = cubit.rooms[index];

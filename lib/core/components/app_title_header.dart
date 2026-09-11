@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_back_button.dart';
 import 'package:skygate/core/components/app_image.dart';
+import 'package:skygate/core/components/app_menu_button.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
 
-/// Top strip of a full-bleed screen: either the floating Sky Gate logo card or
-/// a plain page title, with the back chip pinned to the end side.
-///
-/// The back chip sits on the end side because the Arabic mockups place it on
-/// the left; using a directional alignment keeps it sensible under LTR too.
 class AppTitleHeader extends StatelessWidget {
   const AppTitleHeader({
     super.key,
     this.title,
     this.showBack = false,
     this.onBack,
+    this.onMenuTap,
   });
-
-  /// When null the Sky Gate logo card is shown instead of a text title.
   final String? title;
   final bool showBack;
   final VoidCallback? onBack;
+
+  /// Set on a tab root so the drawer handle sits where every other tab puts
+  /// it. The pushed auth and booking screens leave it null.
+  final VoidCallback? onMenuTap;
 
   @override
   Widget build(BuildContext context) {
@@ -27,26 +26,41 @@ class AppTitleHeader extends StatelessWidget {
 
     return SizedBox(
       width: double.infinity,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppBackButton.size + 8,
+      child: ConstrainedBox(
+        // The corner chips are AppMenuButton.size tall and sit positioned, so
+        // they do not grow the stack. Without a floor it shrinks to the title
+        // text, which differs per screen — the chips then overflow (clipped by
+        // the stack) and land at a different height on every tab.
+        constraints: const BoxConstraints(minHeight: AppMenuButton.size),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppBackButton.size + 8,
+              ),
+              child: title == null
+                  ? const _LogoCard()
+                  : Text(
+                      title!,
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.headlineSmall,
+                    ),
             ),
-            child: title == null
-                ? const _LogoCard()
-                : Text(
-                    title!,
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: theme.textTheme.headlineSmall,
-                  ),
-          ),
-          if (showBack)
-            PositionedDirectional(end: 0, child: AppBackButton(onTap: onBack)),
-        ],
+            if (onMenuTap != null)
+              PositionedDirectional(
+                start: 0,
+                child: AppMenuButton(onTap: onMenuTap),
+              ),
+            if (showBack)
+              PositionedDirectional(
+                end: 0,
+                child: AppBackButton(onTap: onBack),
+              ),
+          ],
+        ),
       ),
     );
   }

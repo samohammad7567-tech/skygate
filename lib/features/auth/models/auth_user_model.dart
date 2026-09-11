@@ -1,26 +1,12 @@
-/// Session returned by `auth/login` and `auth/register`.
-///
-/// The OpenAPI document declares both responses as an empty object, so the
-/// shape is read defensively: every other endpoint wraps its payload in
-/// `{data, message, status_code}`, and the token may arrive as `token` or
-/// `access_token`, at the root or beside the profile. Each of those is
-/// tolerated so a backend tweak cannot crash the login card.
 class AuthUserModel {
   String? token;
   String? refreshToken;
   int? id;
-
-  /// `full_name` in the register contract; `name` is accepted too.
   String? name;
-
-  /// `mobile` in the register contract; `phone` is accepted too.
   String? phone;
 
   String? email;
   String? avatar;
-
-  /// Pilgrim record created alongside the account. `app/pilgrim-documents`
-  /// needs it as `pilgrim_id`.
   int? pilgrimId;
 
   AuthUserModel.fromJson(Map<String, dynamic> json) {

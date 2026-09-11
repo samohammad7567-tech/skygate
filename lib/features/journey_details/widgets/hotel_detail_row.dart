@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_glyph_plate.dart';
 
-/// One "تفاصيل الحجز" line: glyph plate, the field label, and its value.
 class HotelDetailRow extends StatelessWidget {
   const HotelDetailRow({
     super.key,
@@ -15,8 +14,6 @@ class HotelDetailRow extends StatelessWidget {
   final String asset;
   final String labelKey;
   final String value;
-
-  /// Rendered under the value — the map preview uses it.
   final Widget? child;
 
   @override

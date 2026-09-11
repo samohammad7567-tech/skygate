@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// Raw palette sampled from the Sky Gate design file.
-///
-/// Features must read colours from `Theme.of(context)` — this class exists so
-/// the two [ThemeData] definitions have a single source of truth.
 class AppColors {
   AppColors._();
 
@@ -22,8 +18,6 @@ class AppColors {
   static const Color textPrimary = Color(0xFF1F2937);
   static const Color textSecondary = Color(0xFF6B7280);
   static const Color border = Color(0xFFDBEAFE);
-
-  /// Inactive onboarding dot, sampled from the design.
   static const Color dotInactive = Color(0xFFB5BFCE);
 
   static const Color darkBackground = Color(0xFF0F172A);
@@ -37,10 +31,7 @@ class AppColors {
   static const Color success = Color(0xFF16A34A);
 
   // ── Auth flow ────────────────────────────────────────────────────────────
-  /// Fill of the dashed upload zones and the read-only passport fields.
   static const Color fieldSurface = Color(0xFFF6F8FB);
-
-  /// Background / border of the "تم مسح ومطابقة البيانات بنجاح" banner.
   static const Color successSurface = Color(0xFFEAF7F0);
   static const Color successBorder = Color(0xFFBFE6D2);
   static const Color successText = Color(0xFF14532D);
@@ -48,13 +39,8 @@ class AppColors {
   static const Color darkFieldSurface = Color(0xFF1B2739);
 
   // ── Journey activities ───────────────────────────────────────────────────
-  /// "شعائر" activity colour, and the plate its glyph sits on.
   static const Color ritual = Color(0xFFB47FFB);
   static const Color ritualSurface = Color(0xFFE2CFFE);
-
-  /// Plate behind the "صلوات" glyph, on the timeline rail and in the legend.
   static const Color prayerSurface = Color(0xFFC6D9ED);
-
-  /// Plate behind the "فندق" glyph.
   static const Color staySurface = Color(0xFFFFCD83);
 }

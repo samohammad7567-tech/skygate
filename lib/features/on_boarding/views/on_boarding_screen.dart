@@ -26,7 +26,6 @@ class _OnBoardingBody extends StatefulWidget {
 }
 
 class _OnBoardingBodyState extends State<_OnBoardingBody> {
-  /// Owned by the screen; the cubit only holds the resulting index.
   final PageController _controller = PageController();
 
   @override

@@ -4,8 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:skygate/features/payments/models/booking_payment_model.dart';
 import 'package:skygate/features/payments/widgets/payment_ring.dart';
 
-/// "ملخص المدفوعات" — the ring beside the total, the paid and the outstanding
-/// figure. Heads both "المدفوعات" and "المعاملات المالية".
 class PaymentSummaryCard extends StatelessWidget {
   const PaymentSummaryCard({super.key, required this.payment});
 
@@ -72,8 +70,6 @@ class PaymentSummaryCard extends StatelessWidget {
   }
 }
 
-/// One figure of the summary: the caption on the reading side, the amount
-/// opposite it.
 class _Row extends StatelessWidget {
   const _Row({required this.labelKey, required this.value, this.color});
 

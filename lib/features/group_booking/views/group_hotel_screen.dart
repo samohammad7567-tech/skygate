@@ -17,9 +17,6 @@ import 'package:skygate/features/group_booking/widgets/group_allocation_progress
 import 'package:skygate/features/group_booking/widgets/group_hotel_card.dart';
 import 'package:skygate/features/group_booking/widgets/group_room_counter_sheet.dart';
 
-/// Step 8 — "اختر فندق مكة المكرمة", then the same screen for
-/// "المدينة المنورة": the group's rooms are spread over the city's hotels
-/// until every one of them has a bed. The last city hands over to the summary.
 class GroupHotelScreen extends StatefulWidget {
   const GroupHotelScreen({super.key, required this.city});
 
@@ -36,8 +33,6 @@ class _GroupHotelScreenState extends State<GroupHotelScreen> {
     context.read<GroupBookingCubit>().getHotels(widget.city);
   }
 
-  /// Hands one hotel a share of the group's rooms, capped by what the other
-  /// hotels in the city have left over.
   Future<void> _allocate(HotelModel hotel) async {
     final cubit = context.read<GroupBookingCubit>();
     final hotelId = hotel.id;

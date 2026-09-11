@@ -1,11 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:skygate/core/constants/api_endpoints.dart';
+import 'package:skygate/core/services/language_service.dart';
 import 'package:skygate/core/utils/cache_util.dart';
 
-/// Attaches the cached token to every request and refreshes it once on 401.
-///
-/// All 401 / refresh handling lives here — never re-implement it in a cubit.
 class AuthInterceptor extends Interceptor {
   bool _isRefreshing = false;
 
@@ -15,8 +13,17 @@ class AuthInterceptor extends Interceptor {
     if (token != null && token.isNotEmpty) {
       options.headers['Authorization'] = 'Bearer $token';
     }
-    final lang = CacheUtil.get(key: 'lang') as String?;
-    options.headers['Accept-Language'] = lang ?? 'ar';
+    // Read per request, not captured once: LanguageService rewrites the
+    // key the moment the locale changes, so an in-flight session picks the
+    // new language up on its very next call.
+    final lang = LanguageService.current;
+    options.headers['Accept-Language'] = lang;
+    options.headers['X-localization'] = lang;
+
+    // Belt and braces with the base options: an API that does not see
+    // `Accept: application/json` answers as if a browser had asked, and a
+    // redirect reaches Dio as a 3xx it will not follow on a POST.
+    options.headers[Headers.acceptHeader] = Headers.jsonContentType;
     handler.next(options);
   }
 

@@ -9,8 +9,6 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
   OnBoardingCubit() : super(OnBoardingInitial());
 
   OnBoardingCubit get(BuildContext context) => BlocProvider.of(context);
-
-  /// Cache flag read by `main.dart` to decide whether to show onboarding.
   static const String seenKey = 'onboarding_seen';
 
   final List<OnBoardingPageModel> pages = OnBoardingPageModel.pages;
@@ -25,7 +23,6 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
     emit(OnBoardingPageChanged());
   }
 
-  /// Marks onboarding as done so it is skipped on the next launch.
   Future<void> complete() async {
     await CacheUtil.setBool(key: seenKey, value: true);
     emit(OnBoardingCompleted());

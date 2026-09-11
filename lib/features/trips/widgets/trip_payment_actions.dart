@@ -5,7 +5,6 @@ import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/features/trips/models/booking_trip_model.dart';
 import 'package:skygate/features/trips/widgets/trip_booking_summary.dart';
 
-/// "المبلغ المتبقي" beside the two actions a booking awaiting payment offers.
 class TripPaymentActions extends StatelessWidget {
   const TripPaymentActions({
     super.key,

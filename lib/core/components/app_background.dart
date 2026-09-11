@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
 
-/// Washed-out Makkah photo that sits behind the auth and passport screens.
-///
-/// The scrim is painted from the scaffold colour so the artwork fades into the
-/// page instead of ending on a hard edge, exactly like the mockups.
 class AppBackground extends StatelessWidget {
   const AppBackground({super.key, required this.child});
 

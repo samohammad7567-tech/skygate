@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/booking_step_bar.dart';
 
-/// Scrolling column of a wizard step: the progress card, then the step's own
-/// content.
 class BookingStepScaffoldBody extends StatelessWidget {
   const BookingStepScaffoldBody({
     super.key,

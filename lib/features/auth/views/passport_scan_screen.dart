@@ -11,12 +11,8 @@ import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/auth/controller/cubit/register_cubit.dart';
 import 'package:skygate/features/auth/views/passport_confirm_screen.dart';
 
-/// "استخراج بيانات جواز السفر" — picks the passport photo, uploads it and
-/// sweeps the mocked page until the MRZ comes back.
 class PassportScanScreen extends StatefulWidget {
   const PassportScanScreen({super.key, required this.source});
-
-  /// Where the passport photo comes from; chosen on the previous screen.
   final ImageSource source;
 
   @override
@@ -25,7 +21,6 @@ class PassportScanScreen extends StatefulWidget {
 
 class _PassportScanScreenState extends State<PassportScanScreen>
     with SingleTickerProviderStateMixin {
-  /// Owned by the screen; drives the sweep line over the passport preview.
   late final AnimationController _sweep = AnimationController(
     vsync: this,
     duration: const Duration(milliseconds: 1600),

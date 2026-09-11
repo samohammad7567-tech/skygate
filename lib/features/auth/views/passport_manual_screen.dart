@@ -16,7 +16,6 @@ import 'package:skygate/features/auth/controller/cubit/register_cubit.dart';
 import 'package:skygate/features/auth/views/umrah_documents_screen.dart';
 import 'package:skygate/features/auth/widgets/register_stepper.dart';
 
-/// Step 2 (typed path) — "إدخال يدوي".
 class PassportManualScreen extends StatefulWidget {
   const PassportManualScreen({super.key});
 

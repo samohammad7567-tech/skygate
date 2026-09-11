@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/features/home/models/offer_model.dart';
 
-/// Departure chip · duration · return chip, in the design's reading order.
 class OfferDatesRow extends StatelessWidget {
   const OfferDatesRow({super.key, required this.offer});
 
@@ -31,7 +30,6 @@ class OfferDatesRow extends StatelessWidget {
   }
 }
 
-/// Tinted box holding one leg's label and date.
 class OfferDateChip extends StatelessWidget {
   const OfferDateChip({super.key, required this.label, required this.date});
 
@@ -78,7 +76,6 @@ class OfferDateChip extends StatelessWidget {
   }
 }
 
-/// Orange rule with the trip length floating in the middle.
 class _DurationDivider extends StatelessWidget {
   const _DurationDivider({required this.days});
 

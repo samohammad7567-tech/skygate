@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-/// "أتعهد بأن بيانات جواز السفر المدخلة صحيحة..." consent row.
 class PledgeCheckbox extends StatelessWidget {
   const PledgeCheckbox({
     super.key,

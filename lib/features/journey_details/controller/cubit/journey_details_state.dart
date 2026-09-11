@@ -27,6 +27,4 @@ final class RoutesError extends JourneyDetailsState {
   RoutesError({required this.message});
 }
 
-/// The leg opened from the itinerary was handed to the cubit. It needs no
-/// loading or error twin: the leg travelled down with the trip.
 final class SegmentLoaded extends JourneyDetailsState {}

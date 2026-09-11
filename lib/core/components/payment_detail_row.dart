@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-/// Grey caption over its value — the shape every "تفاصيل الحجز" row takes.
 class PaymentDetailRow extends StatelessWidget {
   const PaymentDetailRow({
     super.key,
@@ -14,8 +13,6 @@ class PaymentDetailRow extends StatelessWidget {
 
   final String labelKey;
   final String? value;
-
-  /// Rendered instead of [value] — used for the booking-type chip.
   final Widget? child;
 
   final Color? valueColor;
@@ -51,10 +48,6 @@ class PaymentDetailRow extends StatelessWidget {
   }
 }
 
-/// Outlined pill naming the booking type on the summary's "النوع" row.
-///
-/// Orange by default, as the wizard prints it; "تفاصيل الحجز" passes the blue
-/// the design uses there for a group booking.
 class BookingTypeChip extends StatelessWidget {
   const BookingTypeChip({super.key, required this.labelKey, this.color});
 

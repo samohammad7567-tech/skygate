@@ -1,4 +1,3 @@
-/// The MRZ fields shown on "تأكيد بيانات الجواز" and typed on "إدخال يدوي".
 class PassportDataModel {
   String? fullNameAr;
   String? fullNameEn;
@@ -49,15 +48,6 @@ class PassportDataModel {
     'issue_date': _iso(issueDate),
     'expiry_date': _iso(expiryDate),
   };
-
-  /// The rows `POST app/pilgrims` takes for this passport.
-  ///
-  /// [isSelf] marks the account holder — the pilgrim the booking is made by
-  /// rather than one of the travellers added to it. [guardianPilgrimId] is the
-  /// adult a child or an infant travels under, and is left out for an adult.
-  ///
-  /// The backend keys a pilgrim by `full_name`, so the Arabic name wins and
-  /// the English one is sent alongside for the screens that print it.
   Map<String, dynamic> toPilgrimJson({
     required bool isSelf,
     int? guardianPilgrimId,

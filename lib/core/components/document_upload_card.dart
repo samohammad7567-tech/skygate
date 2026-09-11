@@ -10,7 +10,6 @@ import 'package:skygate/core/components/upload_size_chip.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
 import 'package:skygate/core/models/umrah_document_model.dart';
 
-/// One card on "ملفات المعتمر": title, drop zone, and the accepted criteria.
 class DocumentUploadCard extends StatelessWidget {
   const DocumentUploadCard({
     super.key,

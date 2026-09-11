@@ -14,8 +14,6 @@ import 'package:skygate/features/booking/widgets/payment_countdown_card.dart';
 import 'package:skygate/features/booking/widgets/payment_details_card.dart';
 import 'package:skygate/features/booking/widgets/payment_schedule_card.dart';
 
-/// Step 6 — "ملخص الحجز": the hold countdown, the priced review and the
-/// instalment schedule, then the button that creates the booking.
 class BookingSummaryScreen extends StatefulWidget {
   const BookingSummaryScreen({super.key});
 

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/utils/app_format.dart';
 import 'package:skygate/features/journey_details/models/journey_route_model.dart';
 
-/// Time, city, terminal and date of one end of the leg.
 class JourneyStopColumn extends StatelessWidget {
   const JourneyStopColumn({
     super.key,

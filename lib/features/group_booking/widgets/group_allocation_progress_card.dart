@@ -2,8 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-/// "تخصيص عدد الغرف و أنواعها — 2 من 6" card at the top of the hotels step:
-/// how many of the group's rooms have been given a hotel in this city.
 class GroupAllocationProgressCard extends StatelessWidget {
   const GroupAllocationProgressCard({
     super.key,
@@ -68,8 +66,6 @@ class GroupAllocationProgressCard extends StatelessWidget {
   }
 }
 
-/// Track filled from the start side, with the dot the design prints at the far
-/// end of it.
 class _Rule extends StatelessWidget {
   const _Rule({required this.progress});
 

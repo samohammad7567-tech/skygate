@@ -14,7 +14,6 @@ import 'package:skygate/features/journey_details/widgets/journey_route_tabs.dart
 import 'package:skygate/features/journey_details/widgets/journey_segment_card.dart';
 import 'package:skygate/features/journey_details/widgets/journey_timeline_tile.dart';
 
-/// "مسارات الرحلة" — route tabs over a timeline of the selected route's legs.
 class ItineraryScreen extends StatelessWidget {
   const ItineraryScreen({super.key, required this.tripId});
 
@@ -33,9 +32,6 @@ class ItineraryScreen extends StatelessWidget {
 
 class _ItineraryBody extends StatelessWidget {
   const _ItineraryBody();
-
-  /// The rail alternates between the two brand colours, exactly as the design
-  /// prints it, so neighbouring legs stay easy to tell apart.
   Color _dotColor(int index) =>
       index.isEven ? AppColors.primaryDark : AppColors.accent;
 

@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 
-/// White strip pinned under every wizard step: "متابعة" on the start side,
-/// "عودة" after it.
 class BookingBottomBar extends StatelessWidget {
   const BookingBottomBar({
     super.key,
@@ -13,17 +11,10 @@ class BookingBottomBar extends StatelessWidget {
     this.isLoading = false,
     this.continueLabel,
   });
-
-  /// `null` disables the primary action — used while a step has nothing
-  /// selected yet.
   final VoidCallback? onContinue;
-
-  /// Defaults to popping the route.
   final VoidCallback? onBack;
 
   final bool isLoading;
-
-  /// Overrides "متابعة" on the last step.
   final String? continueLabel;
 
   @override

@@ -6,10 +6,6 @@ import 'package:skygate/features/launch_splash/controller/cubit/launch_splash_cu
 import 'package:skygate/features/splash/views/splash_screen.dart';
 import 'package:video_player/video_player.dart';
 
-/// What the app opens with: the brand clip, then the service-choice screen.
-///
-/// Both service lines pass through here — the tourism module used to play this
-/// clip as its own splash, and it now covers the whole app.
 class LaunchSplashScreen extends StatelessWidget {
   const LaunchSplashScreen({super.key});
 
@@ -51,8 +47,6 @@ class _LaunchSplashBody extends StatelessWidget {
   }
 }
 
-/// Fills the screen with the clip, cropping the overflow rather than letter-
-/// boxing it — the clip is a brand animation, not content to be read.
 class _FullBleedVideo extends StatelessWidget {
   const _FullBleedVideo({required this.controller});
 

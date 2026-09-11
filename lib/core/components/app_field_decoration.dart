@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 
-/// Single source of truth for the auth field chrome, shared by the text, date
-/// and dropdown variants so they line up pixel for pixel.
-///
-/// The glyph goes in the suffix slot: that puts it on the left under Arabic and
-/// on the right under English, matching the mockups in both directions.
 InputDecoration appInputDecoration(
   BuildContext context, {
   required String hint,
@@ -49,7 +44,6 @@ InputDecoration appInputDecoration(
   );
 }
 
-/// The tinted glyph rendered inside [appInputDecoration].
 class AppFieldIcon extends StatelessWidget {
   const AppFieldIcon({super.key, required this.asset, this.onTap});
 

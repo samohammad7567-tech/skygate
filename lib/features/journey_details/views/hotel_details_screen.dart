@@ -11,18 +11,16 @@ import 'package:skygate/features/journey_details/controller/cubit/hotels_cubit.d
 import 'package:skygate/features/journey_details/widgets/hotel_detail_row.dart';
 import 'package:skygate/features/journey_details/widgets/journey_bottom_bar.dart';
 
-/// "تفاصيل الحجز" — the booked hotel, field by field, with its map.
 class HotelDetailsScreen extends StatelessWidget {
   const HotelDetailsScreen({
     super.key,
     required this.tripId,
     required this.hotel,
   });
+  const HotelDetailsScreen.browse({super.key, required this.hotel})
+    : tripId = 0;
 
   final int tripId;
-
-  /// The hotel as the list knows it — which is everything the API publishes
-  /// about it.
   final HotelModel hotel;
 
   @override

@@ -5,10 +5,6 @@ import 'package:skygate/core/components/passport_mrz_zone.dart';
 import 'package:skygate/core/components/placeholder_bar.dart';
 import 'package:skygate/core/components/scan_corner_frame.dart';
 
-/// Mock passport page shown while the MRZ is being read.
-///
-/// [progress] runs 0 → 1 and drives the sweep line; the screen owns the
-/// animation controller that produces it.
 class PassportScanPreview extends StatelessWidget {
   const PassportScanPreview({super.key, required this.progress});
 

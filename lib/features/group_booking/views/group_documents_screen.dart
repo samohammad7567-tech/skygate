@@ -11,10 +11,6 @@ import 'package:skygate/core/components/booking_step_scaffold.dart';
 import 'package:skygate/features/group_booking/controller/cubit/group_booking_cubit.dart';
 import 'package:skygate/features/group_booking/views/group_composition_screen.dart';
 
-/// Steps 2 and 4 (last card) — "إرفاق الملفات" for the traveller being added.
-///
-/// Attaching files is optional; continuing commits the traveller to the group
-/// and drops back on "تكوين المجموعة".
 class GroupDocumentsScreen extends StatelessWidget {
   const GroupDocumentsScreen({super.key});
 
@@ -25,8 +21,6 @@ class GroupDocumentsScreen extends StatelessWidget {
     await cubit.pickDocument(id, source);
   }
 
-  /// Adds the traveller, then rewinds to the composition card rather than
-  /// stacking another copy of it on top of the one the user came from.
   void _continue(BuildContext context) {
     final cubit = context.read<GroupBookingCubit>();
     final isFirst = cubit.isAddingLeader;

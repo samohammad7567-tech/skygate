@@ -30,7 +30,7 @@ class ForgetPasswordView extends GetView<ForgetPasswordController> {
           fit: StackFit.passthrough,
           children: [
             Image.asset(
-              "assets/images/login-img.png",
+              "assets/images/pngs/login_img.png",
               fit: BoxFit.fill,
               width: double.infinity,
               height: double.infinity,
@@ -68,7 +68,7 @@ class ForgetPasswordView extends GetView<ForgetPasswordController> {
                               borderRadius: BorderRadius.circular(30.0.r),
                               image: const DecorationImage(
                                 image:
-                                    AssetImage("assets/images/text-field.png"),
+                                    AssetImage("assets/images/pngs/text_field.png"),
                                 fit: BoxFit.fitHeight,
                               ),
                             ),

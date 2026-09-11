@@ -10,11 +10,6 @@ import 'package:skygate/features/trips/widgets/trip_payment_actions.dart';
 import 'package:skygate/features/trips/widgets/trip_chips.dart';
 import 'package:skygate/features/trips/widgets/trip_progress_rail.dart';
 
-/// One card of "رحلاتي".
-///
-/// The head is the same on every tab; what changes underneath is the tab's own
-/// business — a current booking shows how far along the trip is, one awaiting
-/// payment shows what is left and how to pay it, a finished one shows neither.
 class TripBookingCard extends StatelessWidget {
   const TripBookingCard({
     super.key,
@@ -25,8 +20,6 @@ class TripBookingCard extends StatelessWidget {
 
   final BookingTripModel booking;
   final VoidCallback onDetails;
-
-  /// "استكمال الدفع" — only reachable while something is outstanding.
   final VoidCallback onPay;
 
   bool get _isAwaitingPayment =>
@@ -84,7 +77,6 @@ class TripBookingCard extends StatelessWidget {
   }
 }
 
-/// The trip photo with its standing pinned to the corner.
 class _Photo extends StatelessWidget {
   const _Photo({required this.booking});
 

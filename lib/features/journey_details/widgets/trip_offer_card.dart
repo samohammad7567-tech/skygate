@@ -8,7 +8,6 @@ import 'package:skygate/features/journey_details/models/trip_offer_model.dart';
 import 'package:skygate/features/journey_details/widgets/trip_offer_booking_types.dart';
 import 'package:skygate/features/journey_details/widgets/trip_offer_price_row.dart';
 
-/// One card on "عروض الرحلة": route strip, booking types, room, prices.
 class TripOfferCard extends StatelessWidget {
   const TripOfferCard({
     super.key,
@@ -19,8 +18,6 @@ class TripOfferCard extends StatelessWidget {
   });
 
   final TripOfferModel offer;
-
-  /// 1-based place in the list, used for the "المسار الأول" title.
   final int position;
 
   final BookingType? selectedType;
@@ -54,6 +51,7 @@ class TripOfferCard extends StatelessWidget {
                   types: offer.bookingTypes,
                   selectedType: selectedType,
                   onSelected: onTypeSelected,
+                  labels: offer.typeLabels,
                 ),
                 const SizedBox(height: 10),
                 Row(
@@ -77,6 +75,10 @@ class TripOfferCard extends StatelessWidget {
                         ),
                       ),
                     ),
+                    if (offer.availableRooms != null) ...[
+                      const SizedBox(width: 8),
+                      _RoomsLeft(count: offer.availableRooms!),
+                    ],
                   ],
                 ),
                 const SizedBox(height: 10),
@@ -100,6 +102,16 @@ class TripOfferCard extends StatelessWidget {
                   price: offer.infantPrice,
                   currency: offer.currency,
                 ),
+                // An infant given a seat of their own is priced apart. Not
+                // every package sets the rate, so the row only appears where
+                // the package does.
+                if (offer.infantWithSeatPrice != null)
+                  TripOfferPriceRow(
+                    asset: JourneyAssets.infant,
+                    labelKey: 'price_second_infant',
+                    price: offer.infantWithSeatPrice,
+                    currency: offer.currency,
+                  ),
               ],
             ),
           ),
@@ -109,7 +121,38 @@ class TripOfferCard extends StatelessWidget {
   }
 }
 
-/// Tinted header naming the route the offer belongs to.
+class _RoomsLeft extends StatelessWidget {
+  const _RoomsLeft({required this.count});
+
+  final int count;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    // A sold-out package is the one the traveller has to be warned about, so
+    // it takes the accent while a package with rooms left stays calm.
+    final color = count > 0
+        ? theme.colorScheme.primary
+        : theme.colorScheme.error;
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Text(
+        count > 0
+            ? 'rooms_left'.tr(namedArgs: {'count': '$count'})
+            : 'rooms_sold_out'.tr(),
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: theme.textTheme.bodySmall?.copyWith(color: color, fontSize: 11),
+      ),
+    );
+  }
+}
+
 class _RouteStrip extends StatelessWidget {
   const _RouteStrip({required this.title, this.name});
 

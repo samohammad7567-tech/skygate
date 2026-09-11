@@ -1,8 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-/// Rule — "أو" — rule, the separator between the primary and secondary
-/// action on the auth and booking cards.
 class OrDivider extends StatelessWidget {
   const OrDivider({super.key});
 

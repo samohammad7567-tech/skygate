@@ -26,8 +26,10 @@ import 'package:skygate/generated/codegen_loader.g.dart';
 /// builds them. Swapping `DioService.dio`'s adapter lets the real cubits run
 /// against them, so the goldens exercise the screens rather than a stand-in.
 ///
-/// The whole flow reads two endpoints: the trip, which carries its packages,
-/// hotels, itinerary and staff, and the activities programme.
+/// The whole flow reads one endpoint: `GET app/trips/{id}`, which carries the
+/// packages, the hotels, the itinerary, the staff, the cities summary, the
+/// payment schedule and the activities programme. `app/activities` is kept
+/// here for the screens opened without a trip id, which fall back to it.
 final Map<String, Map<String, dynamic>> _responses = {
   'app/trips/1': {'data': _trip},
   'app/activities': {'data': _activities},
@@ -43,31 +45,95 @@ final Map<String, dynamic> _trip = {
   'end_date_h': '1447-09-20',
   'access_type': 'public',
   'status': 'published',
+  'booking_deadline': '2026-02-24 12:06:16',
+  'trip_program_pdf_url': null,
+  'map_center_lat': '21.3891000',
+  'map_center_lng': '39.8579000',
   'staff': [
-    for (var i = 0; i < 4; i++) {'id': i + 1, 'name': 'الشيخ محمد محمد حسان'},
-  ],
-  'packages': [
-    for (var i = 0; i < 3; i++)
+    for (var i = 0; i < 4; i++)
       {
         'id': i + 1,
-        'room_type': ['twin', 'quad', 'quint'][i],
-        'audience': 'المسار البري',
-        'price_adult': '750.00',
-        'price_child': '600.00',
-        'price_infant': '100.00',
-        'price_infant_with_seat': '250.00',
-        'bed_lock_fee': '150.00',
-        'currency': 'SAR',
+        'name': 'الشيخ محمد محمد حسان',
+        'role': i.isEven ? 'مشرف الرحلة' : 'قائد المجموعة',
       },
   ],
+  'packages': _packages,
+  'packages_by_itinerary': [
+    {
+      'itinerary_id': 18,
+      'itinerary_name': 'المسار البري',
+      'segment_type': null,
+      'packages': _packages,
+    },
+  ],
   'hotels': [for (var i = 0; i < 4; i++) _hotel(101 + i)],
+  'cities_summary': [
+    {
+      'city': 'مكة المكرمة',
+      'nights': 4,
+      'hotels': ['فندق إطلالة مكة الفاخر'],
+      'check_in': '2026-08-18',
+      'check_out': '2026-08-22',
+    },
+    {
+      'city': 'المدينة المنورة',
+      'nights': 3,
+      'hotels': ['فندق طيبة'],
+      'check_in': '2026-08-22',
+      'check_out': '2026-08-25',
+    },
+  ],
   'itinerary': [
     _leg(11, 1, 'flight', 'السورية للطيران', 'جدة', 'الرياض'),
-    _leg(12, 2, 'bus', 'مواصلات جدة', 'الرياض', 'المدينة المنورة'),
+    _leg(12, 2, 'land', 'مواصلات جدة', 'الرياض', 'المدينة المنورة'),
     _leg(13, 3, 'train', 'السورية للقطارات', 'المدينة المنورة', 'جدة'),
     _leg(14, 4, 'cruise', 'سفن جدة', 'جدة', 'مكة المكرمة'),
   ],
+  'activities': _activities,
+  'payment_schedules': [
+    {
+      'id': 57,
+      'type': 'date',
+      'installment_name': 'دفعة أولى',
+      'min_amount_percent': 25,
+      'duration_in_hours': null,
+      'due_date': '2026-02-16',
+    },
+    {
+      'id': 59,
+      'type': 'duration',
+      'installment_name': 'المبلغ المتبقي',
+      'min_amount_percent': 100,
+      'duration_in_hours': 48,
+      'due_date': null,
+    },
+  ],
 };
+
+/// One package per room type, sold to groups. `audience_labels` is what the
+/// offer card reads its chips and its subtitle from.
+final List<Map<String, dynamic>> _packages = [
+  for (var i = 0; i < 3; i++)
+    {
+      'id': i + 1,
+      'room_type': ['twin', 'quad', 'quint'][i],
+      'audience': 'group',
+      'audience_labels': {
+        'individual': false,
+        'group': true,
+        'individual_label': null,
+        'group_label': 'حجز مجموعة',
+      },
+      'itinerary_id': 18,
+      'price_adult': '750.00',
+      'price_child': '600.00',
+      'price_infant': '100.00',
+      'price_infant_with_seat': '250.00',
+      'bed_lock_fee': '150.00',
+      'currency': 'SAR',
+      'available_rooms': 10 - i,
+    },
+];
 
 Map<String, dynamic> _leg(
   int id,
@@ -82,7 +148,16 @@ Map<String, dynamic> _leg(
   'segment_type': type,
   'origin_city': from,
   'destination_city': to,
-  'carrier': carrier,
+  'carrier': {
+    'id': order,
+    'name': carrier,
+    'logo_url': null,
+    'carrier_type': type,
+  },
+  'flight_number': type == 'flight' ? 'SY-1$order' : null,
+  'vehicle_ref': type == 'land' ? 'BUS-00$order' : null,
+  'train_ref': type == 'train' ? 'TR-00$order' : null,
+  'vehicle': {'vehicle_type': 'VIP Bus', 'capacity': 33},
   'departure_time': '2026-03-03 08:00:00',
   'arrival_time': '2026-03-03 10:15:00',
 };
@@ -252,7 +327,7 @@ void main() {
   testWidgets('activities', (t) async {
     await shoot(
       t,
-      const ActivitiesScreen(),
+      const ActivitiesScreen(tripId: 1),
       'goldens/35_activities.png',
       const Size(412, 917),
     );

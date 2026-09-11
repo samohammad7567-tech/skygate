@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// Secondary action of a card — a full-width outlined pill.
 class AppOutlinedButton extends StatelessWidget {
   const AppOutlinedButton({
     super.key,

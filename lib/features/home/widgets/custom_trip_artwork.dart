@@ -4,13 +4,8 @@ import 'package:skygate/core/constants/home_assets.dart';
 import 'package:skygate/features/home/utils/artwork_plate_clipper.dart';
 import 'package:skygate/features/home/widgets/vip_ribbon.dart';
 
-/// Start-side panel of the custom-trip card: the blue plate with the Kaaba
-/// photo laid over it, leaving the plate showing as a rim along the curved
-/// edge that faces the copy, and the VIP pennant hanging from the top.
 class CustomTripArtwork extends StatelessWidget {
   const CustomTripArtwork({super.key});
-
-  /// Width of the blue rim left visible around the photo.
   static const double _rim = 3;
 
   @override

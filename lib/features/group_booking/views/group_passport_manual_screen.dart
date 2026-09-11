@@ -15,8 +15,6 @@ import 'package:skygate/features/group_booking/controller/cubit/group_booking_cu
 import 'package:skygate/features/group_booking/views/group_documents_screen.dart';
 import 'package:skygate/features/group_booking/widgets/group_guardian_field.dart';
 
-/// Steps 2 and 4 (typed path) — "إدخال يدوي" of the passport rows, with the
-/// guardian row every traveller after the leader also answers.
 class GroupPassportManualScreen extends StatefulWidget {
   const GroupPassportManualScreen({super.key});
 

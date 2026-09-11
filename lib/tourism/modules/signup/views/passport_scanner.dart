@@ -20,7 +20,7 @@ class PassportScanner extends GetView<SignupController> {
       appBar: AppBar(
         automaticallyImplyLeading: true,
         title: SvgPicture.asset(
-          "assets/images/big-logo.svg",
+          "assets/images/svgs/big_logo.svg",
           width: 104.0.w,
         ),
         centerTitle: true,

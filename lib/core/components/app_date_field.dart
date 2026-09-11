@@ -3,10 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_field_decoration.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
 
-/// Date field that opens the Material calendar shown in the mockups.
-///
-/// It is a [FormField] rather than a read-only text field so the value stays
-/// owned by the cubit while validation still runs with the rest of the form.
 class AppDateField extends StatelessWidget {
   const AppDateField({
     super.key,
@@ -31,11 +27,24 @@ class AppDateField extends StatelessWidget {
 
   Future<void> _pick(BuildContext context) async {
     final now = DateTime.now();
+    final first = firstDate ?? DateTime(1900);
+    final last = lastDate ?? DateTime(now.year + 30);
+
+    // `showDatePicker` asserts the initial date is inside the range, and the
+    // range is set by the call site: a field that only accepts future dates
+    // has a `firstDate` that today is already behind. Clamping here means no
+    // caller has to pass an `initialDate` just to keep the picker from
+    // throwing.
+    final wanted = value ?? now;
+    final initial = wanted.isBefore(first)
+        ? first
+        : (wanted.isAfter(last) ? last : wanted);
+
     final picked = await showDatePicker(
       context: context,
-      initialDate: value ?? now,
-      firstDate: firstDate ?? DateTime(1900),
-      lastDate: lastDate ?? DateTime(now.year + 30),
+      initialDate: initial,
+      firstDate: first,
+      lastDate: last,
       helpText: 'select_date'.tr(),
     );
     if (picked != null) onPicked(picked);

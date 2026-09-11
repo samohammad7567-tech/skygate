@@ -3,10 +3,6 @@ import 'package:skygate/core/components/dashed_line.dart';
 import 'package:skygate/features/journey_details/models/journey_route_model.dart';
 import 'package:skygate/features/journey_details/widgets/journey_stop_column.dart';
 
-/// Departure and arrival stops either side of the dashed arrow.
-///
-/// Shared by the itinerary card and the "تفاصيل القسم" summary; [showCode] is
-/// what turns "جدة" into "جدة (JED)" on the detail screen.
 class JourneyLegRow extends StatelessWidget {
   const JourneyLegRow({
     super.key,
@@ -44,7 +40,6 @@ class JourneyLegRow extends StatelessWidget {
   }
 }
 
-/// Dashed rule broken by the circular direction arrow.
 class _Connector extends StatelessWidget {
   const _Connector();
 

@@ -6,8 +6,6 @@ import 'package:skygate/core/models/booking_route_model.dart';
 import 'package:skygate/core/components/booking_route_leg_row.dart';
 import 'package:skygate/core/components/booking_selectable_card.dart';
 
-/// One card on "اختر المسار": the tinted title strip with the radio, then a
-/// row per leg.
 class BookingRouteCard extends StatelessWidget {
   const BookingRouteCard({
     super.key,
@@ -18,15 +16,10 @@ class BookingRouteCard extends StatelessWidget {
   });
 
   final BookingRouteModel route;
-
-  /// 1-based place in the list, used for the "المسار الأول" caption.
   final int position;
 
   final bool isSelected;
   final VoidCallback onTap;
-
-  /// The legs alternate between the two brand colours, exactly as the design
-  /// prints them.
   Color _glyphColor(int index) =>
       index.isEven ? AppColors.primary : AppColors.accent;
 

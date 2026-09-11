@@ -1,23 +1,17 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:skygate/core/components/app_sheet.dart';
 import 'package:skygate/core/components/audience_chip.dart';
 import 'package:skygate/core/components/sheet_handle.dart';
 import 'package:skygate/features/payments/models/booking_details_model.dart';
 
-/// "تفاصيل المسافرين" — who is in one room and what each of them paid, opened
-/// by the "التفاصيل" chip on a room card.
 Future<void> showBookingTravelersSheet(
   BuildContext context, {
   required List<BookingTravelerModel> travelers,
 }) {
-  return showModalBottomSheet<void>(
-    context: context,
-    isScrollControlled: true,
-    backgroundColor: Theme.of(context).colorScheme.surface,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-    ),
+  return showAppSheet<void>(
+    context,
     builder: (_) => _TravelersSheet(travelers: travelers),
   );
 }
@@ -68,8 +62,6 @@ class _TravelersSheet extends StatelessWidget {
   }
 }
 
-/// One line: the place badge, the traveller with their class chip, then what
-/// their seat cost.
 class _TravelerRow extends StatelessWidget {
   const _TravelerRow({required this.traveler, required this.position});
 

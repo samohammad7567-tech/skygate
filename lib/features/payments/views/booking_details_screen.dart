@@ -5,12 +5,6 @@ import 'package:skygate/features/payments/models/booking_details_model.dart';
 import 'package:skygate/features/payments/widgets/booking_details_card.dart';
 import 'package:skygate/features/payments/widgets/booking_travelers_sheet.dart';
 
-/// "تفاصيل الحجز" — the read-only review behind "عرض تفاصيل الحجز".
-///
-/// It takes its model rather than a booking id: `GET app/bookings/{id}` answers
-/// with an id, a status, a total and an expiry, none of which is enough to
-/// print the route, the rooms or the travellers, so the caller hands over what
-/// it already holds. There is nothing to load and no cubit.
 class BookingDetailsScreen extends StatelessWidget {
   const BookingDetailsScreen({super.key, required this.details});
 

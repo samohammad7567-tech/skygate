@@ -26,14 +26,14 @@ class SupportView extends GetView<SupportController> {
           onTap: () {
             Get.toNamed(Routes.CUSTOMER_CARE_SUPPORT);
           },
-          child: Image.asset("assets/images/customer-care-btn.png"),
+          child: Image.asset("assets/images/pngs/customer_care_btn.png"),
         ),
         Padding(padding: EdgeInsets.only(bottom: 100.0.h)),
         InkWell(
           onTap: () {
             Get.toNamed(Routes.SALES_SUPPORT);
           },
-          child: Image.asset("assets/images/sales-btn.png"),
+          child: Image.asset("assets/images/pngs/sales_btn.png"),
         ),
       ],
     );

@@ -16,14 +16,8 @@ import 'package:skygate/features/group_booking/widgets/group_add_traveler_button
 import 'package:skygate/features/group_booking/widgets/group_counts_card.dart';
 import 'package:skygate/features/group_booking/widgets/group_traveler_card.dart';
 
-/// Steps 3 and 5 — "تكوين المجموعة".
-///
-/// The same card serves both: it is step 3 while the group is still only its
-/// leader, and step 5 once travellers have been added to it.
 class GroupCompositionScreen extends StatelessWidget {
   const GroupCompositionScreen({super.key});
-
-  /// Anchor the add-traveller detour unwinds back to.
   static const String routeName = 'group-composition';
 
   void _addTraveler(BuildContext context) {

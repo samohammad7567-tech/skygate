@@ -5,8 +5,6 @@ import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/features/payments/models/payment_currency.dart';
 import 'package:skygate/features/payments/widgets/payment_radio.dart';
 
-/// "نوع المبلغ المحول" — the two currencies a transfer can have been made in,
-/// side by side, with the picked one tinted.
 class PaymentCurrencySelector extends StatelessWidget {
   const PaymentCurrencySelector({
     super.key,

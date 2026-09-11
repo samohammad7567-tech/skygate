@@ -1,8 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:skygate/core/utils/app_phone.dart';
 
-/// Field validators for the auth forms. Every message is already translated so
-/// `TextFormField.validator` can return it as-is.
 class AppValidators {
   AppValidators._();
 
@@ -15,12 +13,6 @@ class AppValidators {
 
   static String? requiredDate(DateTime? value) =>
       value == null ? 'field_required'.tr() : null;
-
-  /// Checks the number the API will actually receive, not the raw text.
-  ///
-  /// The field is pre-filled with a dial code and the number has to keep one,
-  /// so a national number typed on its own is rejected here rather than being
-  /// silently attributed to the wrong country. See [AppPhone].
   static String? phone(String? value) {
     if (AppPhone.isBlank(value)) return 'field_required'.tr();
     return AppPhone.isValid(value) ? null : 'invalid_phone'.tr();
@@ -40,7 +32,6 @@ class AppValidators {
         : 'password_too_short'.tr(args: ['$minPasswordLength']);
   }
 
-  /// Confirms [value] matches the password typed in the field above.
   static String? confirmPassword(String? value, String password) {
     final empty = required(value);
     if (empty != null) return empty;

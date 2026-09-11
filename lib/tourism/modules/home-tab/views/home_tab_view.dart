@@ -179,19 +179,19 @@ class HomeTabView extends GetView<HomeTabController> {
               onTap: () {
                 Get.toNamed(Routes.AIRPORT_TAXI);
               },
-              child: SvgPicture.asset("assets/images/taxi-btn.svg"),
+              child: SvgPicture.asset("assets/images/svgs/taxi_btn.svg"),
             ),
             InkWell(
               onTap: () {
                 Get.toNamed(Routes.MY_TRIPS_AGENDA);
               },
-              child: SvgPicture.asset("assets/images/trip-btn.svg"),
+              child: SvgPicture.asset("assets/images/svgs/trip_btn.svg"),
             ),
             InkWell(
               onTap: () {
                 Get.toNamed(Routes.AIRPORT_MAP);
               },
-              child: SvgPicture.asset("assets/images/airport-map-btn.svg"),
+              child: SvgPicture.asset("assets/images/svgs/airport_map_btn.svg"),
             ),
           ],
         ),

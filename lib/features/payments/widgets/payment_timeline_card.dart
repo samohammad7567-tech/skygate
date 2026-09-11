@@ -4,8 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:skygate/features/payments/models/payment_installment_model.dart';
 import 'package:skygate/features/payments/widgets/payment_timeline_tile.dart';
 
-/// "جدول المدفوعات" — every instalment of the booking strung along one rail,
-/// in the order they fall due.
 class PaymentTimelineCard extends StatelessWidget {
   const PaymentTimelineCard({super.key, required this.installments});
 

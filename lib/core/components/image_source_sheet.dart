@@ -1,18 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:skygate/core/components/app_sheet.dart';
 
-/// Asks whether the file should come from the gallery or the camera.
-///
-/// Returns `null` when the sheet is dismissed, which the cubits treat as "user
-/// backed out" and ignore.
 Future<ImageSource?> showImageSourceSheet(BuildContext context) {
-  return showModalBottomSheet<ImageSource>(
-    context: context,
-    backgroundColor: Theme.of(context).colorScheme.surface,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-    ),
+  return showAppSheet<ImageSource>(
+    context,
+    isScrollControlled: false,
     builder: (sheetContext) => SafeArea(
       child: Column(
         mainAxisSize: MainAxisSize.min,

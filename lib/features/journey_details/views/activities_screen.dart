@@ -5,20 +5,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skygate/core/components/app_page_header.dart';
 import 'package:skygate/core/components/empty_state.dart';
 import 'package:skygate/features/journey_details/controller/cubit/activities_cubit.dart';
-import 'package:skygate/features/journey_details/models/activity_model.dart';
+import 'package:skygate/core/models/activity_model.dart';
 import 'package:skygate/features/journey_details/widgets/activity_card.dart';
 import 'package:skygate/features/journey_details/widgets/activity_day_tabs.dart';
-import 'package:skygate/features/journey_details/widgets/activity_legend_bar.dart';
+import 'package:skygate/core/components/activity_legend_bar.dart';
 import 'package:skygate/features/journey_details/widgets/journey_timeline_tile.dart';
 
-/// "تفاصيل الأنشطة" — day tabs over the selected day's programme.
 class ActivitiesScreen extends StatelessWidget {
-  const ActivitiesScreen({super.key});
+  const ActivitiesScreen({super.key, this.tripId});
+
+  final int? tripId;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => ActivitiesCubit()..getActivities(),
+      create: (_) => ActivitiesCubit(tripId: tripId)..getActivities(),
       child: const _ActivitiesBody(),
     );
   }
@@ -75,8 +76,8 @@ class _ActivitiesBody extends StatelessWidget {
           for (var i = 0; i < activities.length; i++)
             JourneyTimelineTile(
               icon: activities[i].kind.icon,
-              dotColor: activities[i].kind.surface,
-              iconColor: activities[i].kind.color,
+              dotColor: activities[i].surfaceColor,
+              iconColor: activities[i].accentColor,
               isLast: i == activities.length - 1,
               child: ActivityCard(activity: activities[i]),
             ),
@@ -86,7 +87,7 @@ class _ActivitiesBody extends StatelessWidget {
         message: state is ActivitiesError
             ? state.message.tr()
             : 'no_activities'.tr(),
-        onRetry: cubit.getActivities,
+        onRetry: () => cubit.getActivities(refresh: true),
       ),
     );
   }

@@ -14,10 +14,6 @@ class MainController extends GetxController {
   late BottomNavigationItem selectedItem;
   late LocalStorageHelper localStorageHelper = Get.find<LocalStorageHelper>();
   late UserClassesDatabaseHelper userClassesDatabaseHelper;
-
-  /// Held so the session lookup runs once: `onInit` fires when the controller
-  /// is put, and TourismBootstrap awaits the same future before reading the
-  /// target page off [SharedClass].
   Future<void>? _initialization;
 
   Future<void> ensureInitialized() => _initialization ??= init();
@@ -32,9 +28,7 @@ class MainController extends GetxController {
 
   void onSelectedBottomNavigationChanged(newSelectedItem) {
     selectedItem = newSelectedItem;
-    if (selectedItem == BottomNavigationItem.add) {
-      /// Do Something on logic
-    }
+    if (selectedItem == BottomNavigationItem.add) {}
     update();
   }
 
@@ -53,7 +47,7 @@ class MainController extends GetxController {
       } on Failure catch (e) {
         log("Error Reading User Info : ${e.toString()}");
       }
-    } else if(result == -1) {
+    } else if (result == -1) {
       AppPages.INITIAL = Routes.ACCOUNT_WAITING;
       SharedClass.targetPage = Routes.ACCOUNT_WAITING;
     } else {
@@ -69,7 +63,7 @@ class MainController extends GetxController {
       final userAccountStatus = await localStorageHelper.read(path: "status");
       if (userID == "") {
         return 0;
-      } else if(userAccountStatus == "0") {
+      } else if (userAccountStatus == "0") {
         final userID = await localStorageHelper.read(path: "userId");
         final token = await localStorageHelper.read(path: "token");
         final data = await getUser(userID: userID, token: token);
@@ -84,33 +78,40 @@ class MainController extends GetxController {
 
   Future<int> getUser({String? token, String? userID}) async {
     int result = -3000;
-    (await getUserRepository.getUserByID(token: token,userID: userID)).fold(
-            (left) {
-          final error = FailureParser.mapFailureToString(failure: left, context: Get.overlayContext!);
-          log("Get User By ID API ERROR : ${error}");
-          result = -1;
-        },
-            (right){
-          if(right.code == "1") {
-            final userModel = right.data!;
-            if(userModel.status == "1") {
-              result = -200;
-            } else {
-              result = -1;
-            }
+    (await getUserRepository.getUserByID(token: token, userID: userID)).fold(
+      (left) {
+        final error = FailureParser.mapFailureToString(
+          failure: left,
+          context: Get.overlayContext!,
+        );
+        log("Get User By ID API ERROR : ${error}");
+        result = -1;
+      },
+      (right) {
+        if (right.code == "1") {
+          final userModel = right.data!;
+          if (userModel.status == "1") {
+            result = -200;
           } else {
             result = -1;
           }
+        } else {
+          result = -1;
         }
+      },
     );
     return result;
   }
 
   Future<void> readBiometricsData() async {
     try {
-      SharedClass.biometricsEnabled = await localStorageHelper.read(path: "biometricsEnabled");
-      SharedClass.biometricsKey = await localStorageHelper.read(path: "biometricsKey");
-    } on Exception catch(e) {
+      SharedClass.biometricsEnabled = await localStorageHelper.read(
+        path: "biometricsEnabled",
+      );
+      SharedClass.biometricsKey = await localStorageHelper.read(
+        path: "biometricsKey",
+      );
+    } on Exception catch (e) {
       log("Error while reading user biometrics data: ${e.toString()}");
     }
   }

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart' hide Transition;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:skygate/core/services/dio_service.dart';
+import 'package:skygate/core/services/language_service.dart';
 import 'package:skygate/core/themes/dark_theme.dart';
 import 'package:skygate/core/themes/light_theme.dart';
 import 'package:skygate/core/utils/cache_util.dart';
@@ -19,6 +20,10 @@ Future<void> main() async {
   await EasyLocalization.ensureInitialized();
   await CacheUtil.init();
   DioService.init();
+  // Seeds `X-localization` from the persisted choice so the session
+  // restore below — and anything else that fires before the first frame —
+  // already asks in the right language. MyApp keeps it in step after that.
+  LanguageService.restore();
   AuthCubit.restoreSession();
 
   // The tourism module boots on demand — see TourismBootstrap — so nothing of
@@ -36,8 +41,23 @@ Future<void> main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // `context.locale` subscribes this element to EasyLocalization, so this
+    // runs on the first frame and again on every `setLocale` — no matter which
+    // side of the app made the switch. That is the one hook the API language
+    // hangs off: LanguageService returns early when nothing actually changed.
+    LanguageService.apply(context.locale.languageCode);
+  }
 
   @override
   Widget build(BuildContext context) {

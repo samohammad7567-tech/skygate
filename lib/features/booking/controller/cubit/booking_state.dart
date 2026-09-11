@@ -5,7 +5,6 @@ sealed class BookingState {}
 
 final class BookingInitial extends BookingState {}
 
-/// The wizard moved between steps, or a selection on the current step changed.
 final class BookingStepChanged extends BookingState {}
 
 final class BookingTypeSelected extends BookingState {}
@@ -15,7 +14,6 @@ final class PassportFieldChanged extends BookingState {}
 
 final class PassportScanLoading extends BookingState {}
 
-/// The user dismissed the camera / gallery picker without choosing a file.
 final class PassportScanCancelled extends BookingState {}
 
 final class PassportScanned extends BookingState {}
@@ -29,7 +27,6 @@ final class PassportScanError extends BookingState {
 // ── Documents ─────────────────────────────────────────────────────────────
 final class DocumentPicked extends BookingState {}
 
-/// The picked file is over `ImagePickerService.maxSizeInBytes`.
 final class FileTooLarge extends BookingState {}
 
 // ── Routes ────────────────────────────────────────────────────────────────
@@ -70,7 +67,6 @@ final class BookingSummaryLoading extends BookingState {}
 
 final class BookingSummaryLoaded extends BookingState {}
 
-/// One tick of the "أكمل الدفع خلال" countdown.
 final class BookingCountdownTicked extends BookingState {}
 
 final class BookingSummaryError extends BookingState {

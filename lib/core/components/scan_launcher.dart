@@ -4,8 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
 
-/// "يمكنك استخدام الكاميرا" prompt plus the framed scan trigger, shown on the
-/// personal-info step and again on the passport confirmation card.
 class ScanLauncher extends StatelessWidget {
   const ScanLauncher({super.key, required this.onTap});
 

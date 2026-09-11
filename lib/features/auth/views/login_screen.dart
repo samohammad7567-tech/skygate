@@ -10,7 +10,6 @@ import 'package:skygate/features/auth/controller/cubit/auth_cubit.dart';
 import 'package:skygate/features/auth/widgets/login_card.dart';
 import 'package:skygate/features/main/views/main_screen.dart';
 
-/// "تسجيل الدخول" — the phone and email variants of the same card.
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
@@ -28,7 +27,6 @@ class _LoginBody extends StatefulWidget {
 }
 
 class _LoginBodyState extends State<_LoginBody> {
-  /// Owned by the screen; the cubit only holds the field values.
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   void _submit() {

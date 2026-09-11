@@ -5,19 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/utils/app_format.dart';
 
-/// "أكمل الدفع خلال (24/2/2026)" card on the group summary: the ticking clock
-/// over the note saying what happens when it runs out.
 class GroupCountdownCard extends StatelessWidget {
   const GroupCountdownCard({
     super.key,
     required this.remaining,
     required this.deadline,
   });
-
-  /// Time left on the hold, refreshed once a second by the cubit.
   final Duration remaining;
-
-  /// When the hold expires, printed in the header.
   final DateTime? deadline;
 
   String get _clock {

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:skygate/features/home/models/service_model.dart';
 import 'package:skygate/features/home/widgets/service_card.dart';
 
-/// Centred heading, subtitle, and the three-column services grid.
 class ServicesSection extends StatelessWidget {
   const ServicesSection({super.key, required this.services});
 

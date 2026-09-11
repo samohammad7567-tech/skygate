@@ -8,10 +8,9 @@ import 'package:skygate/core/models/hotel_model.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/journey_details/controller/cubit/hotels_cubit.dart';
 import 'package:skygate/features/journey_details/views/hotel_details_screen.dart';
-import 'package:skygate/features/journey_details/widgets/hotel_card.dart';
+import 'package:skygate/core/components/hotel_card.dart';
 import 'package:skygate/features/journey_details/widgets/hotel_search_bar.dart';
 
-/// "الفنادق" — searchable, sortable list of the package's hotels.
 class HotelsScreen extends StatelessWidget {
   const HotelsScreen({super.key, required this.tripId});
 
@@ -34,7 +33,6 @@ class _HotelsBody extends StatefulWidget {
 }
 
 class _HotelsBodyState extends State<_HotelsBody> {
-  /// Owned by the screen; the cubit only keeps the value it last searched for.
   final TextEditingController _searchController = TextEditingController();
 
   @override

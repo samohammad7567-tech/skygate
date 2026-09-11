@@ -7,8 +7,6 @@ import 'package:skygate/features/home/widgets/custom_trip_artwork.dart';
 import 'package:skygate/features/home/widgets/custom_trip_feature.dart';
 import 'package:skygate/features/home/widgets/custom_trip_notice.dart';
 
-/// "صمم رحلتك الخاصة" banner: Kaaba artwork with the VIP pennant on the start
-/// side, copy and CTA on the end side.
 class CustomTripSection extends StatelessWidget {
   const CustomTripSection({
     super.key,

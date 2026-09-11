@@ -14,9 +14,9 @@ class HttpHelper {
   HttpHelper();
 
   late final StreamController<HttpFailure> errorStreamController =
-  StreamController<HttpFailure>();
+      StreamController<HttpFailure>();
 
-  bool hasListener (){
+  bool hasListener() {
     return errorStreamController.hasListener;
   }
 
@@ -25,20 +25,18 @@ class HttpHelper {
   }
 
   Future<BaseResponse<T>> get<T>(
-      String url, {
-        T Function(dynamic json)? decoder,
-        Map<String, String>? headers,
-        Map<String, dynamic>? params,
-      }) async {
+    String url, {
+    T Function(dynamic json)? decoder,
+    Map<String, String>? headers,
+    Map<String, dynamic>? params,
+  }) async {
     try {
       log('request for $url');
       log('with headers $headers');
       log('with Params $params');
       final response = await http
           .get(Uri.parse(_getUrlWithParams(url, params)), headers: headers)
-          .timeout(
-        const Duration(seconds: 60),
-      );
+          .timeout(const Duration(seconds: 60));
       log('response from $url with status code ${response.statusCode}');
       log('response date ${response.body}');
       final ret = _responseHandler<T>(response, decoder);
@@ -49,7 +47,7 @@ class HttpHelper {
       HttpFailure failure = const NoInternetConnection();
       errorStreamController.add(failure);
       throw failure;
-    } on http.ClientException catch(_){
+    } on http.ClientException catch (_) {
       HttpFailure failure = const NoInternetConnection();
       errorStreamController.add(failure);
       throw failure;
@@ -61,14 +59,14 @@ class HttpHelper {
   }
 
   Future<BaseResponse<T>> post<T>(
-      String url, {
-        body = const <dynamic, dynamic>{},
-        T Function(dynamic json)? decoder,
-        Map<String, String>? headers = const {},
-        Map<String, dynamic>? params,
-      }) async {
+    String url, {
+    body = const <dynamic, dynamic>{},
+    T Function(dynamic json)? decoder,
+    Map<String, String>? headers = const {},
+    Map<String, dynamic>? params,
+  }) async {
     try {
-      if(headers!.isEmpty) {
+      if (headers!.isEmpty) {
         headers = HttpHelper.basicHeader;
       }
       log('request for  ${_getUrlWithParams(url, params)}');
@@ -77,12 +75,11 @@ class HttpHelper {
       log('with body  $body');
       final response = await http
           .post(
-        Uri.parse(_getUrlWithParams(url, params)),
-        headers: headers,
-        body: jsonEncode(body),
-      ).timeout(
-        const Duration(seconds: 60),
-      );
+            Uri.parse(_getUrlWithParams(url, params)),
+            headers: headers,
+            body: jsonEncode(body),
+          )
+          .timeout(const Duration(seconds: 60));
       log('response from $url with status code ${response.statusCode}');
       log('response data ${response.body}');
       final ret = _responseHandler<T>(response, decoder);
@@ -93,36 +90,25 @@ class HttpHelper {
       HttpFailure failure = const NoInternetConnection();
       errorStreamController.add(failure);
       throw failure;
-    } on http.ClientException catch(_){
+    } on http.ClientException catch (_) {
       HttpFailure failure = const NoInternetConnection();
       errorStreamController.add(failure);
       throw failure;
-    }
-    on TimeoutException catch (_) {
+    } on TimeoutException catch (_) {
       HttpFailure failure = const TimeOutFailure();
       errorStreamController.add(failure);
       throw failure;
     }
   }
 
-  /// Multipart POST helper.
-  ///
-  /// This is used for endpoints that expect `multipart/form-data`
-  /// (e.g. uploading passport images / PDF files).
-  ///
-  /// - [fields] are sent as regular text fields.
-  /// - [files] is a map of fieldName -> list of files to attach under that name.
-  ///   For example: `{ "passports_files": [file1, file2] }`.
-  ///
-  /// The same response handling and failures mapping are applied as in [post].
   Future<BaseResponse<T>> postMultipart<T>(
-      String url, {
-        Map<String, String>? fields,
-        Map<String, List<File>>? files,
-        T Function(dynamic json)? decoder,
-        Map<String, String>? headers,
-        Map<String, dynamic>? params,
-      }) async {
+    String url, {
+    Map<String, String>? fields,
+    Map<String, List<File>>? files,
+    T Function(dynamic json)? decoder,
+    Map<String, String>? headers,
+    Map<String, dynamic>? params,
+  }) async {
     try {
       headers ??= HttpHelper.basicHeader;
 
@@ -130,7 +116,9 @@ class HttpHelper {
       log('with headers $headers');
       log('with Params $params');
       log('with fields  $fields');
-      log('with files  ${files?.map((key, value) => MapEntry(key, value.length))}');
+      log(
+        'with files  ${files?.map((key, value) => MapEntry(key, value.length))}',
+      );
 
       final uri = Uri.parse(_getUrlWithParams(url, params));
       final request = http.MultipartRequest('POST', uri);
@@ -145,8 +133,7 @@ class HttpHelper {
         for (final entry in files.entries) {
           final fieldName = entry.key;
           for (final file in entry.value) {
-            final fileName =
-                file.path.split(Platform.pathSeparator).last;
+            final fileName = file.path.split(Platform.pathSeparator).last;
             final length = await file.length();
             final stream = http.ByteStream(file.openRead());
 
@@ -203,12 +190,14 @@ class HttpHelper {
   }
 
   BaseResponse<T> _responseHandler<T>(
-      http.Response response, T Function(dynamic json)? decoder) {
+    http.Response response,
+    T Function(dynamic json)? decoder,
+  ) {
     int statusCode = getStatusCode(response);
     // int statusCode = response.statusCode;
     log("From Response Handler statusCode = ${statusCode}");
     HttpFailure failure;
-    if ((statusCode == 1) || (statusCode==-15000)) {
+    if ((statusCode == 1) || (statusCode == -15000)) {
       // try{
       return BaseResponse.fromJson(jsonDecode(response.body), decoder);
       // }
@@ -227,11 +216,14 @@ class HttpHelper {
     } else {
       String errorMessage = 'Unknown Error!';
       try {
-        errorMessage =
-        BaseResponse.fromJson(jsonDecode(response.body), null).message!;
-      } finally {
-        failure =  CustomFailure(message: errorMessage);
+        errorMessage = BaseResponse.fromJson(
+          jsonDecode(response.body),
+          null,
+        ).message!;
+      } catch (_) {
+        // Body is not a JSON envelope (html error page, empty body, ...).
       }
+      failure = CustomFailure(message: errorMessage);
     }
     errorStreamController.add(failure);
     throw failure;
@@ -240,9 +232,17 @@ class HttpHelper {
   static int getStatusCode(http.Response response) {
     int httpStatus = response.statusCode;
     if (httpStatus == 200) {
-      int innerResponseCode =
-      int.parse(BaseResponse.fromJson(jsonDecode(response.body), null).code!);
-      return innerResponseCode;
+      try {
+        final code = BaseResponse.fromJson(
+          jsonDecode(response.body),
+          null,
+        ).code;
+        // A missing / non numeric code falls back to the http status so the
+        // response is handled as an error instead of throwing a FormatException.
+        return int.tryParse(code ?? '') ?? httpStatus;
+      } catch (_) {
+        return httpStatus;
+      }
     } else {
       return httpStatus;
     }
@@ -251,19 +251,19 @@ class HttpHelper {
   static Map<String, String> basicHeader = {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
-    'X-localization' : (languageController.appLanguage == "en")? "en" : "ar",
+    'X-localization': (languageController.appLanguage == "en") ? "en" : "ar",
   };
 
   static Map<String, String> basicHeaderWithToken(String token) => {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
     'Authorization': 'Bearer ${token}',
-    'X-localization' : (languageController.appLanguage == "en")? "en" : "ar",
+    'X-localization': (languageController.appLanguage == "en") ? "en" : "ar",
   };
 
   static Map<String, String> basicHeaderWithLanguage(String? langCode) => {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
-    'X-localization' : langCode!,
+    'X-localization': langCode!,
   };
 }

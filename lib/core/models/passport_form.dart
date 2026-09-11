@@ -1,14 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:skygate/core/models/passport_data_model.dart';
 
-/// Editing state of the ten passport rows.
-///
-/// Both wizards that ask for a passport — signup and the booking flow — own one
-/// of these and hand it to `PassportFieldsForm`, so the fields, the scan result
-/// and the pledge live in exactly one place.
-///
-/// It holds no `BuildContext` and emits nothing: the cubit that owns it decides
-/// when to rebuild.
 class PassportForm {
   final TextEditingController fullNameArController = TextEditingController();
   final TextEditingController fullNameEnController = TextEditingController();
@@ -22,19 +14,9 @@ class PassportForm {
   DateTime? birthDate;
   DateTime? issueDate;
   DateTime? expiryDate;
-
-  /// `male` / `female`, as the API expects them.
   String? gender;
-
-  /// "أتعهد بأن بيانات جواز السفر المدخلة صحيحة..." — required by the manual
-  /// entry card only.
   bool pledgeAccepted = false;
-
-  /// `true` once the MRZ came back from the scanner, which is what turns the
-  /// confirmation screen's green banner on.
   bool isScanned = false;
-
-  /// Fills every row from a scan result.
   void fillFrom(PassportDataModel data) {
     fullNameArController.text = data.fullNameAr ?? '';
     fullNameEnController.text = data.fullNameEn ?? '';
@@ -48,7 +30,6 @@ class PassportForm {
     gender = data.gender;
   }
 
-  /// The typed rows, ready to be posted.
   PassportDataModel toModel() => PassportDataModel(
     fullNameAr: fullNameArController.text.trim(),
     fullNameEn: fullNameEnController.text.trim(),
@@ -61,12 +42,6 @@ class PassportForm {
     issueDate: issueDate,
     expiryDate: expiryDate,
   );
-
-  /// Empties every row, the pledge and the scan flag.
-  ///
-  /// The group wizard asks for one passport per traveller through the same
-  /// form, so it wipes the draft between travellers rather than building a
-  /// fresh form each time.
   void clear() {
     fullNameArController.clear();
     fullNameEnController.clear();
@@ -82,7 +57,6 @@ class PassportForm {
     isScanned = false;
   }
 
-  /// Drops the scan result so the user lands back on an empty scanner.
   void resetScan() => isScanned = false;
 
   void dispose() {

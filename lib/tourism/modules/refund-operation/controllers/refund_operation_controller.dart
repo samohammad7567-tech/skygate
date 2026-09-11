@@ -278,7 +278,7 @@ class RefundOperationController extends GetxController
         child: Column(
           children: [
             Padding(padding: EdgeInsets.only(bottom: 60.0.h)),
-            Image.asset("assets/images/tick.png"),
+            Image.asset("assets/images/pngs/tick.png"),
             Padding(padding: EdgeInsets.only(bottom: 30.0.h)),
             SizedBox(
               width: 276.0.w,
@@ -309,7 +309,7 @@ class RefundOperationController extends GetxController
         child: Column(
           children: [
             Padding(padding: EdgeInsets.only(bottom: 60.0.h)),
-            Image.asset("assets/images/tick.png"),
+            Image.asset("assets/images/pngs/tick.png"),
             Padding(padding: EdgeInsets.only(bottom: 30.0.h)),
             SizedBox(
               width: 276.0.w,
@@ -368,7 +368,7 @@ class RefundOperationController extends GetxController
         child: Column(
           children: [
             Padding(padding: EdgeInsets.only(bottom: 60.0.h)),
-            Image.asset("assets/images/tick.png"),
+            Image.asset("assets/images/pngs/tick.png"),
             Padding(padding: EdgeInsets.only(bottom: 30.0.h)),
             SizedBox(
               width: 276.0.w,
@@ -427,7 +427,7 @@ class RefundOperationController extends GetxController
         child: Column(
           children: [
             Padding(padding: EdgeInsets.only(bottom: 60.0.h)),
-            Image.asset("assets/images/tick.png"),
+            Image.asset("assets/images/pngs/tick.png"),
             Padding(padding: EdgeInsets.only(bottom: 30.0.h)),
             SizedBox(
               width: 276.0.w,

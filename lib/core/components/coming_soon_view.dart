@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-/// Placeholder body for tabs that are not designed yet.
 class ComingSoonView extends StatelessWidget {
   const ComingSoonView({super.key, required this.titleKey});
 

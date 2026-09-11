@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-/// Blue step heading with its grey caption under it — "اختر المسار" over
-/// "اختر مسار مناسب لرحلتك".
 class BookingSectionTitle extends StatelessWidget {
   const BookingSectionTitle({super.key, required this.title, this.subtitle});
 

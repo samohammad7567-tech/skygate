@@ -24,7 +24,7 @@ class AfterPaymentMethodView extends GetView<ChangeOperationController> {
         centerTitle: true,
         elevation: 0.0,
         title: SvgPicture.asset(
-          "assets/images/big-logo.svg",
+          "assets/images/svgs/big_logo.svg",
           width: 105.0.w,
           height: 47.0.h,
         ),
@@ -34,14 +34,14 @@ class AfterPaymentMethodView extends GetView<ChangeOperationController> {
         height: 1 * 1.sh,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/seko.png"),
+            image: AssetImage("assets/images/pngs/seko.png"),
             fit: BoxFit.fill,
           ),
         ),
         child: Column(
           children: [
             Padding(padding: EdgeInsets.only(bottom: 50.0.h)),
-            Image.asset("assets/images/handshake.png"),
+            Image.asset("assets/images/pngs/handshake.png"),
             Padding(padding: EdgeInsets.only(bottom: 30.0.h)),
             Container(
               width: 376.0.w,

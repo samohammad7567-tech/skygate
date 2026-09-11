@@ -5,8 +5,6 @@ import 'package:skygate/core/models/traveler_audience.dart';
 import 'package:skygate/core/components/payment_detail_row.dart';
 import 'package:skygate/features/payments/models/booking_details_model.dart';
 
-/// One room block inside "تفاصيل الحجز" for a group booking: who sleeps in it,
-/// its size, the hotel it takes in each city and what it cost.
 class BookingRoomDetailsCard extends StatelessWidget {
   const BookingRoomDetailsCard({
     super.key,
@@ -15,8 +13,6 @@ class BookingRoomDetailsCard extends StatelessWidget {
   });
 
   final BookingRoomDetailsModel room;
-
-  /// Opens "تفاصيل المسافرين" for this room.
   final VoidCallback onDetails;
 
   @override
@@ -66,7 +62,6 @@ class BookingRoomDetailsCard extends StatelessWidget {
   }
 }
 
-/// "1 بالغ - 2 طفل - 1 رضيع" with the orange "التفاصيل" chip after it.
 class _Header extends StatelessWidget {
   const _Header({required this.counts, required this.onDetails});
 

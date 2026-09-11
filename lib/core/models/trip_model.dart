@@ -1,24 +1,10 @@
 import 'package:skygate/core/utils/api_parse.dart';
 
-/// `GET app/trips/{id}` — the one endpoint every browse and booking screen
-/// reads from.
-///
-/// The document splits it into `TripResource` (the list) and
-/// `TripDetailResource` (the single trip), the second being a superset of the
-/// first, so both parse into this class: the four collections simply stay
-/// empty on a list row.
-///
-/// Nothing here is shaped for a screen. The view models each flow already had
-/// — `JourneyPackageModel`, `BookingRouteModel`, `HotelModel`, … — build
-/// themselves from it, so the widgets never learn the API's field names.
 class TripModel {
   int? id;
   String? tripNumber;
   String? campaignName;
   DateTime? bookingDeadline;
-
-  /// Gregorian start / end. The Hijri pair is carried alongside for the
-  /// screens that print both calendars.
   DateTime? startDate;
   DateTime? endDate;
   String? startDateHijri;
@@ -27,22 +13,18 @@ class TripModel {
   String? accessType;
   String? status;
   String? programPdfUrl;
-
-  /// Centre of the trip's map, when the backend pins one.
+  TripPriceRangeModel? priceRange;
   num? mapCenterLat;
   num? mapCenterLng;
-
-  /// The bookable price sets — one per room type, and the `package_id`
-  /// `POST app/bookings` seats its rooms with.
   List<TripPackageModel> packages = const [];
+  List<TripItineraryPackagesModel> packagesByItinerary = const [];
 
   List<TripHotelModel> hotels = const [];
-
-  /// The trip's legs, in `sequence_order`.
+  List<TripCitySummaryModel> citiesSummary = const [];
   List<TripItineraryModel> itinerary = const [];
-
-  /// "بإشراف" — the supervisors printed on the package overview.
+  List<TripActivityModel> activities = const [];
   List<TripStaffModel> staff = const [];
+  List<TripPaymentScheduleModel> paymentSchedules = const [];
 
   TripModel.fromJson(Map<String, dynamic> json) {
     id = ApiParse.intOf(json['id']);
@@ -56,72 +38,144 @@ class TripModel {
     accessType = ApiParse.stringOf(json['access_type']);
     status = ApiParse.labelOf(json['status']);
     programPdfUrl = ApiParse.stringOf(json['trip_program_pdf_url']);
+    priceRange = TripPriceRangeModel.of(json['price_range']);
     mapCenterLat = ApiParse.numOf(json['map_center_lat']);
     mapCenterLng = ApiParse.numOf(json['map_center_lng']);
-    packages = _list(json['packages'], TripPackageModel.fromJson);
-    hotels = _list(json['hotels'], TripHotelModel.fromJson);
-    itinerary = _list(json['itinerary'], TripItineraryModel.fromJson)
+    packages = ApiParse.listOf(json['packages'], TripPackageModel.fromJson);
+    packagesByItinerary = ApiParse.listOf(
+      json['packages_by_itinerary'],
+      TripItineraryPackagesModel.fromJson,
+    );
+    hotels = ApiParse.listOf(json['hotels'], TripHotelModel.fromJson);
+    citiesSummary = ApiParse.listOf(
+      json['cities_summary'],
+      TripCitySummaryModel.fromJson,
+    );
+    itinerary = ApiParse.listOf(json['itinerary'], TripItineraryModel.fromJson)
       ..sort((a, b) => (a.sequenceOrder ?? 0).compareTo(b.sequenceOrder ?? 0));
-    staff = _list(json['staff'], TripStaffModel.fromJson);
+    activities = ApiParse.listOf(
+      json['activities'],
+      TripActivityModel.fromJson,
+    );
+    staff = ApiParse.listOf(json['staff'], TripStaffModel.fromJson);
+    paymentSchedules = ApiParse.listOf(
+      json['payment_schedules'],
+      TripPaymentScheduleModel.fromJson,
+    );
   }
-
-  /// The name the screens print — the campaign, or the trip number when the
-  /// campaign has none.
   String? get title => campaignName ?? tripNumber;
-
-  /// Length of the trip in days, printed over the hero photo.
   int? get durationDays => ApiParse.daysBetween(startDate, endDate);
-
-  static List<T> _list<T>(
-    dynamic value,
-    T Function(Map<String, dynamic>) fromJson,
-  ) => [
-    if (value is List)
-      for (final item in value)
-        if (item is Map<String, dynamic>) fromJson(item),
-  ];
+  bool get isBookingOpen =>
+      bookingDeadline == null || bookingDeadline!.isAfter(DateTime.now());
+  num? get lowestAdultPrice {
+    final prices = [for (final package in packages) ?package.priceAdult];
+    if (prices.isEmpty) return null;
+    return prices.reduce((a, b) => a < b ? a : b);
+  }
 }
 
-/// `TripPackageResource` — one room type at its four rates.
-///
-/// [id] is what `POST app/bookings` calls `package_id`, so every room the
-/// wizards create has to remember which package priced it.
+class TripPriceRangeModel {
+  TripPriceRangeModel({this.min, this.max, this.currency});
+
+  final num? min;
+  final num? max;
+  final String? currency;
+
+  static TripPriceRangeModel? of(dynamic value) {
+    if (value == null) return null;
+
+    if (value is Map) {
+      final min = ApiParse.numOf(value['min'] ?? value['from']);
+      final max = ApiParse.numOf(value['max'] ?? value['to']);
+      if (min == null && max == null) return null;
+      return TripPriceRangeModel(
+        min: min,
+        max: max,
+        currency: ApiParse.stringOf(value['currency']),
+      );
+    }
+
+    final single = ApiParse.numOf(value);
+    return single == null
+        ? null
+        : TripPriceRangeModel(min: single, max: single);
+  }
+
+  num? get from => min ?? max;
+}
+
 class TripPackageModel {
   int? id;
-
-  /// Room the rates assume, e.g. `twin` or "ثنائية".
   String? roomType;
-
-  /// Who the package is sold to, e.g. "عائلات". Printed as the offer's subtitle.
   String? audience;
+  TripAudienceLabelsModel? audienceLabels;
+  int? itineraryId;
 
   num? priceAdult;
   num? priceChild;
   num? priceInfant;
-
-  /// The "الرضيع الثاني" rate — an infant given a seat of their own.
   num? priceInfantWithSeat;
-
-  /// "إغلاق السرير الواحد" — charged per bed left unbooked in a room.
   num? bedLockFee;
 
   String? currency;
+  int? availableRooms;
 
   TripPackageModel.fromJson(Map<String, dynamic> json) {
     id = ApiParse.intOf(json['id']);
     roomType = ApiParse.stringOf(json['room_type']);
     audience = ApiParse.stringOf(json['audience']);
+    audienceLabels = TripAudienceLabelsModel.of(json['audience_labels']);
+    itineraryId = ApiParse.intOf(json['itinerary_id']);
     priceAdult = ApiParse.numOf(json['price_adult']);
     priceChild = ApiParse.numOf(json['price_child']);
     priceInfant = ApiParse.numOf(json['price_infant']);
     priceInfantWithSeat = ApiParse.numOf(json['price_infant_with_seat']);
     bedLockFee = ApiParse.numOf(json['bed_lock_fee']);
     currency = ApiParse.stringOf(json['currency']);
+    availableRooms = ApiParse.intOf(json['available_rooms']);
+  }
+  bool get hasRooms => availableRooms == null || availableRooms! > 0;
+}
+
+class TripAudienceLabelsModel {
+  TripAudienceLabelsModel({
+    required this.individual,
+    required this.group,
+    this.individualLabel,
+    this.groupLabel,
+  });
+
+  final bool individual;
+  final bool group;
+  final String? individualLabel;
+  final String? groupLabel;
+
+  static TripAudienceLabelsModel? of(dynamic value) {
+    if (value is! Map) return null;
+    return TripAudienceLabelsModel(
+      individual: value['individual'] == true,
+      group: value['group'] == true,
+      individualLabel: ApiParse.stringOf(value['individual_label']),
+      groupLabel: ApiParse.stringOf(value['group_label']),
+    );
   }
 }
 
-/// `TripHotelResource` — one hotel of the trip, with the dates the group stays
-/// in it.
+class TripItineraryPackagesModel {
+  int? itineraryId;
+  String? itineraryName;
+  String? segmentType;
+
+  List<TripPackageModel> packages = const [];
+
+  TripItineraryPackagesModel.fromJson(Map<String, dynamic> json) {
+    itineraryId = ApiParse.intOf(json['itinerary_id']);
+    itineraryName = ApiParse.stringOf(json['itinerary_name']);
+    segmentType = ApiParse.stringOf(json['segment_type']);
+    packages = ApiParse.listOf(json['packages'], TripPackageModel.fromJson);
+  }
+}
+
 class TripHotelModel {
   int? id;
   String? name;
@@ -129,15 +183,11 @@ class TripHotelModel {
   num? rating;
   num? latitude;
   num? longitude;
-
-  /// Street, district, landmark — printed as one line under the name.
   List<String> addressDetails = const [];
 
   String? contactPhone;
   DateTime? checkInDate;
   DateTime? checkOutDate;
-
-  /// The hotel the trip books by default in its city.
   bool isDefault = false;
 
   TripHotelModel.fromJson(Map<String, dynamic> json) {
@@ -153,29 +203,40 @@ class TripHotelModel {
     checkOutDate = ApiParse.dateOf(json['check_out_date']);
     isDefault = json['is_default'] == true;
   }
-
-  /// The address as one line.
   String? get address =>
       addressDetails.isEmpty ? null : addressDetails.join('، ');
-
-  /// Nights the trip stays here.
   int? get nights => ApiParse.nightsBetween(checkInDate, checkOutDate);
 }
 
-/// `TripItineraryResource` — one leg of the trip.
+class TripCitySummaryModel {
+  String? city;
+  int? nights;
+  List<String> hotels = const [];
+
+  DateTime? checkIn;
+  DateTime? checkOut;
+
+  TripCitySummaryModel.fromJson(Map<String, dynamic> json) {
+    city = ApiParse.stringOf(json['city']);
+    nights = ApiParse.intOf(json['nights']);
+    hotels = ApiParse.stringsOf(json['hotels']);
+    checkIn = ApiParse.dateOf(json['check_in']);
+    checkOut = ApiParse.dateOf(json['check_out']);
+  }
+}
+
 class TripItineraryModel {
   int? id;
   int? sequenceOrder;
-
-  /// `flight`, `bus`, `train`, `cruise`, … — resolved to a glyph by
-  /// `JourneyTransport.fromApi`.
   String? segmentType;
 
   String? originCity;
   String? destinationCity;
-
-  /// Airline, bus company or operator.
-  String? carrier;
+  TripCarrierModel? carrier;
+  String? flightNumber;
+  String? vehicleRef;
+  String? trainRef;
+  TripVehicleModel? vehicle;
 
   DateTime? departureTime;
   DateTime? arrivalTime;
@@ -186,12 +247,16 @@ class TripItineraryModel {
     segmentType = ApiParse.stringOf(json['segment_type']);
     originCity = ApiParse.stringOf(json['origin_city']);
     destinationCity = ApiParse.stringOf(json['destination_city']);
-    carrier = ApiParse.stringOf(json['carrier']);
+    carrier = TripCarrierModel.of(json['carrier']);
+    flightNumber = ApiParse.stringOf(json['flight_number']);
+    vehicleRef = ApiParse.stringOf(json['vehicle_ref']);
+    trainRef = ApiParse.stringOf(json['train_ref']);
+    vehicle = TripVehicleModel.of(json['vehicle']);
     departureTime = ApiParse.dateOf(json['departure_time']);
     arrivalTime = ApiParse.dateOf(json['arrival_time']);
   }
-
-  /// Length of the leg in minutes, or `null` when either end has no date.
+  String? get reference => flightNumber ?? trainRef ?? vehicleRef;
+  String? get transportType => segmentType ?? carrier?.carrierType;
   int? get durationMinutes {
     final from = departureTime;
     final to = arrivalTime;
@@ -201,13 +266,122 @@ class TripItineraryModel {
   }
 }
 
-/// `TripStaffResource` — one name under "بإشراف".
+class TripCarrierModel {
+  TripCarrierModel({this.id, this.name, this.logoUrl, this.carrierType});
+
+  final int? id;
+  final String? name;
+  final String? logoUrl;
+  final String? carrierType;
+
+  static TripCarrierModel? of(dynamic value) {
+    if (value == null) return null;
+
+    if (value is Map) {
+      return TripCarrierModel(
+        id: ApiParse.intOf(value['id']),
+        name: ApiParse.stringOf(value['name']),
+        logoUrl: ApiParse.stringOf(value['logo_url']),
+        carrierType: ApiParse.stringOf(value['carrier_type']),
+      );
+    }
+
+    final name = ApiParse.stringOf(value);
+    return name == null ? null : TripCarrierModel(name: name);
+  }
+}
+
+class TripVehicleModel {
+  TripVehicleModel({this.vehicleType, this.capacity});
+  final String? vehicleType;
+  final int? capacity;
+
+  static TripVehicleModel? of(dynamic value) {
+    if (value is! Map) return null;
+    final vehicle = TripVehicleModel(
+      vehicleType: ApiParse.stringOf(value['vehicle_type']),
+      capacity: ApiParse.intOf(value['capacity']),
+    );
+    return vehicle.vehicleType == null && vehicle.capacity == null
+        ? null
+        : vehicle;
+  }
+}
+
+class TripActivityModel {
+  int? id;
+  String? title;
+  DateTime? activityDate;
+  String? startTime;
+  String? endTime;
+
+  num? meetingPointLat;
+  num? meetingPointLng;
+  String? meetingPointText;
+  String? status;
+
+  TripActivityTypeModel? activityType;
+
+  TripActivityModel.fromJson(Map<String, dynamic> json) {
+    id = ApiParse.intOf(json['id']);
+    title = ApiParse.stringOf(json['title']);
+    activityDate = ApiParse.dateOf(json['activity_date']);
+    startTime = ApiParse.timeOf(json['start_time']);
+    endTime = ApiParse.timeOf(json['end_time']);
+    meetingPointLat = ApiParse.numOf(json['meeting_point_lat']);
+    meetingPointLng = ApiParse.numOf(json['meeting_point_lng']);
+    meetingPointText = ApiParse.stringOf(json['meeting_point_text']);
+    status = ApiParse.labelOf(json['status']);
+    activityType = TripActivityTypeModel.of(json['activity_type']);
+  }
+}
+
+class TripActivityTypeModel {
+  TripActivityTypeModel({this.id, this.name, this.color, this.icon});
+
+  final int? id;
+  final String? name;
+  final String? color;
+  final String? icon;
+
+  static TripActivityTypeModel? of(dynamic value) {
+    if (value is! Map) return null;
+    return TripActivityTypeModel(
+      id: ApiParse.intOf(value['id']),
+      name: ApiParse.stringOf(value['name']),
+      color: ApiParse.stringOf(value['color']),
+      icon: ApiParse.stringOf(value['icon']),
+    );
+  }
+}
+
 class TripStaffModel {
   int? id;
   String? name;
+  String? role;
 
   TripStaffModel.fromJson(Map<String, dynamic> json) {
     id = ApiParse.intOf(json['id']);
     name = ApiParse.stringOf(json['name']);
+    role = ApiParse.labelOf(json['role']);
   }
+}
+
+class TripPaymentScheduleModel {
+  int? id;
+  String? type;
+  String? installmentName;
+  int? minAmountPercent;
+  int? durationInHours;
+  DateTime? dueDate;
+
+  TripPaymentScheduleModel.fromJson(Map<String, dynamic> json) {
+    id = ApiParse.intOf(json['id']);
+    type = ApiParse.labelOf(json['type']);
+    installmentName = ApiParse.stringOf(json['installment_name']);
+    minAmountPercent = ApiParse.intOf(json['min_amount_percent']);
+    durationInHours = ApiParse.intOf(json['duration_in_hours']);
+    dueDate = ApiParse.dateOf(json['due_date']);
+  }
+  bool get isDuration => type == 'duration' || dueDate == null;
 }

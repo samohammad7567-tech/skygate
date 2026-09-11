@@ -1,10 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-/// Rule — "أو" — rule between the two service buttons.
-///
-/// The auth flow has its own separator in the brand blue; this one is drawn in
-/// white because it sits on the photo scrim.
 class SplashOrDivider extends StatelessWidget {
   const SplashOrDivider({super.key});
 

@@ -1,10 +1,5 @@
 import 'package:skygate/core/constants/app_assets.dart';
 
-/// One onboarding page: an illustration plus its localized copy.
-///
-/// The five pages are fixed design content — the text is a localization key and
-/// the image is a bundled asset — so they ship as a local [pages] catalogue
-/// rather than coming down from the API.
 class OnBoardingPageModel {
   final String image;
   final String titleKey;
@@ -15,9 +10,6 @@ class OnBoardingPageModel {
     required this.titleKey,
     required this.descriptionKey,
   });
-
-  /// In page order. Page 1 is the first the user sees; with an RTL locale the
-  /// indicator therefore highlights its right-most dot.
   static const List<OnBoardingPageModel> pages = [
     OnBoardingPageModel(
       image: AppAssets.onboarding1,

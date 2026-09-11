@@ -12,7 +12,6 @@ import 'package:skygate/features/booking/widgets/booking_room_card.dart';
 import 'package:skygate/core/components/booking_section_title.dart';
 import 'package:skygate/core/components/booking_step_scaffold.dart';
 
-/// Step 4 — "اختر نوع الغرفة". The choice applies to both cities.
 class BookingRoomTypeScreen extends StatefulWidget {
   const BookingRoomTypeScreen({super.key});
 

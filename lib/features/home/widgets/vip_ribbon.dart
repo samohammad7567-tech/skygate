@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/home_assets.dart';
 
-/// Orange pennant hanging from the top of the custom-trip artwork.
-///
-/// The pennant shape ships as an export; only the label is drawn on top of it.
 class VipRibbon extends StatelessWidget {
   const VipRibbon({super.key, this.width = 32, this.height = 46});
 

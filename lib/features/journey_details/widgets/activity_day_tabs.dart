@@ -1,12 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/utils/app_format.dart';
-import 'package:skygate/features/journey_details/models/activity_model.dart';
+import 'package:skygate/core/models/activity_model.dart';
 
-/// "اليوم ٣ · ٥ مارس" tabs above the activities timeline.
-///
-/// Three looks: the selected day is filled, the day the trip is on today is
-/// outlined and carries a dot, and the rest are plain.
 class ActivityDayTabs extends StatelessWidget {
   const ActivityDayTabs({
     super.key,

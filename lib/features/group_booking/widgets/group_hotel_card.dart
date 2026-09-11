@@ -5,11 +5,9 @@ import 'package:skygate/core/components/cached_image.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
 import 'package:skygate/core/models/hotel_model.dart';
 import 'package:skygate/features/group_booking/models/group_room_allocation.dart';
-import 'package:skygate/features/group_booking/widgets/group_hotel_summary.dart';
+import 'package:skygate/core/components/hotel_summary.dart';
 import 'package:skygate/features/group_booking/widgets/group_room_chip.dart';
 
-/// One card on "اختر فندق مكة المكرمة": the hotel summary, the action that
-/// hands it rooms, and the sizes it ended up with.
 class GroupHotelCard extends StatelessWidget {
   const GroupHotelCard({
     super.key,
@@ -19,11 +17,7 @@ class GroupHotelCard extends StatelessWidget {
   });
 
   final HotelModel hotel;
-
-  /// Rooms this hotel has been given; empty until the user allocates some.
   final GroupRoomAllocation allocation;
-
-  /// Opens "حدد عدد الغرف و أنواعها" for this hotel.
   final VoidCallback onAllocate;
 
   @override
@@ -43,7 +37,7 @@ class GroupHotelCard extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(child: GroupHotelSummary(hotel: hotel)),
+              Expanded(child: HotelSummary(hotel: hotel)),
               const Gap(10),
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
@@ -76,7 +70,6 @@ class GroupHotelCard extends StatelessWidget {
   }
 }
 
-/// "إضافة عدد الغرف و أنواعها" before anything is allocated, "تعديل" after.
 class _AllocateButton extends StatelessWidget {
   const _AllocateButton({required this.isAllocated, required this.onTap});
 

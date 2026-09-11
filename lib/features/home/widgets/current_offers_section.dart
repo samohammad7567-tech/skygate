@@ -7,7 +7,6 @@ import 'package:skygate/core/utils/screen_size.dart';
 import 'package:skygate/features/home/models/offer_model.dart';
 import 'package:skygate/features/home/widgets/offer_card.dart';
 
-/// "العروض الحالية" header plus the horizontal offer carousel.
 class CurrentOffersSection extends StatelessWidget {
   const CurrentOffersSection({
     super.key,

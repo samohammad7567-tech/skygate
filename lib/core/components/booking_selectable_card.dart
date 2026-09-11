@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// The shell every "pick one" card in the wizard sits in: a rounded card that
-/// takes the primary border and tint once it is ticked.
-///
-/// The radio itself is drawn by the card's own header, because the design puts
-/// it in a different place on each step.
 class BookingSelectableCard extends StatelessWidget {
   const BookingSelectableCard({
     super.key,
@@ -48,8 +43,6 @@ class BookingSelectableCard extends StatelessWidget {
   }
 }
 
-/// The ringed dot the wizard uses instead of a Material `Radio`, so it keeps
-/// the design's proportions on every card.
 class BookingRadio extends StatelessWidget {
   const BookingRadio({super.key, required this.isSelected, this.size = 24});
 

@@ -8,8 +8,6 @@ import 'package:skygate/core/constants/auth_assets.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/main/views/main_screen.dart';
 
-/// "تأكيد الحجز" — the last card of the wizard, shown once the booking has
-/// been created and only the first instalment is outstanding.
 class BookingConfirmationScreen extends StatelessWidget {
   const BookingConfirmationScreen({super.key});
 

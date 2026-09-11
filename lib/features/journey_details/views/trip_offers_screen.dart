@@ -8,7 +8,6 @@ import 'package:skygate/features/journey_details/controller/cubit/trip_offers_cu
 import 'package:skygate/features/journey_details/widgets/journey_bottom_bar.dart';
 import 'package:skygate/features/journey_details/widgets/trip_offer_card.dart';
 
-/// "عروض الرحلة" — the bookable price sets, one card per route.
 class TripOffersScreen extends StatelessWidget {
   const TripOffersScreen({super.key, required this.tripId});
 

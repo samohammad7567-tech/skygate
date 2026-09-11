@@ -8,8 +8,6 @@ import 'package:skygate/core/constants/journey_assets.dart';
 import 'package:skygate/core/models/hotel_model.dart';
 import 'package:skygate/core/components/booking_selectable_card.dart';
 
-/// One card on "اختر فندق مكة المكرمة": the radio, the hotel summary, then the
-/// cover photo on the end side.
 class BookingHotelCard extends StatelessWidget {
   const BookingHotelCard({
     super.key,

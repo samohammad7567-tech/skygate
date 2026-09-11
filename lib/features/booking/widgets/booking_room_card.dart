@@ -4,8 +4,6 @@ import 'package:skygate/features/booking/models/room_type_model.dart';
 import 'package:skygate/core/components/booking_selectable_card.dart';
 import 'package:skygate/core/components/room_beds_row.dart';
 
-/// One card on "اختر نوع الغرفة": the tinted title strip with a bed per
-/// sleeper, then the adult price and the "شارفت على الانتهاء" warning.
 class BookingRoomCard extends StatelessWidget {
   const BookingRoomCard({
     super.key,

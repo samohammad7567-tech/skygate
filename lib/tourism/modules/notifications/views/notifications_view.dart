@@ -41,7 +41,7 @@ class NotificationsView extends GetView<NotificationsController> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(
-                  "assets/images/no-notifications.png",
+                  "assets/images/pngs/no_notifications.png",
                   width: 200.0.w,
                 ),
                 Padding(padding: EdgeInsets.only(bottom: 30.0.h)),

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_field_decoration.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
 
-/// "الجنس" picker. Values travel to the API as `male` / `female`.
 class AppGenderField extends StatelessWidget {
   const AppGenderField({
     super.key,

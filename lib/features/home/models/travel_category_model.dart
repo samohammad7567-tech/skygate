@@ -1,10 +1,5 @@
 import 'package:skygate/core/constants/home_assets.dart';
 
-/// One pill in the horizontal row under the hero (عمرة، طيران، فنادق ...).
-///
-/// The row is fixed design content — the label is a localization key and the
-/// icon is a bundled asset — so it ships as a local [catalogue] rather than
-/// coming down from the API.
 class TravelCategoryModel {
   final String id;
   final String titleKey;
@@ -20,9 +15,6 @@ class TravelCategoryModel {
     : id = json['id'].toString(),
       titleKey = json['title'] ?? '',
       icon = json['icon'] ?? HomeAssets.umrah;
-
-  /// Ordered right-to-left exactly as in the design: عمرة sits on the start
-  /// (right) edge and is the pill selected on first paint.
   static const List<TravelCategoryModel> catalogue = [
     TravelCategoryModel(
       id: 'umrah',
@@ -48,6 +40,11 @@ class TravelCategoryModel {
       id: 'sea_transport',
       titleKey: 'category_sea_transport',
       icon: HomeAssets.seaTransport,
+    ),
+    TravelCategoryModel(
+      id: 'transport',
+      titleKey: 'category_transport',
+      icon: HomeAssets.car,
     ),
   ];
 }

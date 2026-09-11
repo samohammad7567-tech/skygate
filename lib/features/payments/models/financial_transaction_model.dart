@@ -2,12 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/utils/api_parse.dart';
 
-/// Where a transfer stands once it has been sent for review.
-///
-/// The API types `status` as an array of strings and never publishes the set
-/// of values, so the slugs below are matched leniently and anything
-/// unrecognised is treated as still under review — the state that shows the
-/// payer no figure they could act on wrongly.
 enum TransactionStatus {
   pending('pending', 'transaction_pending'),
   confirmed('confirmed', 'transaction_confirmed'),
@@ -54,32 +48,16 @@ enum TransactionStatus {
   }
 }
 
-/// `FinancialTransactionResource` — one row of "المعاملات المالية".
 class FinancialTransactionModel {
   int? id;
   num? amount;
   String? currency;
   TransactionStatus status = TransactionStatus.pending;
-
-  /// The receipt the payer uploaded, for the row that wants to show it back.
   String? receiptPhotoUrl;
 
   String? referenceNumber;
-
-  /// When the transfer was submitted — the date and time the card prints.
   DateTime? createdAt;
-
-  /// Who made the transfer, printed in blue above the amount.
-  ///
-  /// `FinancialTransactionResource` publishes no payer, so this stays null and
-  /// the card falls back to the reference number. Fill it in when the resource
-  /// gains a `payer` / `pilgrim` field.
   String? payerName;
-
-  /// "سبب الرفض : …" — the red-tinted note under a rejected transfer.
-  ///
-  /// Not published either; the resource carries a status but no reason, so a
-  /// rejected transfer currently shows the chip alone.
   String? rejectionReason;
 
   FinancialTransactionModel.fromJson(Map<String, dynamic> json) {
@@ -95,8 +73,6 @@ class FinancialTransactionModel {
       json['rejection_reason'] ?? json['rejection_note'],
     );
   }
-
-  /// The amount as the card prints it, e.g. `500$`.
   String get formattedAmount =>
       amount == null ? '—' : '$amount${currency ?? ''}';
 }

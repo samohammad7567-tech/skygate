@@ -75,7 +75,7 @@ class TripCard extends StatelessWidget {
                 style: context.textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),
               ),
               Image.asset(
-                "assets/images/plane.png",
+                "assets/images/pngs/plane.png",
                 width: 100.0.w,
               ),
               Text(
@@ -107,7 +107,7 @@ class TripCard extends StatelessWidget {
                             )
                           ],
                         ),
-                        SvgPicture.asset("assets/images/left-arrow.svg"),
+                        SvgPicture.asset("assets/images/svgs/left_arrow.svg"),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -121,7 +121,7 @@ class TripCard extends StatelessWidget {
                             )
                           ],
                         ),
-                        SvgPicture.asset("assets/images/left-arrow.svg"),
+                        SvgPicture.asset("assets/images/svgs/left_arrow.svg"),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -135,7 +135,7 @@ class TripCard extends StatelessWidget {
                             )
                           ],
                         ),
-                        SvgPicture.asset("assets/images/left-arrow.svg"),
+                        SvgPicture.asset("assets/images/svgs/left_arrow.svg"),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -173,7 +173,7 @@ class TripCard extends StatelessWidget {
                         )
                       ],
                     ),
-                    SvgPicture.asset("assets/images/left-arrow.svg"),
+                    SvgPicture.asset("assets/images/svgs/left_arrow.svg"),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -187,7 +187,7 @@ class TripCard extends StatelessWidget {
                         )
                       ],
                     ),
-                    SvgPicture.asset("assets/images/left-arrow.svg"),
+                    SvgPicture.asset("assets/images/svgs/left_arrow.svg"),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

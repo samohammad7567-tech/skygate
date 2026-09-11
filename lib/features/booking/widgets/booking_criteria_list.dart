@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-/// "شروط و معايير الحجز :" block at the foot of a booking-type card.
 class BookingCriteriaList extends StatelessWidget {
   const BookingCriteriaList({super.key, required this.criteriaKeys});
 

@@ -4,18 +4,19 @@ import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
 import 'package:skygate/core/models/booking_type.dart';
 
-/// "حجز فردي" / "حجز مجموعة" chips.
 class TripOfferBookingTypes extends StatelessWidget {
   const TripOfferBookingTypes({
     super.key,
     required this.types,
     required this.selectedType,
     required this.onSelected,
+    this.labels = const {},
   });
 
   final List<BookingType> types;
   final BookingType? selectedType;
   final ValueChanged<BookingType> onSelected;
+  final Map<BookingType, String> labels;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class TripOfferBookingTypes extends StatelessWidget {
             children: [
               for (final type in types)
                 _BookingTypeChip(
-                  type: type,
+                  label: labels[type] ?? type.labelKey.tr(),
                   isSelected: type == selectedType,
                   onTap: () => onSelected(type),
                 ),
@@ -51,12 +52,12 @@ class TripOfferBookingTypes extends StatelessWidget {
 
 class _BookingTypeChip extends StatelessWidget {
   const _BookingTypeChip({
-    required this.type,
+    required this.label,
     required this.isSelected,
     required this.onTap,
   });
 
-  final BookingType type;
+  final String label;
   final bool isSelected;
   final VoidCallback onTap;
 
@@ -83,7 +84,7 @@ class _BookingTypeChip extends StatelessWidget {
             border: Border.all(color: color),
           ),
           child: Text(
-            type.labelKey.tr(),
+            label,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: theme.textTheme.titleSmall?.copyWith(color: color),

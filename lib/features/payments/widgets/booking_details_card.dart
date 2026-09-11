@@ -1,17 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:skygate/core/models/traveler_audience.dart';
+import 'package:skygate/core/components/app_grand_total.dart';
 import 'package:skygate/core/components/payment_detail_row.dart';
+import 'package:skygate/core/models/traveler_audience.dart';
 import 'package:skygate/features/payments/models/booking_details_model.dart';
-import 'package:skygate/features/payments/widgets/booking_grand_total.dart';
 import 'package:skygate/features/payments/widgets/booking_room_details_card.dart';
 
-/// "تفاصيل الحجز" — the read-only review of one booking.
-///
-/// An individual booking prints its single room's fields straight into the
-/// table; a group booking prints the head counts instead and gives each room a
-/// card of its own, with the grand total under the lot.
 class BookingDetailsCard extends StatelessWidget {
   const BookingDetailsCard({
     super.key,
@@ -20,8 +15,6 @@ class BookingDetailsCard extends StatelessWidget {
   });
 
   final BookingDetailsModel details;
-
-  /// Opens "تفاصيل المسافرين" for one room of a group booking.
   final void Function(BookingRoomDetailsModel room) onRoomDetails;
 
   @override
@@ -89,7 +82,6 @@ class BookingDetailsCard extends StatelessWidget {
     );
   }
 
-  /// The single room's fields, printed inline under "النوع".
   List<Widget> _individual(BuildContext context, ThemeData theme) {
     final room = details.singleRoom;
 
@@ -115,7 +107,6 @@ class BookingDetailsCard extends StatelessWidget {
     ];
   }
 
-  /// The head counts, one card per room, then the grand total.
   List<Widget> _group(BuildContext context) {
     return [
       const Divider(height: 1),
@@ -136,7 +127,12 @@ class BookingDetailsCard extends StatelessWidget {
         ),
         const Gap(12),
       ],
-      BookingGrandTotal(amount: '${details.total}${details.currency ?? ''}'),
+      AppGrandTotal(
+        amount: '${details.total}${details.currency ?? ''}',
+        padding: const EdgeInsets.only(bottom: 16),
+        labelAlpha: 0.5,
+        amountStyle: Theme.of(context).textTheme.titleLarge,
+      ),
     ];
   }
 }

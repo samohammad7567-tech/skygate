@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
-import 'package:skygate/features/journey_details/models/activity_model.dart';
+import 'package:skygate/core/models/activity_model.dart';
 import 'package:skygate/core/models/journey_transport.dart';
 
 void main() {

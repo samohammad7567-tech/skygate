@@ -8,7 +8,6 @@ import 'package:skygate/core/components/dashed_box.dart';
 import 'package:skygate/core/components/upload_size_chip.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
 
-/// "إضافة صورة البروفايل" drop zone on the first signup step.
 class ProfilePhotoPicker extends StatelessWidget {
   const ProfilePhotoPicker({
     super.key,

@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/home_assets.dart';
 
-/// The three selling points under the custom-trip description, separated by
-/// vertical rules.
 class CustomTripFeatures extends StatelessWidget {
   const CustomTripFeatures({super.key});
 

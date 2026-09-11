@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// Dotted rule used by the timeline rails and either side of a leg's arrow.
-///
-/// It paints rather than laying out a run of boxes, so it keeps working inside
-/// an [IntrinsicHeight] — which is exactly where the timeline puts it.
 class DashedLine extends StatelessWidget {
   const DashedLine({
     super.key,

@@ -1,15 +1,8 @@
 import 'package:skygate/core/constants/auth_assets.dart';
 
-/// One card on the "ملفات المعتمر" step: an icon, a title key and the file the
-/// user attached to it.
 class UmrahDocumentModel {
-  /// Sent to the API as the document discriminator.
   final String id;
-
-  /// Translation key for the card title.
   final String titleKey;
-
-  /// Bundled SVG shown in the round badge.
   final String icon;
 
   const UmrahDocumentModel({
@@ -17,8 +10,6 @@ class UmrahDocumentModel {
     required this.titleKey,
     required this.icon,
   });
-
-  /// Fixed design content, in the order the cards appear in the mockup.
   static const List<UmrahDocumentModel> catalogue = [
     UmrahDocumentModel(
       id: 'passport_photo',
@@ -61,9 +52,6 @@ class UmrahDocumentModel {
       icon: AuthAssets.personBook,
     ),
   ];
-
-  /// The four bullets under "شروط و المعايير المقبولة:" — identical on every
-  /// card in the design.
   static const List<String> criteriaKeys = [
     'criteria_background',
     'criteria_look_at_camera',

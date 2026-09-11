@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 
-/// Tinted round plate holding one glyph — the leading element of the journey
-/// supervisors card, the stay chips, the section rows, the hotel detail rows
-/// and the booking-type cards.
 class AppGlyphPlate extends StatelessWidget {
   const AppGlyphPlate({
     super.key,
@@ -14,11 +11,7 @@ class AppGlyphPlate extends StatelessWidget {
     this.color,
     this.background,
   }) : assert(asset != null || icon != null, 'pass an asset or an icon');
-
-  /// Bundled glyph. Takes precedence over [icon].
   final String? asset;
-
-  /// Material glyph, used where the design's icon was not part of the export.
   final IconData? icon;
 
   final double size;

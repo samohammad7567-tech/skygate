@@ -26,7 +26,7 @@ class TravelInfoView extends GetView<TravelInfoController> {
         centerTitle: true,
         elevation: 0.0,
         title: SvgPicture.asset(
-          "assets/images/big-logo.svg",
+          "assets/images/svgs/big_logo.svg",
           width: 105.0.w,
           height: 47.0.h,
         ),
@@ -36,7 +36,7 @@ class TravelInfoView extends GetView<TravelInfoController> {
         height: 1 * 1.sh,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/seko.png"),
+            image: AssetImage("assets/images/pngs/seko.png"),
             fit: BoxFit.fill,
           ),
         ),

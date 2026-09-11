@@ -4,7 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:skygate/features/group_booking/models/group_room_allocation.dart';
 import 'package:skygate/core/models/group_room_type.dart';
 
-/// "غرفة ثنائية ①" pills under a hotel card — one per size the hotel took.
 class GroupRoomChips extends StatelessWidget {
   const GroupRoomChips({super.key, required this.allocation});
 

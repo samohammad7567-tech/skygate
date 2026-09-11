@@ -4,12 +4,6 @@ import 'package:skygate/core/components/cached_image.dart';
 import 'package:skygate/features/payments/models/payment_method_model.dart';
 import 'package:skygate/features/payments/widgets/payment_radio.dart';
 
-/// One option of "طريقة التحويل": the ring, the provider's name over its
-/// bulleted steps, and the logo.
-///
-/// Every line of the body is authored by the back office — the card renders
-/// whatever `instructions` carries rather than knowing anything about a
-/// particular provider.
 class PaymentMethodCard extends StatelessWidget {
   const PaymentMethodCard({
     super.key,
@@ -73,7 +67,6 @@ class PaymentMethodCard extends StatelessWidget {
   }
 }
 
-/// The name, the subtitle and one bullet per instruction.
 class _Body extends StatelessWidget {
   const _Body({required this.method});
 

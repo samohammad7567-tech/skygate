@@ -7,8 +7,8 @@ import 'package:skygate/features/home/models/offer_model.dart';
 import 'package:skygate/features/home/widgets/offer_date_chip.dart';
 import 'package:skygate/features/home/widgets/offer_price.dart';
 import 'package:skygate/features/home/widgets/offer_title_row.dart';
+import 'package:skygate/features/home/widgets/vip_ribbon.dart';
 
-/// One card in the "العروض الحالية" carousel.
 class OfferCard extends StatelessWidget {
   const OfferCard({
     super.key,
@@ -40,14 +40,25 @@ class OfferCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         spacing: 6,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: CachedImage(
-              url: offer.image,
-              fallbackAsset: HomeAssets.kaaba,
-              height: 110,
-              width: double.infinity,
-            ),
+          Stack(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: CachedImage(
+                  url: offer.image,
+                  fallbackAsset: HomeAssets.kaaba,
+                  height: 110,
+                  width: double.infinity,
+                ),
+              ),
+              // A row of `vip_trips` rather than of `trips.items`.
+              if (offer.isVip)
+                const PositionedDirectional(
+                  top: 0,
+                  start: 12,
+                  child: VipRibbon(),
+                ),
+            ],
           ),
           OfferTitleRow(offer: offer),
           Text(
@@ -58,7 +69,12 @@ class OfferCard extends StatelessWidget {
           ),
           OfferDatesRow(offer: offer),
           OfferPrice(offer: offer),
-          CustomButton(label: 'view_details'.tr(), onPressed: onViewDetails),
+          CustomButton(
+            label: offer.isBookingOpen
+                ? 'view_details'.tr()
+                : 'booking_closed'.tr(),
+            onPressed: onViewDetails,
+          ),
         ],
       ),
     );

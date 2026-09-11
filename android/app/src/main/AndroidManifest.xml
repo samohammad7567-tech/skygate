@@ -3,6 +3,11 @@
          file attachments and foreground notification handling. -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- Android 12+ lets the user answer the location prompt with "approximate
+         only". The map's safe-area rings are hundreds of metres wide, so a
+         coarse fix is still worth reporting — without this the prompt's
+         approximate option yields nothing at all. -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -39,7 +44,12 @@
             android:name="flutterEmbedding"
             android:value="2" />
 
-        <!-- Used by the tourism module's airport map and taxi screens. -->
+        <!-- Google Maps SDK key. Used by the tourism module's airport map and
+             taxi screens, and by the Umrah "الخريطة" tracking tab.
+
+             This is the key the tourism module shipped with; replace the value
+             below with the project's own — and the matching one in
+             ios/Runner/AppDelegate.swift, which must be the same key. -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD0Z3LxcTIyO22wBIku2IIVm4yx5ROu0_M" />

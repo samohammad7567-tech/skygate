@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-/// Small caption above a field, used on "تأكيد بيانات الجواز" where every row
-/// is labelled rather than relying on a placeholder.
 class LabeledField extends StatelessWidget {
   const LabeledField({super.key, required this.label, required this.child});
 

@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/features/main/models/nav_item_model.dart';
 
-/// Floating blue navigation bar; the active destination sits on a lighter
-/// rounded plate.
 class AppBottomNavBar extends StatelessWidget {
   const AppBottomNavBar({
     super.key,

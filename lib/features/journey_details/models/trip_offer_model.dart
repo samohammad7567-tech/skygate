@@ -1,63 +1,101 @@
 import 'package:skygate/core/models/booking_type.dart';
 import 'package:skygate/core/models/trip_model.dart';
 
-/// One bookable price set on "عروض الرحلة".
-///
-/// Built from one entry of the trip's `packages[]`, which is what
-/// `POST app/bookings` calls a `package_id`: a room type at its four rates.
 class TripOfferModel {
   TripOfferModel({
     this.id,
     this.routeTitle,
     this.routeName,
     this.bookingTypes = const [],
+    this.typeLabels = const {},
     this.roomType,
     this.adultPrice,
     this.childPrice,
     this.infantPrice,
+    this.infantWithSeatPrice,
     this.bedLockFee,
     this.currency,
+    this.availableRooms,
   });
-
-  /// The `package_id` the booking is created against.
   final int? id;
-
-  /// Ordinal caption of the card. Null falls back to "العرض الأول".
   final String? routeTitle;
-
-  /// Who the package is sold to, printed in orange after the title.
   final String? routeName;
-
-  /// Booking types this offer can be taken as.
   final List<BookingType> bookingTypes;
-
-  /// Room the price assumes, e.g. "ثنائية".
+  final Map<BookingType, String> typeLabels;
   final String? roomType;
 
   final num? adultPrice;
   final num? childPrice;
   final num? infantPrice;
-
-  /// "إغلاق السرير الواحد" — what an unbooked bed in the room costs.
+  final num? infantWithSeatPrice;
   final num? bedLockFee;
-
-  /// Currency as the API prints it, e.g. `SAR`.
   final String? currency;
+  final int? availableRooms;
+  bool get hasRooms => availableRooms == null || availableRooms! > 0;
+  factory TripOfferModel.fromPackage(
+    TripPackageModel package, {
+    String? routeTitle,
+  }) {
+    final labels = package.audienceLabels;
 
-  /// One package as a card.
-  ///
-  /// The endpoint does not say which booking types a package accepts, and both
-  /// wizards can book any of them, so every card offers the pair.
-  factory TripOfferModel.fromPackage(TripPackageModel package) =>
-      TripOfferModel(
-        id: package.id,
-        routeName: package.audience,
-        bookingTypes: BookingType.values,
-        roomType: package.roomType,
-        adultPrice: package.priceAdult,
-        childPrice: package.priceChild,
-        infantPrice: package.priceInfant,
-        bedLockFee: package.bedLockFee,
-        currency: package.currency,
-      );
+    return TripOfferModel(
+      id: package.id,
+      routeTitle: routeTitle,
+      routeName: _audienceLabel(package),
+      bookingTypes: _bookingTypesOf(package),
+      typeLabels: {
+        BookingType.individual: ?labels?.individualLabel,
+        BookingType.group: ?labels?.groupLabel,
+      },
+      roomType: package.roomType,
+      adultPrice: package.priceAdult,
+      childPrice: package.priceChild,
+      infantPrice: package.priceInfant,
+      infantWithSeatPrice: package.priceInfantWithSeat,
+      bedLockFee: package.bedLockFee,
+      currency: package.currency,
+      availableRooms: package.availableRooms,
+    );
+  }
+  static List<TripOfferModel> allOf(TripModel trip) {
+    if (trip.packagesByItinerary.isEmpty) {
+      return [
+        for (final package in trip.packages)
+          TripOfferModel.fromPackage(package),
+      ];
+    }
+
+    return [
+      for (final route in trip.packagesByItinerary)
+        for (final package in route.packages)
+          TripOfferModel.fromPackage(package, routeTitle: route.itineraryName),
+    ];
+  }
+
+  static List<BookingType> _bookingTypesOf(TripPackageModel package) {
+    final labels = package.audienceLabels;
+    if (labels != null && (labels.individual || labels.group)) {
+      return [
+        if (labels.individual) BookingType.individual,
+        if (labels.group) BookingType.group,
+      ];
+    }
+
+    return switch (package.audience) {
+      'individual' => const [BookingType.individual],
+      'group' => const [BookingType.group],
+      _ => BookingType.values,
+    };
+  }
+
+  static String? _audienceLabel(TripPackageModel package) {
+    final labels = package.audienceLabels;
+    if (labels == null) return package.audience;
+
+    return switch ((labels.individual, labels.group)) {
+      (true, false) => labels.individualLabel,
+      (false, true) => labels.groupLabel,
+      _ => labels.individualLabel ?? labels.groupLabel,
+    };
+  }
 }

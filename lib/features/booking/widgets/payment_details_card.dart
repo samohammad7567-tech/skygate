@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:skygate/features/booking/models/booking_summary_model.dart';
 import 'package:skygate/core/components/payment_detail_row.dart';
 
-/// "تفاصيل الحجز" table on the summary step: one captioned row per field, with
-/// the total printed in orange.
 class PaymentDetailsCard extends StatelessWidget {
   const PaymentDetailsCard({super.key, required this.summary});
 

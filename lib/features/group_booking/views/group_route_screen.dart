@@ -11,7 +11,6 @@ import 'package:skygate/core/components/booking_step_scaffold.dart';
 import 'package:skygate/features/group_booking/controller/cubit/group_booking_cubit.dart';
 import 'package:skygate/features/group_booking/views/group_rooms_screen.dart';
 
-/// Step 6 — "اختر المسار". The whole group travels the same route.
 class GroupRouteScreen extends StatefulWidget {
   const GroupRouteScreen({super.key});
 

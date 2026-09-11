@@ -9,7 +9,6 @@ import 'package:skygate/features/payments/widgets/payment_field_label.dart';
 import 'package:skygate/features/payments/widgets/payment_method_card.dart';
 import 'package:skygate/features/payments/widgets/payment_receipt_field.dart';
 
-/// The four blocks of "معلومات الدفع", in the order the sheet asks for them.
 class PaymentSheetForm extends StatelessWidget {
   const PaymentSheetForm({
     super.key,
@@ -70,8 +69,6 @@ class PaymentSheetForm extends StatelessWidget {
   }
 }
 
-/// "طريقة التحويل" — the options from `GET app/payment-methods`, or the state
-/// the call left the column in.
 class _Methods extends StatelessWidget {
   const _Methods({required this.cubit, required this.state});
 

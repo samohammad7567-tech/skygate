@@ -5,7 +5,6 @@ import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
 
-/// One bed glyph per sleeper the room takes, under its name.
 class RoomBedsRow extends StatelessWidget {
   const RoomBedsRow({super.key, required this.count});
 
@@ -30,7 +29,6 @@ class RoomBedsRow extends StatelessWidget {
   }
 }
 
-/// "البالغ" with its glyph on the end side, the orange price on the start.
 class RoomPriceRow extends StatelessWidget {
   const RoomPriceRow({super.key, required this.price, required this.currency});
 
@@ -72,7 +70,6 @@ class RoomPriceRow extends StatelessWidget {
   }
 }
 
-/// Red outlined pill warning that the room is nearly booked out.
 class AlmostFullChip extends StatelessWidget {
   const AlmostFullChip({super.key});
 

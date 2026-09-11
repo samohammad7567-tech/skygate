@@ -1,35 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skygate/core/constants/api_endpoints.dart';
+import 'package:skygate/core/models/trip_model.dart';
 import 'package:skygate/core/services/dio_service.dart';
+import 'package:skygate/core/services/trip_service.dart';
 import 'package:skygate/core/utils/api_error.dart';
-import 'package:skygate/features/journey_details/models/activity_model.dart';
+import 'package:skygate/core/utils/api_parse.dart';
+import 'package:skygate/core/models/activity_model.dart';
 
 part 'activities_state.dart';
 
-/// Owns "تفاصيل الأنشطة" — the day tabs and the timeline of the selected day.
-///
-/// `GET app/activities` answers with the programme of the pilgrim's own trip
-/// as one flat list and takes no trip parameter, so the days are cut from the
-/// activity dates here.
 class ActivitiesCubit extends Cubit<ActivitiesState> {
-  ActivitiesCubit() : super(ActivitiesInitial());
+  ActivitiesCubit({this.tripId}) : super(ActivitiesInitial());
 
   ActivitiesCubit get(BuildContext context) => BlocProvider.of(context);
+  final int? tripId;
 
   List<ActivityDayModel> days = [];
-
-  /// Index of the filled day tab.
   int selectedDayIndex = 0;
-
-  /// Day the trip is on right now; its tab is outlined and carries a dot.
   int todayIndex = -1;
 
   ActivityDayModel? get selectedDay =>
       selectedDayIndex < days.length ? days[selectedDayIndex] : null;
-
-  /// Every kind present in the programme, for the legend bar. Ordered by the
-  /// enum so the chips keep a stable position between days.
   List<ActivityKind> get legend {
     final kinds = days
         .expand((day) => day.activities)
@@ -44,23 +36,30 @@ class ActivitiesCubit extends Cubit<ActivitiesState> {
     emit(DaySelected());
   }
 
-  Future<void> getActivities() async {
+  Future<void> getActivities({bool refresh = false}) async {
     emit(ActivitiesLoading());
-    return DioService.get(ApiEndpoints.activities)
-        .then((response) {
-          days = ActivityDayModel.daysFrom(response.data['data'] as List? ?? []);
-          todayIndex = _findToday();
-          if (selectedDayIndex >= days.length) selectedDayIndex = 0;
-          emit(ActivitiesLoaded());
-        })
-        .catchError((error) {
-          debugPrint('getActivities error: $error');
-          emit(ActivitiesError(message: ApiError.messageOf(error)));
-        });
+    try {
+      days = ActivityDayModel.daysFrom(await _activities(refresh: refresh));
+      todayIndex = _findToday();
+      if (selectedDayIndex >= days.length) selectedDayIndex = 0;
+      emit(ActivitiesLoaded());
+    } catch (error) {
+      debugPrint('getActivities error: $error');
+      emit(ActivitiesError(message: ApiError.messageOf(error)));
+    }
   }
 
-  /// Index of the day whose date falls on today, or `-1` when the trip has not
-  /// started yet.
+  Future<List<TripActivityModel>> _activities({required bool refresh}) async {
+    final id = tripId;
+    if (id != null) {
+      final trip = await TripService.trip(id, refresh: refresh);
+      return trip.activities;
+    }
+
+    final response = await DioService.get(ApiEndpoints.activities);
+    return ApiParse.listOf(response.data['data'], TripActivityModel.fromJson);
+  }
+
   int _findToday() {
     final now = DateTime.now();
     return days.indexWhere(

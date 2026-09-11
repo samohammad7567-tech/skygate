@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 
-/// Three numbered dots at the top of the signup card.
-///
-/// The row is laid out in logical order (1, 2, 3), so Arabic renders step 1 on
-/// the right exactly like the mockups while English reads left to right.
 class RegisterStepper extends StatelessWidget {
   const RegisterStepper({super.key, required this.currentStep});
-
-  /// 1-based index of the step being shown.
   final int currentStep;
 
   static const int _stepCount = 3;

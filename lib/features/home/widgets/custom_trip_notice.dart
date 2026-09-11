@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/home_assets.dart';
 
-/// Tinted "نرسل لك القبول و التفاصيل بأقرب وقت" strip above the CTA.
 class CustomTripNotice extends StatelessWidget {
   const CustomTripNotice({super.key, required this.label});
 

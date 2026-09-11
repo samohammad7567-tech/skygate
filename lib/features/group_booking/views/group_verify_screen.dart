@@ -17,11 +17,6 @@ import 'package:skygate/features/group_booking/controller/cubit/group_booking_cu
 import 'package:skygate/features/group_booking/views/group_passport_manual_screen.dart';
 import 'package:skygate/features/group_booking/views/group_passport_scan_screen.dart';
 
-/// Steps 2 and 4 (entry) — the camera, or the typed route through
-/// "إدخال يدوي", for whichever traveller is being added.
-///
-/// The leader lands here from the booking type as step 2; everyone after them
-/// arrives from "إضافة مسافر" as step 4.
 class GroupVerifyScreen extends StatelessWidget {
   const GroupVerifyScreen({super.key});
 

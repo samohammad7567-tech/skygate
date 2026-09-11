@@ -2,12 +2,6 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-/// The ring at the head of "ملخص المدفوعات": a pale track with the settled
-/// share drawn over it and the whole percent printed inside.
-///
-/// The arc starts at twelve o'clock and sweeps clockwise whichever way the page
-/// reads — a progress dial is not a directional glyph, so it must not mirror
-/// under RTL.
 class PaymentRing extends StatelessWidget {
   const PaymentRing({
     super.key,
@@ -15,12 +9,7 @@ class PaymentRing extends StatelessWidget {
     required this.percent,
     this.size = 108,
   });
-
-  /// Share of the total already paid, `0`–`1`.
   final double ratio;
-
-  /// What the centre prints. Passed separately so the label never disagrees
-  /// with a rounded arc.
   final int percent;
 
   final double size;

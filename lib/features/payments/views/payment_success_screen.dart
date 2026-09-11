@@ -8,11 +8,6 @@ import 'package:skygate/core/constants/auth_assets.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/main/views/main_screen.dart';
 
-/// "تأكيد الدفع" — the card shown once a transfer has been filed.
-///
-/// It says the transfer is *under review*, not that it was accepted: the app
-/// never confirms a payment itself, the back office does, and the transaction
-/// comes back `pending` until it has.
 class PaymentSuccessScreen extends StatelessWidget {
   const PaymentSuccessScreen({super.key});
 

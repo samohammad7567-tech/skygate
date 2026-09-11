@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// The rail beside one row of "جدول المدفوعات": the dot naming the
-/// instalment's standing, and the connectors joining it to its neighbours.
 class PaymentTimelineRail extends StatelessWidget {
   const PaymentTimelineRail({
     super.key,

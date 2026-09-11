@@ -20,7 +20,7 @@ class CustomNetworkImage extends StatelessWidget {
 
   Widget placeHolderImage() {
     return Image.asset(
-      'assets/images/avatar.png',
+      'assets/images/pngs/avatar.png',
       fit: fit,
     );
   }

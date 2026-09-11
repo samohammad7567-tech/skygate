@@ -6,7 +6,7 @@ import 'package:skygate/core/components/app_outlined_button.dart';
 import 'package:skygate/core/components/app_panel.dart';
 import 'package:skygate/core/components/form_section_title.dart';
 import 'package:skygate/core/components/passport_fields_form.dart';
-import 'package:skygate/core/components/passport_success_banner.dart';
+import 'package:skygate/core/components/passport_scan_banner.dart';
 import 'package:skygate/core/components/scan_launcher.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/core/components/booking_section_title.dart';
@@ -15,8 +15,6 @@ import 'package:skygate/features/group_booking/controller/cubit/group_booking_cu
 import 'package:skygate/features/group_booking/views/group_documents_screen.dart';
 import 'package:skygate/features/group_booking/widgets/group_guardian_field.dart';
 
-/// Steps 2 and 4 (scanned path) — the MRZ read back from the passport, plus
-/// the guardian every traveller after the leader travels under.
 class GroupPassportConfirmScreen extends StatefulWidget {
   const GroupPassportConfirmScreen({super.key});
 
@@ -73,7 +71,7 @@ class _GroupPassportConfirmScreenState
                 child: Column(
                   children: [
                     if (cubit.isScanned) ...[
-                      const PassportSuccessBanner(),
+                      const PassportScanBanner(),
                       const Gap(18),
                     ],
                     FormSectionTitle(text: 'confirm_data_below'.tr()),
