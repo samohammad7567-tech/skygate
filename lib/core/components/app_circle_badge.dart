@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 /// A filled circle carrying a short piece of text — a traveller's place in the
 /// group, the beds a lock covers, an instalment's share of the total.
@@ -9,7 +10,7 @@ class AppCircleBadge extends StatelessWidget {
   const AppCircleBadge({
     super.key,
     required this.text,
-    this.size = 18,
+    this.size,
     this.background,
     this.foreground,
     this.textStyle,
@@ -20,7 +21,7 @@ class AppCircleBadge extends StatelessWidget {
   final String text;
 
   /// Diameter of the circle.
-  final double size;
+  final double? size;
 
   /// Defaults to the theme's primary colour.
   final Color? background;
@@ -36,8 +37,8 @@ class AppCircleBadge extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      height: size,
-      width: size,
+      height: (size ?? 18.s),
+      width: (size ?? 18.s),
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: background ?? theme.colorScheme.primary,

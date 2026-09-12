@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skygate/core/components/app_page_header.dart';
 import 'package:skygate/core/components/empty_state.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/journey_details/controller/cubit/activities_cubit.dart';
 import 'package:skygate/features/journey_details/widgets/activity_card.dart';
 import 'package:skygate/features/journey_details/widgets/activity_search_bar.dart';
@@ -29,8 +30,8 @@ class ActivitiesSearchScreen extends StatelessWidget {
             return Column(
               children: [
                 AppPageHeader(title: 'activities'.tr()),
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(20, 0, 20, 16),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(20.s, 0, 20.s, 16.s),
                   child: ActivitySearchBar(),
                 ),
                 Expanded(child: _body(state, cubit)),
@@ -52,9 +53,9 @@ class ActivitiesSearchScreen extends StatelessWidget {
     return BuildCondition(
       condition: results.isNotEmpty,
       builder: (_) => ListView.separated(
-        padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+        padding: EdgeInsets.fromLTRB(20.s, 0, 20.s, 20.s),
         itemCount: results.length,
-        separatorBuilder: (_, _) => const SizedBox(height: 12),
+        separatorBuilder: (_, _) => SizedBox(height: 12.s),
         itemBuilder: (_, index) => ActivityCard(activity: results[index]),
       ),
       fallback: (_) => EmptyState(

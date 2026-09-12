@@ -5,6 +5,7 @@ import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/components/app_status_chip.dart';
 import 'package:skygate/core/constants/payment_assets.dart';
 import 'package:skygate/core/utils/app_format.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/trips/models/trips_tab.dart';
 
 /// The badge over a card's photo. It repeats the tab the trip came back
@@ -36,10 +37,10 @@ class TripDateChip extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+      padding: EdgeInsets.symmetric(horizontal: 10.s, vertical: 8.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surfaceContainerHighest,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(10.s),
       ),
       child: Column(
         children: [
@@ -50,7 +51,7 @@ class TripDateChip extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: theme.textTheme.bodySmall,
           ),
-          const Gap(2),
+          Gap(2.s),
           Text(
             AppFormat.shortDate(date, context.locale.languageCode),
             textAlign: TextAlign.center,
@@ -77,13 +78,13 @@ class TripDurationDivider extends StatelessWidget {
 
     // Two gold rules with the length between them, the way the design rules
     // off the stretch of time that separates the two dates.
-    final rule = Container(height: 1.4, color: theme.colorScheme.secondary);
+    final rule = Container(height: 1.4.s, color: theme.colorScheme.secondary);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         rule,
-        const Gap(6),
+        Gap(6.s),
         Text(
           days == null ? '' : 'days_count'.tr(namedArgs: {'count': '$days'}),
           textAlign: TextAlign.center,
@@ -93,7 +94,7 @@ class TripDurationDivider extends StatelessWidget {
             color: theme.colorScheme.secondary,
           ),
         ),
-        const Gap(6),
+        Gap(6.s),
         rule,
       ],
     );
@@ -112,11 +113,11 @@ class TripInclusionsRow extends StatelessWidget {
       children: [
         for (final asset in PaymentAssets.inclusions)
           Padding(
-            padding: const EdgeInsetsDirectional.only(end: 8),
+            padding: EdgeInsetsDirectional.only(end: 8.s),
             child: AppImage(
               asset,
-              height: 15,
-              width: 15,
+              height: 15.s,
+              width: 15.s,
               color: theme.colorScheme.primary,
             ),
           ),

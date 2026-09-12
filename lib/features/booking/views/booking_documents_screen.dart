@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/document_upload_card.dart';
 import 'package:skygate/core/components/image_source_sheet.dart';
 import 'package:skygate/core/components/toast.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/booking/controller/cubit/booking_cubit.dart';
 import 'package:skygate/features/booking/views/booking_route_screen.dart';
@@ -52,7 +53,7 @@ class BookingDocumentsScreen extends StatelessWidget {
               title: 'data_verification'.tr(),
               subtitle: 'complete_personal_data'.tr(),
             ),
-            const Gap(16),
+            Gap(16.s),
             for (final document in cubit.documentTypes) ...[
               DocumentUploadCard(
                 document: document,
@@ -60,7 +61,7 @@ class BookingDocumentsScreen extends StatelessWidget {
                 onTap: () => _pick(context, document.id),
                 onRemove: () => cubit.removeDocument(document.id),
               ),
-              const Gap(14),
+              Gap(14.s),
             ],
           ],
         );

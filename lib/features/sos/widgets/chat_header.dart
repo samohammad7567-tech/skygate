@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/constants/app_colors.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 
 class ChatHeader extends StatelessWidget {
@@ -14,11 +15,11 @@ class ChatHeader extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      margin: const EdgeInsets.fromLTRB(16, 12, 16, 8),
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+      margin: EdgeInsets.fromLTRB(16.s, 12.s, 16.s, 8.s),
+      padding: EdgeInsets.symmetric(horizontal: 12.s, vertical: 12.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.primary,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.s),
       ),
       child: Row(
         children: [
@@ -35,13 +36,13 @@ class ChatHeader extends StatelessWidget {
                     color: theme.colorScheme.onPrimary,
                   ),
                 ),
-                const Gap(4),
+                Gap(4.s),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      height: 7,
-                      width: 7,
+                      height: 7.s,
+                      width: 7.s,
                       decoration: BoxDecoration(
                         color: isOnline
                             ? AppColors.success
@@ -51,7 +52,7 @@ class ChatHeader extends StatelessWidget {
                         shape: BoxShape.circle,
                       ),
                     ),
-                    const Gap(6),
+                    Gap(6.s),
                     Text(
                       (isOnline ? 'sos_online_now' : 'sos_offline').tr(),
                       maxLines: 1,
@@ -66,7 +67,7 @@ class ChatHeader extends StatelessWidget {
             ),
           ),
           // Balances the back chip so the title stays optically centred.
-          const SizedBox(width: 40),
+          SizedBox(width: 40.s),
         ],
       ),
     );
@@ -89,12 +90,12 @@ class _BackChip extends StatelessWidget {
         customBorder: const CircleBorder(),
         onTap: onTap,
         child: SizedBox(
-          height: 40,
-          width: 40,
+          height: 40.s,
+          width: 40.s,
           child: Icon(
             // Direction-aware, so it points the way back in both languages.
             Icons.arrow_back_ios_new,
-            size: 16,
+            size: 16.s,
             color: theme.colorScheme.primary,
           ),
         ),

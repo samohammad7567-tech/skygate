@@ -6,6 +6,7 @@ import 'package:skygate/core/components/app_glyph_plate.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/sos_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/sos/models/sos_option_model.dart';
 
 class SosStepsCard extends StatelessWidget {
@@ -22,8 +23,8 @@ class SosStepsCard extends StatelessWidget {
     final steps = SosInfoModel.steps;
 
     return AppCard(
-      padding: const EdgeInsets.fromLTRB(14, 16, 14, 16),
-      radius: 16,
+      padding: EdgeInsets.fromLTRB(14.s, 16.s, 14.s, 16.s),
+      radius: 16.s,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -34,20 +35,20 @@ class SosStepsCard extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: theme.textTheme.titleLarge,
           ),
-          const Gap(14),
+          Gap(14.s),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(12.s),
                 child: AppImage(
                   SosAssets.stepsMap,
-                  height: 132,
-                  width: 108,
+                  height: 132.s,
+                  width: 108.s,
                   fit: BoxFit.cover,
                 ),
               ),
-              const Gap(12),
+              Gap(12.s),
               Expanded(
                 child: Column(
                   children: [
@@ -75,7 +76,7 @@ class _StepRow extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 7),
+      padding: EdgeInsets.symmetric(vertical: 7.s),
       child: Row(
         children: [
           Expanded(
@@ -84,20 +85,20 @@ class _StepRow extends StatelessWidget {
               textAlign: TextAlign.end,
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
-              style: theme.textTheme.bodySmall?.copyWith(height: 1.5),
+              style: theme.textTheme.bodySmall?.copyWith(height: 1.5.s),
             ),
           ),
-          const Gap(8),
+          Gap(8.s),
           Container(
-            height: 7,
-            width: 7,
+            height: 7.s,
+            width: 7.s,
             decoration: BoxDecoration(color: accent, shape: BoxShape.circle),
           ),
-          const Gap(8),
+          Gap(8.s),
           AppGlyphPlate(
             asset: step.icon,
-            size: 36,
-            glyphSize: 18,
+            size: 36.s,
+            glyphSize: 18.s,
             color: accent,
             background: accent.withValues(alpha: 0.12),
           ),

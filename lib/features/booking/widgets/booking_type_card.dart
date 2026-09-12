@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_glyph_plate.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/booking/models/booking_option_model.dart';
 import 'package:skygate/features/booking/widgets/booking_criteria_list.dart';
 import 'package:skygate/core/components/booking_selectable_card.dart';
@@ -29,11 +30,11 @@ class BookingTypeCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(14, 14, 14, 12),
+            padding: EdgeInsets.fromLTRB(14.s, 14.s, 14.s, 12.s),
             child: Row(
               children: [
                 BookingRadio(isSelected: isSelected),
-                const Gap(12),
+                Gap(12.s),
                 Expanded(
                   child: Text(
                     option.titleKey.tr(),
@@ -43,14 +44,14 @@ class BookingTypeCard extends StatelessWidget {
                     style: theme.textTheme.titleLarge,
                   ),
                 ),
-                const Gap(10),
-                AppGlyphPlate(asset: option.icon, size: 40, glyphSize: 20),
+                Gap(10.s),
+                AppGlyphPlate(asset: option.icon, size: 40.s, glyphSize: 20.s),
               ],
             ),
           ),
-          const Divider(height: 1),
+          Divider(height: 1.s),
           Padding(
-            padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
+            padding: EdgeInsets.fromLTRB(14.s, 12.s, 14.s, 12.s),
             child: Text(
               option.descKey.tr(),
               textAlign: TextAlign.center,
@@ -59,9 +60,9 @@ class BookingTypeCard extends StatelessWidget {
               ),
             ),
           ),
-          const Divider(height: 1),
+          Divider(height: 1.s),
           Padding(
-            padding: const EdgeInsets.fromLTRB(14, 12, 14, 14),
+            padding: EdgeInsets.fromLTRB(14.s, 12.s, 14.s, 14.s),
             child: BookingCriteriaList(criteriaKeys: option.criteriaKeys),
           ),
         ],

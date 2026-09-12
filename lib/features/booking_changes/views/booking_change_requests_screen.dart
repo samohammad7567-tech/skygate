@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_page_header.dart';
 import 'package:skygate/core/components/empty_state.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/booking_changes/controller/cubit/booking_changes_cubit.dart';
 import 'package:skygate/features/booking_changes/models/booking_change_request_model.dart';
@@ -71,17 +72,22 @@ class BookingChangeRequestsView extends StatelessWidget {
                 ),
                 Expanded(
                   child: state is BookingChangesLoading
-                      ? const Center(
-                          child: CircularProgressIndicator(strokeWidth: 2),
+                      ? Center(
+                          child: CircularProgressIndicator(strokeWidth: 2.s),
                         )
                       : BuildCondition(
                           condition: cubit.requests.isNotEmpty,
                           builder: (_) => RefreshIndicator(
                             onRefresh: cubit.getRequests,
                             child: ListView.separated(
-                              padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
+                              padding: EdgeInsets.fromLTRB(
+                                20.s,
+                                8.s,
+                                20.s,
+                                24.s,
+                              ),
                               itemCount: cubit.requests.length,
-                              separatorBuilder: (_, _) => const Gap(16),
+                              separatorBuilder: (_, _) => Gap(16.s),
                               itemBuilder: (_, index) => BookingChangeCard(
                                 request: cubit.requests[index],
                                 index: index + 1,

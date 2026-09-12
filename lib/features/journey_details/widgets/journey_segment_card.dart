@@ -4,6 +4,7 @@ import 'package:skygate/core/components/app_card.dart';
 import 'package:skygate/core/components/app_status_chip.dart';
 import 'package:skygate/core/models/time_progress.dart';
 import 'package:skygate/core/utils/app_format.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/journey_details/models/journey_route_model.dart';
 import 'package:skygate/features/journey_details/widgets/journey_leg_row.dart';
 
@@ -32,7 +33,7 @@ class JourneySegmentCard extends StatelessWidget {
       color: progress == TimeProgress.finished
           ? theme.colorScheme.surfaceContainerHighest
           : null,
-      padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
+      padding: EdgeInsets.fromLTRB(12.s, 10.s, 12.s, 10.s),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -48,21 +49,21 @@ class JourneySegmentCard extends StatelessWidget {
                 ),
               ),
               if (progress.labelKey case final labelKey?) ...[
-                const SizedBox(width: 8),
+                SizedBox(width: 8.s),
                 AppStatusChip(
                   labelKey: labelKey,
                   background: progress.background,
                   foreground: progress.foreground,
-                  radius: 6,
+                  radius: 6.s,
                 ),
               ],
             ],
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8.s),
           JourneyLegRow(from: segment.from, to: segment.to),
-          const SizedBox(height: 8),
-          const Divider(height: 1),
-          const SizedBox(height: 10),
+          SizedBox(height: 8.s),
+          Divider(height: 1.s),
+          SizedBox(height: 10.s),
           // The design reads duration first, then the way in: gold on the
           // starting edge, the button on the far one.
           Row(
@@ -92,10 +93,10 @@ class _DetailsButton extends StatelessWidget {
       style: OutlinedButton.styleFrom(
         backgroundColor: theme.colorScheme.surface,
         side: BorderSide(color: theme.colorScheme.primary),
-        padding: const EdgeInsets.symmetric(horizontal: 14),
-        minimumSize: const Size(0, 32),
+        padding: EdgeInsets.symmetric(horizontal: 14.s),
+        minimumSize: Size(0, 32.s),
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.s)),
       ),
       child: Text(
         'view_details'.tr(),

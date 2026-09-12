@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
 import 'package:skygate/core/utils/app_format.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/group_booking/models/group_traveler_model.dart';
 import 'package:skygate/core/components/audience_chip.dart';
 import 'package:skygate/features/group_booking/widgets/group_detail_row.dart';
@@ -28,7 +29,7 @@ class GroupTravelerCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Column(
@@ -40,7 +41,7 @@ class GroupTravelerCard extends StatelessWidget {
             isLeader: position == 1,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14),
+            padding: EdgeInsets.symmetric(horizontal: 14.s),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -97,15 +98,15 @@ class _Header extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.fromLTRB(14, 10, 14, 10),
+      padding: EdgeInsets.fromLTRB(14.s, 10.s, 14.s, 10.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surfaceContainerHighest,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(15.s)),
       ),
       child: Row(
         children: [
           PositionBadge(position: position),
-          const Gap(12),
+          Gap(12.s),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -128,7 +129,7 @@ class _Header extends StatelessWidget {
               ],
             ),
           ),
-          const Gap(10),
+          Gap(10.s),
           AudienceChip(audience: traveler.audience),
         ],
       ),

@@ -6,6 +6,7 @@ import 'package:skygate/core/components/app_sheet.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/components/sheet_handle.dart';
 import 'package:skygate/core/models/activity_model.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 /// The filter behind "الأنشطة": all of them, or only the kinds ticked.
 ///
@@ -53,13 +54,13 @@ class _ActivityFilterSheetState extends State<ActivityFilterSheet> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 12, 20, 20),
+        padding: EdgeInsets.fromLTRB(20.s, 12.s, 20.s, 20.s),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SheetHandle(),
-            const Gap(16),
+            Gap(16.s),
             _Row(
               labelKey: 'activities',
               valueKey: 'all_activities',
@@ -76,10 +77,10 @@ class _ActivityFilterSheetState extends State<ActivityFilterSheet> {
                 isChecked: _selected.contains(kind),
                 onChanged: () => _toggle(kind),
               ),
-            const Gap(18),
+            Gap(18.s),
             CustomButton(
               label: 'search'.tr(),
-              height: 48,
+              height: 48.s,
               width: double.infinity,
               onPressed: _apply,
             ),
@@ -116,13 +117,13 @@ class _Row extends StatelessWidget {
 
     return InkWell(
       onTap: onChanged,
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(10.s),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 6),
+        padding: EdgeInsets.symmetric(vertical: 6.s),
         child: Row(
           children: [
             _Plate(asset: asset, color: color, surface: surface),
-            const Gap(10),
+            Gap(10.s),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,7 +135,7 @@ class _Row extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: theme.textTheme.bodySmall,
                   ),
-                  const Gap(2),
+                  Gap(2.s),
                   Text(
                     valueKey.tr(),
                     maxLines: 1,
@@ -146,7 +147,7 @@ class _Row extends StatelessWidget {
                 ],
               ),
             ),
-            const Gap(8),
+            Gap(8.s),
             Checkbox(value: isChecked, onChanged: (_) => onChanged()),
           ],
         ),
@@ -168,8 +169,8 @@ class _Plate extends StatelessWidget {
     final glyph = asset;
 
     return Container(
-      height: 42,
-      width: 42,
+      height: 42.s,
+      width: 42.s,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: surface ?? theme.colorScheme.surfaceContainerHighest,
@@ -178,13 +179,13 @@ class _Plate extends StatelessWidget {
       child: glyph == null
           ? Icon(
               Icons.tune_rounded,
-              size: 20,
+              size: 20.s,
               color: color ?? theme.colorScheme.primary,
             )
           : AppImage(
               glyph,
-              height: 20,
-              width: 20,
+              height: 20.s,
+              width: 20.s,
               color: color ?? theme.colorScheme.primary,
             ),
     );

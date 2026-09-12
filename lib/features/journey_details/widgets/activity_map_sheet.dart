@@ -7,6 +7,7 @@ import 'package:skygate/core/components/cached_image.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/components/sheet_handle.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 /// One place blown up on its own — the sheet a tap on either map inside
 /// [ActivityDetailsSheet] opens, so the pilgrim can read the pin.
@@ -42,22 +43,22 @@ class ActivityMapSheet extends StatelessWidget {
 
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 12, 20, 20),
+        padding: EdgeInsets.fromLTRB(20.s, 12.s, 20.s, 20.s),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SheetHandle(),
-            const Gap(16),
+            Gap(16.s),
             Row(
               children: [
                 AppImage(
                   JourneyAssets.location,
-                  height: 20,
-                  width: 20,
+                  height: 20.s,
+                  width: 20.s,
                   color: theme.colorScheme.primary,
                 ),
-                const Gap(10),
+                Gap(10.s),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,7 +70,7 @@ class ActivityMapSheet extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: theme.textTheme.bodySmall,
                       ),
-                      const Gap(2),
+                      Gap(2.s),
                       Text(
                         place ?? '—',
                         maxLines: 2,
@@ -83,11 +84,11 @@ class ActivityMapSheet extends StatelessWidget {
                 ),
               ],
             ),
-            const Gap(16),
+            Gap(16.s),
             AspectRatio(
               aspectRatio: 8 / 5,
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(12.s),
                 child: CachedImage(
                   url: mapUrl,
                   fallbackAsset: JourneyAssets.routeMap,
@@ -95,10 +96,10 @@ class ActivityMapSheet extends StatelessWidget {
                 ),
               ),
             ),
-            const Gap(20),
+            Gap(20.s),
             CustomButton(
               label: 'back'.tr(),
-              height: 48,
+              height: 48.s,
               width: double.infinity,
               onPressed: () => Navigator.of(context).pop(),
             ),

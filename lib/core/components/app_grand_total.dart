@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 /// "المجموع النهائي لجميع الغرف" and the figure under it, centred — the block
 /// that closes a booking summary and a booking's details card.
@@ -44,7 +45,7 @@ class AppGrandTotal extends StatelessWidget {
               color: theme.colorScheme.onSurface.withValues(alpha: labelAlpha),
             ),
           ),
-          const Gap(6),
+          Gap(6.s),
           Text(
             amount,
             textAlign: TextAlign.center,
@@ -52,7 +53,9 @@ class AppGrandTotal extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style:
                 (amountStyle ??
-                        theme.textTheme.headlineSmall?.copyWith(fontSize: 24))
+                        theme.textTheme.headlineSmall?.copyWith(
+                          fontSize: 24.fs,
+                        ))
                     ?.copyWith(color: theme.colorScheme.secondary),
           ),
         ],

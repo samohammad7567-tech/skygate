@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/utils/app_format.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/booking_changes/models/booking_change_request_model.dart';
 import 'package:skygate/features/booking_changes/utils/booking_change_labels.dart';
 import 'package:skygate/features/booking_changes/widgets/booking_change_field.dart';
@@ -20,10 +21,10 @@ class BookingChangeSummaryCard extends StatelessWidget {
     final locale = context.locale.toString();
 
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Column(
@@ -41,36 +42,36 @@ class BookingChangeSummaryCard extends StatelessWidget {
                   style: theme.textTheme.titleLarge,
                 ),
               ),
-              const Gap(10),
+              Gap(10.s),
               BookingChangeStatusChip(status: request.status),
             ],
           ),
-          const Gap(14),
+          Gap(14.s),
           BookingChangeField(
             label: request.tripTitle ?? 'trip_number'.tr(),
             value: request.reference,
           ),
-          const Gap(12),
-          const Divider(height: 1),
-          const Gap(12),
+          Gap(12.s),
+          Divider(height: 1.s),
+          Gap(12.s),
           BookingChangeField(
             label: 'booking_change_requested_at'.tr(),
             value: AppFormat.shortDate(request.createdAt, locale),
           ),
           // Only a request the office has looked at carries a review date.
           if (request.reviewedAt != null) ...[
-            const Gap(12),
-            const Divider(height: 1),
-            const Gap(12),
+            Gap(12.s),
+            Divider(height: 1.s),
+            Gap(12.s),
             BookingChangeField(
               label: 'booking_change_reviewed_at'.tr(),
               value: AppFormat.shortDate(request.reviewedAt, locale),
             ),
           ],
           if (request.detailsText case final details?) ...[
-            const Gap(12),
-            const Divider(height: 1),
-            const Gap(12),
+            Gap(12.s),
+            Divider(height: 1.s),
+            Gap(12.s),
             BookingChangeField(
               label: 'booking_change_details'.tr(),
               value: details,
@@ -78,9 +79,9 @@ class BookingChangeSummaryCard extends StatelessWidget {
             ),
           ],
           if (request.adminNotesText case final notes?) ...[
-            const Gap(12),
-            const Divider(height: 1),
-            const Gap(12),
+            Gap(12.s),
+            Divider(height: 1.s),
+            Gap(12.s),
             BookingChangeField(
               label: 'booking_change_admin_notes'.tr(),
               value: notes,

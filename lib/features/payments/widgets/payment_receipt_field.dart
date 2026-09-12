@@ -7,6 +7,7 @@ import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/components/dashed_box.dart';
 import 'package:skygate/core/components/upload_size_chip.dart';
 import 'package:skygate/core/constants/payment_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class PaymentReceiptField extends StatelessWidget {
   const PaymentReceiptField({
@@ -30,7 +31,7 @@ class PaymentReceiptField extends StatelessWidget {
       children: [
         DashedBox(
           onTap: onTap,
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+          padding: EdgeInsets.symmetric(horizontal: 12.s, vertical: 20.s),
           child: picked == null ? const _Empty() : _Attached(file: picked),
         ),
         if (picked != null)
@@ -60,10 +61,10 @@ class _Empty extends StatelessWidget {
       children: [
         AppImage(
           PaymentAssets.upload,
-          height: 26,
+          height: 26.s,
           color: theme.colorScheme.primary,
         ),
-        const Gap(8),
+        Gap(8.s),
         Text(
           'tap_to_upload_file'.tr(),
           textAlign: TextAlign.center,
@@ -71,7 +72,7 @@ class _Empty extends StatelessWidget {
             color: theme.colorScheme.primary,
           ),
         ),
-        const Gap(10),
+        Gap(10.s),
         // The API caps a receipt at 2 MB, tighter than the pilgrim documents.
         const UploadSizeChip(labelKey: 'max_receipt_size'),
       ],
@@ -89,15 +90,15 @@ class _Attached extends StatelessWidget {
     return Column(
       children: [
         ClipRRect(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(10.s),
           child: Image.file(
             file,
-            height: 140,
+            height: 140.s,
             width: double.infinity,
             fit: BoxFit.cover,
           ),
         ),
-        const Gap(8),
+        Gap(8.s),
         Text(
           'file_uploaded'.tr(),
           style: Theme.of(context).textTheme.titleSmall,

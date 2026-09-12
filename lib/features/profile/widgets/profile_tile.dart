@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/profile_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class ProfileTile extends StatelessWidget {
   const ProfileTile({
@@ -30,19 +31,21 @@ class ProfileTile extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+        padding: EdgeInsets.symmetric(horizontal: 14.s, vertical: 14.s),
         child: Row(
           children: [
             Container(
-              height: 40,
-              width: 40,
+              height: 40.s,
+              width: 40.s,
               decoration: BoxDecoration(
                 color: accent.withValues(alpha: 0.10),
                 shape: BoxShape.circle,
               ),
-              child: Center(child: AppImage(icon, height: 20, color: accent)),
+              child: Center(
+                child: AppImage(icon, height: 20.s, color: accent),
+              ),
             ),
-            const Gap(12),
+            Gap(12.s),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,7 +57,7 @@ class ProfileTile extends StatelessWidget {
                     style: theme.textTheme.titleMedium?.copyWith(color: accent),
                   ),
                   if (subtitle != null) ...[
-                    const Gap(3),
+                    Gap(3.s),
                     Text(
                       subtitle!.trim().isEmpty ? '—' : subtitle!,
                       maxLines: 2,
@@ -66,10 +69,10 @@ class ProfileTile extends StatelessWidget {
               ),
             ),
             if (showChevron) ...[
-              const Gap(10),
+              Gap(10.s),
               AppImage(
                 ProfileAssets.chevron,
-                height: 13,
+                height: 13.s,
                 color: theme.colorScheme.primary,
               ),
             ],

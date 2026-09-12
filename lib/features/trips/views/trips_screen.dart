@@ -6,6 +6,7 @@ import 'package:skygate/core/components/app_title_header.dart';
 import 'package:skygate/core/components/empty_state.dart';
 import 'package:skygate/core/components/toast.dart';
 import 'package:skygate/core/models/trip_model.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/journey_details/views/package_details_screen.dart';
 import 'package:skygate/features/trips/controller/cubit/trips_cubit.dart';
@@ -80,10 +81,7 @@ class _TripsBodyState extends State<_TripsBody> {
       // that booking. Handing its id on is what scopes the roster, the cards,
       // the visas and the tickets to this pilgrim on this trip — and what puts
       // "تفاصيل الحجز" and "تفاصيل البطاقات" on the details screen.
-      PackageDetailsScreen.booked(
-        tripId: tripId,
-        bookingId: trip.booking?.id,
-      ),
+      PackageDetailsScreen.booked(tripId: tripId, bookingId: trip.booking?.id),
     );
   }
 
@@ -99,7 +97,7 @@ class _TripsBodyState extends State<_TripsBody> {
             return Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 12, 20, 16),
+                  padding: EdgeInsets.fromLTRB(20.s, 12.s, 20.s, 16.s),
                   child: AppTitleHeader(
                     title: 'nav_trips'.tr(),
                     showBack: widget.showBack,
@@ -107,7 +105,7 @@ class _TripsBodyState extends State<_TripsBody> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
+                  padding: EdgeInsets.fromLTRB(20.s, 0, 20.s, 16.s),
                   child: TripsTabBar(
                     selected: cubit.tab,
                     onChanged: cubit.changeTab,
@@ -133,14 +131,14 @@ class _TripsBodyState extends State<_TripsBody> {
         onRefresh: () => cubit.getTrips(refresh: true),
         child: ListView.separated(
           controller: _controller,
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 100),
+          padding: EdgeInsets.fromLTRB(20.s, 0, 20.s, 100.s),
           // One extra row at the foot while the next page is in flight.
           itemCount: cubit.trips.length + (cubit.isLoadingMore ? 1 : 0),
-          separatorBuilder: (_, _) => const SizedBox(height: 12),
+          separatorBuilder: (_, _) => SizedBox(height: 12.s),
           itemBuilder: (_, index) {
             if (index >= cubit.trips.length) {
-              return const Padding(
-                padding: EdgeInsets.symmetric(vertical: 16),
+              return Padding(
+                padding: EdgeInsets.symmetric(vertical: 16.s),
                 child: Center(child: CircularProgressIndicator()),
               );
             }

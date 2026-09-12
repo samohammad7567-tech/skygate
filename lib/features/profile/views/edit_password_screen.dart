@@ -6,6 +6,7 @@ import 'package:skygate/core/components/app_text_field.dart';
 import 'package:skygate/core/components/labeled_field.dart';
 import 'package:skygate/core/components/toast.dart';
 import 'package:skygate/core/constants/profile_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/app_validators.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/profile/controller/cubit/profile_cubit.dart';
@@ -55,7 +56,7 @@ class _EditPasswordScreenState extends State<EditPasswordScreen> {
           onBack: _cancel,
           children: [
             AppSectionTitle(text: 'edit_password'.tr()),
-            const Gap(14),
+            Gap(14.s),
             Form(
               key: _formKey,
               child: Column(
@@ -72,7 +73,7 @@ class _EditPasswordScreenState extends State<EditPasswordScreen> {
                       validator: AppValidators.required,
                     ),
                   ),
-                  const Gap(14),
+                  Gap(14.s),
                   LabeledField(
                     label: 'new_password_label'.tr(),
                     child: AppTextField(
@@ -85,7 +86,7 @@ class _EditPasswordScreenState extends State<EditPasswordScreen> {
                       validator: AppValidators.password,
                     ),
                   ),
-                  const Gap(14),
+                  Gap(14.s),
                   LabeledField(
                     label: 'confirm_new_password_label'.tr(),
                     child: AppTextField(
@@ -104,7 +105,7 @@ class _EditPasswordScreenState extends State<EditPasswordScreen> {
                 ],
               ),
             ),
-            const Gap(22),
+            Gap(22.s),
             ProfileFormActions(
               isSaving: state is PasswordSaving,
               onSave: _save,

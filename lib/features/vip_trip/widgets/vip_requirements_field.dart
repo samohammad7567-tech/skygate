@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/vip_trip_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class VipRequirementsField extends StatelessWidget {
   const VipRequirementsField({
@@ -21,11 +22,11 @@ class VipRequirementsField extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      height: 220,
-      padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
+      height: 220.s,
+      padding: EdgeInsets.fromLTRB(14.s, 12.s, 14.s, 12.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Row(
@@ -56,10 +57,10 @@ class VipRequirementsField extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 10),
+          SizedBox(width: 10.s),
           AppImage(
             VipTripAssets.pencil,
-            height: 18,
+            height: 18.s,
             color: theme.colorScheme.primary,
           ),
         ],

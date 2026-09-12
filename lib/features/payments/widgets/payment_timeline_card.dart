@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/payments/models/payment_installment_model.dart';
 import 'package:skygate/features/payments/widgets/payment_timeline_tile.dart';
 
@@ -14,10 +15,10 @@ class PaymentTimelineCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.fromLTRB(16, 14, 16, 8),
+      padding: EdgeInsets.fromLTRB(16.s, 14.s, 16.s, 8.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Column(
@@ -32,7 +33,7 @@ class PaymentTimelineCard extends StatelessWidget {
               color: theme.colorScheme.primary,
             ),
           ),
-          const Gap(4),
+          Gap(4.s),
           for (var i = 0; i < installments.length; i++) ...[
             PaymentTimelineTile(
               installment: installments[i],
@@ -40,9 +41,9 @@ class PaymentTimelineCard extends StatelessWidget {
               isLast: i == installments.length - 1,
             ),
             if (i < installments.length - 1)
-              const Padding(
-                padding: EdgeInsetsDirectional.only(start: 40),
-                child: Divider(height: 1),
+              Padding(
+                padding: EdgeInsetsDirectional.only(start: 40.s),
+                child: Divider(height: 1.s),
               ),
           ],
         ],

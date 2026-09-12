@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_page_indicator.dart';
 import 'package:skygate/core/components/custom_button.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/splash/models/splash_service.dart';
 import 'package:skygate/features/splash/widgets/splash_or_divider.dart';
 import 'package:skygate/features/splash/widgets/splash_outlined_button.dart';
@@ -35,7 +36,7 @@ class SplashPanel extends StatelessWidget {
           activeWidth: 18,
           inactiveColor: Colors.white.withValues(alpha: 0.55),
         ),
-        const Gap(18),
+        Gap(18.s),
         Text(
           'journey_starts_here'.tr(),
           textAlign: TextAlign.center,
@@ -43,11 +44,11 @@ class SplashPanel extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: theme.textTheme.headlineSmall?.copyWith(
             color: Colors.white,
-            fontSize: 26,
-            height: 1.4,
+            fontSize: 26.fs,
+            height: 1.4.s,
           ),
         ),
-        const Gap(26),
+        Gap(26.s),
         SplashOutlinedButton(
           label: SplashService.tourism.labelKey.tr(),
           isLoading: isBootingTourism,
@@ -55,14 +56,14 @@ class SplashPanel extends StatelessWidget {
               ? null
               : () => onServiceSelected(SplashService.tourism),
         ),
-        const Gap(16),
+        Gap(16.s),
         const SplashOrDivider(),
-        const Gap(16),
+        Gap(16.s),
         CustomButton(
           label: SplashService.umrah.labelKey.tr(),
           width: double.infinity,
-          height: 47,
-          radius: 8,
+          height: 47.s,
+          radius: 8.s,
           backgroundColor: theme.colorScheme.secondary,
           onPressed: isBootingTourism
               ? null

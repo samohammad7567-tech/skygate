@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_sheet.dart';
 import 'package:skygate/core/components/audience_chip.dart';
 import 'package:skygate/core/components/sheet_handle.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/payments/models/booking_details_model.dart';
 
 Future<void> showBookingTravelersSheet(
@@ -27,13 +28,13 @@ class _TravelersSheet extends StatelessWidget {
 
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 12, 20, 16),
+        padding: EdgeInsets.fromLTRB(20.s, 12.s, 20.s, 16.s),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SheetHandle(),
-            const Gap(14),
+            Gap(14.s),
             Text(
               'travelers_details'.tr(),
               textAlign: TextAlign.center,
@@ -43,12 +44,12 @@ class _TravelersSheet extends StatelessWidget {
                 color: theme.colorScheme.primary,
               ),
             ),
-            const Gap(12),
+            Gap(12.s),
             Flexible(
               child: ListView.separated(
                 shrinkWrap: true,
                 itemCount: travelers.length,
-                separatorBuilder: (_, _) => const Divider(height: 1),
+                separatorBuilder: (_, _) => Divider(height: 1.s),
                 itemBuilder: (_, index) => _TravelerRow(
                   traveler: travelers[index],
                   position: index + 1,
@@ -73,7 +74,7 @@ class _TravelerRow extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.symmetric(vertical: 10.s),
       child: Row(
         children: [
           Text(
@@ -84,7 +85,7 @@ class _TravelerRow extends StatelessWidget {
               color: theme.colorScheme.secondary,
             ),
           ),
-          const Gap(10),
+          Gap(10.s),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -98,13 +99,13 @@ class _TravelerRow extends StatelessWidget {
                     color: theme.colorScheme.primary,
                   ),
                 ),
-                const Gap(4),
+                Gap(4.s),
                 AudienceChip(audience: traveler.audience),
               ],
             ),
           ),
-          const Gap(10),
-          PositionBadge(position: position, size: 28),
+          Gap(10.s),
+          PositionBadge(position: position, size: 28.s),
         ],
       ),
     );

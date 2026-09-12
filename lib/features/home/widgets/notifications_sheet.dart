@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/empty_state.dart';
 import 'package:skygate/core/components/sheet_handle.dart';
 import 'package:skygate/core/utils/app_format.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/home/models/home_model.dart';
 
 class NotificationsSheet extends StatelessWidget {
@@ -38,24 +39,24 @@ class NotificationsSheet extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const SizedBox(height: 10),
+            SizedBox(height: 10.s),
             const SheetHandle(),
-            const SizedBox(height: 12),
+            SizedBox(height: 12.s),
             Text(
               'notifications'.tr(),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: theme.textTheme.titleLarge,
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8.s),
             Flexible(
               child: notifications.isEmpty
                   ? EmptyState(message: 'no-notifications'.tr())
                   : ListView.separated(
                       shrinkWrap: true,
-                      padding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
+                      padding: EdgeInsets.fromLTRB(16.s, 4.s, 16.s, 16.s),
                       itemCount: notifications.length,
-                      separatorBuilder: (_, _) => const Divider(height: 16),
+                      separatorBuilder: (_, _) => Divider(height: 16.s),
                       itemBuilder: (_, index) => _NotificationTile(
                         alert: notifications[index],
                         onRead: onRead,
@@ -86,10 +87,10 @@ class _NotificationTile extends StatelessWidget {
         children: [
           // An unread alert carries the same accent dot the bell counts.
           Padding(
-            padding: const EdgeInsets.only(top: 6),
+            padding: EdgeInsets.only(top: 6.s),
             child: Container(
-              height: 8,
-              width: 8,
+              height: 8.s,
+              width: 8.s,
               decoration: BoxDecoration(
                 color: alert.isRead
                     ? theme.colorScheme.outlineVariant
@@ -98,7 +99,7 @@ class _NotificationTile extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 10),
+          SizedBox(width: 10.s),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,7 +111,7 @@ class _NotificationTile extends StatelessWidget {
                   style: theme.textTheme.titleSmall,
                 ),
                 if (alert.body != null) ...[
-                  const SizedBox(height: 2),
+                  SizedBox(height: 2.s),
                   Text(
                     alert.body!,
                     maxLines: 3,
@@ -119,7 +120,7 @@ class _NotificationTile extends StatelessWidget {
                   ),
                 ],
                 if (alert.createdAt != null) ...[
-                  const SizedBox(height: 4),
+                  SizedBox(height: 4.s),
                   Text(
                     AppFormat.shortDate(
                       alert.createdAt,
@@ -129,7 +130,7 @@ class _NotificationTile extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
-                      fontSize: 11,
+                      fontSize: 11.fs,
                     ),
                   ),
                 ],

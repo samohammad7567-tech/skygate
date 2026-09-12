@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/utils/app_format.dart';
 import 'package:skygate/core/models/activity_model.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class ActivityDayTabs extends StatelessWidget {
   const ActivityDayTabs({
@@ -22,12 +23,12 @@ class ActivityDayTabs extends StatelessWidget {
     if (days.isEmpty) return const SizedBox.shrink();
 
     return SizedBox(
-      height: 86,
+      height: 86.s,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: EdgeInsets.symmetric(horizontal: 20.s),
         itemCount: days.length,
-        separatorBuilder: (_, _) => const SizedBox(width: 10),
+        separatorBuilder: (_, _) => SizedBox(width: 10.s),
         itemBuilder: (context, index) => _DayTab(
           day: days[index],
           isSelected: index == selectedIndex,
@@ -56,7 +57,7 @@ class _DayTab extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final locale = context.locale.languageCode;
-    final radius = BorderRadius.circular(12);
+    final radius = BorderRadius.circular(12.s);
     final onTint = isSelected
         ? theme.colorScheme.onPrimary
         : theme.colorScheme.primary;
@@ -68,8 +69,8 @@ class _DayTab extends StatelessWidget {
         onTap: onTap,
         borderRadius: radius,
         child: Container(
-          width: 74,
-          padding: const EdgeInsets.symmetric(vertical: 8),
+          width: 74.s,
+          padding: EdgeInsets.symmetric(vertical: 8.s),
           decoration: BoxDecoration(
             borderRadius: radius,
             border: Border.all(
@@ -105,9 +106,9 @@ class _DayTab extends StatelessWidget {
               ),
               if (isToday && !isSelected)
                 Container(
-                  margin: const EdgeInsets.only(top: 3),
-                  height: 5,
-                  width: 5,
+                  margin: EdgeInsets.only(top: 3.s),
+                  height: 5.s,
+                  width: 5.s,
                   decoration: BoxDecoration(
                     color: theme.colorScheme.primary,
                     shape: BoxShape.circle,

@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/home_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class CustomTripFeatures extends StatelessWidget {
   const CustomTripFeatures({super.key});
@@ -22,7 +23,7 @@ class CustomTripFeatures extends StatelessWidget {
         children: [
           for (var i = 0; i < _features.length; i++) ...[
             if (i > 0)
-              VerticalDivider(width: 13, color: theme.colorScheme.outline),
+              VerticalDivider(width: 13.s, color: theme.colorScheme.outline),
             Expanded(
               child: _Feature(
                 asset: _features[i].$1,
@@ -52,11 +53,11 @@ class _Feature extends StatelessWidget {
       children: [
         AppImage(
           asset,
-          width: 22,
-          height: 22,
+          width: 22.s,
+          height: 22.s,
           color: theme.colorScheme.primary,
         ),
-        const SizedBox(height: 6),
+        SizedBox(height: 6.s),
         Text(
           labelKey.tr(),
           maxLines: 2,

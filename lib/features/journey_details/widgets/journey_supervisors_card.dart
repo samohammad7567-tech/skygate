@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_card.dart';
 import 'package:skygate/core/components/app_glyph_plate.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/journey_details/models/journey_package_model.dart';
 
 class JourneySupervisorsCard extends StatelessWidget {
@@ -15,14 +16,14 @@ class JourneySupervisorsCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return AppCard(
-      padding: const EdgeInsets.all(14),
+      padding: EdgeInsets.all(14.s),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
               const AppGlyphPlate(asset: JourneyAssets.supervisors),
-              const SizedBox(width: 10),
+              SizedBox(width: 10.s),
               Expanded(
                 child: Text(
                   'supervised_by'.tr(),
@@ -34,14 +35,14 @@ class JourneySupervisorsCard extends StatelessWidget {
             ],
           ),
           if (supervisors.isNotEmpty) ...[
-            const SizedBox(height: 10),
+            SizedBox(height: 10.s),
             Wrap(
-              spacing: 16,
-              runSpacing: 8,
+              spacing: 16.s,
+              runSpacing: 8.s,
               children: [
                 for (final member in supervisors)
                   SizedBox(
-                    width: 140,
+                    width: 140.s,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
@@ -59,7 +60,7 @@ class JourneySupervisorsCard extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                             style: theme.textTheme.bodySmall?.copyWith(
                               color: theme.colorScheme.secondary,
-                              fontSize: 11,
+                              fontSize: 11.fs,
                             ),
                           ),
                       ],

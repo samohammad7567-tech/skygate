@@ -7,6 +7,7 @@ import 'package:skygate/core/components/app_text_field.dart';
 import 'package:skygate/core/components/labeled_field.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
 import 'package:skygate/core/models/passport_form.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/app_validators.dart';
 
 class PassportFieldsForm extends StatelessWidget {
@@ -63,7 +64,7 @@ class PassportFieldsForm extends StatelessWidget {
             validator: AppValidators.required,
           ),
         ),
-        const Gap(12),
+        Gap(12.s),
         _wrap(
           'full_name_en',
           AppTextField(
@@ -74,7 +75,7 @@ class PassportFieldsForm extends StatelessWidget {
             validator: AppValidators.required,
           ),
         ),
-        const Gap(12),
+        Gap(12.s),
         _wrap(
           'birth_date',
           AppDateField(
@@ -88,7 +89,7 @@ class PassportFieldsForm extends StatelessWidget {
             lastDate: DateTime.now(),
           ),
         ),
-        const Gap(12),
+        Gap(12.s),
         _wrap(
           'gender',
           AppGenderField(
@@ -100,7 +101,7 @@ class PassportFieldsForm extends StatelessWidget {
             validator: AppValidators.required,
           ),
         ),
-        const Gap(12),
+        Gap(12.s),
         _wrap(
           'nationality',
           AppTextField(
@@ -111,13 +112,13 @@ class PassportFieldsForm extends StatelessWidget {
             validator: AppValidators.required,
           ),
         ),
-        const Gap(12),
+        Gap(12.s),
         // The confirm card lists the passport number first; the manual form
         // asks for the national number first.
         if (labeled) passportNumber else nationalNumber,
-        const Gap(12),
+        Gap(12.s),
         if (labeled) nationalNumber else passportNumber,
-        const Gap(12),
+        Gap(12.s),
         _wrap(
           'passport_issue_place',
           AppTextField(
@@ -128,7 +129,7 @@ class PassportFieldsForm extends StatelessWidget {
             validator: AppValidators.required,
           ),
         ),
-        const Gap(12),
+        Gap(12.s),
         _wrap(
           'issue_date',
           AppDateField(
@@ -141,7 +142,7 @@ class PassportFieldsForm extends StatelessWidget {
             validator: AppValidators.requiredDate,
           ),
         ),
-        const Gap(12),
+        Gap(12.s),
         _wrap(
           'expiry_date',
           AppDateField(

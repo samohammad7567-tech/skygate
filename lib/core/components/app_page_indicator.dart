@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 /// The row of dots under a pager, the current one stretched into a pill.
 ///
@@ -11,8 +12,8 @@ class AppPageIndicator extends StatelessWidget {
     super.key,
     required this.count,
     required this.currentIndex,
-    this.dotSize = 8,
-    this.activeWidth = 20,
+    this.dotSize,
+    this.activeWidth,
     this.activeColor,
     this.inactiveColor,
   });
@@ -22,10 +23,10 @@ class AppPageIndicator extends StatelessWidget {
 
   /// Diameter of a resting dot, and the height of every dot including the
   /// active pill.
-  final double dotSize;
+  final double? dotSize;
 
   /// Width the active dot stretches to.
-  final double activeWidth;
+  final double? activeWidth;
 
   /// Defaults to the theme's secondary colour.
   final Color? activeColor;
@@ -45,14 +46,14 @@ class AppPageIndicator extends StatelessWidget {
         return AnimatedContainer(
           duration: const Duration(milliseconds: 220),
           curve: Curves.easeOut,
-          width: isActive ? activeWidth : dotSize,
-          height: dotSize,
-          margin: const EdgeInsets.symmetric(horizontal: 3),
+          width: isActive ? (activeWidth ?? 20.s) : (dotSize ?? 8.s),
+          height: (dotSize ?? 8.s),
+          margin: EdgeInsets.symmetric(horizontal: 3.s),
           decoration: BoxDecoration(
             color: isActive
                 ? (activeColor ?? theme.colorScheme.secondary)
                 : (inactiveColor ?? theme.colorScheme.outlineVariant),
-            borderRadius: BorderRadius.circular(dotSize),
+            borderRadius: BorderRadius.circular((dotSize ?? 8.s)),
           ),
         );
       }),

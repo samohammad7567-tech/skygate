@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class RoomBedsRow extends StatelessWidget {
   const RoomBedsRow({super.key, required this.count});
@@ -15,13 +16,13 @@ class RoomBedsRow extends StatelessWidget {
     if (count <= 0) return const SizedBox.shrink();
 
     return Wrap(
-      spacing: 4,
+      spacing: 4.s,
       children: [
         for (var i = 0; i < count; i++)
           AppImage(
             JourneyAssets.bed,
-            height: 14,
-            width: 14,
+            height: 14.s,
+            width: 14.s,
             color: Theme.of(context).colorScheme.primary,
           ),
       ],
@@ -58,11 +59,11 @@ class RoomPriceRow extends StatelessWidget {
             color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
           ),
         ),
-        const Gap(8),
+        Gap(8.s),
         AppImage(
           JourneyAssets.adult,
-          height: 18,
-          width: 18,
+          height: 18.s,
+          width: 18.s,
           color: theme.colorScheme.primary,
         ),
       ],
@@ -78,9 +79,9 @@ class AlmostFullChip extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 7),
+      padding: EdgeInsets.symmetric(horizontal: 18.s, vertical: 7.s),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.s),
         border: Border.all(color: AppColors.error),
       ),
       child: Text(

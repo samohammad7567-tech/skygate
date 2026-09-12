@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/utils/app_format.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class GroupCountdownCard extends StatelessWidget {
   const GroupCountdownCard({
@@ -30,19 +31,17 @@ class GroupCountdownCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(14.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
-            padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
+            padding: EdgeInsets.fromLTRB(14.s, 12.s, 14.s, 12.s),
             decoration: BoxDecoration(
               color: theme.colorScheme.surfaceContainerHighest,
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(13),
-              ),
+              borderRadius: BorderRadius.vertical(top: Radius.circular(13.s)),
             ),
             child: Row(
               children: [
@@ -62,17 +61,17 @@ class GroupCountdownCard extends StatelessWidget {
                     style: theme.textTheme.titleMedium,
                   ),
                 ),
-                const Gap(10),
+                Gap(10.s),
                 Icon(
                   Icons.schedule,
-                  size: 22,
+                  size: 22.s,
                   color: theme.colorScheme.primary,
                 ),
               ],
             ),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(14, 16, 14, 16),
+            padding: EdgeInsets.fromLTRB(14.s, 16.s, 14.s, 16.s),
             child: Column(
               children: [
                 Text(
@@ -82,9 +81,11 @@ class GroupCountdownCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   // The clock always reads left to right, Arabic included.
                   textDirection: ui.TextDirection.ltr,
-                  style: theme.textTheme.headlineSmall?.copyWith(fontSize: 28),
+                  style: theme.textTheme.headlineSmall?.copyWith(
+                    fontSize: 28.fs,
+                  ),
                 ),
-                const Gap(8),
+                Gap(8.s),
                 Text(
                   'booking_expiry_note'.tr(),
                   textAlign: TextAlign.center,

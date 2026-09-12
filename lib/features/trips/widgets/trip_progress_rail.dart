@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/models/journey_transport.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 /// The strip of plates across a "رحلاتي" card: one per leg, in the order they
 /// are travelled, joined by the line between them.
@@ -77,8 +78,8 @@ class _Plate extends StatelessWidget {
         : theme.colorScheme.outline;
 
     return Container(
-      height: 32,
-      width: 32,
+      height: 32.s,
+      width: 32.s,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
@@ -87,8 +88,8 @@ class _Plate extends StatelessWidget {
       ),
       child: AppImage(
         transport.typeIcon,
-        height: 16,
-        width: 16,
+        height: 16.s,
+        width: 16.s,
         color: foreground,
       ),
     );

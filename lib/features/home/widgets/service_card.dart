@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/home/models/service_model.dart';
 
 class ServiceCard extends StatelessWidget {
@@ -15,28 +16,28 @@ class ServiceCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
+      padding: EdgeInsets.symmetric(horizontal: 6.s, vertical: 8.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           _Artwork(service: service),
-          const SizedBox(height: 6),
+          SizedBox(height: 6.s),
           Text(
             service.titleKey.tr(),
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
             style: theme.textTheme.titleSmall?.copyWith(
-              fontSize: 12,
-              height: 1.2,
+              fontSize: 12.fs,
+              height: 1.2.s,
             ),
           ),
-          const SizedBox(height: 3),
+          SizedBox(height: 3.s),
           Flexible(
             child: Text(
               service.descriptionKey.tr(),
@@ -44,8 +45,8 @@ class ServiceCard extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
               style: theme.textTheme.bodySmall?.copyWith(
-                fontSize: 9.5,
-                height: 1.25,
+                fontSize: 9.5.fs,
+                height: 1.25.s,
               ),
             ),
           ),

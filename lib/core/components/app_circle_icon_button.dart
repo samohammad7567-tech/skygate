@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class AppCircleIconButton extends StatelessWidget {
   const AppCircleIconButton({
@@ -7,16 +8,16 @@ class AppCircleIconButton extends StatelessWidget {
     required this.asset,
     this.onTap,
     this.tooltip,
-    this.size = 40,
-    this.glyphSize = 18,
+    this.size,
+    this.glyphSize,
     this.mirrorInRtl = false,
   });
 
   final String asset;
   final VoidCallback? onTap;
   final String? tooltip;
-  final double size;
-  final double glyphSize;
+  final double? size;
+  final double? glyphSize;
 
   /// Turns the glyph over under RTL. Set it for anything that points
   /// somewhere — an arrow means "backwards", and backwards is to the right in
@@ -36,18 +37,17 @@ class AppCircleIconButton extends StatelessWidget {
         customBorder: const CircleBorder(),
         onTap: onTap,
         child: SizedBox(
-          height: size,
-          width: size,
+          height: (size ?? 40.s),
+          width: (size ?? 40.s),
           child: Center(
             child: Transform.scale(
               scaleX:
-                  mirrorInRtl &&
-                      Directionality.of(context) == TextDirection.rtl
+                  mirrorInRtl && Directionality.of(context) == TextDirection.rtl
                   ? -1
                   : 1,
               child: AppImage(
                 asset,
-                height: glyphSize,
+                height: (glyphSize ?? 18.s),
                 color: theme.colorScheme.primary,
               ),
             ),

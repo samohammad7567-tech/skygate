@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/payments/models/booking_payment_model.dart';
 import 'package:skygate/features/payments/widgets/payment_ring.dart';
 
@@ -14,10 +15,10 @@ class PaymentSummaryCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.fromLTRB(16, 14, 16, 16),
+      padding: EdgeInsets.fromLTRB(16.s, 14.s, 16.s, 16.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Column(
@@ -32,14 +33,14 @@ class PaymentSummaryCard extends StatelessWidget {
               color: theme.colorScheme.primary,
             ),
           ),
-          const Gap(10),
+          Gap(10.s),
           Row(
             children: [
               PaymentRing(
                 ratio: payment.paidRatio,
                 percent: payment.paidPercent,
               ),
-              const Gap(16),
+              Gap(16.s),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -48,12 +49,12 @@ class PaymentSummaryCard extends StatelessWidget {
                       labelKey: 'payment_total_amount',
                       value: payment.amountLabel(payment.total),
                     ),
-                    const Divider(height: 1),
+                    Divider(height: 1.s),
                     _Row(
                       labelKey: 'payment_paid',
                       value: payment.amountLabel(payment.paid ?? 0),
                     ),
-                    const Divider(height: 1),
+                    Divider(height: 1.s),
                     _Row(
                       labelKey: 'payment_remaining',
                       value: payment.amountLabel(payment.remaining),
@@ -83,7 +84,7 @@ class _Row extends StatelessWidget {
     final accent = color ?? theme.colorScheme.primary;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 9),
+      padding: EdgeInsets.symmetric(vertical: 9.s),
       child: Row(
         children: [
           Expanded(
@@ -94,7 +95,7 @@ class _Row extends StatelessWidget {
               style: theme.textTheme.titleMedium?.copyWith(color: accent),
             ),
           ),
-          const Gap(8),
+          Gap(8.s),
           Flexible(
             child: Text(
               labelKey.tr(),

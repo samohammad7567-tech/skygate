@@ -6,6 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_page_header.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/components/empty_state.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/vip_trip/controller/cubit/vip_requests_cubit.dart';
 import 'package:skygate/features/vip_trip/controller/cubit/vip_trip_cubit.dart';
@@ -67,17 +68,22 @@ class VipRequestsView extends StatelessWidget {
                 AppPageHeader(title: 'private_trip_requests'.tr()),
                 Expanded(
                   child: state is VipRequestsLoading
-                      ? const Center(
-                          child: CircularProgressIndicator(strokeWidth: 2),
+                      ? Center(
+                          child: CircularProgressIndicator(strokeWidth: 2.s),
                         )
                       : BuildCondition(
                           condition: cubit.requests.isNotEmpty,
                           builder: (_) => RefreshIndicator(
                             onRefresh: cubit.getRequests,
                             child: ListView.separated(
-                              padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
+                              padding: EdgeInsets.fromLTRB(
+                                20.s,
+                                8.s,
+                                20.s,
+                                20.s,
+                              ),
                               itemCount: cubit.requests.length,
-                              separatorBuilder: (_, _) => const Gap(16),
+                              separatorBuilder: (_, _) => Gap(16.s),
                               itemBuilder: (_, index) => VipRequestCard(
                                 request: cubit.requests[index],
                                 index: index + 1,
@@ -104,10 +110,10 @@ class VipRequestsView extends StatelessWidget {
       bottomNavigationBar: SafeArea(
         top: false,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
+          padding: EdgeInsets.fromLTRB(20.s, 8.s, 20.s, 16.s),
           child: CustomButton(
             label: 'submit_private_trip_request'.tr(),
-            height: 48,
+            height: 48.s,
             width: double.infinity,
             onPressed: () => _newRequest(context),
           ),

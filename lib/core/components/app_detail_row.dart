@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 /// One `[glyph]  label : value` line with the hairline under it.
 ///
@@ -40,11 +41,11 @@ class AppDetailRow extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
+          padding: EdgeInsets.symmetric(vertical: 10.s),
           child: Row(
             children: [
               _Glyph(asset: asset, icon: icon),
-              const SizedBox(width: 10),
+              SizedBox(width: 10.s),
               Expanded(
                 child: Text(
                   '${labelKey.tr()} : ${value ?? '—'}',
@@ -56,7 +57,7 @@ class AppDetailRow extends StatelessWidget {
             ],
           ),
         ),
-        if (showDivider) const Divider(height: 1),
+        if (showDivider) Divider(height: 1.s),
       ],
     );
   }
@@ -73,8 +74,8 @@ class _Glyph extends StatelessWidget {
     final color = Theme.of(context).colorScheme.primary;
 
     if (asset case final path?) {
-      return AppImage(path, height: 18, width: 18, color: color);
+      return AppImage(path, height: 18.s, width: 18.s, color: color);
     }
-    return Icon(icon, size: 18, color: color);
+    return Icon(icon, size: 18.s, color: color);
   }
 }

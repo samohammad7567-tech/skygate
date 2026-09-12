@@ -7,6 +7,7 @@ import 'package:skygate/core/components/booking_section_title.dart';
 import 'package:skygate/core/components/booking_step_scaffold.dart';
 import 'package:skygate/core/components/labeled_field.dart';
 import 'package:skygate/core/models/booking_city.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/main/widgets/app_drawer.dart';
 import 'package:skygate/features/vip_trip/controller/cubit/vip_trip_cubit.dart';
@@ -44,7 +45,7 @@ class VipDurationScreen extends StatelessWidget {
               title: 'select_trip_duration'.tr(),
               subtitle: 'select_trip_duration_desc'.tr(),
             ),
-            const Gap(14),
+            Gap(14.s),
             VipCard(
               totalLabelKey: 'total_trip_duration',
               totalValue: 'days_count'.tr(
@@ -52,7 +53,7 @@ class VipDurationScreen extends StatelessWidget {
               ),
               children: [
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(14, 14, 14, 14),
+                  padding: EdgeInsets.fromLTRB(14.s, 14.s, 14.s, 14.s),
                   child: Column(
                     children: [
                       LabeledField(
@@ -65,7 +66,7 @@ class VipDurationScreen extends StatelessWidget {
                           onPicked: cubit.setStartDate,
                         ),
                       ),
-                      const Gap(14),
+                      Gap(14.s),
                       LabeledField(
                         label: 'end_date'.tr(),
                         child: AppDateField(

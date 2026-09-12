@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:skygate/core/components/toast.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/auth/views/auth_landing_screen.dart';
 import 'package:skygate/features/main/views/main_screen.dart';
@@ -92,9 +93,9 @@ class _SplashBodyState extends State<_SplashBody> {
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 480),
+                    constraints: BoxConstraints(maxWidth: 480.s),
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(40, 0, 40, 40),
+                      padding: EdgeInsets.fromLTRB(40.s, 0, 40.s, 40.s),
                       child: SplashPanel(
                         slideCount: cubit.backgrounds.length,
                         currentIndex: cubit.activeIndex,

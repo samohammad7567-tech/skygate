@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/vip_trip_assets.dart';
 import 'package:skygate/core/models/group_room_type.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class VipRoomsSummaryCard extends StatelessWidget {
   const VipRoomsSummaryCard({super.key, required this.counts});
@@ -14,7 +15,7 @@ class VipRoomsSummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final radius = BorderRadius.circular(16);
+    final radius = BorderRadius.circular(16.s);
 
     return Container(
       decoration: BoxDecoration(
@@ -26,7 +27,7 @@ class VipRoomsSummaryCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(14, 14, 14, 12),
+            padding: EdgeInsets.fromLTRB(14.s, 14.s, 14.s, 12.s),
             child: Row(
               children: [
                 Text(
@@ -56,10 +57,10 @@ class VipRoomsSummaryCard extends StatelessWidget {
           for (final type in GroupRoomType.values)
             if ((counts[type] ?? 0) > 0) ...[
               Divider(
-                height: 1,
-                thickness: 1,
-                indent: 14,
-                endIndent: 14,
+                height: 1.s,
+                thickness: 1.s,
+                indent: 14.s,
+                endIndent: 14.s,
                 color: theme.colorScheme.outline,
               ),
               _RoomRow(type: type, count: counts[type]!),
@@ -81,12 +82,12 @@ class _RoomRow extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      padding: EdgeInsets.symmetric(horizontal: 14.s, vertical: 12.s),
       child: Row(
         children: [
           Container(
-            height: 34,
-            width: 34,
+            height: 34.s,
+            width: 34.s,
             alignment: Alignment.center,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
@@ -100,7 +101,7 @@ class _RoomRow extends StatelessWidget {
               ),
             ),
           ),
-          const Gap(12),
+          Gap(12.s),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -113,16 +114,16 @@ class _RoomRow extends StatelessWidget {
                     color: theme.colorScheme.primary,
                   ),
                 ),
-                const Gap(5),
+                Gap(5.s),
                 // One glyph per sleeper — the design's shorthand for capacity.
                 Wrap(
-                  spacing: 3,
+                  spacing: 3.s,
                   children: [
                     for (var i = 0; i < type.capacity; i++)
                       AppImage(
                         VipTripAssets.roomBed,
-                        height: 11,
-                        width: 11,
+                        height: 11.s,
+                        width: 11.s,
                         color: theme.colorScheme.primary,
                       ),
                   ],

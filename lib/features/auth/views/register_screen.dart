@@ -11,6 +11,7 @@ import 'package:skygate/core/components/image_source_sheet.dart';
 import 'package:skygate/core/components/or_divider.dart';
 import 'package:skygate/core/components/scan_launcher.dart';
 import 'package:skygate/core/components/toast.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/auth/controller/cubit/register_cubit.dart';
 import 'package:skygate/features/auth/views/passport_manual_screen.dart';
@@ -93,47 +94,47 @@ class _RegisterBodyState extends State<_RegisterBody> {
               final cubit = context.read<RegisterCubit>();
 
               return SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(24, 32, 24, 32),
+                padding: EdgeInsets.fromLTRB(24.s, 32.s, 24.s, 32.s),
                 child: Column(
                   children: [
                     const AppTitleHeader(showBack: true),
-                    const Gap(24),
+                    Gap(24.s),
                     AppPanel(
                       child: Form(
                         key: _formKey,
                         child: Column(
                           children: [
                             const RegisterStepper(currentStep: 1),
-                            const Gap(20),
+                            Gap(20.s),
                             Text(
                               'create_account'.tr(),
                               style: Theme.of(context).textTheme.headlineSmall,
                             ),
-                            const Gap(18),
+                            Gap(18.s),
                             FormSectionTitle(
                               text: 'personal_info'.tr(),
                               subtitle: 'add_profile_photo'.tr(),
                             ),
-                            const Gap(12),
+                            Gap(12.s),
                             ProfilePhotoPicker(
                               image: cubit.profileImage,
                               onTap: _pickProfilePhoto,
                               onRemove: cubit.removeProfileImage,
                             ),
-                            const Gap(18),
+                            Gap(18.s),
                             RegisterPersonalForm(
                               cubit: cubit,
                               onTogglePassword: cubit.togglePasswordVisibility,
                               onToggleConfirmPassword:
                                   cubit.toggleConfirmPasswordVisibility,
                             ),
-                            const Gap(20),
+                            Gap(20.s),
                             FormSectionTitle(text: 'passport_info'.tr()),
-                            const Gap(18),
+                            Gap(18.s),
                             ScanLauncher(onTap: _scanPassport),
-                            const Gap(24),
+                            Gap(24.s),
                             const OrDivider(),
-                            const Gap(16),
+                            Gap(16.s),
                             AppOutlinedButton(
                               label: 'manual_entry'.tr(),
                               onPressed: _enterManually,

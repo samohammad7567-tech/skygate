@@ -4,6 +4,7 @@ import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
 import 'package:skygate/core/models/booking_type.dart';
 import 'package:skygate/core/utils/app_format.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/journey_details/models/trip_offer_model.dart';
 import 'package:skygate/features/journey_details/widgets/trip_offer_booking_types.dart';
 import 'package:skygate/features/journey_details/widgets/trip_offer_price_row.dart';
@@ -30,7 +31,7 @@ class TripOfferCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(14.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Column(
@@ -43,7 +44,7 @@ class TripOfferCard extends StatelessWidget {
             name: offer.routeName,
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
+            padding: EdgeInsets.fromLTRB(14.s, 12.s, 14.s, 12.s),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -53,16 +54,16 @@ class TripOfferCard extends StatelessWidget {
                   onSelected: onTypeSelected,
                   labels: offer.typeLabels,
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: 10.s),
                 Row(
                   children: [
                     AppImage(
                       JourneyAssets.roomType,
-                      height: 20,
-                      width: 20,
+                      height: 20.s,
+                      width: 20.s,
                       color: theme.colorScheme.primary,
                     ),
-                    const SizedBox(width: 10),
+                    SizedBox(width: 10.s),
                     Flexible(
                       child: Text(
                         '${'room_type'.tr()} : ${offer.roomType ?? '—'}',
@@ -76,14 +77,14 @@ class TripOfferCard extends StatelessWidget {
                       ),
                     ),
                     if (offer.availableRooms != null) ...[
-                      const SizedBox(width: 8),
+                      SizedBox(width: 8.s),
                       _RoomsLeft(count: offer.availableRooms!),
                     ],
                   ],
                 ),
-                const SizedBox(height: 10),
-                const Divider(height: 1),
-                const SizedBox(height: 8),
+                SizedBox(height: 10.s),
+                Divider(height: 1.s),
+                SizedBox(height: 8.s),
                 TripOfferPriceRow(
                   asset: JourneyAssets.adult,
                   labelKey: 'price_adult',
@@ -136,10 +137,10 @@ class _RoomsLeft extends StatelessWidget {
         : theme.colorScheme.error;
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+      padding: EdgeInsets.symmetric(horizontal: 8.s, vertical: 3.s),
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.s),
       ),
       child: Text(
         count > 0
@@ -147,7 +148,10 @@ class _RoomsLeft extends StatelessWidget {
             : 'rooms_sold_out'.tr(),
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
-        style: theme.textTheme.bodySmall?.copyWith(color: color, fontSize: 11),
+        style: theme.textTheme.bodySmall?.copyWith(
+          color: color,
+          fontSize: 11.fs,
+        ),
       ),
     );
   }
@@ -164,10 +168,10 @@ class _RouteStrip extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      padding: EdgeInsets.symmetric(horizontal: 14.s, vertical: 12.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surfaceContainerHighest,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(13)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(13.s)),
       ),
       child: Text.rich(
         TextSpan(

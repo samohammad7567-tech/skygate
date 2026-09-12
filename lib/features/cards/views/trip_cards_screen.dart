@@ -11,6 +11,7 @@ import 'package:skygate/core/components/empty_state.dart';
 import 'package:skygate/core/components/pilgrim_avatar.dart';
 import 'package:skygate/core/components/toast.dart';
 import 'package:skygate/core/constants/card_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/cards/controller/cubit/trip_cards_cubit.dart';
 import 'package:skygate/features/cards/models/trip_pilgrim_model.dart';
 import 'package:skygate/features/cards/widgets/luggage_card_sheet.dart';
@@ -57,7 +58,7 @@ class _TripCardsBody extends StatelessWidget {
               children: [
                 AppPageHeader(title: 'cards_details'.tr()),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
+                  padding: EdgeInsets.fromLTRB(20.s, 0, 20.s, 16.s),
                   child: AppTabBar(
                     tabs: const [
                       AppTabItem(
@@ -72,8 +73,8 @@ class _TripCardsBody extends StatelessWidget {
                     selectedIndex: cubit.tab.index,
                     onChanged: (index) =>
                         cubit.changeTab(TripCardsTab.values[index]),
-                    padding: const EdgeInsets.symmetric(horizontal: 4),
-                    tabPadding: const EdgeInsets.fromLTRB(4, 12, 4, 0),
+                    padding: EdgeInsets.symmetric(horizontal: 4.s),
+                    tabPadding: EdgeInsets.fromLTRB(4.s, 12.s, 4.s, 0),
                     underlineGap: 10,
                     textStyle: Theme.of(context).textTheme.titleSmall,
                   ),
@@ -102,9 +103,9 @@ class _TripCardsBody extends StatelessWidget {
         children: [
           Expanded(
             child: ListView.separated(
-              padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
+              padding: EdgeInsets.fromLTRB(20.s, 0, 20.s, 12.s),
               itemCount: cubit.pilgrims.length,
-              separatorBuilder: (_, _) => const SizedBox(height: 12),
+              separatorBuilder: (_, _) => SizedBox(height: 12.s),
               itemBuilder: (_, index) =>
                   _PilgrimRow(pilgrim: cubit.pilgrims[index]),
             ),
@@ -115,12 +116,12 @@ class _TripCardsBody extends StatelessWidget {
             SafeArea(
               top: false,
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
+                padding: EdgeInsets.fromLTRB(20.s, 0, 20.s, 16.s),
                 child: CustomButton(
                   label: 'download_all_files'.tr(),
                   width: double.infinity,
-                  height: 48,
-                  icon: const Icon(Icons.download_rounded, size: 18),
+                  height: 48.s,
+                  icon: Icon(Icons.download_rounded, size: 18.s),
                   onPressed: cubit.downloadAll,
                 ),
               ),
@@ -181,7 +182,7 @@ class _PilgrimRow extends StatelessWidget {
     if (tags.isEmpty) {
       return [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16),
+          padding: EdgeInsets.symmetric(vertical: 16.s),
           child: EmptyState(message: 'no_luggage_tags'.tr()),
         ),
       ];

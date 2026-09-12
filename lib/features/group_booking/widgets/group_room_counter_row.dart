@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_stepper_button.dart';
 import 'package:skygate/core/models/group_room_type.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class GroupRoomCounterRow extends StatelessWidget {
   const GroupRoomCounterRow({
@@ -24,14 +25,14 @@ class GroupRoomCounterRow extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: EdgeInsets.symmetric(vertical: 8.s),
       child: Row(
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+            padding: EdgeInsets.symmetric(horizontal: 6.s, vertical: 4.s),
             decoration: BoxDecoration(
               color: theme.colorScheme.surfaceContainerHighest,
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.s),
               border: Border.all(color: theme.colorScheme.outline),
             ),
             child: Row(
@@ -42,7 +43,7 @@ class GroupRoomCounterRow extends StatelessWidget {
                   onTap: count > 0 ? () => onChanged(count - 1) : null,
                 ),
                 SizedBox(
-                  width: 36,
+                  width: 36.s,
                   child: Text(
                     '$count',
                     textAlign: TextAlign.center,
@@ -57,7 +58,7 @@ class GroupRoomCounterRow extends StatelessWidget {
               ],
             ),
           ),
-          const Gap(12),
+          Gap(12.s),
           Expanded(
             child: Text(
               type.labelKey.tr(),

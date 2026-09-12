@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_card.dart';
 import 'package:skygate/core/components/app_document_actions.dart';
 import 'package:skygate/core/components/app_status_chip.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/cards/models/luggage_tag_model.dart';
 
 /// One bag under a name on "بطاقات الحقائب": which bag it is, whether the tag
@@ -31,7 +32,7 @@ class LuggageTagTile extends StatelessWidget {
     final theme = Theme.of(context);
 
     return AppCard(
-      padding: const EdgeInsets.all(12),
+      padding: EdgeInsets.all(12.s),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -47,7 +48,7 @@ class LuggageTagTile extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 8),
+              SizedBox(width: 8.s),
               AppStatusChip(
                 labelKey: tag.status.labelKey,
                 background: tag.status.background,
@@ -55,9 +56,9 @@ class LuggageTagTile extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 10),
-          const Divider(height: 1),
-          const SizedBox(height: 10),
+          SizedBox(height: 10.s),
+          Divider(height: 1.s),
+          SizedBox(height: 10.s),
           Text(
             'luggage_serial'.tr(),
             maxLines: 1,
@@ -66,14 +67,14 @@ class LuggageTagTile extends StatelessWidget {
               color: theme.colorScheme.primary,
             ),
           ),
-          const SizedBox(height: 2),
+          SizedBox(height: 2.s),
           Text(
             tag.tagNumber ?? '—',
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: theme.textTheme.titleMedium,
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12.s),
           AppDocumentActions(
             isDownloading: isDownloading,
             onDownload: onDownload,

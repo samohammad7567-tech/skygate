@@ -7,6 +7,7 @@ import 'package:skygate/core/components/app_status_chip.dart';
 import 'package:skygate/core/constants/card_assets.dart';
 import 'package:skygate/core/constants/my_trips_assets.dart';
 import 'package:skygate/core/utils/app_format.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/journey_details/models/travel_document_model.dart';
 
 /// One visa under a pilgrim's name: which application it is, where it has got
@@ -35,7 +36,7 @@ class VisaTile extends StatelessWidget {
     final theme = Theme.of(context);
 
     return AppCard(
-      padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
+      padding: EdgeInsets.fromLTRB(12.s, 12.s, 12.s, 12.s),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -51,16 +52,16 @@ class VisaTile extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 8),
+              SizedBox(width: 8.s),
               AppStatusChip(
                 labelKey: visa.status.labelKey,
                 background: visa.status.background,
                 foreground: visa.status.foreground,
-                radius: 6,
+                radius: 6.s,
               ),
             ],
           ),
-          const SizedBox(height: 2),
+          SizedBox(height: 2.s),
           AppDetailRow(
             asset: MyTripsAssets.serialNumber,
             labelKey: 'visa_number',
@@ -82,7 +83,7 @@ class VisaTile extends StatelessWidget {
             value: AppFormat.numericDate(visa.submittedAt),
             showDivider: false,
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: 10.s),
           AppDocumentActions(
             isDownloading: isDownloading,
             onDownload: onDownload,

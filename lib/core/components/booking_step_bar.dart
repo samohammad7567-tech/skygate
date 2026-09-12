@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class BookingStepBar extends StatelessWidget {
   const BookingStepBar({super.key, required this.step, required this.total});
@@ -12,10 +13,10 @@ class BookingStepBar extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
+      padding: EdgeInsets.fromLTRB(14.s, 12.s, 14.s, 12.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Column(
@@ -30,7 +31,7 @@ class BookingStepBar extends StatelessWidget {
                   style: theme.textTheme.titleSmall,
                 ),
               ),
-              const Gap(10),
+              Gap(10.s),
               Text(
                 'step_of'.tr(
                   namedArgs: {'current': '$step', 'total': '$total'},
@@ -43,7 +44,7 @@ class BookingStepBar extends StatelessWidget {
               ),
             ],
           ),
-          const Gap(10),
+          Gap(10.s),
           _ProgressRule(step: step, total: total),
         ],
       ),
@@ -66,14 +67,14 @@ class _ProgressRule extends StatelessWidget {
       children: [
         Expanded(
           child: SizedBox(
-            height: 4,
+            height: 4.s,
             child: Stack(
               children: [
                 Positioned.fill(
                   child: DecoratedBox(
                     decoration: BoxDecoration(
                       color: theme.colorScheme.outline,
-                      borderRadius: BorderRadius.circular(4),
+                      borderRadius: BorderRadius.circular(4.s),
                     ),
                   ),
                 ),
@@ -84,7 +85,7 @@ class _ProgressRule extends StatelessWidget {
                     child: DecoratedBox(
                       decoration: BoxDecoration(
                         color: theme.colorScheme.primary,
-                        borderRadius: BorderRadius.circular(4),
+                        borderRadius: BorderRadius.circular(4.s),
                       ),
                     ),
                   ),
@@ -93,10 +94,10 @@ class _ProgressRule extends StatelessWidget {
             ),
           ),
         ),
-        const Gap(6),
+        Gap(6.s),
         Container(
-          height: 6,
-          width: 6,
+          height: 6.s,
+          width: 6.s,
           decoration: BoxDecoration(
             color: theme.colorScheme.primary,
             shape: BoxShape.circle,

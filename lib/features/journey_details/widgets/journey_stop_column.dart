@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/utils/app_format.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/journey_details/models/journey_route_model.dart';
 
 class JourneyStopColumn extends StatelessWidget {
@@ -48,7 +49,7 @@ class JourneyStopColumn extends StatelessWidget {
             color: theme.colorScheme.primary,
           ),
         ),
-        const SizedBox(height: 2),
+        SizedBox(height: 2.s),
         Text(
           stop?.place ?? '',
           maxLines: 2,
@@ -61,7 +62,7 @@ class JourneyStopColumn extends StatelessWidget {
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           textAlign: textAlign,
-          style: theme.textTheme.bodySmall?.copyWith(fontSize: 9),
+          style: theme.textTheme.bodySmall?.copyWith(fontSize: 9.fs),
         ),
       ],
     );

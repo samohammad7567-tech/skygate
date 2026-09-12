@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_image.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/payments/models/payment_currency.dart';
 import 'package:skygate/features/payments/widgets/payment_radio.dart';
 
@@ -27,7 +28,7 @@ class PaymentCurrencySelector extends StatelessWidget {
               onTap: () => onChanged(currency),
             ),
           ),
-          if (currency != PaymentCurrency.values.last) const Gap(12),
+          if (currency != PaymentCurrency.values.last) Gap(12.s),
         ],
       ],
     );
@@ -48,7 +49,7 @@ class _Option extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final borderRadius = BorderRadius.circular(14);
+    final borderRadius = BorderRadius.circular(14.s);
 
     return Material(
       color: isSelected
@@ -59,7 +60,7 @@ class _Option extends StatelessWidget {
         onTap: onTap,
         borderRadius: borderRadius,
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+          padding: EdgeInsets.symmetric(horizontal: 12.s, vertical: 12.s),
           decoration: BoxDecoration(
             borderRadius: borderRadius,
             border: Border.all(
@@ -71,7 +72,7 @@ class _Option extends StatelessWidget {
           child: Row(
             children: [
               PaymentRadio(isSelected: isSelected),
-              const Gap(10),
+              Gap(10.s),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -93,10 +94,10 @@ class _Option extends StatelessWidget {
                   ],
                 ),
               ),
-              const Gap(10),
+              Gap(10.s),
               Container(
-                height: 34,
-                width: 34,
+                height: 34.s,
+                width: 34.s,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color: isSelected
@@ -106,8 +107,8 @@ class _Option extends StatelessWidget {
                 ),
                 child: AppImage(
                   currency.icon,
-                  height: 18,
-                  width: 18,
+                  height: 18.s,
+                  width: 18.s,
                   color: theme.colorScheme.primary,
                 ),
               ),

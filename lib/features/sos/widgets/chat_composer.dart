@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_glyph_button.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/sos_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class ChatComposer extends StatelessWidget {
   const ChatComposer({
@@ -24,7 +25,7 @@ class ChatComposer extends StatelessWidget {
     return SafeArea(
       top: false,
       child: Container(
-        padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
+        padding: EdgeInsets.fromLTRB(12.s, 10.s, 12.s, 10.s),
         decoration: BoxDecoration(
           color: theme.colorScheme.surface,
           border: Border(top: BorderSide(color: theme.colorScheme.outline)),
@@ -32,13 +33,13 @@ class ChatComposer extends StatelessWidget {
         child: Row(
           children: [
             _SendButton(controller: controller, onSend: onSend),
-            const Gap(10),
+            Gap(10.s),
             Expanded(
               child: Container(
-                padding: const EdgeInsetsDirectional.only(start: 6, end: 12),
+                padding: EdgeInsetsDirectional.only(start: 6.s, end: 12.s),
                 decoration: BoxDecoration(
                   color: theme.scaffoldBackgroundColor,
-                  borderRadius: BorderRadius.circular(24),
+                  borderRadius: BorderRadius.circular(24.s),
                   border: Border.all(color: theme.colorScheme.outline),
                 ),
                 child: Row(
@@ -107,11 +108,11 @@ class _SendButton extends StatelessWidget {
             customBorder: const CircleBorder(),
             onTap: canSend ? onSend : null,
             child: SizedBox(
-              height: 44,
-              width: 44,
+              height: 44.s,
+              width: 44.s,
               child: Icon(
                 Icons.arrow_back,
-                size: 20,
+                size: 20.s,
                 color: theme.colorScheme.onPrimary,
               ),
             ),

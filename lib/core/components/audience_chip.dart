@@ -3,6 +3,7 @@ import 'package:skygate/core/components/app_circle_badge.dart';
 import 'package:skygate/core/components/app_status_chip.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/models/traveler_audience.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class AudienceChip extends StatelessWidget {
   const AudienceChip({super.key, required this.audience});
@@ -27,21 +28,21 @@ class AudienceChip extends StatelessWidget {
       labelKey: audience.labelKey,
       background: _background,
       foreground: _foreground,
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      padding: EdgeInsets.symmetric(horizontal: 12.s, vertical: 4.s),
       borderAlpha: 0.4,
     );
   }
 }
 
 class PositionBadge extends StatelessWidget {
-  const PositionBadge({super.key, required this.position, this.size = 34});
+  const PositionBadge({super.key, required this.position, this.size});
 
   final int position;
-  final double size;
+  final double? size;
 
   @override
   Widget build(BuildContext context) {
-    return AppCircleBadge(text: '$position', size: size);
+    return AppCircleBadge(text: '$position', size: (size ?? 34.s));
   }
 }
 

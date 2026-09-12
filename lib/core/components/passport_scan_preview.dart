@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/passport_mrz_zone.dart';
 import 'package:skygate/core/components/placeholder_bar.dart';
 import 'package:skygate/core/components/scan_corner_frame.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class PassportScanPreview extends StatelessWidget {
   const PassportScanPreview({super.key, required this.progress});
@@ -20,24 +21,24 @@ class PassportScanPreview extends StatelessWidget {
         clipBehavior: Clip.none,
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(18),
+            borderRadius: BorderRadius.circular(18.s),
             child: Container(
               color: theme.colorScheme.surface,
-              padding: const EdgeInsets.fromLTRB(16, 34, 16, 16),
+              padding: EdgeInsets.fromLTRB(16.s, 34.s, 16.s, 16.s),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const PlaceholderBar(widthFactor: 1, height: 9),
-                  const Gap(14),
+                  PlaceholderBar(widthFactor: 1, height: 9.s),
+                  Gap(14.s),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Expanded(child: _TextBlock()),
-                      const Gap(12),
+                      Gap(12.s),
                       const _PhotoBox(),
                     ],
                   ),
-                  const Gap(20),
+                  Gap(20.s),
                   const PassportMrzZone(),
                 ],
               ),
@@ -56,17 +57,17 @@ class _TextBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         PlaceholderBar(widthFactor: 0.55),
-        Gap(9),
+        Gap(9.s),
         PlaceholderBar(widthFactor: 0.95),
-        Gap(9),
+        Gap(9.s),
         PlaceholderBar(widthFactor: 0.7),
-        Gap(9),
+        Gap(9.s),
         PlaceholderBar(widthFactor: 0.85),
-        Gap(9),
+        Gap(9.s),
         PlaceholderBar(widthFactor: 0.6),
       ],
     );
@@ -81,15 +82,15 @@ class _PhotoBox extends StatelessWidget {
     final theme = Theme.of(context);
 
     return ScanCornerFrame(
-      size: 22,
+      size: 22.s,
       child: Container(
-        height: 78,
-        width: 78,
+        height: 78.s,
+        width: 78.s,
         decoration: BoxDecoration(
           color: theme.colorScheme.surfaceContainerHighest,
           shape: BoxShape.circle,
         ),
-        child: Icon(Icons.person, size: 44, color: theme.colorScheme.primary),
+        child: Icon(Icons.person, size: 44.s, color: theme.colorScheme.primary),
       ),
     );
   }
@@ -108,7 +109,7 @@ class _Sweep extends StatelessWidget {
       child: Align(
         alignment: Alignment(0, progress * 2 - 1),
         child: Container(
-          height: 46,
+          height: 46.s,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
@@ -134,24 +135,24 @@ class _ScanningPill extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 7),
+      padding: EdgeInsets.symmetric(horizontal: 16.s, vertical: 7.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            height: 8,
-            width: 8,
+            height: 8.s,
+            width: 8.s,
             decoration: BoxDecoration(
               color: theme.colorScheme.primary,
               shape: BoxShape.circle,
             ),
           ),
-          const Gap(8),
+          Gap(8.s),
           Text('scanning_now'.tr(), style: theme.textTheme.bodySmall),
         ],
       ),

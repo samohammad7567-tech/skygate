@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class AppSearchBar extends StatelessWidget {
   const AppSearchBar({
@@ -36,7 +37,7 @@ class AppSearchBar extends StatelessWidget {
       children: [
         Expanded(child: _field(context, theme)),
         if (actionAsset != null) ...[
-          const SizedBox(width: 12),
+          SizedBox(width: 12.s),
           _action(context, theme),
         ],
       ],
@@ -46,21 +47,21 @@ class AppSearchBar extends StatelessWidget {
   Widget _field(BuildContext context, ThemeData theme) {
     return Container(
       height: _height,
-      padding: const EdgeInsets.symmetric(horizontal: 14),
+      padding: EdgeInsets.symmetric(horizontal: 14.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(24.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Row(
         children: [
           AppImage(
             JourneyAssets.search,
-            height: 18,
-            width: 18,
+            height: 18.s,
+            width: 18.s,
             color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
           ),
-          const SizedBox(width: 8),
+          SizedBox(width: 8.s),
           Expanded(
             child: TextField(
               controller: controller,
@@ -101,8 +102,8 @@ class AppSearchBar extends StatelessWidget {
             message: actionTooltip ?? '',
             child: AppImage(
               actionAsset!,
-              height: 20,
-              width: 20,
+              height: 20.s,
+              width: 20.s,
               color: theme.colorScheme.primary,
             ),
           ),

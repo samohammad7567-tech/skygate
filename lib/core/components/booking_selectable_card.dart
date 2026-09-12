@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class BookingSelectableCard extends StatelessWidget {
   const BookingSelectableCard({
@@ -17,7 +18,7 @@ class BookingSelectableCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final radius = BorderRadius.circular(14);
+    final radius = BorderRadius.circular(14.s);
 
     return Material(
       color: theme.colorScheme.surface,
@@ -44,10 +45,10 @@ class BookingSelectableCard extends StatelessWidget {
 }
 
 class BookingRadio extends StatelessWidget {
-  const BookingRadio({super.key, required this.isSelected, this.size = 24});
+  const BookingRadio({super.key, required this.isSelected, this.size});
 
   final bool isSelected;
-  final double size;
+  final double? size;
 
   @override
   Widget build(BuildContext context) {
@@ -57,17 +58,17 @@ class BookingRadio extends StatelessWidget {
         : theme.colorScheme.outlineVariant;
 
     return Container(
-      height: size,
-      width: size,
+      height: (size ?? 24.s),
+      width: (size ?? 24.s),
       alignment: Alignment.center,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        border: Border.all(color: color, width: 2),
+        border: Border.all(color: color, width: 2.s),
       ),
       child: isSelected
           ? Container(
-              height: size / 2,
-              width: size / 2,
+              height: (size ?? 24.s) / 2,
+              width: (size ?? 24.s) / 2,
               decoration: BoxDecoration(
                 color: theme.colorScheme.primary,
                 shape: BoxShape.circle,

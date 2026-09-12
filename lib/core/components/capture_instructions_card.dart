@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class CaptureInstructionsCard extends StatelessWidget {
   const CaptureInstructionsCard({super.key});
@@ -16,10 +17,10 @@ class CaptureInstructionsCard extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
+      padding: EdgeInsets.fromLTRB(14.s, 12.s, 14.s, 12.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Column(
@@ -31,10 +32,10 @@ class CaptureInstructionsCard extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: theme.textTheme.titleSmall,
           ),
-          const Gap(8),
+          Gap(8.s),
           for (final key in instructionKeys) ...[
             _Bullet(text: key.tr()),
-            const Gap(6),
+            Gap(6.s),
           ],
         ],
       ),
@@ -61,12 +62,12 @@ class _Bullet extends StatelessWidget {
             style: theme.textTheme.bodySmall,
           ),
         ),
-        const Gap(8),
+        Gap(8.s),
         Padding(
-          padding: const EdgeInsets.only(top: 5),
+          padding: EdgeInsets.only(top: 5.s),
           child: Container(
-            height: 6,
-            width: 6,
+            height: 6.s,
+            width: 6.s,
             decoration: BoxDecoration(
               color: theme.colorScheme.primary,
               shape: BoxShape.circle,

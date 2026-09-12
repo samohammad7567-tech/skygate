@@ -4,6 +4,7 @@ import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/components/sheet_handle.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
 import 'package:skygate/core/models/group_room_type.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/hotels/models/hotel_filter.dart';
 import 'package:skygate/features/hotels/widgets/hotel_filter_dates.dart';
 import 'package:skygate/features/hotels/widgets/hotel_filter_row.dart';
@@ -22,8 +23,8 @@ class HotelFilterSheet extends StatefulWidget {
     context: context,
     isScrollControlled: true,
     backgroundColor: Theme.of(context).colorScheme.surface,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(24.s)),
     ),
     builder: (_) => HotelFilterSheet(filter: filter),
   );
@@ -58,13 +59,13 @@ class _HotelFilterSheetState extends State<HotelFilterSheet> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 12, 20, 16),
+        padding: EdgeInsets.fromLTRB(20.s, 12.s, 20.s, 16.s),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SheetHandle(),
-            const SizedBox(height: 12),
+            SizedBox(height: 12.s),
             HotelFilterRow(
               asset: JourneyAssets.bed,
               child: HotelFilterValue(
@@ -90,7 +91,7 @@ class _HotelFilterSheetState extends State<HotelFilterSheet> {
   }
 
   List<Widget> _collapsed() => [
-    const Divider(height: 1),
+    Divider(height: 1.s),
     HotelFilterRow(
       asset: JourneyAssets.calendar,
       child: HotelFilterDates(
@@ -100,13 +101,13 @@ class _HotelFilterSheetState extends State<HotelFilterSheet> {
         onPickTo: () => _pickDate(isFrom: false),
       ),
     ),
-    const SizedBox(height: 4),
+    SizedBox(height: 4.s),
     HotelRatingSlider(
       value: _filter.minRating,
       onChanged: (value) =>
           setState(() => _filter = _filter.copyWith(minRating: value)),
     ),
-    const SizedBox(height: 16),
+    SizedBox(height: 16.s),
     CustomButton(
       label: 'search'.tr(),
       onPressed: () => Navigator.of(context).pop(_filter),

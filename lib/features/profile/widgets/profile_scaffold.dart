@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/profile/controller/cubit/profile_cubit.dart';
 import 'package:skygate/features/profile/widgets/profile_header.dart';
 
@@ -12,7 +13,7 @@ class ProfileScaffold extends StatelessWidget {
     this.onBack,
     this.onMenuTap,
     this.showBack = true,
-    this.padding = const EdgeInsets.fromLTRB(20, 22, 20, 32),
+    this.padding,
   });
 
   final String title;
@@ -23,7 +24,9 @@ class ProfileScaffold extends StatelessWidget {
   /// A tab root has nothing to pop, so the shell's tabs clear this. Every
   /// pushed screen leaves it on.
   final bool showBack;
-  final EdgeInsetsGeometry padding;
+
+  /// Defaults to the design's 20/22/20/32 inset, scaled.
+  final EdgeInsetsGeometry? padding;
 
   @override
   Widget build(BuildContext context) {
@@ -49,10 +52,11 @@ class ProfileScaffold extends StatelessWidget {
                 ),
                 Expanded(
                   child: SingleChildScrollView(
-                    padding: padding,
+                    padding:
+                        padding ?? EdgeInsets.fromLTRB(20.s, 22.s, 20.s, 32.s),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [...children, const Gap(8)],
+                      children: [...children, Gap(8.s)],
                     ),
                   ),
                 ),

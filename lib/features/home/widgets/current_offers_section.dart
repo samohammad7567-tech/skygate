@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/empty_state.dart';
 import 'package:skygate/core/components/section_header.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/screen_size.dart';
 import 'package:skygate/features/home/models/offer_model.dart';
 import 'package:skygate/features/home/widgets/offer_card.dart';
@@ -33,14 +34,14 @@ class CurrentOffersSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20.s),
           child: SectionHeader(
             title: 'current_offers'.tr(),
             actionLabel: 'view_all'.tr(),
             onActionTap: onViewAll,
           ),
         ),
-        const SizedBox(height: 12),
+        SizedBox(height: 12.s),
         SizedBox(height: _listHeight, child: _body(context)),
       ],
     );
@@ -55,9 +56,9 @@ class CurrentOffersSection extends StatelessWidget {
       condition: offers.isNotEmpty,
       builder: (_) => ListView.separated(
         scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: EdgeInsets.symmetric(horizontal: 20.s),
         itemCount: offers.length,
-        separatorBuilder: (_, _) => const SizedBox(width: 12),
+        separatorBuilder: (_, _) => SizedBox(width: 12.s),
         itemBuilder: (_, index) {
           final offer = offers[index];
           return OfferCard(

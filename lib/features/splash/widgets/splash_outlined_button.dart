@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class SplashOutlinedButton extends StatelessWidget {
   const SplashOutlinedButton({
     super.key,
     required this.label,
     required this.onPressed,
-    this.height = 46,
+    this.height,
     this.isLoading = false,
   });
 
   final String label;
   final VoidCallback? onPressed;
-  final double height;
+  final double? height;
   final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height,
+      height: (height ?? 46.s),
       width: double.infinity,
       child: OutlinedButton(
         onPressed: onPressed,
@@ -25,14 +26,16 @@ class SplashOutlinedButton extends StatelessWidget {
           backgroundColor: Colors.transparent,
           foregroundColor: Colors.white,
           side: BorderSide(color: Colors.white.withValues(alpha: 0.85)),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.s),
+          ),
         ),
         child: isLoading
-            ? const SizedBox(
-                height: 18,
-                width: 18,
+            ? SizedBox(
+                height: 18.s,
+                width: 18.s,
                 child: CircularProgressIndicator(
-                  strokeWidth: 2,
+                  strokeWidth: 2.s,
                   color: Colors.white,
                 ),
               )

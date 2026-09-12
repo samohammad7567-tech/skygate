@@ -7,6 +7,7 @@ import 'package:skygate/core/components/audience_chip.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/components/empty_state.dart';
 import 'package:skygate/core/components/pilgrim_avatar.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/cards/models/trip_pilgrim_model.dart';
 import 'package:skygate/features/journey_details/controller/cubit/segment_docs_cubit.dart';
 import 'package:skygate/features/journey_details/widgets/ticket_tile.dart';
@@ -37,9 +38,9 @@ class SegmentDocsTab extends StatelessWidget {
         children: [
           Expanded(
             child: ListView.separated(
-              padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
+              padding: EdgeInsets.fromLTRB(20.s, 0, 20.s, 12.s),
               itemCount: cubit.pilgrims.length,
-              separatorBuilder: (_, _) => const SizedBox(height: 12),
+              separatorBuilder: (_, _) => SizedBox(height: 12.s),
               itemBuilder: (_, index) =>
                   _PilgrimRow(pilgrim: cubit.pilgrims[index]),
             ),
@@ -48,12 +49,12 @@ class SegmentDocsTab extends StatelessWidget {
             SafeArea(
               top: false,
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
+                padding: EdgeInsets.fromLTRB(20.s, 0, 20.s, 16.s),
                 child: CustomButton(
                   label: 'download_all_files'.tr(),
                   width: double.infinity,
-                  height: 48,
-                  icon: const Icon(Icons.download_rounded, size: 18),
+                  height: 48.s,
+                  icon: Icon(Icons.download_rounded, size: 18.s),
                   onPressed: cubit.downloadAll,
                 ),
               ),
@@ -137,7 +138,7 @@ class _PilgrimRow extends StatelessWidget {
   }
 
   Widget _empty(String messageKey) => Padding(
-    padding: const EdgeInsets.symmetric(vertical: 16),
+    padding: EdgeInsets.symmetric(vertical: 16.s),
     child: EmptyState(message: messageKey.tr()),
   );
 }

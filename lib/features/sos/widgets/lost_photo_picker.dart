@@ -7,6 +7,7 @@ import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/components/dashed_box.dart';
 import 'package:skygate/core/components/upload_size_chip.dart';
 import 'package:skygate/core/constants/sos_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class LostPhotoPicker extends StatelessWidget {
   const LostPhotoPicker({
@@ -29,17 +30,17 @@ class LostPhotoPicker extends StatelessWidget {
 
     return DashedBox(
       onTap: onPick,
-      radius: 14,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 26),
+      radius: 14.s,
+      padding: EdgeInsets.symmetric(horizontal: 16.s, vertical: 26.s),
       child: Column(
         children: [
           AppImage(
             SosAssets.camera,
-            height: 32,
-            width: 32,
+            height: 32.s,
+            width: 32.s,
             color: theme.colorScheme.primary,
           ),
-          const Gap(12),
+          Gap(12.s),
           Text(
             'lost_add_photo'.tr(),
             textAlign: TextAlign.center,
@@ -47,7 +48,7 @@ class LostPhotoPicker extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: theme.textTheme.titleMedium,
           ),
-          const Gap(10),
+          Gap(10.s),
           const UploadSizeChip(),
         ],
       ),
@@ -68,17 +69,17 @@ class _Preview extends StatelessWidget {
     return Stack(
       children: [
         ClipRRect(
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(14.s),
           child: Image.file(
             file,
-            height: 180,
+            height: 180.s,
             width: double.infinity,
             fit: BoxFit.cover,
           ),
         ),
         PositionedDirectional(
-          top: 8,
-          end: 8,
+          top: 8.s,
+          end: 8.s,
           child: Material(
             color: theme.colorScheme.surface,
             shape: const CircleBorder(),
@@ -86,11 +87,11 @@ class _Preview extends StatelessWidget {
               customBorder: const CircleBorder(),
               onTap: onRemove,
               child: SizedBox(
-                height: 32,
-                width: 32,
+                height: 32.s,
+                width: 32.s,
                 child: Icon(
                   Icons.close,
-                  size: 18,
+                  size: 18.s,
                   color: theme.colorScheme.error,
                 ),
               ),

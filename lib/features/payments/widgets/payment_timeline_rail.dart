@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class PaymentTimelineRail extends StatelessWidget {
   const PaymentTimelineRail({
@@ -32,7 +33,7 @@ class PaymentTimelineRail extends StatelessWidget {
             decoration: BoxDecoration(color: color, shape: BoxShape.circle),
             child: Icon(
               isDue ? Icons.schedule : Icons.check_rounded,
-              size: 16,
+              size: 16.s,
               color: Theme.of(context).colorScheme.onPrimary,
             ),
           ),
@@ -54,7 +55,7 @@ class _Connector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(width: 3, color: show ? color : Colors.transparent),
+      child: Container(width: 3.s, color: show ? color : Colors.transparent),
     );
   }
 }

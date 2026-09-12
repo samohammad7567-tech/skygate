@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/models/trip_model.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/trips/widgets/trip_chips.dart';
 
 /// The right-hand half of a "رحلاتي" card: the campaign's name and number with
@@ -37,7 +38,7 @@ class TripSummary extends StatelessWidget {
                     ),
                   ),
                   if (trip.tripNumber != null) ...[
-                    const Gap(2),
+                    Gap(2.s),
                     Text(
                       trip.tripNumber!,
                       maxLines: 1,
@@ -48,11 +49,11 @@ class TripSummary extends StatelessWidget {
                 ],
               ),
             ),
-            const Gap(6),
+            Gap(6.s),
             const TripInclusionsRow(),
           ],
         ),
-        const Gap(10),
+        Gap(10.s),
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -60,9 +61,9 @@ class TripSummary extends StatelessWidget {
             Expanded(
               child: TripDateChip(labelKey: 'departure', date: trip.startDate),
             ),
-            const Gap(6),
+            Gap(6.s),
             Expanded(child: TripDurationDivider(days: trip.durationDays)),
-            const Gap(6),
+            Gap(6.s),
             Expanded(
               child: TripDateChip(labelKey: 'return_date', date: trip.endDate),
             ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/my_trips_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 /// A pilgrim row that folds open to show what belongs to them.
 ///
@@ -40,7 +41,7 @@ class AppExpandableTile extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(14.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Column(
@@ -55,12 +56,12 @@ class AppExpandableTile extends StatelessWidget {
           ),
           if (isExpanded && children.isNotEmpty)
             Padding(
-              padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+              padding: EdgeInsets.fromLTRB(10.s, 0, 10.s, 10.s),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   for (var i = 0; i < children.length; i++) ...[
-                    if (i > 0) const SizedBox(height: 10),
+                    if (i > 0) SizedBox(height: 10.s),
                     children[i],
                   ],
                 ],
@@ -93,13 +94,13 @@ class _Header extends StatelessWidget {
 
     return InkWell(
       onTap: onToggle,
-      borderRadius: BorderRadius.circular(14),
+      borderRadius: BorderRadius.circular(14.s),
       child: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: EdgeInsets.all(10.s),
         child: Row(
           children: [
             leading,
-            const SizedBox(width: 10),
+            SizedBox(width: 10.s),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,7 +115,7 @@ class _Header extends StatelessWidget {
                     ),
                   ),
                   if (badge != null) ...[
-                    const SizedBox(height: 4),
+                    SizedBox(height: 4.s),
                     Align(
                       alignment: AlignmentDirectional.centerStart,
                       child: badge!,
@@ -123,7 +124,7 @@ class _Header extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(width: 8),
+            SizedBox(width: 8.s),
             // The chevron is the only part that moves, so it turns rather
             // than being swapped for a second glyph.
             // The export points up, so a closed row is the one turned over.
@@ -132,8 +133,8 @@ class _Header extends StatelessWidget {
               duration: const Duration(milliseconds: 180),
               child: AppImage(
                 MyTripsAssets.chevronUp,
-                height: 10,
-                width: 16,
+                height: 10.s,
+                width: 16.s,
                 color: theme.colorScheme.primary,
               ),
             ),

@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/constants/app_colors.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/profile/models/pilgrim_document_model.dart';
 
 class DocumentStatusChip extends StatelessWidget {
@@ -21,10 +22,10 @@ class DocumentStatusChip extends StatelessWidget {
     };
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      padding: EdgeInsets.symmetric(horizontal: 10.s, vertical: 4.s),
       decoration: BoxDecoration(
         color: surface,
-        borderRadius: BorderRadius.circular(6),
+        borderRadius: BorderRadius.circular(6.s),
       ),
       child: Text(
         review.labelKey.tr(),

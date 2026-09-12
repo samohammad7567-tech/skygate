@@ -9,6 +9,7 @@ import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/map_assets.dart';
 import 'package:skygate/core/services/location_service.dart';
 import 'package:skygate/core/models/activity_model.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/map/models/geofence_model.dart';
 import 'package:skygate/features/map/utils/map_marker_factory.dart';
 
@@ -219,12 +220,12 @@ class _AwaitingFix extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const SizedBox(
-                    height: 22,
-                    width: 22,
-                    child: CircularProgressIndicator(strokeWidth: 2),
+                  SizedBox(
+                    height: 22.s,
+                    width: 22.s,
+                    child: CircularProgressIndicator(strokeWidth: 2.s),
                   ),
-                  const SizedBox(height: 12),
+                  SizedBox(height: 12.s),
                   Text(
                     'map_awaiting_fix'.tr(),
                     maxLines: 2,

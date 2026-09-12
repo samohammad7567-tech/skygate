@@ -4,6 +4,7 @@ import 'package:skygate/core/components/payment_detail_row.dart';
 import 'package:skygate/core/models/booking_city.dart';
 import 'package:skygate/core/models/group_room_type.dart';
 import 'package:skygate/core/utils/app_format.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/vip_trip/models/private_trip_request_model.dart';
 import 'package:skygate/features/vip_trip/widgets/vip_status_chip.dart';
 
@@ -42,7 +43,7 @@ class VipSummaryCard extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(18.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Column(
@@ -50,47 +51,47 @@ class VipSummaryCard extends StatelessWidget {
         children: [
           _Header(status: status),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: EdgeInsets.symmetric(horizontal: 16.s),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 PaymentDetailRow(labelKey: 'travelers', value: travelers),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 PaymentDetailRow(
                   labelKey: 'start_date',
                   value: AppFormat.numericDate(startDate),
                 ),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 PaymentDetailRow(
                   labelKey: 'end_date',
                   value: AppFormat.numericDate(endDate),
                 ),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 PaymentDetailRow(
                   labelKey: 'makkah_nights',
                   value: _days(makkahNights),
                 ),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 PaymentDetailRow(
                   labelKey: 'madinah_nights',
                   value: _days(madinahNights),
                 ),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 PaymentDetailRow(
                   labelKey: 'room_types',
                   child: _Rooms(counts: roomCounts),
                 ),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 PaymentDetailRow(
                   labelKey: BookingCity.madinah.hotelLabelKey,
                   value: madinahHotel,
                 ),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 PaymentDetailRow(
                   labelKey: BookingCity.makkah.hotelLabelKey,
                   value: makkahHotel,
                 ),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 PaymentDetailRow(labelKey: 'notes', value: notes),
               ],
             ),
@@ -115,7 +116,7 @@ class _Header extends StatelessWidget {
 
     return Container(
       color: theme.colorScheme.surfaceContainerHighest,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      padding: EdgeInsets.symmetric(horizontal: 16.s, vertical: 16.s),
       child: Row(
         children: [
           if (status != null) VipStatusChip(status: status!),
@@ -153,7 +154,7 @@ class _Rooms extends StatelessWidget {
         for (final type in GroupRoomType.values)
           if ((counts[type] ?? 0) > 0)
             Padding(
-              padding: const EdgeInsets.only(bottom: 4),
+              padding: EdgeInsets.only(bottom: 4.s),
               child: Row(
                 children: [
                   Text(
@@ -162,7 +163,7 @@ class _Rooms extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: style,
                   ),
-                  const SizedBox(width: 14),
+                  SizedBox(width: 14.s),
                   Text(
                     'room_count_of'.tr(namedArgs: {'count': '${counts[type]}'}),
                     maxLines: 1,

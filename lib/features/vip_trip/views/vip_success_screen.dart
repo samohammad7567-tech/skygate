@@ -5,6 +5,7 @@ import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/components/app_page_header.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/main/views/main_screen.dart';
 
@@ -29,16 +30,16 @@ class VipSuccessScreen extends StatelessWidget {
             ),
             Expanded(
               child: ListView(
-                padding: const EdgeInsets.fromLTRB(20, 30, 20, 24),
+                padding: EdgeInsets.fromLTRB(20.s, 30.s, 20.s, 24.s),
                 children: [
-                  const AppImage(AuthAssets.successCheck, height: 250),
-                  const Gap(30),
+                  AppImage(AuthAssets.successCheck, height: 250.vs),
+                  Gap(30.s),
                   Text(
                     'congratulations'.tr(),
                     textAlign: TextAlign.center,
                     style: theme.textTheme.headlineSmall,
                   ),
-                  const Gap(12),
+                  Gap(12.s),
                   Text(
                     'private_trip_request_sent'.tr(),
                     textAlign: TextAlign.center,
@@ -46,11 +47,11 @@ class VipSuccessScreen extends StatelessWidget {
                       color: theme.colorScheme.primary,
                     ),
                   ),
-                  const Gap(34),
+                  Gap(34.s),
                   CustomButton(
                     label: 'back_to_home'.tr(),
                     width: double.infinity,
-                    height: 48,
+                    height: 48.s,
                     onPressed: () => _home(context),
                   ),
                 ],

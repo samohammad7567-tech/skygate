@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/custom_button.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/profile/controller/cubit/profile_cubit.dart';
 import 'package:skygate/features/profile/views/edit_passport_screen.dart';
@@ -34,12 +35,12 @@ class PassportInfoScreen extends StatelessWidget {
           title: 'nav_account'.tr(),
           children: [
             AppSectionTitle(text: 'passport_information'.tr()),
-            const Gap(12),
+            Gap(12.s),
             PassportInfoCard(passport: cubit.passport),
-            const Gap(18),
+            Gap(18.s),
             CustomButton(
               label: 'edit_passport_information'.tr(),
-              height: 48,
+              height: 48.s,
               onPressed: () => _edit(context),
             ),
           ],

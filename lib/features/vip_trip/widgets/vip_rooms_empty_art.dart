@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/vip_trip_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class VipRoomsEmptyArt extends StatelessWidget {
   const VipRoomsEmptyArt({super.key});
@@ -15,21 +16,21 @@ class VipRoomsEmptyArt extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            const Positioned(
+            Positioned(
               top: 0,
-              child: AppImage(VipTripAssets.emptyRoomsLamp, height: 74),
+              child: AppImage(VipTripAssets.emptyRoomsLamp, height: 74.s),
             ),
             const Align(
               alignment: Alignment(0, 0.35),
               child: AppImage(VipTripAssets.emptyRooms, width: _width),
             ),
-            const Align(
+            Align(
               alignment: Alignment(-0.92, 0.92),
-              child: AppImage(VipTripAssets.emptyRoomsPlant, height: 34),
+              child: AppImage(VipTripAssets.emptyRoomsPlant, height: 34.s),
             ),
-            const Align(
+            Align(
               alignment: Alignment(0.34, -0.24),
-              child: AppImage(VipTripAssets.info, height: 30),
+              child: AppImage(VipTripAssets.info, height: 30.s),
             ),
           ],
         ),

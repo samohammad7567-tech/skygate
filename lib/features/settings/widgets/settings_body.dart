@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_page_header.dart';
 import 'package:skygate/core/components/app_section_title.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/settings/controller/cubit/settings_cubit.dart';
 import 'package:skygate/features/settings/widgets/settings_about_section.dart';
 import 'package:skygate/features/settings/widgets/settings_logout_button.dart';
@@ -36,28 +37,28 @@ class SettingsBody extends StatelessWidget {
               // paint the value the cubit now holds.
               child: BlocBuilder<SettingsCubit, SettingsState>(
                 builder: (context, state) => ListView(
-                  padding: const EdgeInsets.fromLTRB(20, 8, 20, 28),
+                  padding: EdgeInsets.fromLTRB(20.s, 8.s, 20.s, 28.s),
                   children: [
                     AppSectionTitle(text: 'notifications'.tr()),
-                    const Gap(12),
+                    Gap(12.s),
                     const SettingsNotificationsSection(),
-                    const Gap(22),
+                    Gap(22.s),
                     AppSectionTitle(text: 'settings_privacy_security'.tr()),
-                    const Gap(12),
+                    Gap(12.s),
                     const SettingsPrivacySection(),
-                    const Gap(22),
+                    Gap(22.s),
                     AppSectionTitle(text: 'settings_preferences'.tr()),
-                    const Gap(12),
+                    Gap(12.s),
                     const SettingsPreferencesSection(),
-                    const Gap(22),
+                    Gap(22.s),
                     AppSectionTitle(text: 'drawer_support_section'.tr()),
-                    const Gap(12),
+                    Gap(12.s),
                     const SettingsSupportSection(),
-                    const Gap(22),
+                    Gap(22.s),
                     AppSectionTitle(text: 'settings_about'.tr()),
-                    const Gap(12),
+                    Gap(12.s),
                     const SettingsAboutSection(),
-                    const Gap(24),
+                    Gap(24.s),
                     const SettingsLogoutButton(),
                   ],
                 ),

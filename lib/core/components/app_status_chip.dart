@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 /// The tinted pill every flow prints to carry a standing — a transaction's,
 /// a booking's, a private-trip request's, a lost item's, a traveller's class.
@@ -15,8 +16,8 @@ class AppStatusChip extends StatelessWidget {
     required this.labelKey,
     required this.background,
     required this.foreground,
-    this.padding = const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-    this.radius = 20,
+    this.padding,
+    this.radius,
     this.borderAlpha,
   });
 
@@ -28,8 +29,9 @@ class AppStatusChip extends StatelessWidget {
   /// Colour of the label, and of the hairline when [borderAlpha] is set.
   final Color foreground;
 
-  final EdgeInsetsGeometry padding;
-  final double radius;
+  /// Defaults to the design's 10/4 pill inset, scaled.
+  final EdgeInsetsGeometry? padding;
+  final double? radius;
 
   /// Opacity of the outline drawn in [foreground]. Null leaves the pill flat,
   /// which is what most of the flows draw.
@@ -38,10 +40,10 @@ class AppStatusChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: padding,
+      padding: padding ?? EdgeInsets.symmetric(horizontal: 10.s, vertical: 4.s),
       decoration: BoxDecoration(
         color: background,
-        borderRadius: BorderRadius.circular(radius),
+        borderRadius: BorderRadius.circular((radius ?? 20.s)),
         border: borderAlpha == null
             ? null
             : Border.all(color: foreground.withValues(alpha: borderAlpha!)),

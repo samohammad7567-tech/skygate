@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/drawer_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class AppDrawerFooter extends StatelessWidget {
   const AppDrawerFooter({
@@ -21,14 +22,14 @@ class AppDrawerFooter extends StatelessWidget {
     final foreground = theme.colorScheme.primary;
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 12, 20, 20),
+      padding: EdgeInsets.fromLTRB(20.s, 12.s, 20.s, 20.s),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Divider(color: AppColors.accentSoft, height: 1),
-          const Gap(16),
+          Divider(color: AppColors.accentSoft, height: 1.s),
+          Gap(16.s),
           SizedBox(
-            height: 48,
+            height: 48.s,
             width: double.infinity,
             child: OutlinedButton(
               // Disabled while the call is out, so a second tap cannot start a
@@ -38,15 +39,15 @@ class AppDrawerFooter extends StatelessWidget {
                 backgroundColor: theme.colorScheme.surface,
                 side: BorderSide(color: foreground),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(10.s),
                 ),
               ),
               child: isLoggingOut
                   ? SizedBox(
-                      height: 18,
-                      width: 18,
+                      height: 18.s,
+                      width: 18.s,
                       child: CircularProgressIndicator(
-                        strokeWidth: 2,
+                        strokeWidth: 2.s,
                         color: foreground,
                       ),
                     )
@@ -63,11 +64,11 @@ class AppDrawerFooter extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const Gap(10),
+                        Gap(10.s),
                         AppImage(
                           DrawerAssets.logout,
-                          width: 20,
-                          height: 20,
+                          width: 20.s,
+                          height: 20.s,
                           color: foreground,
                         ),
                       ],

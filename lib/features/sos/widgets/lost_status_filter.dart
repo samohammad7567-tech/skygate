@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/sos_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/sos/models/lost_item_model.dart';
 
 class LostStatusFilter extends StatelessWidget {
@@ -23,7 +24,7 @@ class LostStatusFilter extends StatelessWidget {
       initialValue: selected,
       color: theme.colorScheme.surface,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.s),
         side: BorderSide(color: theme.colorScheme.outline),
       ),
       itemBuilder: (_) => [
@@ -38,10 +39,10 @@ class LostStatusFilter extends StatelessWidget {
           ),
       ],
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
+        padding: EdgeInsets.symmetric(horizontal: 12.s, vertical: 9.s),
         decoration: BoxDecoration(
           color: theme.colorScheme.surface,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(10.s),
           border: Border.all(color: theme.colorScheme.outline),
         ),
         child: Row(
@@ -49,10 +50,10 @@ class LostStatusFilter extends StatelessWidget {
           children: [
             Icon(
               Icons.keyboard_arrow_down,
-              size: 18,
+              size: 18.s,
               color: theme.colorScheme.primary,
             ),
-            const Gap(6),
+            Gap(6.s),
             Text(
               (selected?.labelKey ?? 'lost_status_all').tr(),
               maxLines: 1,
@@ -61,11 +62,11 @@ class LostStatusFilter extends StatelessWidget {
                 color: theme.colorScheme.primary,
               ),
             ),
-            const Gap(6),
+            Gap(6.s),
             AppImage(
               SosAssets.filter,
-              height: 16,
-              width: 16,
+              height: 16.s,
+              width: 16.s,
               color: theme.colorScheme.primary,
             ),
           ],

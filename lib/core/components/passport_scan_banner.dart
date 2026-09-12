@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/profile_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class PassportScanBanner extends StatelessWidget {
   const PassportScanBanner({super.key, this.succeeded = true});
@@ -19,10 +20,10 @@ class PassportScanBanner extends StatelessWidget {
     final titleColor = succeeded ? AppColors.successText : AppColors.error;
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      padding: EdgeInsets.symmetric(horizontal: 14.s, vertical: 12.s),
       decoration: BoxDecoration(
         color: surface,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.s),
         border: Border.all(color: border),
       ),
       child: Row(
@@ -38,7 +39,7 @@ class PassportScanBanner extends StatelessWidget {
                     color: titleColor,
                   ),
                 ),
-                const Gap(2),
+                Gap(2.s),
                 Text(
                   (succeeded ? 'scan_success_desc' : 'scan_failed_desc').tr(),
                   textAlign: TextAlign.end,
@@ -47,18 +48,18 @@ class PassportScanBanner extends StatelessWidget {
               ],
             ),
           ),
-          const Gap(12),
+          Gap(12.s),
           Container(
-            height: 40,
-            width: 40,
+            height: 40.s,
+            width: 40.s,
             decoration: BoxDecoration(
               color: accent,
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
                   color: accent.withValues(alpha: 0.35),
-                  blurRadius: 12,
-                  offset: const Offset(0, 3),
+                  blurRadius: 12.s,
+                  offset: Offset(0, 3.s),
                 ),
               ],
             ),

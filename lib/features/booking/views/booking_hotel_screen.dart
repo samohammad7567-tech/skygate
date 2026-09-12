@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/empty_state.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/booking/controller/cubit/booking_cubit.dart';
 import 'package:skygate/core/models/booking_city.dart';
@@ -68,15 +69,15 @@ class _BookingHotelScreenState extends State<BookingHotelScreen> {
             BookingSectionTitle(
               title: 'select_hotel_in'.tr(args: [widget.city.labelKey.tr()]),
             ),
-            const Gap(10),
+            Gap(10.s),
             BookingStayRow(
               city: widget.city,
               days: cubit.stayDays[widget.city],
             ),
-            const Gap(16),
+            Gap(16.s),
             if (state is BookingHotelsLoading)
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 60),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 60.s),
                 child: Center(child: CircularProgressIndicator()),
               )
             else
@@ -92,12 +93,12 @@ class _BookingHotelScreenState extends State<BookingHotelScreen> {
                             i == cubit.selectedHotelIndexIn(widget.city),
                         onTap: () => cubit.selectHotel(widget.city, i),
                       ),
-                      const Gap(14),
+                      Gap(14.s),
                     ],
                   ],
                 ),
                 fallback: (_) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 60),
+                  padding: EdgeInsets.symmetric(vertical: 60.s),
                   child: EmptyState(
                     message: state is BookingHotelsError
                         ? state.message.tr()

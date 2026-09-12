@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/group_booking/widgets/group_dialog_buttons.dart';
 
 Future<bool> showGroupDeleteRoomDialog(BuildContext context) async {
@@ -53,31 +54,31 @@ Future<bool?> _show(
     context: context,
     builder: (dialogContext) => AlertDialog(
       backgroundColor: theme.colorScheme.surface,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      contentPadding: const EdgeInsets.fromLTRB(24, 28, 24, 20),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.s)),
+      contentPadding: EdgeInsets.fromLTRB(24.s, 28.s, 24.s, 20.s),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            height: 52,
-            width: 52,
+            height: 52.s,
+            width: 52.s,
             decoration: BoxDecoration(
               color: accent.withValues(alpha: 0.12),
               shape: BoxShape.circle,
             ),
             child: Center(
               child: asset != null
-                  ? AppImage(asset, height: 24, color: accent)
-                  : Icon(icon, size: 26, color: accent),
+                  ? AppImage(asset, height: 24.s, color: accent)
+                  : Icon(icon, size: 26.s, color: accent),
             ),
           ),
-          const Gap(18),
+          Gap(18.s),
           Text(
             message,
             textAlign: TextAlign.center,
             style: theme.textTheme.titleSmall,
           ),
-          const Gap(22),
+          Gap(22.s),
           Row(
             children: [
               Expanded(
@@ -88,7 +89,7 @@ Future<bool?> _show(
                 ),
               ),
               if (cancelKey != null) ...[
-                const Gap(12),
+                Gap(12.s),
                 Expanded(
                   child: GroupDialogCancel(
                     labelKey: cancelKey,

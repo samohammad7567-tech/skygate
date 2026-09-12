@@ -5,6 +5,7 @@ import 'package:skygate/core/components/cached_image.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/constants/home_assets.dart';
 import 'package:skygate/core/models/trip_model.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/trips/models/trips_tab.dart';
 import 'package:skygate/features/trips/widgets/trip_chips.dart';
 import 'package:skygate/features/trips/widgets/trip_progress_rail.dart';
@@ -34,10 +35,10 @@ class TripCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.all(10),
+      padding: EdgeInsets.all(10.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Column(
@@ -48,7 +49,7 @@ class TripCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(child: TripSummary(trip: trip)),
-                const Gap(10),
+                Gap(10.s),
                 _Photo(url: trip.imageUrl, status: _status),
               ],
             ),
@@ -56,22 +57,22 @@ class TripCard extends StatelessWidget {
           // `my-trips` sends the legs as modes only, and sends none at all for
           // a trip whose itinerary is not published yet.
           if (trip.transportModes.isNotEmpty) ...[
-            const Gap(10),
+            Gap(10.s),
             // Ruled off level with the photo's edge, not across the whole card.
             Padding(
-              padding: const EdgeInsetsDirectional.only(end: 134),
-              child: Divider(height: 1, color: theme.colorScheme.outline),
+              padding: EdgeInsetsDirectional.only(end: 134.s),
+              child: Divider(height: 1.s, color: theme.colorScheme.outline),
             ),
-            const Gap(12),
+            Gap(12.s),
             TripProgressRail(
               legs: trip.transportModes,
               currentLeg: trip.currentLeg,
             ),
           ],
-          const Gap(12),
+          Gap(12.s),
           CustomButton(
             label: 'view_details'.tr(),
-            height: 42,
+            height: 42.s,
             width: double.infinity,
             onPressed: onDetails,
           ),
@@ -92,20 +93,20 @@ class _Photo extends StatelessWidget {
     return Stack(
       children: [
         ClipRRect(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(12.s),
           // `trip_image_url` is null on every demo trip, so the bundled photo
           // is what most cards still draw.
           child: CachedImage(
             url: url,
             fallbackAsset: HomeAssets.kaaba,
-            height: 104,
-            width: 124,
+            height: 104.s,
+            width: 124.s,
           ),
         ),
         // The outer corner of the photo — the side away from the text.
         PositionedDirectional(
-          top: 6,
-          end: 6,
+          top: 6.s,
+          end: 6.s,
           child: TripStatusChip(tab: status),
         ),
       ],

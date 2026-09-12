@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skygate/core/components/app_page_header.dart';
 import 'package:skygate/core/components/empty_state.dart';
 import 'package:skygate/core/models/hotel_model.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/journey_details/controller/cubit/hotels_cubit.dart';
 import 'package:skygate/features/journey_details/views/hotel_details_screen.dart';
@@ -85,7 +86,7 @@ class _HotelsBodyState extends State<_HotelsBody> {
               children: [
                 AppPageHeader(title: 'hotels'.tr()),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
+                  padding: EdgeInsets.fromLTRB(20.s, 0, 20.s, 12.s),
                   child: HotelSearchBar(
                     controller: _searchController,
                     onSubmitted: cubit.search,
@@ -111,9 +112,9 @@ class _HotelsBodyState extends State<_HotelsBody> {
       builder: (_) => RefreshIndicator(
         onRefresh: () => cubit.getHotels(refresh: true),
         child: ListView.separated(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+          padding: EdgeInsets.fromLTRB(20.s, 0, 20.s, 20.s),
           itemCount: cubit.hotels.length,
-          separatorBuilder: (_, _) => const SizedBox(height: 12),
+          separatorBuilder: (_, _) => SizedBox(height: 12.s),
           itemBuilder: (_, index) {
             final hotel = cubit.hotels[index];
             return HotelCard(hotel: hotel, onTap: () => _openHotel(hotel));

@@ -7,6 +7,7 @@ import 'package:skygate/core/components/cached_image.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
 import 'package:skygate/core/models/hotel_model.dart';
 import 'package:skygate/core/utils/app_format.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/journey_details/controller/cubit/hotels_cubit.dart';
 import 'package:skygate/features/journey_details/widgets/hotel_detail_row.dart';
 import 'package:skygate/features/journey_details/widgets/journey_bottom_bar.dart';
@@ -75,18 +76,18 @@ class _HotelContent extends StatelessWidget {
     final locale = context.locale.languageCode;
 
     return ListView(
-      padding: const EdgeInsets.only(bottom: 20),
+      padding: EdgeInsets.only(bottom: 20.s),
       children: [
         CachedImage(
           url: hotel.image,
           fallbackAsset: JourneyAssets.hotelPhoto,
-          height: 190,
+          height: 190.vs,
           width: double.infinity,
         ),
         Padding(
-          padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
+          padding: EdgeInsets.fromLTRB(20.s, 16.s, 20.s, 0),
           child: AppCard(
-            padding: const EdgeInsets.symmetric(horizontal: 14),
+            padding: EdgeInsets.symmetric(horizontal: 14.s),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -95,19 +96,19 @@ class _HotelContent extends StatelessWidget {
                   labelKey: 'hotel_name',
                   value: hotel.name ?? '—',
                 ),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 HotelDetailRow(
                   asset: JourneyAssets.city,
                   labelKey: 'hotel_city',
                   value: hotel.city ?? '—',
                 ),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 HotelDetailRow(
                   asset: JourneyAssets.location,
                   labelKey: 'hotel_address',
                   value: hotel.address ?? '—',
                 ),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 HotelDetailRow(
                   asset: JourneyAssets.star,
                   labelKey: 'hotel_rating',
@@ -117,19 +118,19 @@ class _HotelContent extends StatelessWidget {
                           namedArgs: {'count': '${hotel.rating}'},
                         ),
                 ),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 HotelDetailRow(
                   asset: JourneyAssets.calendar,
                   labelKey: 'check_in_date',
                   value: AppFormat.shortDate(hotel.checkIn, locale),
                 ),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 HotelDetailRow(
                   asset: JourneyAssets.calendar,
                   labelKey: 'check_out_date',
                   value: AppFormat.shortDate(hotel.checkOut, locale),
                 ),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 HotelDetailRow(
                   asset: JourneyAssets.nights,
                   labelKey: 'nights_number',
@@ -139,13 +140,13 @@ class _HotelContent extends StatelessWidget {
                           namedArgs: {'count': '${hotel.nights}'},
                         ),
                 ),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 HotelDetailRow(
                   asset: JourneyAssets.bed,
                   labelKey: 'room_types',
                   value: hotel.roomTypes ?? '—',
                 ),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 HotelDetailRow(
                   asset: JourneyAssets.map,
                   labelKey: 'map_location',
@@ -155,7 +156,7 @@ class _HotelContent extends StatelessWidget {
                   child: AspectRatio(
                     aspectRatio: 3 / 2,
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(12.s),
                       child: CachedImage(
                         url: hotel.mapImage,
                         fallbackAsset: JourneyAssets.hotelMap,

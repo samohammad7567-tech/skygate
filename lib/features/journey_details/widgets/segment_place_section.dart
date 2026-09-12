@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/journey_details/models/journey_route_model.dart';
 
 class SegmentPlaceSection extends StatelessWidget {
@@ -25,7 +26,7 @@ class SegmentPlaceSection extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: theme.textTheme.titleLarge,
         ),
-        const SizedBox(height: 6),
+        SizedBox(height: 6.s),
         Text(
           place?.name ?? '',
           maxLines: 2,
@@ -34,7 +35,7 @@ class SegmentPlaceSection extends StatelessWidget {
             color: theme.colorScheme.primary,
           ),
         ),
-        const SizedBox(height: 4),
+        SizedBox(height: 4.s),
         Text(
           place?.description ?? '',
           textAlign: TextAlign.justify,

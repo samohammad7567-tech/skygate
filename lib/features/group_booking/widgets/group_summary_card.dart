@@ -5,6 +5,7 @@ import 'package:skygate/core/components/app_grand_total.dart';
 import 'package:skygate/core/components/payment_detail_row.dart';
 import 'package:skygate/core/models/booking_type.dart';
 import 'package:skygate/core/models/traveler_audience.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class GroupSummaryCard extends StatelessWidget {
   const GroupSummaryCard({
@@ -32,19 +33,17 @@ class GroupSummaryCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(14.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
-            padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
+            padding: EdgeInsets.fromLTRB(14.s, 12.s, 14.s, 12.s),
             decoration: BoxDecoration(
               color: theme.colorScheme.surfaceContainerHighest,
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(13),
-              ),
+              borderRadius: BorderRadius.vertical(top: Radius.circular(13.s)),
             ),
             child: Text(
               'booking_details'.tr(),
@@ -54,19 +53,19 @@ class GroupSummaryCard extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14),
+            padding: EdgeInsets.symmetric(horizontal: 14.s),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 PaymentDetailRow(labelKey: 'summary_trip', value: tripTitle),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 PaymentDetailRow(labelKey: 'summary_route', value: routeName),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 PaymentDetailRow(
                   labelKey: 'summary_type',
                   child: BookingTypeChip(labelKey: BookingType.group.labelKey),
                 ),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 PaymentDetailRow(
                   labelKey: 'summary_travelers',
                   value: 'travelers_breakdown'.tr(
@@ -81,11 +80,11 @@ class GroupSummaryCard extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(12, 4, 12, 14),
+            padding: EdgeInsets.fromLTRB(12.s, 4.s, 12.s, 14.s),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                for (final room in rooms) ...[room, const Gap(14)],
+                for (final room in rooms) ...[room, Gap(14.s)],
                 AppGrandTotal(amount: '$grandTotal${currency ?? ''}'),
               ],
             ),

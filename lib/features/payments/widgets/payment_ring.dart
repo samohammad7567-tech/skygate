@@ -1,32 +1,33 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class PaymentRing extends StatelessWidget {
   const PaymentRing({
     super.key,
     required this.ratio,
     required this.percent,
-    this.size = 108,
+    this.size,
   });
   final double ratio;
   final int percent;
 
-  final double size;
+  final double? size;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
     return SizedBox(
-      height: size,
-      width: size,
+      height: (size ?? 108.s),
+      width: (size ?? 108.s),
       child: CustomPaint(
         painter: _RingPainter(
           ratio: ratio.clamp(0, 1).toDouble(),
           track: theme.colorScheme.surfaceContainerHighest,
           progress: theme.colorScheme.primary,
-          stroke: size * 0.12,
+          stroke: (size ?? 108.s) * 0.12,
         ),
         child: Center(
           child: Text(
@@ -36,7 +37,7 @@ class PaymentRing extends StatelessWidget {
             // A percentage reads left to right in Arabic too.
             textDirection: TextDirection.ltr,
             style: theme.textTheme.headlineSmall?.copyWith(
-              fontSize: size * 0.2,
+              fontSize: (size ?? 108.s) * 0.2,
             ),
           ),
         ),

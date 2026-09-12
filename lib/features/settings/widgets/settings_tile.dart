@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/settings_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/settings/widgets/settings_row.dart';
 
 /// A row that opens onto something else, or simply states a value — the
@@ -49,15 +50,15 @@ class SettingsTile extends StatelessWidget {
               ),
             ),
           if (onTap != null) ...[
-            const Gap(8),
+            Gap(8.s),
             // The chevron points back along the reading direction, which is
             // what "opens onto" means in both languages.
             Transform.flip(
               flipX: Directionality.of(context) == TextDirection.rtl,
               child: AppImage(
                 SettingsAssets.chevron,
-                height: 16,
-                width: 16,
+                height: 16.s,
+                width: 16.s,
                 color: theme.colorScheme.primary,
               ),
             ),

@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/components/empty_state.dart';
 import 'package:skygate/core/models/umrah_document_model.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/profile/controller/cubit/profile_cubit.dart';
 import 'package:skygate/features/profile/views/edit_files_screen.dart';
@@ -53,15 +54,17 @@ class _PilgrimFilesScreenState extends State<PilgrimFilesScreen> {
           title: 'nav_account'.tr(),
           children: [
             AppSectionTitle(text: 'pilgrim_files'.tr()),
-            const Gap(12),
+            Gap(12.s),
             if (state is DocumentsLoading)
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 48),
-                child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 48.s),
+                child: Center(
+                  child: CircularProgressIndicator(strokeWidth: 2.s),
+                ),
               )
             else if (state is DocumentsError)
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 32),
+                padding: EdgeInsets.symmetric(vertical: 32.s),
                 child: EmptyState(
                   message: state.message.tr(),
                   onRetry: cubit.getDocuments,
@@ -78,10 +81,10 @@ class _PilgrimFilesScreenState extends State<PilgrimFilesScreen> {
                     ),
                 ],
               ),
-            const Gap(18),
+            Gap(18.s),
             CustomButton(
               label: 'edit_pilgrim_files'.tr(),
-              height: 48,
+              height: 48.s,
               onPressed: _edit,
             ),
           ],

@@ -4,6 +4,7 @@ import 'package:skygate/core/components/app_back_button.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/components/cached_image.dart';
 import 'package:skygate/core/constants/home_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class JourneyHeroHeader extends StatelessWidget {
   const JourneyHeroHeader({super.key, this.image, this.durationDays});
@@ -16,20 +17,20 @@ class JourneyHeroHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height,
+      height: height.vs,
       child: Stack(
         fit: StackFit.expand,
         children: [
           CachedImage(
             url: image,
             fallbackAsset: HomeAssets.kaaba,
-            height: height,
+            height: height.vs,
             width: double.infinity,
           ),
           SafeArea(
             bottom: false,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              padding: EdgeInsets.symmetric(horizontal: 20.s, vertical: 12.s),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -57,16 +58,16 @@ class _DurationBadge extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      padding: EdgeInsets.symmetric(horizontal: 10.s, vertical: 6.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.secondary,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.s),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          AppImage(HomeAssets.clock, height: 14, color: Colors.white),
-          const SizedBox(width: 6),
+          AppImage(HomeAssets.clock, height: 14.s, color: Colors.white),
+          SizedBox(width: 6.s),
           Text(
             'days_count'.tr(namedArgs: {'count': '$days'}),
             maxLines: 1,

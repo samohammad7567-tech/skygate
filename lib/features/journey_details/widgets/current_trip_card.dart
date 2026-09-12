@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_panel.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/utils/app_format.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/journey_details/models/journey_package_model.dart';
 
 /// The white panel that tops "تفاصيل الرحلة", "مسار الرحلة" and "جدول اليوم":
@@ -19,7 +20,7 @@ class CurrentTripCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppPanel(
-      padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+      padding: EdgeInsets.fromLTRB(16.s, 16.s, 16.s, 16.s),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
@@ -30,7 +31,7 @@ class CurrentTripCard extends StatelessWidget {
               Expanded(
                 child: _Titled(labelKey: 'current_trip', value: package?.title),
               ),
-              const SizedBox(width: 12),
+              SizedBox(width: 12.s),
               Expanded(
                 child: _Titled(
                   labelKey: 'trip_number',
@@ -40,7 +41,7 @@ class CurrentTripCard extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 14),
+          SizedBox(height: 14.s),
           IntrinsicHeight(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -95,7 +96,7 @@ class _Titled extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: theme.textTheme.bodySmall,
         ),
-        const SizedBox(height: 2),
+        SizedBox(height: 2.s),
         Text(
           value ?? '—',
           maxLines: 1,
@@ -126,10 +127,10 @@ class _EndBox extends StatelessWidget {
     final locale = context.locale.languageCode;
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 10.s, vertical: 10.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surfaceContainerHighest,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(10.s),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -141,7 +142,7 @@ class _EndBox extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: theme.textTheme.bodySmall,
           ),
-          const SizedBox(height: 4),
+          SizedBox(height: 4.s),
           Text(
             AppFormat.dayMonth(date, locale),
             textAlign: TextAlign.center,
@@ -157,7 +158,7 @@ class _EndBox extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: theme.textTheme.bodySmall,
           ),
-          const SizedBox(height: 2),
+          SizedBox(height: 2.s),
           Text(
             city ?? '',
             textAlign: TextAlign.center,
@@ -184,11 +185,11 @@ class _Length extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: EdgeInsets.symmetric(horizontal: 8.s),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Divider(height: 1),
+          Divider(height: 1.s),
           const Spacer(),
           Text(
             days == null ? '' : 'days_count'.tr(namedArgs: {'count': '$days'}),
@@ -197,8 +198,8 @@ class _Length extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: theme.textTheme.bodySmall?.copyWith(color: AppColors.accent),
           ),
-          const SizedBox(height: 4),
-          Container(height: 1.4, color: AppColors.accent),
+          SizedBox(height: 4.s),
+          Container(height: 1.4.s, color: AppColors.accent),
           const Spacer(),
         ],
       ),

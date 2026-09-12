@@ -7,6 +7,7 @@ import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/components/sheet_handle.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
 import 'package:skygate/core/models/group_room_type.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/group_booking/widgets/group_room_counter_row.dart';
 
 Future<Map<GroupRoomType, int>?> showGroupRoomCounterSheet(
@@ -52,18 +53,18 @@ class _CounterSheetState extends State<_CounterSheet> {
 
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 12, 20, 16),
+        padding: EdgeInsets.fromLTRB(20.s, 12.s, 20.s, 16.s),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SheetHandle(),
-            const Gap(14),
+            Gap(14.s),
             Row(
               children: [
                 Container(
-                  height: 40,
-                  width: 40,
+                  height: 40.s,
+                  width: 40.s,
                   decoration: BoxDecoration(
                     color: theme.colorScheme.surfaceContainerHighest,
                     shape: BoxShape.circle,
@@ -71,12 +72,12 @@ class _CounterSheetState extends State<_CounterSheet> {
                   child: Center(
                     child: AppImage(
                       JourneyAssets.bed,
-                      height: 20,
+                      height: 20.s,
                       color: theme.colorScheme.primary,
                     ),
                   ),
                 ),
-                const Gap(12),
+                Gap(12.s),
                 Expanded(
                   child: Text(
                     'rooms_counter_title'.tr(),
@@ -88,12 +89,12 @@ class _CounterSheetState extends State<_CounterSheet> {
                 ),
               ],
             ),
-            const Gap(8),
+            Gap(8.s),
             Flexible(
               child: ListView.separated(
                 shrinkWrap: true,
                 itemCount: widget.types.length,
-                separatorBuilder: (_, _) => const Divider(height: 1),
+                separatorBuilder: (_, _) => Divider(height: 1.s),
                 itemBuilder: (_, index) {
                   final type = widget.types[index];
                   return GroupRoomCounterRow(
@@ -105,10 +106,10 @@ class _CounterSheetState extends State<_CounterSheet> {
                 },
               ),
             ),
-            const Gap(14),
+            Gap(14.s),
             CustomButton(
               label: 'confirm_selection'.tr(),
-              height: 48,
+              height: 48.s,
               onPressed: () => Navigator.of(context).pop(_counts),
             ),
           ],

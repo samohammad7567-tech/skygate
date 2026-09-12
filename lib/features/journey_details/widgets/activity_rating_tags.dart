@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_card.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 /// "أخبرنا المزيد (اختياري)" — the ready-made praises a pilgrim can tick, and
 /// the box for anything they would rather write themselves.
@@ -32,7 +33,7 @@ class ActivityRatingTags extends StatelessWidget {
     final theme = Theme.of(context);
 
     return AppCard(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
+      padding: EdgeInsets.symmetric(horizontal: 14.s, vertical: 16.s),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -45,7 +46,7 @@ class ActivityRatingTags extends StatelessWidget {
               color: theme.colorScheme.primary,
             ),
           ),
-          const Gap(4),
+          Gap(4.s),
           Text(
             'tell_us_more_hint'.tr(),
             textAlign: TextAlign.center,
@@ -53,10 +54,10 @@ class ActivityRatingTags extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: theme.textTheme.bodySmall,
           ),
-          const Gap(12),
+          Gap(12.s),
           Wrap(
-            spacing: 8,
-            runSpacing: 8,
+            spacing: 8.s,
+            runSpacing: 8.s,
             children: [
               for (final key in all)
                 _Tag(
@@ -66,7 +67,7 @@ class ActivityRatingTags extends StatelessWidget {
                 ),
             ],
           ),
-          const Gap(14),
+          Gap(14.s),
           _NoteField(controller: note),
         ],
       ),
@@ -96,14 +97,14 @@ class _Tag extends StatelessWidget {
       color: isSelected
           ? theme.colorScheme.surfaceContainerHighest
           : theme.colorScheme.surface,
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(10.s),
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(10.s),
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+          padding: EdgeInsets.symmetric(horizontal: 14.s, vertical: 10.s),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(10.s),
             border: Border.all(color: color),
           ),
           child: Text(
@@ -132,9 +133,9 @@ class _NoteField extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
+      padding: EdgeInsets.symmetric(horizontal: 12.s),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(10.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Row(
@@ -149,7 +150,7 @@ class _NoteField extends StatelessWidget {
               decoration: InputDecoration(
                 isDense: true,
                 border: InputBorder.none,
-                contentPadding: const EdgeInsets.symmetric(vertical: 14),
+                contentPadding: EdgeInsets.symmetric(vertical: 14.s),
                 hintText: 'rating_note_hint'.tr(),
                 hintStyle: theme.textTheme.bodyMedium?.copyWith(
                   color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
@@ -157,8 +158,12 @@ class _NoteField extends StatelessWidget {
               ),
             ),
           ),
-          const Gap(8),
-          Icon(Icons.edit_outlined, size: 18, color: theme.colorScheme.primary),
+          Gap(8.s),
+          Icon(
+            Icons.edit_outlined,
+            size: 18.s,
+            color: theme.colorScheme.primary,
+          ),
         ],
       ),
     );

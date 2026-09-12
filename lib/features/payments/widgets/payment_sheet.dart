@@ -6,6 +6,7 @@ import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/components/image_source_sheet.dart';
 import 'package:skygate/core/components/sheet_handle.dart';
 import 'package:skygate/core/components/toast.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/payments/controller/cubit/pay_cubit.dart';
 import 'package:skygate/features/payments/models/financial_transaction_model.dart';
 import 'package:skygate/features/payments/widgets/payment_sheet_form.dart';
@@ -19,8 +20,8 @@ Future<FinancialTransactionModel?> showPaymentSheet(
     isScrollControlled: true,
     useSafeArea: true,
     backgroundColor: Theme.of(context).colorScheme.surface,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(24.s)),
     ),
     builder: (_) => BlocProvider(
       create: (_) => PayCubit(bookingId)..getMethods(),
@@ -91,13 +92,13 @@ class _PaymentSheetState extends State<_PaymentSheet> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Gap(12),
+                Gap(12.s),
                 const SheetHandle(),
                 Expanded(
                   child: Form(
                     key: _formKey,
                     child: ListView(
-                      padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
+                      padding: EdgeInsets.fromLTRB(20.s, 16.s, 20.s, 8.s),
                       children: [
                         Text(
                           'payment_information'.tr(),
@@ -106,7 +107,7 @@ class _PaymentSheetState extends State<_PaymentSheet> {
                           overflow: TextOverflow.ellipsis,
                           style: theme.textTheme.titleLarge,
                         ),
-                        const Gap(16),
+                        Gap(16.s),
                         PaymentSheetForm(
                           cubit: cubit,
                           state: state,
@@ -118,10 +119,10 @@ class _PaymentSheetState extends State<_PaymentSheet> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
+                  padding: EdgeInsets.fromLTRB(20.s, 8.s, 20.s, 16.s),
                   child: CustomButton(
                     label: 'send'.tr(),
-                    height: 48,
+                    height: 48.s,
                     width: double.infinity,
                     isLoading: state is PaySubmitLoading,
                     onPressed: _submit,

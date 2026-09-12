@@ -9,6 +9,7 @@ import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/components/document_upload_card.dart';
 import 'package:skygate/core/components/image_source_sheet.dart';
 import 'package:skygate/core/components/toast.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/auth/controller/cubit/register_cubit.dart';
 import 'package:skygate/features/auth/views/register_success_screen.dart';
@@ -48,22 +49,22 @@ class UmrahDocumentsScreen extends StatelessWidget {
               final cubit = context.read<RegisterCubit>();
 
               return SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(24, 32, 24, 32),
+                padding: EdgeInsets.fromLTRB(24.s, 32.s, 24.s, 32.s),
                 child: Column(
                   children: [
                     const AppTitleHeader(showBack: true),
-                    const Gap(24),
+                    Gap(24.s),
                     AppPanel(
-                      padding: const EdgeInsets.fromLTRB(16, 24, 16, 24),
+                      padding: EdgeInsets.fromLTRB(16.s, 24.s, 16.s, 24.s),
                       child: Column(
                         children: [
                           const RegisterStepper(currentStep: 3),
-                          const Gap(20),
+                          Gap(20.s),
                           Text(
                             'pilgrim_documents'.tr(),
                             style: Theme.of(context).textTheme.headlineSmall,
                           ),
-                          const Gap(18),
+                          Gap(18.s),
                           for (final document in cubit.documentTypes) ...[
                             DocumentUploadCard(
                               document: document,
@@ -71,17 +72,17 @@ class UmrahDocumentsScreen extends StatelessWidget {
                               onTap: () => _pick(context, document.id),
                               onRemove: () => cubit.removeDocument(document.id),
                             ),
-                            const Gap(14),
+                            Gap(14.s),
                           ],
-                          const Gap(6),
+                          Gap(6.s),
                           CustomButton(
                             label: 'create_account'.tr(),
                             width: double.infinity,
-                            height: 48,
+                            height: 48.s,
                             isLoading: state is RegisterLoading,
                             onPressed: cubit.submit,
                           ),
-                          const Gap(14),
+                          Gap(14.s),
                           TextButton(
                             onPressed: cubit.skipDocuments,
                             child: Text(

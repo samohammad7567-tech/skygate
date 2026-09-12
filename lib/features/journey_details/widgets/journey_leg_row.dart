@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/dashed_line.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/journey_details/models/journey_route_model.dart';
 import 'package:skygate/features/journey_details/widgets/journey_stop_column.dart';
 
@@ -48,16 +49,16 @@ class _Connector extends StatelessWidget {
     final theme = Theme.of(context);
 
     return SizedBox(
-      width: 96,
+      width: 96.s,
       // Lines up with the city line rather than the taller time line.
       child: Padding(
-        padding: const EdgeInsets.only(top: 10),
+        padding: EdgeInsets.only(top: 10.s),
         child: Row(
           children: [
             const Expanded(child: DashedLine()),
             Container(
-              height: 30,
-              width: 30,
+              height: 30.s,
+              width: 30.s,
               decoration: BoxDecoration(
                 color: theme.colorScheme.surfaceContainerHighest,
                 shape: BoxShape.circle,
@@ -68,7 +69,7 @@ class _Connector extends StatelessWidget {
                 flipX: Directionality.of(context) == TextDirection.rtl,
                 child: Icon(
                   Icons.play_arrow_rounded,
-                  size: 18,
+                  size: 18.s,
                   color: theme.colorScheme.primary,
                 ),
               ),

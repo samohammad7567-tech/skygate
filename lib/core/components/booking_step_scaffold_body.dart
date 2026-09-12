@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/booking_step_bar.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class BookingStepScaffoldBody extends StatelessWidget {
   const BookingStepScaffoldBody({
@@ -16,10 +17,10 @@ class BookingStepScaffoldBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+      padding: EdgeInsets.fromLTRB(20.s, 0, 20.s, 20.s),
       children: [
         BookingStepBar(step: step, total: total),
-        const SizedBox(height: 18),
+        SizedBox(height: 18.s),
         ...children,
       ],
     );

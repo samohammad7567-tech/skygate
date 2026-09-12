@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/empty_state.dart';
 import 'package:skygate/core/components/sheet_handle.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/home/models/home_model.dart';
 
 class CityPickerSheet extends StatelessWidget {
@@ -33,16 +34,16 @@ class CityPickerSheet extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const SizedBox(height: 10),
+            SizedBox(height: 10.s),
             const SheetHandle(),
-            const SizedBox(height: 12),
+            SizedBox(height: 12.s),
             Text(
               'select_city'.tr(),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: theme.textTheme.titleLarge,
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8.s),
             Flexible(child: _body(context)),
           ],
         ),
@@ -57,7 +58,7 @@ class CityPickerSheet extends StatelessWidget {
 
     return ListView(
       shrinkWrap: true,
-      padding: const EdgeInsets.only(bottom: 12),
+      padding: EdgeInsets.only(bottom: 12.s),
       children: [
         _CityTile(
           label: 'all_cities'.tr(),
@@ -107,7 +108,7 @@ class _CityTile extends StatelessWidget {
         ),
       ),
       trailing: isSelected
-          ? Icon(Icons.check, color: theme.colorScheme.primary, size: 20)
+          ? Icon(Icons.check, color: theme.colorScheme.primary, size: 20.s)
           : null,
     );
   }

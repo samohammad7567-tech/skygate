@@ -5,6 +5,7 @@ import 'package:skygate/core/components/app_sheet.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/components/sheet_handle.dart';
 import 'package:skygate/core/models/group_room_type.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/group_booking/models/group_traveler_model.dart';
 import 'package:skygate/features/group_booking/widgets/group_dialogs.dart';
 import 'package:skygate/features/group_booking/widgets/group_picker_header.dart';
@@ -87,19 +88,19 @@ class _PickerSheetState extends State<_PickerSheet> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 12, 20, 16),
+        padding: EdgeInsets.fromLTRB(20.s, 12.s, 20.s, 16.s),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SheetHandle(),
-            const Gap(14),
+            Gap(14.s),
             GroupPickerHeader(type: widget.type, onSelectAll: _selectAll),
             Flexible(child: _list()),
-            const Gap(8),
+            Gap(8.s),
             CustomButton(
               label: 'confirm_selection'.tr(),
-              height: 48,
+              height: 48.s,
               onPressed: () => Navigator.of(context).pop(_selection),
             ),
           ],
@@ -112,7 +113,7 @@ class _PickerSheetState extends State<_PickerSheet> {
     return ListView.separated(
       shrinkWrap: true,
       itemCount: widget.travelers.length,
-      separatorBuilder: (_, _) => const Divider(height: 1),
+      separatorBuilder: (_, _) => Divider(height: 1.s),
       itemBuilder: (_, index) {
         final traveler = widget.travelers[index];
 

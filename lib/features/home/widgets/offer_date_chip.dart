@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/home/models/offer_model.dart';
 
 class OfferDatesRow extends StatelessWidget {
@@ -42,10 +43,10 @@ class OfferDateChip extends StatelessWidget {
     final locale = context.locale.languageCode;
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+      padding: EdgeInsets.symmetric(horizontal: 6.s, vertical: 6.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surfaceContainerHighest,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.s),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -88,11 +89,11 @@ class _DurationDivider extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: Container(height: 1, color: theme.colorScheme.secondary),
+          child: Container(height: 1.s, color: theme.colorScheme.secondary),
         ),
         if (days != null)
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4),
+            padding: EdgeInsets.symmetric(horizontal: 4.s),
             child: Text(
               'days_count'.tr(namedArgs: {'count': '$days'}),
               maxLines: 1,
@@ -104,7 +105,7 @@ class _DurationDivider extends StatelessWidget {
             ),
           ),
         Expanded(
-          child: Container(height: 1, color: theme.colorScheme.secondary),
+          child: Container(height: 1.s, color: theme.colorScheme.secondary),
         ),
       ],
     );

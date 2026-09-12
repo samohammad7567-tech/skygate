@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_outlined_button.dart';
 import 'package:skygate/core/components/custom_button.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class ProfileFormActions extends StatelessWidget {
   const ProfileFormActions({
@@ -25,11 +26,11 @@ class ProfileFormActions extends StatelessWidget {
         CustomButton(
           label: saveLabelKey.tr(),
           width: double.infinity,
-          height: 48,
+          height: 48.s,
           isLoading: isSaving,
           onPressed: onSave,
         ),
-        const Gap(12),
+        Gap(12.s),
         AppOutlinedButton(
           label: 'cancel'.tr(),
           // Disabled while the call is out, so backing out cannot dispose the

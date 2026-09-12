@@ -7,6 +7,7 @@ import 'package:skygate/core/services/dio_service.dart';
 import 'package:skygate/core/services/language_service.dart';
 import 'package:skygate/core/themes/dark_theme.dart';
 import 'package:skygate/core/themes/light_theme.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/cache_util.dart';
 import 'package:skygate/core/utils/navigation_service.dart';
 import 'package:skygate/features/auth/controller/cubit/auth_cubit.dart';
@@ -74,6 +75,12 @@ class _MyAppState extends State<MyApp> {
             minTextAdapt: true,
             splitScreenMode: true,
             builder: (context, child) {
+              // The Umrah side scales against its own 412-wide canvas — see
+              // AppScale. Reading MediaQuery here subscribes this build to the
+              // window, so a rotation or a resize re-seeds the ratios before
+              // anything below is laid out again.
+              AppScale.init(context);
+
               // GetMaterialApp, not MaterialApp: the tourism module navigates
               // with Get.toNamed / Get.offAllNamed against [tourismPages]. It
               // is a superset of MaterialApp, so Bloc, Navigator.push and the
@@ -102,5 +109,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
-

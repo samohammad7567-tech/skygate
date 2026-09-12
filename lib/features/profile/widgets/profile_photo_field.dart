@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/dashed_box.dart';
 import 'package:skygate/core/components/upload_size_chip.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/profile/widgets/profile_avatar.dart';
 
 class ProfilePhotoField extends StatelessWidget {
@@ -31,10 +32,10 @@ class ProfilePhotoField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text('add_profile_photo'.tr(), style: theme.textTheme.bodyMedium),
-        const Gap(12),
+        Gap(12.s),
         DashedBox(
           onTap: onTap,
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 22),
+          padding: EdgeInsets.symmetric(horizontal: 16.s, vertical: 22.s),
           child: Column(
             children: [
               Stack(
@@ -42,40 +43,40 @@ class ProfilePhotoField extends StatelessWidget {
                 children: [
                   ProfileAvatar(url: url, file: image, size: _avatarSize),
                   Container(
-                    height: 32,
-                    width: 32,
+                    height: 32.s,
+                    width: 32.s,
                     decoration: BoxDecoration(
                       color: theme.colorScheme.primary,
                       shape: BoxShape.circle,
                       border: Border.all(
                         color: theme.colorScheme.surface,
-                        width: 2,
+                        width: 2.s,
                       ),
                     ),
                     child: Icon(
                       Icons.add_rounded,
-                      size: 20,
+                      size: 20.s,
                       color: theme.colorScheme.onPrimary,
                     ),
                   ),
                 ],
               ),
-              const Gap(14),
+              Gap(14.s),
               Text(
                 'tap_to_upload_photo'.tr(),
                 textAlign: TextAlign.center,
                 style: theme.textTheme.titleMedium,
               ),
-              const Gap(4),
+              Gap(4.s),
               Text(
                 'pick_from_gallery_or_camera'.tr(),
                 textAlign: TextAlign.center,
                 style: theme.textTheme.bodySmall,
               ),
-              const Gap(12),
+              Gap(12.s),
               const UploadSizeChip(),
               if (image != null) ...[
-                const Gap(8),
+                Gap(8.s),
                 TextButton(
                   onPressed: onRemove,
                   child: Text(

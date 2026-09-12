@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/models/traveler_audience.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class GroupCountsCard extends StatelessWidget {
   const GroupCountsCard({super.key, required this.counts});
@@ -14,10 +15,10 @@ class GroupCountsCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.fromLTRB(16, 14, 16, 16),
+      padding: EdgeInsets.fromLTRB(16.s, 14.s, 16.s, 16.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Column(
@@ -44,9 +45,9 @@ class GroupCountsCard extends StatelessWidget {
               ),
             ],
           ),
-          const Gap(12),
-          const Divider(height: 1),
-          const Gap(14),
+          Gap(12.s),
+          Divider(height: 1.s),
+          Gap(14.s),
           Row(
             children: [
               // Reversed so the adults tile sits on the start side, as the
@@ -58,7 +59,7 @@ class GroupCountsCard extends StatelessWidget {
                     count: counts[audience] ?? 0,
                   ),
                 ),
-                if (audience != TravelerAudience.adult) const Gap(12),
+                if (audience != TravelerAudience.adult) Gap(12.s),
               ],
             ],
           ),
@@ -81,11 +82,11 @@ class _CountTile extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: 40,
+          height: 40.s,
           alignment: Alignment.center,
           decoration: BoxDecoration(
             color: theme.colorScheme.surfaceContainerHighest,
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(10.s),
             border: Border.all(color: theme.colorScheme.outline),
           ),
           child: Text(
@@ -96,7 +97,7 @@ class _CountTile extends StatelessWidget {
             ),
           ),
         ),
-        const Gap(6),
+        Gap(6.s),
         Text(
           labelKey.tr(),
           maxLines: 1,

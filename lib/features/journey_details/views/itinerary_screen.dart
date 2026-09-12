@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skygate/core/components/app_title_header.dart';
 import 'package:skygate/core/components/empty_state.dart';
 import 'package:skygate/core/constants/app_colors.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/journey_details/controller/cubit/journey_details_cubit.dart';
 import 'package:skygate/features/journey_details/models/journey_route_model.dart';
@@ -63,8 +64,8 @@ class _ItineraryBody extends StatelessWidget {
         bottom: false,
         child: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.fromLTRB(20, 12, 20, 0),
+            Padding(
+              padding: EdgeInsets.fromLTRB(20.s, 12.s, 20.s, 0),
               child: AppTitleHeader(showBack: true),
             ),
             Expanded(child: _content(context)),
@@ -92,14 +93,14 @@ class _ItineraryBody extends StatelessWidget {
         final segments = cubit.selectedRoute?.segments ?? const [];
 
         return ListView(
-          padding: const EdgeInsets.only(bottom: 12),
+          padding: EdgeInsets.only(bottom: 12.s),
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
+              padding: EdgeInsets.fromLTRB(20.s, 12.s, 20.s, 0),
               child: CurrentTripCard(package: cubit.package),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 12),
+              padding: EdgeInsets.fromLTRB(20.s, 20.s, 20.s, 12.s),
               child: Text(
                 'trip_route'.tr(),
                 maxLines: 1,
@@ -112,17 +113,17 @@ class _ItineraryBody extends StatelessWidget {
               selectedIndex: cubit.selectedRouteIndex,
               onSelected: cubit.selectRoute,
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 12.s),
             if (state is RoutesLoading)
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 60),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 60.s),
                 child: Center(child: CircularProgressIndicator()),
               )
             else
               BuildCondition(
                 condition: segments.isNotEmpty,
                 builder: (_) => Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: EdgeInsets.symmetric(horizontal: 20.s),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -141,7 +142,7 @@ class _ItineraryBody extends StatelessWidget {
                   ),
                 ),
                 fallback: (_) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 60),
+                  padding: EdgeInsets.symmetric(vertical: 60.s),
                   child: EmptyState(
                     message: state is RoutesError
                         ? state.message.tr()

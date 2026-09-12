@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_image.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/main/models/drawer_item_model.dart';
 
 class AppDrawerTile extends StatelessWidget {
@@ -20,10 +21,10 @@ class AppDrawerTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final foreground = theme.colorScheme.primary;
-    final radius = BorderRadius.circular(12);
+    final radius = BorderRadius.circular(12.s);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 2),
+      padding: EdgeInsets.symmetric(horizontal: 14.s, vertical: 2.s),
       child: Material(
         color: isSelected
             ? theme.colorScheme.surfaceContainerHighest
@@ -33,18 +34,23 @@ class AppDrawerTile extends StatelessWidget {
           onTap: onTap,
           borderRadius: radius,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
+            padding: EdgeInsets.symmetric(horizontal: 14.s, vertical: 13.s),
             child: Row(
               children: [
-                AppImage(item.icon, width: 22, height: 22, color: foreground),
-                const Gap(14),
+                AppImage(
+                  item.icon,
+                  width: 22.s,
+                  height: 22.s,
+                  color: foreground,
+                ),
+                Gap(14.s),
                 Expanded(
                   child: Text(
                     item.labelKey.tr(),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: theme.textTheme.titleSmall?.copyWith(
-                      fontSize: 14,
+                      fontSize: 14.fs,
                       color: foreground,
                       fontWeight: isSelected
                           ? FontWeight.w700

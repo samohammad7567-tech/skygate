@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 /// The round `+` / `−` button on either side of a counter.
 ///
@@ -22,12 +23,12 @@ class AppStepperButton extends StatelessWidget {
 
     return InkResponse(
       onTap: onTap,
-      radius: 20,
+      radius: 20.s,
       child: Container(
-        height: 26,
-        width: 26,
+        height: 26.s,
+        width: 26.s,
         decoration: BoxDecoration(color: color, shape: BoxShape.circle),
-        child: Icon(icon, size: 16, color: theme.colorScheme.onPrimary),
+        child: Icon(icon, size: 16.s, color: theme.colorScheme.onPrimary),
       ),
     );
   }

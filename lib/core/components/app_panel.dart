@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class AppPanel extends StatelessWidget {
-  const AppPanel({
-    super.key,
-    required this.child,
-    this.padding = const EdgeInsets.fromLTRB(20, 24, 20, 24),
-  });
+  const AppPanel({super.key, required this.child, this.padding});
 
   final Widget child;
-  final EdgeInsetsGeometry padding;
+
+  /// Defaults to the design's 20/24 inset, scaled.
+  final EdgeInsetsGeometry? padding;
 
   @override
   Widget build(BuildContext context) {
@@ -16,15 +15,15 @@ class AppPanel extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: padding,
+      padding: padding ?? EdgeInsets.fromLTRB(20.s, 24.s, 20.s, 24.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.s),
         boxShadow: [
           BoxShadow(
             color: theme.colorScheme.primary.withValues(alpha: 0.08),
-            blurRadius: 24,
-            offset: const Offset(0, 8),
+            blurRadius: 24.s,
+            offset: Offset(0, 8.s),
           ),
         ],
       ),

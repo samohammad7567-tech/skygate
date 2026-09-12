@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class AppCard extends StatelessWidget {
   const AppCard({
     super.key,
     required this.child,
-    this.padding = const EdgeInsets.all(12),
-    this.radius = 14,
+    this.padding,
+    this.radius,
     this.color,
     this.onTap,
     this.border = true,
   });
 
   final Widget child;
-  final EdgeInsetsGeometry padding;
-  final double radius;
+
+  /// Defaults to the design's 12 on every side, scaled.
+  final EdgeInsetsGeometry? padding;
+  final double? radius;
   final Color? color;
   final VoidCallback? onTap;
   final bool border;
@@ -21,7 +24,7 @@ class AppCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final borderRadius = BorderRadius.circular(radius);
+    final borderRadius = BorderRadius.circular((radius ?? 14.s));
 
     return Material(
       color: color ?? theme.colorScheme.surface,
@@ -30,7 +33,7 @@ class AppCard extends StatelessWidget {
         onTap: onTap,
         borderRadius: borderRadius,
         child: Container(
-          padding: padding,
+          padding: padding ?? EdgeInsets.all(12.s),
           decoration: BoxDecoration(
             borderRadius: borderRadius,
             border: border

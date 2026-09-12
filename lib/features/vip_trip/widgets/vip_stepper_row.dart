@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/components/app_stepper_button.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class VipStepperRow extends StatelessWidget {
   const VipStepperRow({
@@ -27,11 +28,11 @@ class VipStepperRow extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 14.s, vertical: 10.s),
       child: Row(
         children: [
           _Stepper(value: value, min: min, max: max, onChanged: onChanged),
-          const Gap(12),
+          Gap(12.s),
           Expanded(
             child: Text(
               label,
@@ -44,8 +45,8 @@ class VipStepperRow extends StatelessWidget {
             ),
           ),
           if (icon != null) ...[
-            const Gap(10),
-            AppImage(icon!, height: 20, color: theme.colorScheme.primary),
+            Gap(10.s),
+            AppImage(icon!, height: 20.s, color: theme.colorScheme.primary),
           ],
         ],
       ),
@@ -71,10 +72,10 @@ class _Stepper extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 5),
+      padding: EdgeInsets.symmetric(horizontal: 6.s, vertical: 5.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surfaceContainerHighest,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.s),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -84,7 +85,7 @@ class _Stepper extends StatelessWidget {
             onTap: value > min ? () => onChanged(value - 1) : null,
           ),
           SizedBox(
-            width: 36,
+            width: 36.s,
             child: Text(
               '$value',
               textAlign: TextAlign.center,

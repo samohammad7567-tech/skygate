@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_sheet.dart';
 import 'package:skygate/core/components/sheet_handle.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 /// The two languages the app ships, keyed by the code EasyLocalization and
 /// the `X-localization` header both speak.
@@ -24,23 +25,23 @@ Future<String?> showSettingsLanguageSheet(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Gap(10),
+          Gap(10.s),
           const SheetHandle(),
-          const Gap(14),
+          Gap(14.s),
           Text(
             'change-language'.tr(),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: Theme.of(sheetContext).textTheme.titleLarge,
           ),
-          const Gap(6),
+          Gap(6.s),
           for (final entry in settingsLanguages.entries)
             _Option(
               code: entry.key,
               labelKey: entry.value,
               isSelected: entry.key == current,
             ),
-          const Gap(8),
+          Gap(8.s),
         ],
       ),
     ),

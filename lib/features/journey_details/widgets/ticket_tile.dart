@@ -6,6 +6,7 @@ import 'package:skygate/core/components/app_document_actions.dart';
 import 'package:skygate/core/constants/card_assets.dart';
 import 'package:skygate/core/constants/my_trips_assets.dart';
 import 'package:skygate/core/utils/app_format.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/journey_details/models/travel_document_model.dart';
 
 /// One ticket under a pilgrim's name: the file it points at, what kind of
@@ -34,7 +35,7 @@ class TicketTile extends StatelessWidget {
     final theme = Theme.of(context);
 
     return AppCard(
-      padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
+      padding: EdgeInsets.fromLTRB(12.s, 12.s, 12.s, 12.s),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -46,7 +47,7 @@ class TicketTile extends StatelessWidget {
               color: theme.colorScheme.primary,
             ),
           ),
-          const SizedBox(height: 2),
+          SizedBox(height: 2.s),
           AppDetailRow(
             asset: MyTripsAssets.link,
             labelKey: 'ticket_file_link',
@@ -63,7 +64,7 @@ class TicketTile extends StatelessWidget {
             value: AppFormat.numericDate(ticket.issuedAt),
             showDivider: false,
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: 10.s),
           AppDocumentActions(
             isDownloading: isDownloading,
             onDownload: onDownload,

@@ -1,18 +1,19 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class MapDashedRing extends StatelessWidget {
   const MapDashedRing({
     super.key,
     required this.child,
-    this.size = 180,
+    this.size,
     this.color,
     this.fill,
   });
 
   final Widget child;
-  final double size;
+  final double? size;
   final Color? color;
   final Color? fill;
 
@@ -21,8 +22,8 @@ class MapDashedRing extends StatelessWidget {
     final theme = Theme.of(context);
 
     return SizedBox(
-      height: size,
-      width: size,
+      height: (size ?? 180.s),
+      width: (size ?? 180.s),
       child: CustomPaint(
         painter: _DashedRingPainter(
           color: color ?? theme.colorScheme.outlineVariant,

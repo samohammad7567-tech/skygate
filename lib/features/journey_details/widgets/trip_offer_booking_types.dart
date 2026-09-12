@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
 import 'package:skygate/core/models/booking_type.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class TripOfferBookingTypes extends StatelessWidget {
   const TripOfferBookingTypes({
@@ -26,15 +27,15 @@ class TripOfferBookingTypes extends StatelessWidget {
       children: [
         AppImage(
           JourneyAssets.supervisors,
-          height: 20,
-          width: 20,
+          height: 20.s,
+          width: 20.s,
           color: theme.colorScheme.primary,
         ),
-        const SizedBox(width: 10),
+        SizedBox(width: 10.s),
         Expanded(
           child: Wrap(
-            spacing: 8,
-            runSpacing: 8,
+            spacing: 8.s,
+            runSpacing: 8.s,
             children: [
               for (final type in types)
                 _BookingTypeChip(
@@ -67,7 +68,7 @@ class _BookingTypeChip extends StatelessWidget {
     final color = isSelected
         ? theme.colorScheme.secondary
         : theme.colorScheme.primary;
-    final radius = BorderRadius.circular(20);
+    final radius = BorderRadius.circular(20.s);
 
     return Material(
       color: isSelected
@@ -78,7 +79,7 @@ class _BookingTypeChip extends StatelessWidget {
         onTap: onTap,
         borderRadius: radius,
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 7),
+          padding: EdgeInsets.symmetric(horizontal: 16.s, vertical: 7.s),
           decoration: BoxDecoration(
             borderRadius: radius,
             border: Border.all(color: color),

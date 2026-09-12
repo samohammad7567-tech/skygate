@@ -7,6 +7,7 @@ import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/components/empty_state.dart';
 import 'package:skygate/core/components/sheet_handle.dart';
 import 'package:skygate/core/models/umrah_document_model.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/profile/models/pilgrim_document_model.dart';
 import 'package:skygate/features/profile/widgets/document_status_chip.dart';
 
@@ -28,8 +29,8 @@ class DocumentPreviewSheet extends StatelessWidget {
     context: context,
     isScrollControlled: true,
     backgroundColor: Theme.of(context).colorScheme.surface,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(22)),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(22.s)),
     ),
     builder: (_) => DocumentPreviewSheet(document: document, upload: upload),
   );
@@ -41,20 +42,20 @@ class DocumentPreviewSheet extends StatelessWidget {
 
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 12, 20, 20),
+        padding: EdgeInsets.fromLTRB(20.s, 12.s, 20.s, 20.s),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             const SheetHandle(),
-            const Gap(16),
+            Gap(16.s),
             _Title(document: document, upload: upload),
-            const Gap(18),
+            Gap(18.s),
             ConstrainedBox(
               constraints: BoxConstraints(
                 maxHeight: MediaQuery.sizeOf(context).height * 0.5,
               ),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(14),
+                borderRadius: BorderRadius.circular(14.s),
                 child: url == null
                     ? EmptyState(message: 'no_file_uploaded'.tr())
                     : CachedNetworkImage(
@@ -69,7 +70,7 @@ class DocumentPreviewSheet extends StatelessWidget {
             ),
             if (upload.review == DocumentReviewStatus.rejected &&
                 upload.rejectionReason != null) ...[
-              const Gap(12),
+              Gap(12.s),
               Text(
                 upload.rejectionReason!,
                 textAlign: TextAlign.center,
@@ -78,11 +79,11 @@ class DocumentPreviewSheet extends StatelessWidget {
                 ),
               ),
             ],
-            const Gap(20),
+            Gap(20.s),
             CustomButton(
               label: 'back'.tr(),
               width: double.infinity,
-              height: 46,
+              height: 46.s,
               onPressed: () => Navigator.of(context).pop(),
             ),
           ],
@@ -105,8 +106,8 @@ class _Title extends StatelessWidget {
     return Row(
       children: [
         Container(
-          height: 40,
-          width: 40,
+          height: 40.s,
+          width: 40.s,
           decoration: BoxDecoration(
             color: theme.colorScheme.surfaceContainerHighest,
             shape: BoxShape.circle,
@@ -114,12 +115,12 @@ class _Title extends StatelessWidget {
           child: Center(
             child: AppImage(
               document.icon,
-              height: 20,
+              height: 20.s,
               color: theme.colorScheme.primary,
             ),
           ),
         ),
-        const Gap(12),
+        Gap(12.s),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,7 +131,7 @@ class _Title extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: theme.textTheme.bodySmall,
               ),
-              const Gap(2),
+              Gap(2.s),
               Text(
                 document.titleKey.tr(),
                 maxLines: 1,
@@ -142,7 +143,7 @@ class _Title extends StatelessWidget {
             ],
           ),
         ),
-        const Gap(10),
+        Gap(10.s),
         DocumentStatusChip(status: upload.review),
       ],
     );
@@ -153,8 +154,8 @@ class _Loading extends StatelessWidget {
   const _Loading();
 
   @override
-  Widget build(BuildContext context) => const SizedBox(
-    height: 180,
-    child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
+  Widget build(BuildContext context) => SizedBox(
+    height: 180.vs,
+    child: Center(child: CircularProgressIndicator(strokeWidth: 2.s)),
   );
 }

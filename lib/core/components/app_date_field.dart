@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_field_decoration.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class AppDateField extends StatelessWidget {
   const AppDateField({
@@ -67,7 +68,7 @@ class AppDateField extends StatelessWidget {
 
         return InkWell(
           onTap: () => _pick(context),
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(10.s),
           child: InputDecorator(
             isEmpty: value == null,
             decoration: appInputDecoration(

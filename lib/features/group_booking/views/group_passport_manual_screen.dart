@@ -8,6 +8,7 @@ import 'package:skygate/core/components/important_note_card.dart';
 import 'package:skygate/core/components/passport_fields_form.dart';
 import 'package:skygate/core/components/pledge_checkbox.dart';
 import 'package:skygate/core/components/toast.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/core/components/booking_section_title.dart';
 import 'package:skygate/core/components/booking_step_scaffold.dart';
@@ -62,24 +63,24 @@ class _GroupPassportManualScreenState extends State<GroupPassportManualScreen> {
                   ? 'first_traveler_data'.tr()
                   : 'complete_traveler_data'.tr(),
             ),
-            const Gap(16),
+            Gap(16.s),
             AppPanel(
-              padding: const EdgeInsets.fromLTRB(16, 20, 16, 20),
+              padding: EdgeInsets.fromLTRB(16.s, 20.s, 16.s, 20.s),
               child: Form(
                 key: _formKey,
                 child: Column(
                   children: [
                     FormSectionTitle(text: 'passport_info'.tr()),
-                    const Gap(14),
+                    Gap(14.s),
                     PassportFieldsForm(
                       form: cubit.passportForm,
                       labeled: false,
                       onChanged: cubit.passportChanged,
                     ),
                     if (!isLeader) ...[
-                      const Gap(16),
+                      Gap(16.s),
                       const GroupGuardianNote(),
-                      const Gap(12),
+                      Gap(12.s),
                       GroupGuardianField(
                         adults: cubit.adults,
                         value: cubit.draftGuardianId,
@@ -87,12 +88,12 @@ class _GroupPassportManualScreenState extends State<GroupPassportManualScreen> {
                         isRequired: cubit.draftAudience.needsGuardian,
                       ),
                     ],
-                    const Gap(16),
+                    Gap(16.s),
                     PledgeCheckbox(
                       value: cubit.pledgeAccepted,
                       onChanged: cubit.togglePledge,
                     ),
-                    const Gap(14),
+                    Gap(14.s),
                     const ImportantNoteCard(),
                   ],
                 ),

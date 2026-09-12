@@ -9,6 +9,7 @@ import 'package:skygate/core/components/document_criteria_list.dart';
 import 'package:skygate/core/components/upload_size_chip.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
 import 'package:skygate/core/models/umrah_document_model.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class DocumentUploadCard extends StatelessWidget {
   const DocumentUploadCard({
@@ -29,23 +30,23 @@ class DocumentUploadCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: EdgeInsets.all(12.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Column(
         children: [
           _Title(document: document),
-          const Gap(12),
+          Gap(12.s),
           DashedBox(
             onTap: onTap,
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+            padding: EdgeInsets.symmetric(horizontal: 12.s, vertical: 16.s),
             child: file == null ? const _Empty() : _Attached(file: file!),
           ),
           if (file != null) ...[
-            const Gap(4),
+            Gap(4.s),
             TextButton(
               onPressed: onRemove,
               child: Text(
@@ -57,7 +58,7 @@ class DocumentUploadCard extends StatelessWidget {
               ),
             ),
           ],
-          const Gap(10),
+          Gap(10.s),
           const DocumentCriteriaList(),
         ],
       ),
@@ -85,10 +86,10 @@ class _Title extends StatelessWidget {
             style: theme.textTheme.titleMedium,
           ),
         ),
-        const Gap(10),
+        Gap(10.s),
         Container(
-          height: 36,
-          width: 36,
+          height: 36.s,
+          width: 36.s,
           decoration: BoxDecoration(
             color: theme.colorScheme.surfaceContainerHighest,
             shape: BoxShape.circle,
@@ -96,7 +97,7 @@ class _Title extends StatelessWidget {
           child: Center(
             child: AppImage(
               document.icon,
-              height: 20,
+              height: 20.s,
               color: theme.colorScheme.primary,
             ),
           ),
@@ -117,10 +118,10 @@ class _Empty extends StatelessWidget {
       children: [
         AppImage(
           AuthAssets.upload,
-          height: 26,
+          height: 26.s,
           color: theme.colorScheme.primary,
         ),
-        const Gap(8),
+        Gap(8.s),
         Text(
           'tap_to_upload_file'.tr(),
           textAlign: TextAlign.center,
@@ -128,7 +129,7 @@ class _Empty extends StatelessWidget {
             color: theme.colorScheme.primary,
           ),
         ),
-        const Gap(8),
+        Gap(8.s),
         const UploadSizeChip(),
       ],
     );
@@ -145,15 +146,15 @@ class _Attached extends StatelessWidget {
     return Column(
       children: [
         ClipRRect(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(10.s),
           child: Image.file(
             file,
-            height: 110,
+            height: 110.s,
             width: double.infinity,
             fit: BoxFit.cover,
           ),
         ),
-        const Gap(8),
+        Gap(8.s),
         Text(
           'file_uploaded'.tr(),
           style: Theme.of(context).textTheme.titleSmall,

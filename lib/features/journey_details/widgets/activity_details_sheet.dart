@@ -9,6 +9,7 @@ import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/components/sheet_handle.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
 import 'package:skygate/core/models/activity_model.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/journey_details/widgets/activity_map_sheet.dart';
 
 /// "تفاصيل النشاط" — what the activity is, when it runs, where it happens and
@@ -42,14 +43,14 @@ class ActivityDetailsSheet extends StatelessWidget {
 
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 12, 20, 20),
+        padding: EdgeInsets.fromLTRB(20.s, 12.s, 20.s, 20.s),
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const SheetHandle(),
-              const Gap(14),
+              Gap(14.s),
               Center(
                 child: Text(
                   'activity_details'.tr(),
@@ -58,13 +59,13 @@ class ActivityDetailsSheet extends StatelessWidget {
                   style: theme.textTheme.titleLarge,
                 ),
               ),
-              const Gap(16),
+              Gap(16.s),
               _Field(
                 asset: activity.kind.icon,
                 labelKey: 'activity',
                 value: activity.title,
               ),
-              const Gap(12),
+              Gap(12.s),
               Row(
                 children: [
                   Expanded(
@@ -74,7 +75,7 @@ class ActivityDetailsSheet extends StatelessWidget {
                       value: activity.fromTime,
                     ),
                   ),
-                  const Gap(12),
+                  Gap(12.s),
                   Expanded(
                     child: _Field(
                       asset: JourneyAssets.clockTo,
@@ -84,37 +85,37 @@ class ActivityDetailsSheet extends StatelessWidget {
                   ),
                 ],
               ),
-              const Gap(12),
-              const Divider(height: 1),
-              const Gap(12),
+              Gap(12.s),
+              Divider(height: 1.s),
+              Gap(12.s),
               _Place(
                 labelKey: 'activity_place',
                 value: activity.place,
                 asset: JourneyAssets.location,
               ),
-              const Gap(12),
-              const Divider(height: 1),
-              const Gap(12),
+              Gap(12.s),
+              Divider(height: 1.s),
+              Gap(12.s),
               _Place(
                 labelKey: 'meeting_point',
                 value: activity.meetingPoint,
                 asset: JourneyAssets.meetingPoint,
               ),
-              const Gap(20),
+              Gap(20.s),
               Row(
                 children: [
                   if (onConfirm != null) ...[
                     Expanded(
                       child: CustomButton(
                         label: 'confirm_attendance'.tr(),
-                        height: 48,
+                        height: 48.s,
                         onPressed: () {
                           Navigator.of(context).pop();
                           onConfirm!();
                         },
                       ),
                     ),
-                    const Gap(12),
+                    Gap(12.s),
                   ],
                   Expanded(
                     child: AppOutlinedButton(
@@ -151,8 +152,8 @@ class _Field extends StatelessWidget {
     return Row(
       children: [
         Container(
-          height: 42,
-          width: 42,
+          height: 42.s,
+          width: 42.s,
           alignment: Alignment.center,
           decoration: BoxDecoration(
             color: theme.colorScheme.surfaceContainerHighest,
@@ -160,12 +161,12 @@ class _Field extends StatelessWidget {
           ),
           child: AppImage(
             asset,
-            height: 20,
-            width: 20,
+            height: 20.s,
+            width: 20.s,
             color: theme.colorScheme.primary,
           ),
         ),
-        const Gap(10),
+        Gap(10.s),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -177,7 +178,7 @@ class _Field extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: theme.textTheme.bodySmall,
               ),
-              const Gap(2),
+              Gap(2.s),
               Text(
                 value ?? '—',
                 maxLines: 2,
@@ -212,15 +213,15 @@ class _Place extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         _Field(asset: asset, labelKey: labelKey, value: value),
-        const Gap(10),
+        Gap(10.s),
         InkWell(
           onTap: () =>
               ActivityMapSheet.show(context, labelKey: labelKey, place: value),
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(12.s),
           child: AspectRatio(
             aspectRatio: 8 / 5,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(12.s),
               child: const CachedImage(
                 url: null,
                 fallbackAsset: JourneyAssets.routeMap,

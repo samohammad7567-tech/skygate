@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_card.dart';
 import 'package:skygate/core/components/cached_image.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/journey_details/models/journey_route_model.dart';
 import 'package:skygate/features/journey_details/widgets/segment_instructions_card.dart';
 import 'package:skygate/features/journey_details/widgets/segment_place_section.dart';
@@ -17,7 +18,7 @@ class SegmentDetailsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.fromLTRB(20, 4, 20, 20),
+      padding: EdgeInsets.fromLTRB(20.s, 4.s, 20.s, 20.s),
       children: [
         AppCard(
           padding: EdgeInsets.zero,
@@ -25,9 +26,9 @@ class SegmentDetailsBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               SegmentSummaryCard(segment: segment),
-              const Divider(height: 1),
+              Divider(height: 1.s),
               Padding(
-                padding: const EdgeInsets.fromLTRB(14, 14, 14, 16),
+                padding: EdgeInsets.fromLTRB(14.s, 14.s, 14.s, 16.s),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -35,23 +36,23 @@ class SegmentDetailsBody extends StatelessWidget {
                       transport: segment.transport,
                       vehicle: segment.vehicle,
                     ),
-                    const SizedBox(height: 18),
+                    SizedBox(height: 18.s),
                     SegmentPlaceSection(
                       titleKey: 'departure_location_details',
                       place: segment.departurePlace,
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16.s),
                     SegmentPlaceSection(
                       titleKey: 'arrival_location_details',
                       place: segment.arrivalPlace,
                     ),
-                    const SizedBox(height: 14),
+                    SizedBox(height: 14.s),
                     // The route map export is 8:5; holding that ratio keeps
                     // the city labels on it from being cropped away.
                     AspectRatio(
                       aspectRatio: 8 / 5,
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(12.s),
                         child: CachedImage(
                           url: segment.mapImage,
                           // Each mode of travel has its own drawing of the
@@ -67,7 +68,7 @@ class SegmentDetailsBody extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 14),
+        SizedBox(height: 14.s),
         SegmentInstructionsCard(instructions: segment.instructions),
       ],
     );

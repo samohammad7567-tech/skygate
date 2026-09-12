@@ -9,6 +9,7 @@ import 'package:skygate/core/components/image_source_sheet.dart';
 import 'package:skygate/core/components/or_divider.dart';
 import 'package:skygate/core/components/scan_launcher.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/booking/controller/cubit/booking_cubit.dart';
 import 'package:skygate/features/booking/views/booking_passport_manual_screen.dart';
@@ -58,12 +59,12 @@ class BookingVerifyScreen extends StatelessWidget {
           title: 'data_verification'.tr(),
           subtitle: 'complete_personal_data'.tr(),
         ),
-        const Gap(16),
+        Gap(16.s),
         Container(
-          padding: const EdgeInsets.fromLTRB(16, 18, 16, 20),
+          padding: EdgeInsets.fromLTRB(16.s, 18.s, 16.s, 20.s),
           decoration: BoxDecoration(
             color: theme.colorScheme.surface,
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(16.s),
             border: Border.all(color: theme.colorScheme.outline),
           ),
           child: Column(
@@ -78,24 +79,24 @@ class BookingVerifyScreen extends StatelessWidget {
                   color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                 ),
               ),
-              const Gap(18),
+              Gap(18.s),
               ScanLauncher(onTap: () => _scan(context)),
-              const Gap(20),
+              Gap(20.s),
               const CaptureInstructionsCard(),
-              const Gap(16),
+              Gap(16.s),
               CustomButton(
                 label: 'capture_and_read_passport'.tr(),
-                height: 48,
+                height: 48.s,
                 onPressed: () => _scan(context),
                 icon: AppImage(
                   AuthAssets.imageScanner,
-                  height: 20,
+                  height: 20.s,
                   color: theme.colorScheme.onPrimary,
                 ),
               ),
-              const Gap(14),
+              Gap(14.s),
               const OrDivider(),
-              const Gap(14),
+              Gap(14.s),
               AppOutlinedButton(
                 label: 'manual_entry'.tr(),
                 onPressed: () => _typeManually(context),

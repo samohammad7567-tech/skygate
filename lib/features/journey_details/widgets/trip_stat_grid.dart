@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_card.dart';
 import 'package:skygate/core/components/app_glyph_plate.dart';
 import 'package:skygate/core/constants/payment_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/journey_details/models/journey_package_model.dart';
 
 /// The four facts under the header on "تفاصيل الرحلة": a tile per city stayed
@@ -52,13 +53,13 @@ class TripStatGrid extends StatelessWidget {
         // Two to a row, the way the design lays them out; an odd last tile
         // keeps its half rather than stretching across.
         for (var i = 0; i < stats.length; i += 2) ...[
-          if (i > 0) const SizedBox(height: 12),
+          if (i > 0) SizedBox(height: 12.s),
           IntrinsicHeight(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(child: _Tile(stat: stats[i])),
-                const SizedBox(width: 12),
+                SizedBox(width: 12.s),
                 Expanded(
                   child: i + 1 < stats.length
                       ? _Tile(stat: stats[i + 1])
@@ -91,12 +92,12 @@ class _Tile extends StatelessWidget {
     final theme = Theme.of(context);
 
     return AppCard(
-      padding: const EdgeInsets.all(10),
+      padding: EdgeInsets.all(10.s),
       child: Row(
         children: [
           // Glyph on the outer edge, the fact reading inward from it.
-          AppGlyphPlate(asset: stat.asset, size: 38, glyphSize: 19),
-          const SizedBox(width: 10),
+          AppGlyphPlate(asset: stat.asset, size: 38.s, glyphSize: 19.s),
+          SizedBox(width: 10.s),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,7 +110,7 @@ class _Tile extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.titleSmall,
                 ),
-                const SizedBox(height: 2),
+                SizedBox(height: 2.s),
                 Text(
                   stat.value,
                   maxLines: 1,

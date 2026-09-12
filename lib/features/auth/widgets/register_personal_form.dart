@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_text_field.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
 import 'package:skygate/core/utils/app_phone.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/app_validators.dart';
 import 'package:skygate/features/auth/controller/cubit/register_cubit.dart';
 
@@ -29,7 +30,7 @@ class RegisterPersonalForm extends StatelessWidget {
           textInputAction: TextInputAction.next,
           validator: AppValidators.required,
         ),
-        const Gap(12),
+        Gap(12.s),
         AppTextField(
           controller: cubit.phoneController,
           hint: 'phone_number'.tr(),
@@ -39,7 +40,7 @@ class RegisterPersonalForm extends StatelessWidget {
           inputFormatters: AppPhone.formatters,
           validator: AppValidators.phone,
         ),
-        const Gap(12),
+        Gap(12.s),
         AppTextField(
           controller: cubit.emailController,
           hint: 'email'.tr(),
@@ -48,7 +49,7 @@ class RegisterPersonalForm extends StatelessWidget {
           textInputAction: TextInputAction.next,
           validator: AppValidators.email,
         ),
-        const Gap(12),
+        Gap(12.s),
         AppTextField(
           controller: cubit.passwordController,
           hint: 'password'.tr(),
@@ -58,7 +59,7 @@ class RegisterPersonalForm extends StatelessWidget {
           textInputAction: TextInputAction.next,
           validator: AppValidators.password,
         ),
-        const Gap(12),
+        Gap(12.s),
         AppTextField(
           controller: cubit.confirmPasswordController,
           hint: 'confirm_password'.tr(),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/cached_image.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/payments/models/payment_method_model.dart';
 import 'package:skygate/features/payments/widgets/payment_radio.dart';
 
@@ -19,7 +20,7 @@ class PaymentMethodCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final borderRadius = BorderRadius.circular(14);
+    final borderRadius = BorderRadius.circular(14.s);
 
     return Material(
       color: isSelected
@@ -30,7 +31,7 @@ class PaymentMethodCard extends StatelessWidget {
         onTap: onTap,
         borderRadius: borderRadius,
         child: Container(
-          padding: const EdgeInsets.all(12),
+          padding: EdgeInsets.all(12.s),
           decoration: BoxDecoration(
             borderRadius: borderRadius,
             border: Border.all(
@@ -43,19 +44,19 @@ class PaymentMethodCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 2),
+                padding: EdgeInsets.only(top: 2.s),
                 child: PaymentRadio(isSelected: isSelected),
               ),
-              const Gap(10),
+              Gap(10.s),
               Expanded(child: _Body(method: method)),
-              const Gap(10),
+              Gap(10.s),
               ClipRRect(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(8.s),
                 child: CachedImage(
                   url: method.image,
                   fallbackAsset: method.logoFallback,
-                  height: 40,
-                  width: 52,
+                  height: 40.s,
+                  width: 52.s,
                   fit: BoxFit.contain,
                 ),
               ),
@@ -90,7 +91,7 @@ class _Body extends StatelessWidget {
           ),
         ),
         if (method.subtitle != null) ...[
-          const Gap(4),
+          Gap(4.s),
           Text(
             method.subtitle!,
             textAlign: TextAlign.end,
@@ -100,7 +101,7 @@ class _Body extends StatelessWidget {
           ),
         ],
         for (final instruction in method.instructions) ...[
-          const Gap(3),
+          Gap(3.s),
           Text(
             '• $instruction',
             textAlign: TextAlign.end,

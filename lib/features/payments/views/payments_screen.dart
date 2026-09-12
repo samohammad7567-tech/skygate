@@ -6,6 +6,7 @@ import 'package:skygate/core/components/app_outlined_button.dart';
 import 'package:skygate/core/components/app_page_header.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/components/empty_state.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/payments/controller/cubit/payments_cubit.dart';
 import 'package:skygate/features/payments/models/booking_details_model.dart';
@@ -127,29 +128,29 @@ class _Content extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.fromLTRB(20, 4, 20, 28),
+      padding: EdgeInsets.fromLTRB(20.s, 4.s, 20.s, 28.s),
       children: [
         PaymentSummaryCard(payment: payment),
         if (payment.installments.isNotEmpty) ...[
-          const Gap(16),
+          Gap(16.s),
           PaymentTimelineCard(installments: payment.installments),
         ],
-        const Gap(20),
+        Gap(20.s),
         CustomButton(
           label: 'pay_now'.tr(),
-          height: 48,
+          height: 48.s,
           width: double.infinity,
           // Nothing left outstanding means nothing left to transfer.
           onPressed: payment.isSettled ? null : onPay,
         ),
         if (hasDetails) ...[
-          const Gap(12),
+          Gap(12.s),
           AppOutlinedButton(
             label: 'view_booking_details'.tr(),
             onPressed: onDetails,
           ),
         ],
-        const Gap(12),
+        Gap(12.s),
         // The design reaches "المعاملات المالية" from no screen it draws; it
         // is hung here because this is the only page that holds the booking.
         AppOutlinedButton(

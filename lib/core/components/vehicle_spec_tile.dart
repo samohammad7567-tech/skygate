@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class VehicleSpecTile extends StatelessWidget {
   const VehicleSpecTile({
@@ -19,21 +20,21 @@ class VehicleSpecTile extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+      padding: EdgeInsets.symmetric(horizontal: 8.s, vertical: 12.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surfaceContainerHighest,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(10.s),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           AppImage(
             asset,
-            height: 24,
-            width: 24,
+            height: 24.s,
+            width: 24.s,
             color: theme.colorScheme.primary,
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8.s),
           Text(
             labelKey.tr(),
             maxLines: 1,
@@ -41,7 +42,7 @@ class VehicleSpecTile extends StatelessWidget {
             textAlign: TextAlign.center,
             style: theme.textTheme.bodySmall,
           ),
-          const SizedBox(height: 2),
+          SizedBox(height: 2.s),
           Text(
             value,
             maxLines: 1,

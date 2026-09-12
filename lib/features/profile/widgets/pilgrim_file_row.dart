@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/profile_assets.dart';
 import 'package:skygate/core/models/umrah_document_model.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/profile/models/pilgrim_document_model.dart';
 import 'package:skygate/features/profile/widgets/document_status_chip.dart';
 
@@ -25,12 +26,12 @@ class PilgrimFileRow extends StatelessWidget {
     final canPreview = upload?.hasFile ?? false;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      padding: EdgeInsets.symmetric(horizontal: 14.s, vertical: 12.s),
       child: Row(
         children: [
           Container(
-            height: 40,
-            width: 40,
+            height: 40.s,
+            width: 40.s,
             decoration: BoxDecoration(
               color: theme.colorScheme.surfaceContainerHighest,
               shape: BoxShape.circle,
@@ -38,12 +39,12 @@ class PilgrimFileRow extends StatelessWidget {
             child: Center(
               child: AppImage(
                 document.icon,
-                height: 20,
+                height: 20.s,
                 color: theme.colorScheme.primary,
               ),
             ),
           ),
-          const Gap(12),
+          Gap(12.s),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,12 +57,12 @@ class PilgrimFileRow extends StatelessWidget {
                     color: theme.colorScheme.primary,
                   ),
                 ),
-                const Gap(6),
+                Gap(6.s),
                 DocumentStatusChip(status: upload?.review),
               ],
             ),
           ),
-          const Gap(10),
+          Gap(10.s),
           _PreviewButton(onTap: canPreview ? onPreview : null),
         ],
       ),
@@ -85,11 +86,11 @@ class _PreviewButton extends StatelessWidget {
     return OutlinedButton(
       onPressed: onTap,
       style: OutlinedButton.styleFrom(
-        minimumSize: const Size(0, 32),
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        minimumSize: Size(0, 32.s),
+        padding: EdgeInsets.symmetric(horizontal: 10.s),
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         side: BorderSide(color: accent),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.s)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -98,8 +99,8 @@ class _PreviewButton extends StatelessWidget {
             'preview'.tr(),
             style: theme.textTheme.bodySmall?.copyWith(color: accent),
           ),
-          const Gap(6),
-          AppImage(ProfileAssets.visibility, height: 14, color: accent),
+          Gap(6.s),
+          AppImage(ProfileAssets.visibility, height: 14.s, color: accent),
         ],
       ),
     );

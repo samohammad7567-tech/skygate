@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/app_colors.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 /// One line on a printed card face: a round glyph, then one or two
 /// label-over-value pairs spread across the row.
@@ -36,12 +37,12 @@ class CardFieldRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: EdgeInsets.symmetric(vertical: 8.s),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           _Glyph(asset: asset),
-          const SizedBox(width: 10),
+          SizedBox(width: 10.s),
           Expanded(
             child: _Pair(
               labelKey: startLabelKey,
@@ -50,7 +51,7 @@ class CardFieldRow extends StatelessWidget {
             ),
           ),
           if (endLabelKey != null) ...[
-            const SizedBox(width: 10),
+            SizedBox(width: 10.s),
             Expanded(
               child: _Pair(
                 labelKey: endLabelKey!,
@@ -73,14 +74,19 @@ class _Glyph extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 34,
-      width: 34,
+      height: 34.s,
+      width: 34.s,
       alignment: Alignment.center,
       decoration: const BoxDecoration(
         color: AppColors.primary,
         shape: BoxShape.circle,
       ),
-      child: AppImage(asset, height: 17, width: 17, color: AppColors.surface),
+      child: AppImage(
+        asset,
+        height: 17.s,
+        width: 17.s,
+        color: AppColors.surface,
+      ),
     );
   }
 }
@@ -106,7 +112,7 @@ class _Pair extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: theme.textTheme.bodySmall?.copyWith(color: AppColors.primary),
         ),
-        const SizedBox(height: 2),
+        SizedBox(height: 2.s),
         Text(
           value ?? '—',
           maxLines: 1,

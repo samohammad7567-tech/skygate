@@ -11,6 +11,7 @@ import 'package:skygate/core/components/important_note_card.dart';
 import 'package:skygate/core/components/passport_fields_form.dart';
 import 'package:skygate/core/components/pledge_checkbox.dart';
 import 'package:skygate/core/components/toast.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/auth/controller/cubit/register_cubit.dart';
 import 'package:skygate/features/auth/views/umrah_documents_screen.dart';
@@ -53,42 +54,42 @@ class _PassportManualScreenState extends State<PassportManualScreen> {
               final cubit = context.read<RegisterCubit>();
 
               return SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(24, 32, 24, 32),
+                padding: EdgeInsets.fromLTRB(24.s, 32.s, 24.s, 32.s),
                 child: Column(
                   children: [
                     const AppTitleHeader(showBack: true),
-                    const Gap(24),
+                    Gap(24.s),
                     AppPanel(
                       child: Form(
                         key: _formKey,
                         child: Column(
                           children: [
                             const RegisterStepper(currentStep: 2),
-                            const Gap(20),
+                            Gap(20.s),
                             Text(
                               'manual_entry_title'.tr(),
                               style: Theme.of(context).textTheme.headlineSmall,
                             ),
-                            const Gap(14),
+                            Gap(14.s),
                             FormSectionTitle(text: 'passport_info'.tr()),
-                            const Gap(14),
+                            Gap(14.s),
                             PassportFieldsForm(
                               form: cubit.passportForm,
                               labeled: false,
                               onChanged: cubit.passportChanged,
                             ),
-                            const Gap(16),
+                            Gap(16.s),
                             PledgeCheckbox(
                               value: cubit.pledgeAccepted,
                               onChanged: cubit.togglePledge,
                             ),
-                            const Gap(14),
+                            Gap(14.s),
                             const ImportantNoteCard(),
-                            const Gap(18),
+                            Gap(18.s),
                             CustomButton(
                               label: 'create_account'.tr(),
                               width: double.infinity,
-                              height: 48,
+                              height: 48.s,
                               onPressed: _continue,
                             ),
                           ],

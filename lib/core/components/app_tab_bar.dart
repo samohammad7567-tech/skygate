@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_image.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 /// One tab of an [AppTabBar]: its caption, and the glyph printed after it on
 /// the bars that carry one.
@@ -29,9 +30,9 @@ class AppTabBar extends StatelessWidget {
     required this.selectedIndex,
     required this.onChanged,
     this.padding = EdgeInsets.zero,
-    this.tabPadding = const EdgeInsets.fromLTRB(8, 14, 8, 0),
-    this.underlineGap = 12,
-    this.tapRadius = 12,
+    this.tabPadding,
+    this.underlineGap,
+    this.tapRadius,
     this.textStyle,
   });
 
@@ -44,12 +45,12 @@ class AppTabBar extends StatelessWidget {
 
   /// Padding around one tab's contents. The zero bottom keeps the underline
   /// flush with the container's edge.
-  final EdgeInsetsGeometry tabPadding;
+  final EdgeInsetsGeometry? tabPadding;
 
   /// Space between a tab's caption and its underline.
-  final double underlineGap;
+  final double? underlineGap;
 
-  final double tapRadius;
+  final double? tapRadius;
 
   /// Caption style before the selected/resting colour is applied. Defaults to
   /// the theme's `titleMedium`.
@@ -63,7 +64,7 @@ class AppTabBar extends StatelessWidget {
       padding: padding,
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(14.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Row(
@@ -74,17 +75,17 @@ class AppTabBar extends StatelessWidget {
                 item: tabs[i],
                 isSelected: i == selectedIndex,
                 onTap: () => onChanged(i),
-                padding: tabPadding,
-                underlineGap: underlineGap,
-                tapRadius: tapRadius,
+                padding: tabPadding ?? EdgeInsets.fromLTRB(8.s, 14.s, 8.s, 0),
+                underlineGap: (underlineGap ?? 12.s),
+                tapRadius: (tapRadius ?? 12.s),
                 textStyle: textStyle ?? theme.textTheme.titleMedium,
               ),
             ),
             if (i != tabs.length - 1)
               SizedBox(
-                height: 26,
+                height: 26.s,
                 child: VerticalDivider(
-                  width: 1,
+                  width: 1.s,
                   color: theme.colorScheme.outline,
                 ),
               ),
@@ -142,8 +143,8 @@ class _Tab extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Flexible(child: label),
-                  const Gap(6),
-                  AppImage(icon, height: 16, width: 16, color: color),
+                  Gap(6.s),
+                  AppImage(icon, height: 16.s, width: 16.s, color: color),
                 ],
               )
             else
@@ -152,12 +153,10 @@ class _Tab extends StatelessWidget {
             // The underline is drawn for every tab so switching does not shift
             // the row; only the picked one is inked.
             Container(
-              height: 3,
+              height: 3.s,
               decoration: BoxDecoration(
                 color: isSelected ? color : Colors.transparent,
-                borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(3),
-                ),
+                borderRadius: BorderRadius.vertical(top: Radius.circular(3.s)),
               ),
             ),
           ],

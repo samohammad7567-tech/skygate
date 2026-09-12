@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/home/models/offer_model.dart';
 
 class OfferPrice extends StatelessWidget {
@@ -34,7 +35,7 @@ class OfferPrice extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: theme.textTheme.titleLarge?.copyWith(
               color: theme.colorScheme.secondary,
-              fontSize: 20,
+              fontSize: 20.fs,
             ),
           ),
         ],

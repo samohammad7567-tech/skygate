@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/booking/models/room_type_model.dart';
 import 'package:skygate/core/components/booking_selectable_card.dart';
 import 'package:skygate/core/components/room_beds_row.dart';
@@ -27,17 +28,15 @@ class BookingRoomCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
-            padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
+            padding: EdgeInsets.fromLTRB(14.s, 12.s, 14.s, 12.s),
             decoration: BoxDecoration(
               color: theme.colorScheme.surfaceContainerHighest,
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(13),
-              ),
+              borderRadius: BorderRadius.vertical(top: Radius.circular(13.s)),
             ),
             child: Row(
               children: [
                 BookingRadio(isSelected: isSelected),
-                const Gap(12),
+                Gap(12.s),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -48,7 +47,7 @@ class BookingRoomCard extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: theme.textTheme.titleLarge,
                       ),
-                      const Gap(4),
+                      Gap(4.s),
                       RoomBedsRow(count: room.beds ?? 0),
                     ],
                   ),
@@ -57,15 +56,15 @@ class BookingRoomCard extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(14),
+            padding: EdgeInsets.all(14.s),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 RoomPriceRow(price: room.adultPrice, currency: room.currency),
                 if (room.almostFull) ...[
-                  const Gap(10),
-                  const Divider(height: 1),
-                  const Gap(10),
+                  Gap(10.s),
+                  Divider(height: 1.s),
+                  Gap(10.s),
                   const Align(child: AlmostFullChip()),
                 ],
               ],

@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/utils/app_format.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/payments/models/payment_installment_model.dart';
 import 'package:skygate/features/payments/widgets/payment_timeline_rail.dart';
 
@@ -39,10 +40,10 @@ class PaymentTimelineTile extends StatelessWidget {
             isLast: isLast,
             isDue: isDue,
           ),
-          const Gap(12),
+          Gap(12.s),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
+              padding: EdgeInsets.symmetric(vertical: 10.s),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -57,7 +58,7 @@ class PaymentTimelineTile extends StatelessWidget {
                       color: theme.colorScheme.primary,
                     ),
                   ),
-                  const Gap(6),
+                  Gap(6.s),
                   _Line(
                     leading: installment.percentage == null
                         ? ''
@@ -65,7 +66,7 @@ class PaymentTimelineTile extends StatelessWidget {
                     trailing: installment.formattedAmount,
                     trailingColor: theme.colorScheme.primary,
                   ),
-                  const Gap(6),
+                  Gap(6.s),
                   _Line(
                     leading: installment.status.labelKey.tr(),
                     leadingColor: detail,
@@ -115,7 +116,7 @@ class _Line extends StatelessWidget {
             style: theme.textTheme.bodyMedium?.copyWith(color: leadingColor),
           ),
         ),
-        const Gap(8),
+        Gap(8.s),
         Flexible(
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -132,8 +133,8 @@ class _Line extends StatelessWidget {
                 ),
               ),
               if (trailingIcon != null) ...[
-                const Gap(6),
-                Icon(trailingIcon, size: 14, color: trailingColor),
+                Gap(6.s),
+                Icon(trailingIcon, size: 14.s, color: trailingColor),
               ],
             ],
           ),

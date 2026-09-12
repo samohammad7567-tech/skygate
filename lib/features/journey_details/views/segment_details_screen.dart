@@ -5,6 +5,7 @@ import 'package:skygate/core/components/app_page_header.dart';
 import 'package:skygate/core/components/app_tab_bar.dart';
 import 'package:skygate/core/components/toast.dart';
 import 'package:skygate/core/constants/card_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/journey_details/controller/cubit/journey_details_cubit.dart';
 import 'package:skygate/features/journey_details/controller/cubit/segment_docs_cubit.dart';
@@ -71,7 +72,7 @@ class _SegmentDetailsBody extends StatelessWidget {
               children: [
                 AppPageHeader(title: 'section_details'.tr()),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
+                  padding: EdgeInsets.fromLTRB(20.s, 0, 20.s, 16.s),
                   child: AppTabBar(
                     tabs: const [
                       AppTabItem(
@@ -87,8 +88,8 @@ class _SegmentDetailsBody extends StatelessWidget {
                     selectedIndex: docs.tab.index,
                     onChanged: (index) =>
                         docs.changeTab(SegmentTab.values[index]),
-                    padding: const EdgeInsets.symmetric(horizontal: 4),
-                    tabPadding: const EdgeInsets.fromLTRB(4, 12, 4, 0),
+                    padding: EdgeInsets.symmetric(horizontal: 4.s),
+                    tabPadding: EdgeInsets.fromLTRB(4.s, 12.s, 4.s, 0),
                     underlineGap: 10,
                     textStyle: Theme.of(context).textTheme.titleSmall,
                   ),

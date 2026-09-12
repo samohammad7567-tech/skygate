@@ -5,6 +5,7 @@ import 'package:skygate/core/components/app_glyph_plate.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/sos_assets.dart';
 import 'package:skygate/core/utils/app_format.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/sos/models/chat_message_model.dart';
 
 class ChatBubble extends StatelessWidget {
@@ -25,7 +26,7 @@ class ChatBubble extends StatelessWidget {
         : theme.colorScheme.onSurface;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+      padding: EdgeInsets.symmetric(horizontal: 16.s, vertical: 6.s),
       child: Row(
         mainAxisAlignment: isMine
             ? MainAxisAlignment.start
@@ -35,19 +36,19 @@ class ChatBubble extends StatelessWidget {
           if (isMine) ...[
             AppGlyphPlate(
               asset: SosAssets.chat,
-              size: 36,
-              glyphSize: 18,
+              size: 36.s,
+              glyphSize: 18.s,
               color: theme.colorScheme.onPrimary,
               background: theme.colorScheme.primary,
             ),
-            const Gap(8),
+            Gap(8.s),
           ],
           Flexible(
             child: Container(
-              padding: const EdgeInsets.fromLTRB(14, 10, 14, 8),
+              padding: EdgeInsets.fromLTRB(14.s, 10.s, 14.s, 8.s),
               decoration: BoxDecoration(
                 color: background,
-                borderRadius: BorderRadius.circular(14),
+                borderRadius: BorderRadius.circular(14.s),
                 border: isMine
                     ? null
                     : Border.all(color: theme.colorScheme.outline),
@@ -65,28 +66,28 @@ class ChatBubble extends StatelessWidget {
                         color: isMine ? foreground : theme.colorScheme.primary,
                       ),
                     ),
-                    const Gap(4),
+                    Gap(4.s),
                   ],
                   Text(
                     message.body ?? '',
                     textAlign: TextAlign.end,
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: foreground,
-                      height: 1.6,
+                      height: 1.6.s,
                     ),
                   ),
-                  const Gap(6),
+                  Gap(6.s),
                   _MetaRow(message: message, foreground: foreground),
                 ],
               ),
             ),
           ),
           if (!isMine) ...[
-            const Gap(8),
+            Gap(8.s),
             AppGlyphPlate(
               asset: SosAssets.supervisors,
-              size: 36,
-              glyphSize: 18,
+              size: 36.s,
+              glyphSize: 18.s,
               color: theme.colorScheme.primary,
             ),
           ],
@@ -112,20 +113,20 @@ class _MetaRow extends StatelessWidget {
         if (message.isMine) ...[
           message.isPending
               ? SizedBox(
-                  height: 10,
-                  width: 10,
+                  height: 10.s,
+                  width: 10.s,
                   child: CircularProgressIndicator(
-                    strokeWidth: 1.4,
+                    strokeWidth: 1.4.s,
                     color: foreground.withValues(alpha: 0.7),
                   ),
                 )
               : AppImage(
                   SosAssets.read,
-                  height: 13,
-                  width: 13,
+                  height: 13.s,
+                  width: 13.s,
                   color: foreground.withValues(alpha: 0.8),
                 ),
-          const Gap(6),
+          Gap(6.s),
         ],
         Text(
           AppFormat.time(message.sentAt, context.locale.languageCode),
@@ -133,7 +134,7 @@ class _MetaRow extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: theme.textTheme.bodySmall?.copyWith(
             color: foreground.withValues(alpha: 0.7),
-            fontSize: 10,
+            fontSize: 10.fs,
           ),
         ),
       ],

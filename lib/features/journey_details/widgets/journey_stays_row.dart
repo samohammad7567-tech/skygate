@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_card.dart';
 import 'package:skygate/core/components/app_glyph_plate.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/journey_details/models/journey_package_model.dart';
 
 class JourneyStaysRow extends StatelessWidget {
@@ -21,7 +22,7 @@ class JourneyStaysRow extends StatelessWidget {
         children: [
           for (var i = 0; i < stays.length; i++) ...[
             Expanded(child: _StayChip(stay: stays[i])),
-            if (i < stays.length - 1) const SizedBox(width: 12),
+            if (i < stays.length - 1) SizedBox(width: 12.s),
           ],
         ],
       ),
@@ -39,11 +40,11 @@ class _StayChip extends StatelessWidget {
     final theme = Theme.of(context);
 
     return AppCard(
-      padding: const EdgeInsets.all(10),
+      padding: EdgeInsets.all(10.s),
       child: Row(
         children: [
-          AppGlyphPlate(asset: stay.icon, size: 36, glyphSize: 18),
-          const SizedBox(width: 10),
+          AppGlyphPlate(asset: stay.icon, size: 36.s, glyphSize: 18.s),
+          SizedBox(width: 10.s),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +71,7 @@ class _StayChip extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
-                      fontSize: 11,
+                      fontSize: 11.fs,
                     ),
                   ),
               ],

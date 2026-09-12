@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/map/models/map_feature_model.dart';
 
 class MapFeatureStrip extends StatelessWidget {
@@ -33,11 +34,11 @@ class _FeatureChip extends StatelessWidget {
       children: [
         AppImage(
           feature.icon,
-          height: 26,
-          width: 26,
+          height: 26.s,
+          width: 26.s,
           color: theme.colorScheme.primary,
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8.s),
         Text(
           feature.titleKey.tr(),
           textAlign: TextAlign.center,

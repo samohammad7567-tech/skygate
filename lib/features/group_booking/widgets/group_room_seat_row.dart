@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/group_booking/models/group_room_seat.dart';
 import 'package:skygate/core/components/audience_chip.dart';
 
@@ -21,11 +22,11 @@ class GroupRoomSeatRow extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: EdgeInsets.symmetric(vertical: 8.s),
       child: Row(
         children: [
-          PositionBadge(position: position, size: 28),
-          const Gap(10),
+          PositionBadge(position: position, size: 28.s),
+          Gap(10.s),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,17 +44,17 @@ class GroupRoomSeatRow extends StatelessWidget {
                       ),
                     ),
                     if (seat.isSecondInfant) ...[
-                      const Gap(6),
+                      Gap(6.s),
                       const SecondInfantBadge(),
                     ],
                   ],
                 ),
-                const Gap(4),
+                Gap(4.s),
                 AudienceChip(audience: seat.traveler.audience),
               ],
             ),
           ),
-          const Gap(10),
+          Gap(10.s),
           Text(
             '${seat.price}${currency ?? ''}',
             maxLines: 1,

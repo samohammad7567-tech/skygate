@@ -8,6 +8,7 @@ import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/components/sheet_handle.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/models/activity_model.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/journey_details/widgets/activity_rating_tags.dart';
 
 /// "تقييم النشاط" — the stars, the optional tags, and a free note.
@@ -74,10 +75,10 @@ class _ActivityRatingSheetState extends State<ActivityRatingSheet> {
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.fromLTRB(
-          20,
-          12,
-          20,
-          20 + MediaQuery.viewInsetsOf(context).bottom,
+          20.s,
+          12.s,
+          20.s,
+          20.s + MediaQuery.viewInsetsOf(context).bottom,
         ),
         child: SingleChildScrollView(
           child: Column(
@@ -85,7 +86,7 @@ class _ActivityRatingSheetState extends State<ActivityRatingSheet> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const SheetHandle(),
-              const Gap(14),
+              Gap(14.s),
               Center(
                 child: Text(
                   'rate_activity_title'.tr(),
@@ -94,12 +95,12 @@ class _ActivityRatingSheetState extends State<ActivityRatingSheet> {
                   style: theme.textTheme.titleLarge,
                 ),
               ),
-              const Gap(16),
+              Gap(16.s),
               _Stars(
                 rating: _rating,
                 onChanged: (value) => setState(() => _rating = value),
               ),
-              const Gap(14),
+              Gap(14.s),
               ActivityRatingTags(
                 selected: _tags,
                 note: _note,
@@ -108,21 +109,21 @@ class _ActivityRatingSheetState extends State<ActivityRatingSheet> {
                       _tags.contains(key) ? _tags.remove(key) : _tags.add(key),
                 ),
               ),
-              const Gap(14),
+              Gap(14.s),
               const _ThanksCard(),
-              const Gap(18),
+              Gap(18.s),
               Row(
                 children: [
                   Expanded(
                     child: CustomButton(
                       label: 'send_rating'.tr(),
-                      height: 48,
+                      height: 48.s,
                       // Stars are the one required part; everything under
                       // them is marked optional on the design itself.
                       onPressed: _rating > 0 ? _submit : null,
                     ),
                   ),
-                  const Gap(12),
+                  Gap(12.s),
                   Expanded(
                     child: AppOutlinedButton(
                       label: 'cancel'.tr(),
@@ -159,7 +160,7 @@ class _Stars extends StatelessWidget {
     final theme = Theme.of(context);
 
     return AppCard(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+      padding: EdgeInsets.symmetric(horizontal: 16.s, vertical: 18.s),
       child: Column(
         children: [
           Text(
@@ -171,7 +172,7 @@ class _Stars extends StatelessWidget {
               color: theme.colorScheme.primary,
             ),
           ),
-          const Gap(4),
+          Gap(4.s),
           Text(
             'rate_activity_hint'.tr(),
             textAlign: TextAlign.center,
@@ -179,15 +180,15 @@ class _Stars extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: theme.textTheme.bodySmall,
           ),
-          const Gap(12),
+          Gap(12.s),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               for (var star = 1; star <= 5; star++)
                 IconButton(
                   onPressed: () => onChanged(star),
-                  iconSize: 34,
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  iconSize: 34.s,
+                  padding: EdgeInsets.symmetric(horizontal: 4.s),
                   constraints: const BoxConstraints(),
                   icon: Icon(
                     star <= rating
@@ -198,7 +199,7 @@ class _Stars extends StatelessWidget {
                 ),
             ],
           ),
-          const Gap(8),
+          Gap(8.s),
           Text(
             rating == 0 ? '' : _words[rating - 1].tr(),
             maxLines: 1,
@@ -221,16 +222,16 @@ class _ThanksCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.all(14),
+      padding: EdgeInsets.all(14.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surfaceContainerHighest,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(14.s),
       ),
       child: Row(
         children: [
           Container(
-            height: 44,
-            width: 44,
+            height: 44.s,
+            width: 44.s,
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: theme.colorScheme.surface,
@@ -238,11 +239,11 @@ class _ThanksCard extends StatelessWidget {
             ),
             child: Icon(
               Icons.thumb_up_outlined,
-              size: 22,
+              size: 22.s,
               color: theme.colorScheme.primary,
             ),
           ),
-          const Gap(12),
+          Gap(12.s),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -256,7 +257,7 @@ class _ThanksCard extends StatelessWidget {
                     color: theme.colorScheme.primary,
                   ),
                 ),
-                const Gap(2),
+                Gap(2.s),
                 Text(
                   'thanks_for_rating_desc'.tr(),
                   maxLines: 3,

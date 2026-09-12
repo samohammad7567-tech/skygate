@@ -6,6 +6,7 @@ import 'package:skygate/core/components/confirm_dialog.dart';
 import 'package:skygate/core/components/toast.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/profile_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/auth/controller/cubit/auth_cubit.dart';
 import 'package:skygate/features/auth/views/auth_landing_screen.dart';
@@ -110,7 +111,7 @@ class _ProfileViewState extends State<ProfileView> {
             showBack: false,
             children: [
               AppSectionTitle(text: 'profile_information'.tr()),
-              const Gap(12),
+              Gap(12.s),
               AppListCard(
                 children: [
                   ProfileTile(
@@ -130,7 +131,7 @@ class _ProfileViewState extends State<ProfileView> {
                   ),
                 ],
               ),
-              const Gap(14),
+              Gap(14.s),
               AppListCard(
                 children: [
                   ProfileTile(
@@ -142,7 +143,7 @@ class _ProfileViewState extends State<ProfileView> {
                   ),
                 ],
               ),
-              const Gap(14),
+              Gap(14.s),
               AppListCard(
                 children: [
                   ProfileTile(
@@ -154,9 +155,9 @@ class _ProfileViewState extends State<ProfileView> {
                   ),
                 ],
               ),
-              const Gap(22),
+              Gap(22.s),
               AppSectionTitle(text: 'account_management'.tr()),
-              const Gap(12),
+              Gap(12.s),
               AppListCard(
                 children: [
                   ProfileTile(

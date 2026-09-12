@@ -3,6 +3,7 @@ import 'package:skygate/core/components/app_back_button.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/components/app_menu_button.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class AppTitleHeader extends StatelessWidget {
   const AppTitleHeader({
@@ -31,13 +32,13 @@ class AppTitleHeader extends StatelessWidget {
         // they do not grow the stack. Without a floor it shrinks to the title
         // text, which differs per screen — the chips then overflow (clipped by
         // the stack) and land at a different height on every tab.
-        constraints: const BoxConstraints(minHeight: AppMenuButton.size),
+        constraints: BoxConstraints(minHeight: AppMenuButton.size.s),
         child: Stack(
           alignment: Alignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppBackButton.size + 8,
+              padding: EdgeInsets.symmetric(
+                horizontal: AppBackButton.size.s + 8.s,
               ),
               child: title == null
                   ? const _LogoCard()
@@ -76,19 +77,19 @@ class _LogoCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 44, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 44.s, vertical: 10.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.s),
         boxShadow: [
           BoxShadow(
             color: theme.colorScheme.primary.withValues(alpha: 0.12),
-            blurRadius: 18,
-            offset: const Offset(0, 6),
+            blurRadius: 18.s,
+            offset: Offset(0, 6.s),
           ),
         ],
       ),
-      child: const AppImage(AuthAssets.logo, height: 48),
+      child: AppImage(AuthAssets.logo, height: 48.s),
     );
   }
 }

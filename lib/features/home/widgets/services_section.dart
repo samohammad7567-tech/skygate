@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/home/models/service_model.dart';
 import 'package:skygate/features/home/widgets/service_card.dart';
 
@@ -13,7 +14,7 @@ class ServicesSection extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.symmetric(horizontal: 20.s),
       child: Column(
         children: [
           Text(
@@ -23,7 +24,7 @@ class ServicesSection extends StatelessWidget {
             textAlign: TextAlign.center,
             style: theme.textTheme.titleLarge,
           ),
-          const SizedBox(height: 4),
+          SizedBox(height: 4.s),
           Text(
             'every_offer_includes_services'.tr(),
             maxLines: 2,
@@ -33,7 +34,7 @@ class ServicesSection extends StatelessWidget {
               color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
             ),
           ),
-          const SizedBox(height: 14),
+          SizedBox(height: 14.s),
           GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),

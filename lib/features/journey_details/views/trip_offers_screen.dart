@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skygate/core/components/app_page_header.dart';
 import 'package:skygate/core/components/empty_state.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/journey_details/controller/cubit/trip_offers_cubit.dart';
 import 'package:skygate/features/journey_details/widgets/journey_bottom_bar.dart';
 import 'package:skygate/features/journey_details/widgets/trip_offer_card.dart';
@@ -62,9 +63,9 @@ class _TripOffersBody extends StatelessWidget {
     return BuildCondition(
       condition: cubit.offers.isNotEmpty,
       builder: (_) => ListView.separated(
-        padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+        padding: EdgeInsets.fromLTRB(20.s, 0, 20.s, 20.s),
         itemCount: cubit.offers.length,
-        separatorBuilder: (_, _) => const SizedBox(height: 14),
+        separatorBuilder: (_, _) => SizedBox(height: 14.s),
         itemBuilder: (_, index) => TripOfferCard(
           offer: cubit.offers[index],
           position: index + 1,

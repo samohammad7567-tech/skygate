@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/sos/widgets/sos_button.dart';
 
 /// The tab bodies, plus the SOS chip the shell floats over all of them.
@@ -29,9 +30,9 @@ class MainTabsView extends StatelessWidget {
         ),
         // The design pins the chip to the start side, just clear of the
         // floating navigation bar.
-        const PositionedDirectional(
-          start: 10,
-          bottom: SosButton.bottomInset,
+        PositionedDirectional(
+          start: 10.s,
+          bottom: SosButton.bottomInset.s,
           child: SafeArea(child: SosButton()),
         ),
       ],

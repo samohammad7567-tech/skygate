@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/models/booking_city.dart';
 import 'package:skygate/core/components/payment_detail_row.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/group_booking/models/group_room_model.dart';
 import 'package:skygate/core/models/traveler_audience.dart';
 
@@ -32,7 +33,7 @@ class GroupSummaryRoomCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(14.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Column(
@@ -40,7 +41,7 @@ class GroupSummaryRoomCard extends StatelessWidget {
         children: [
           _Header(counts: counts, onDetails: onDetails),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14),
+            padding: EdgeInsets.symmetric(horizontal: 14.s),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -48,17 +49,17 @@ class GroupSummaryRoomCard extends StatelessWidget {
                   labelKey: 'room_type',
                   value: room.type.labelKey.tr(),
                 ),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 PaymentDetailRow(
                   labelKey: 'summary_madinah_hotel',
                   value: hotelNames[BookingCity.madinah],
                 ),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 PaymentDetailRow(
                   labelKey: 'summary_makkah_hotel',
                   value: hotelNames[BookingCity.makkah],
                 ),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 PaymentDetailRow(
                   labelKey: 'summary_final_total',
                   value: '$total${currency ?? ''}',
@@ -84,7 +85,7 @@ class _Header extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(14, 12, 14, 4),
+      padding: EdgeInsets.fromLTRB(14.s, 12.s, 14.s, 4.s),
       child: Row(
         children: [
           Expanded(
@@ -103,16 +104,16 @@ class _Header extends StatelessWidget {
               ),
             ),
           ),
-          const Gap(10),
+          Gap(10.s),
           OutlinedButton(
             onPressed: onDetails,
             style: OutlinedButton.styleFrom(
               side: BorderSide(color: theme.colorScheme.secondary),
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 2),
-              minimumSize: const Size(0, 30),
+              padding: EdgeInsets.symmetric(horizontal: 14.s, vertical: 2.s),
+              minimumSize: Size(0, 30.s),
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(20.s),
               ),
             ),
             child: Text(

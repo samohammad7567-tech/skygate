@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_status_chip.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/booking_changes/models/booking_change_request_model.dart';
 
 class BookingChangeStatusChip extends StatelessWidget {
@@ -13,7 +14,7 @@ class BookingChangeStatusChip extends StatelessWidget {
       labelKey: status.labelKey,
       background: status.background,
       foreground: status.foreground,
-      radius: 8,
+      radius: 8.s,
     );
   }
 }

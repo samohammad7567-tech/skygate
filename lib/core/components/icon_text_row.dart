@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class IconTextRow extends StatelessWidget {
   const IconTextRow({
@@ -8,14 +9,14 @@ class IconTextRow extends StatelessWidget {
     required this.text,
     this.iconColor,
     this.textStyle,
-    this.iconSize = 16,
+    this.iconSize,
   });
 
   final String asset;
   final String text;
   final Color? iconColor;
   final TextStyle? textStyle;
-  final double iconSize;
+  final double? iconSize;
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +26,11 @@ class IconTextRow extends StatelessWidget {
       children: [
         AppImage(
           asset,
-          height: iconSize,
-          width: iconSize,
+          height: (iconSize ?? 16.s),
+          width: (iconSize ?? 16.s),
           color: iconColor ?? theme.colorScheme.primary,
         ),
-        const SizedBox(width: 6),
+        SizedBox(width: 6.s),
         Flexible(
           child: Text(
             text,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/payment_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class PaymentFieldLabel extends StatelessWidget {
   const PaymentFieldLabel({super.key, required this.labelKey, this.hintKey});
@@ -25,7 +26,7 @@ class PaymentFieldLabel extends StatelessWidget {
           style: theme.textTheme.titleLarge,
         ),
         if (hintKey != null) ...[
-          const Gap(4),
+          Gap(4.s),
           Text(
             hintKey!.tr(),
             textAlign: TextAlign.end,
@@ -49,21 +50,21 @@ class PaymentNoteCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      padding: EdgeInsets.symmetric(horizontal: 14.s, vertical: 12.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Row(
         children: [
           AppImage(
             PaymentAssets.info,
-            height: 22,
-            width: 22,
+            height: 22.s,
+            width: 22.s,
             color: theme.colorScheme.primary,
           ),
-          const Gap(12),
+          Gap(12.s),
           Expanded(
             child: Text(
               'payment_sheet_note'.tr(),

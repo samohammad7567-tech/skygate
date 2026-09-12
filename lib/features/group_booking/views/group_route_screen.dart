@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/empty_state.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/core/components/booking_route_card.dart';
 import 'package:skygate/core/components/booking_section_title.dart';
@@ -49,10 +50,10 @@ class _GroupRouteScreenState extends State<GroupRouteScreen> {
               title: 'select_route'.tr(),
               subtitle: 'select_route_desc'.tr(),
             ),
-            const Gap(16),
+            Gap(16.s),
             if (state is GroupRoutesLoading)
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 60),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 60.s),
                 child: Center(child: CircularProgressIndicator()),
               )
             else
@@ -68,12 +69,12 @@ class _GroupRouteScreenState extends State<GroupRouteScreen> {
                         isSelected: i == cubit.selectedRouteIndex,
                         onTap: () => cubit.selectRoute(i),
                       ),
-                      const Gap(16),
+                      Gap(16.s),
                     ],
                   ],
                 ),
                 fallback: (_) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 60),
+                  padding: EdgeInsets.symmetric(vertical: 60.s),
                   child: EmptyState(
                     message: state is GroupRoutesError
                         ? state.message.tr()

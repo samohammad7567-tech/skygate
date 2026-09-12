@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_page_header.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/profile/widgets/profile_avatar.dart';
 
 class ProfileHeader extends StatelessWidget {
@@ -40,20 +41,20 @@ class ProfileHeader extends StatelessWidget {
           onMenuTap: onMenuTap,
           showBack: showBack,
         ),
-        const Gap(6),
-        ProfileAvatar(url: avatarUrl, size: 92),
-        const Gap(12),
+        Gap(6.s),
+        ProfileAvatar(url: avatarUrl, size: 92.s),
+        Gap(12.s),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20.s),
           child: Text(
             name,
             textAlign: TextAlign.center,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: theme.textTheme.headlineSmall?.copyWith(fontSize: 20),
+            style: theme.textTheme.headlineSmall?.copyWith(fontSize: 20.fs),
           ),
         ),
-        const Gap(20),
+        Gap(20.s),
       ],
     );
   }

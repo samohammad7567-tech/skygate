@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/group_booking/models/group_room_allocation.dart';
 import 'package:skygate/core/models/group_room_type.dart';
 
@@ -12,8 +13,8 @@ class GroupRoomChips extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      spacing: 8,
-      runSpacing: 8,
+      spacing: 8.s,
+      runSpacing: 8.s,
       children: [
         for (final type in GroupRoomType.values)
           if (allocation.of(type) > 0)
@@ -34,17 +35,17 @@ class _RoomChip extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      padding: EdgeInsets.symmetric(horizontal: 12.s, vertical: 6.s),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.s),
         border: Border.all(color: theme.colorScheme.primary),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            height: 20,
-            width: 20,
+            height: 20.s,
+            width: 20.s,
             alignment: Alignment.center,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
@@ -58,7 +59,7 @@ class _RoomChip extends StatelessWidget {
               ),
             ),
           ),
-          const Gap(8),
+          Gap(8.s),
           Text(
             type.labelKey.tr(),
             maxLines: 1,

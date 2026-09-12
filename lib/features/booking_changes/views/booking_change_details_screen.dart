@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skygate/core/components/app_page_header.dart';
 import 'package:skygate/core/components/empty_state.dart';
 import 'package:skygate/core/components/toast.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/booking_changes/controller/cubit/booking_changes_cubit.dart';
 import 'package:skygate/features/booking_changes/widgets/booking_change_summary_card.dart';
 
@@ -34,7 +35,7 @@ class BookingChangeDetailsScreen extends StatelessWidget {
                   child: request == null
                       ? EmptyState(message: 'no_booking_change_requests'.tr())
                       : ListView(
-                          padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
+                          padding: EdgeInsets.fromLTRB(20.s, 8.s, 20.s, 24.s),
                           children: [
                             BookingChangeSummaryCard(request: request),
                           ],

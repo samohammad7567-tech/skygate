@@ -6,6 +6,7 @@ import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/components/confirm_dialog.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/settings_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/auth/controller/cubit/auth_cubit.dart';
 import 'package:skygate/features/auth/views/auth_landing_screen.dart';
@@ -48,7 +49,7 @@ class SettingsLogoutButton extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: _onState,
       builder: (context, state) => SizedBox(
-        height: 50,
+        height: 50.s,
         width: double.infinity,
         child: OutlinedButton(
           onPressed: state is LogoutLoading ? null : () => _confirm(context),
@@ -56,15 +57,15 @@ class SettingsLogoutButton extends StatelessWidget {
             backgroundColor: theme.colorScheme.surface,
             side: BorderSide(color: theme.colorScheme.primary),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(12.s),
             ),
           ),
           child: state is LogoutLoading
               ? SizedBox(
-                  height: 20,
-                  width: 20,
+                  height: 20.s,
+                  width: 20.s,
                   child: CircularProgressIndicator(
-                    strokeWidth: 2,
+                    strokeWidth: 2.s,
                     color: theme.colorScheme.primary,
                   ),
                 )
@@ -81,11 +82,11 @@ class SettingsLogoutButton extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const Gap(10),
+                    Gap(10.s),
                     AppImage(
                       SettingsAssets.logout,
-                      height: 18,
-                      width: 18,
+                      height: 18.s,
+                      width: 18.s,
                       color: theme.colorScheme.primary,
                     ),
                   ],

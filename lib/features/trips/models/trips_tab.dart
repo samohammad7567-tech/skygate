@@ -46,7 +46,8 @@ enum TripsTab {
 
     if (has(['past', 'complet', 'finish', 'done', 'منته', 'سابق'])) return past;
     if (has(['upcoming', 'future', 'next', 'قادم'])) return upcoming;
-    if (has(['current', 'ongoing', 'active', 'running', 'حالي'])) return current;
+    if (has(['current', 'ongoing', 'active', 'running', 'حالي']))
+      return current;
     return null;
   }
 

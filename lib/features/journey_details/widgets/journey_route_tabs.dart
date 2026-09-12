@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/utils/app_format.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/journey_details/models/journey_route_model.dart';
 
 class JourneyRouteTabs extends StatelessWidget {
@@ -19,12 +20,12 @@ class JourneyRouteTabs extends StatelessWidget {
     if (routes.isEmpty) return const SizedBox.shrink();
 
     return SizedBox(
-      height: 46,
+      height: 46.s,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: EdgeInsets.symmetric(horizontal: 20.s),
         itemCount: routes.length,
-        separatorBuilder: (_, _) => const SizedBox(width: 10),
+        separatorBuilder: (_, _) => SizedBox(width: 10.s),
         itemBuilder: (context, index) => _RouteTab(
           label:
               routes[index].name ??
@@ -51,7 +52,7 @@ class _RouteTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final radius = BorderRadius.circular(10);
+    final radius = BorderRadius.circular(10.s);
 
     return Material(
       color: isSelected ? theme.colorScheme.primary : theme.colorScheme.surface,
@@ -61,7 +62,7 @@ class _RouteTab extends StatelessWidget {
         borderRadius: radius,
         child: Container(
           alignment: Alignment.center,
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20.s),
           decoration: BoxDecoration(
             borderRadius: radius,
             border: Border.all(color: theme.colorScheme.primary),

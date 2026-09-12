@@ -7,6 +7,7 @@ import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/map_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/map/controller/cubit/map_cubit.dart';
 
 class MapGpsAlertView extends StatelessWidget {
@@ -21,16 +22,16 @@ class MapGpsAlertView extends StatelessWidget {
         final cubit = context.read<MapCubit>();
 
         return ListView(
-          padding: const EdgeInsets.fromLTRB(20, 8, 20, 120),
+          padding: EdgeInsets.fromLTRB(20.s, 8.s, 20.s, 120.s),
           children: [
             AppCard(
-              padding: const EdgeInsets.fromLTRB(18, 24, 18, 22),
-              radius: 16,
+              padding: EdgeInsets.fromLTRB(18.s, 24.s, 18.s, 22.s),
+              radius: 16.s,
               child: Column(
                 children: [
                   Container(
-                    height: 64,
-                    width: 64,
+                    height: 64.s,
+                    width: 64.s,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: AppColors.error.withValues(alpha: 0.12),
@@ -38,12 +39,12 @@ class MapGpsAlertView extends StatelessWidget {
                     ),
                     child: AppImage(
                       MapAssets.alert,
-                      height: 30,
-                      width: 30,
+                      height: 30.s,
+                      width: 30.s,
                       color: AppColors.error,
                     ),
                   ),
-                  const Gap(18),
+                  Gap(18.s),
                   Text(
                     'map_gps_alert_title'.tr(),
                     textAlign: TextAlign.center,
@@ -53,7 +54,7 @@ class MapGpsAlertView extends StatelessWidget {
                       color: AppColors.error,
                     ),
                   ),
-                  const Gap(8),
+                  Gap(8.s),
                   Text(
                     'map_gps_alert_desc'.tr(),
                     textAlign: TextAlign.center,
@@ -61,7 +62,7 @@ class MapGpsAlertView extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: theme.textTheme.bodySmall,
                   ),
-                  const Gap(14),
+                  Gap(14.s),
                   Text(
                     cubit.breach?.pilgrimName ?? cubit.user?.fullName ?? '—',
                     textAlign: TextAlign.center,
@@ -71,9 +72,9 @@ class MapGpsAlertView extends StatelessWidget {
                       color: theme.colorScheme.onSurface,
                     ),
                   ),
-                  const Gap(14),
+                  Gap(14.s),
                   _SinceChip(elapsed: cubit.outageFor),
-                  const Gap(16),
+                  Gap(16.s),
                   Text(
                     'map_gps_alert_note'.tr(),
                     textAlign: TextAlign.center,
@@ -81,9 +82,9 @@ class MapGpsAlertView extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: theme.textTheme.bodySmall,
                   ),
-                  const Gap(16),
-                  const Divider(height: 1),
-                  const Gap(14),
+                  Gap(16.s),
+                  Divider(height: 1.s),
+                  Gap(14.s),
                   Text(
                     'map_last_known_location'.tr(),
                     textAlign: TextAlign.center,
@@ -91,7 +92,7 @@ class MapGpsAlertView extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: theme.textTheme.bodySmall,
                   ),
-                  const Gap(6),
+                  Gap(6.s),
                   Text(
                     _lastPlace(cubit),
                     textAlign: TextAlign.center,
@@ -102,21 +103,21 @@ class MapGpsAlertView extends StatelessWidget {
                 ],
               ),
             ),
-            const Gap(18),
+            Gap(18.s),
             CustomButton(
               label: 'map_reconnect'.tr(),
-              height: 48,
+              height: 48.s,
               isLoading: state is MapReconnecting,
               onPressed: cubit.reconnect,
               icon: AppImage(
                 MapAssets.pin,
-                height: 18,
-                width: 18,
+                height: 18.s,
+                width: 18.s,
                 color: theme.colorScheme.onPrimary,
               ),
             ),
             if (state is MapReconnectFailed) ...[
-              const Gap(12),
+              Gap(12.s),
               Text(
                 state.message.tr(),
                 textAlign: TextAlign.center,
@@ -156,21 +157,21 @@ class _SinceChip extends StatelessWidget {
     final gap = elapsed;
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+      padding: EdgeInsets.symmetric(horizontal: 14.s, vertical: 6.s),
       decoration: BoxDecoration(
         color: AppColors.error.withValues(alpha: 0.10),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.s),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           AppImage(
             MapAssets.timer,
-            height: 14,
-            width: 14,
+            height: 14.s,
+            width: 14.s,
             color: AppColors.error,
           ),
-          const Gap(6),
+          Gap(6.s),
           Text(
             gap == null ? 'map_since_unknown'.tr() : _label(gap),
             maxLines: 1,

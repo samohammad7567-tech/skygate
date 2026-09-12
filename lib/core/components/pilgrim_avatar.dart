@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/cached_image.dart';
 import 'package:skygate/core/constants/card_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 /// The pilgrim's photo in its ring — the same portrait the cards tabs, the
 /// visa and ticket tabs, and the pilgrim card's header all print.
@@ -8,13 +9,13 @@ class PilgrimAvatar extends StatelessWidget {
   const PilgrimAvatar({
     super.key,
     required this.photo,
-    this.size = 46,
+    this.size,
     this.ringColor,
     this.ringWidth = 2,
   });
 
   final String? photo;
-  final double size;
+  final double? size;
 
   /// Defaults to the brand blue the list tiles draw; the dark card face
   /// passes the gold that reads against navy.
@@ -26,8 +27,8 @@ class PilgrimAvatar extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      height: size,
-      width: size,
+      height: (size ?? 46.s),
+      width: (size ?? 46.s),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         border: Border.all(
@@ -41,8 +42,8 @@ class PilgrimAvatar extends StatelessWidget {
           // No portrait on file still has to fill the ring, so the fallback
           // is an image rather than a blank circle.
           fallbackAsset: CardAssets.avatar,
-          height: size,
-          width: size,
+          height: (size ?? 46.s),
+          width: (size ?? 46.s),
         ),
       ),
     );

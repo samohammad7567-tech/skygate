@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/home_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/home/utils/artwork_plate_clipper.dart';
 import 'package:skygate/features/home/widgets/vip_ribbon.dart';
 
@@ -24,7 +25,7 @@ class CustomTripArtwork extends StatelessWidget {
             ),
           ),
         ),
-        const PositionedDirectional(top: 0, start: 18, child: VipRibbon()),
+        PositionedDirectional(top: 0, start: 18.s, child: VipRibbon()),
       ],
     );
   }

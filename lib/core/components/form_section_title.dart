@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class FormSectionTitle extends StatelessWidget {
   const FormSectionTitle({super.key, required this.text, this.subtitle});
@@ -15,7 +16,7 @@ class FormSectionTitle extends StatelessWidget {
       children: [
         Text(text, textAlign: TextAlign.end, style: theme.textTheme.titleLarge),
         if (subtitle != null) ...[
-          const SizedBox(height: 4),
+          SizedBox(height: 4.s),
           Text(
             subtitle!,
             textAlign: TextAlign.end,

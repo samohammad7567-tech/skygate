@@ -2,6 +2,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/home/models/offer_model.dart';
 
 class OfferTitleRow extends StatelessWidget {
@@ -26,21 +27,21 @@ class OfferTitleRow extends StatelessWidget {
             style: theme.textTheme.titleMedium,
           ),
         ),
-        const SizedBox(width: 8),
+        SizedBox(width: 8.s),
         Flexible(
           // The glyphs read the same way in both locales — the design prints
           // them plane-first from the left — so they keep an LTR run.
           child: Wrap(
-            spacing: 6,
-            runSpacing: 4,
+            spacing: 6.s,
+            runSpacing: 4.s,
             textDirection: ui.TextDirection.ltr,
             children: [
               for (final slug in slugs)
                 if (OfferInclusion.assetFor(slug) case final asset?)
                   AppImage(
                     asset,
-                    width: 16,
-                    height: 16,
+                    width: 16.s,
+                    height: 16.s,
                     color: theme.colorScheme.primary,
                   ),
             ],

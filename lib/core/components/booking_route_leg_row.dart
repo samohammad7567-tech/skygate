@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/components/dashed_line.dart';
 import 'package:skygate/core/models/booking_route_model.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class BookingRouteLegRow extends StatelessWidget {
   const BookingRouteLegRow({
@@ -21,16 +22,16 @@ class BookingRouteLegRow extends StatelessWidget {
     );
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.symmetric(vertical: 10.s),
       child: Row(
         children: [
           AppImage(
             leg.transport.typeIcon,
-            height: 22,
-            width: 22,
+            height: 22.s,
+            width: 22.s,
             color: glyphColor,
           ),
-          const SizedBox(width: 10),
+          SizedBox(width: 10.s),
           Flexible(
             child: Text(
               leg.from ?? '—',
@@ -39,9 +40,9 @@ class BookingRouteLegRow extends StatelessWidget {
               style: labelStyle,
             ),
           ),
-          const SizedBox(width: 8),
+          SizedBox(width: 8.s),
           const Expanded(child: _Arrow()),
-          const SizedBox(width: 8),
+          SizedBox(width: 8.s),
           Flexible(
             child: Text(
               leg.to ?? '—',
@@ -71,7 +72,7 @@ class _Arrow extends StatelessWidget {
           flipX: Directionality.of(context) == TextDirection.rtl,
           child: Icon(
             Icons.play_arrow_rounded,
-            size: 16,
+            size: 16.s,
             color: theme.colorScheme.primary,
           ),
         ),

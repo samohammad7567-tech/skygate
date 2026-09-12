@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/booking_section_title.dart';
 import 'package:skygate/core/components/booking_step_scaffold.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/main/widgets/app_drawer.dart';
 import 'package:skygate/features/vip_trip/controller/cubit/vip_trip_cubit.dart';
@@ -39,7 +40,7 @@ class VipRequirementsScreen extends StatelessWidget {
               title: 'other_requirements'.tr(),
               subtitle: 'other_requirements_desc'.tr(),
             ),
-            const Gap(14),
+            Gap(14.s),
             VipRequirementsField(
               controller: cubit.requirementsController,
               maxLength: VipTripCubit.maxRequirementsLength,

@@ -6,6 +6,7 @@ import 'package:skygate/core/components/icon_text_row.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
 import 'package:skygate/core/models/hotel_model.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class HotelCard extends StatelessWidget {
   const HotelCard({super.key, required this.hotel, this.onTap});
@@ -19,20 +20,20 @@ class HotelCard extends StatelessWidget {
 
     return AppCard(
       onTap: onTap,
-      padding: const EdgeInsets.all(10),
+      padding: EdgeInsets.all(10.s),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(10.s),
             child: CachedImage(
               url: hotel.image,
               fallbackAsset: JourneyAssets.hotelPhoto,
-              height: 122,
-              width: 128,
+              height: 122.s,
+              width: 128.s,
             ),
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: 12.s),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,21 +53,21 @@ class HotelCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.titleSmall,
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: 4.s),
                 IconTextRow(
                   asset: JourneyAssets.star,
                   iconColor: AppColors.accent,
                   text: '${hotel.rating ?? '—'}',
                   textStyle: theme.textTheme.bodySmall,
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: 4.s),
                 IconTextRow(
                   asset: JourneyAssets.nights,
                   text: 'nights_count'.tr(
                     namedArgs: {'count': '${hotel.nights ?? 0}'},
                   ),
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: 4.s),
                 IconTextRow(
                   asset: JourneyAssets.location,
                   text: hotel.address ?? '',
@@ -74,7 +75,7 @@ class HotelCard extends StatelessWidget {
                 // The trip endpoint publishes no room types; the row appears
                 // only once one is known.
                 if (hotel.roomTypes case final rooms?) ...[
-                  const SizedBox(height: 4),
+                  SizedBox(height: 4.s),
                   IconTextRow(asset: JourneyAssets.bed, text: rooms),
                 ],
               ],

@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/room_beds_row.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/group_booking/models/group_room_model.dart';
 
 class GroupRoomCardHeader extends StatelessWidget {
@@ -21,10 +22,10 @@ class GroupRoomCardHeader extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.fromLTRB(14, 10, 14, 10),
+      padding: EdgeInsets.fromLTRB(14.s, 10.s, 14.s, 10.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surfaceContainerHighest,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(15.s)),
       ),
       child: Row(
         children: [
@@ -40,14 +41,14 @@ class GroupRoomCardHeader extends StatelessWidget {
                     color: theme.colorScheme.primary,
                   ),
                 ),
-                const Gap(4),
+                Gap(4.s),
                 RoomBedsRow(count: room.capacity),
               ],
             ),
           ),
           if (onEdit != null) ...[
             _ActionChip(icon: Icons.edit_outlined, onTap: onEdit!),
-            const Gap(8),
+            Gap(8.s),
           ],
           _ActionChip(icon: Icons.delete_outline, onTap: onDelete),
         ],
@@ -68,16 +69,16 @@ class _ActionChip extends StatelessWidget {
 
     return InkResponse(
       onTap: onTap,
-      radius: 24,
+      radius: 24.s,
       child: Container(
-        height: 34,
-        width: 34,
+        height: 34.s,
+        width: 34.s,
         decoration: BoxDecoration(
           color: theme.colorScheme.surface,
           shape: BoxShape.circle,
           border: Border.all(color: theme.colorScheme.primary),
         ),
-        child: Icon(icon, size: 18, color: theme.colorScheme.primary),
+        child: Icon(icon, size: 18.s, color: theme.colorScheme.primary),
       ),
     );
   }

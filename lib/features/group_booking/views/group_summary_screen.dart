@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/toast.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/core/models/booking_city.dart';
 import 'package:skygate/core/components/booking_section_title.dart';
@@ -64,12 +65,12 @@ class _GroupSummaryScreenState extends State<GroupSummaryScreen> {
               title: 'booking_summary'.tr(),
               subtitle: 'review_your_booking'.tr(),
             ),
-            const Gap(16),
+            Gap(16.s),
             GroupCountdownCard(
               remaining: cubit.remaining,
               deadline: cubit.paymentDeadline,
             ),
-            const Gap(16),
+            Gap(16.s),
             GroupSummaryCard(
               tripTitle: cubit.tripTitle,
               routeName: cubit.selectedRoute?.name,

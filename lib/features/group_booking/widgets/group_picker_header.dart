@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/models/group_room_type.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class GroupPickerHeader extends StatelessWidget {
   const GroupPickerHeader({
@@ -28,9 +29,9 @@ class GroupPickerHeader extends StatelessWidget {
             color: theme.colorScheme.primary,
           ),
         ),
-        const Gap(12),
-        const Divider(height: 1),
-        const Gap(8),
+        Gap(12.s),
+        Divider(height: 1.s),
+        Gap(8.s),
         Row(
           children: [
             const Spacer(),
@@ -39,7 +40,7 @@ class GroupPickerHeader extends StatelessWidget {
               style: OutlinedButton.styleFrom(
                 side: BorderSide(color: theme.colorScheme.primary),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(8.s),
                 ),
               ),
               child: Text(

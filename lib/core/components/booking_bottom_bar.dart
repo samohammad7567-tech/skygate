@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/custom_button.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 
 class BookingBottomBar extends StatelessWidget {
@@ -29,7 +30,7 @@ class BookingBottomBar extends StatelessWidget {
       child: SafeArea(
         top: false,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 14, 20, 14),
+          padding: EdgeInsets.fromLTRB(20.s, 14.s, 20.s, 14.s),
           child: Row(
             children: [
               Expanded(
@@ -37,13 +38,13 @@ class BookingBottomBar extends StatelessWidget {
                   label: continueLabel ?? 'continue_step'.tr(),
                   onPressed: onContinue,
                   isLoading: isLoading,
-                  height: 46,
+                  height: 46.s,
                 ),
               ),
-              const SizedBox(width: 12),
+              SizedBox(width: 12.s),
               Expanded(
                 child: SizedBox(
-                  height: 46,
+                  height: 46.s,
                   child: OutlinedButton(
                     onPressed:
                         onBack ?? () => NaivgatorHelper.popNavigation(context),
@@ -51,7 +52,7 @@ class BookingBottomBar extends StatelessWidget {
                       backgroundColor: theme.colorScheme.surface,
                       side: BorderSide(color: theme.colorScheme.primary),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(10.s),
                       ),
                     ),
                     child: Text(

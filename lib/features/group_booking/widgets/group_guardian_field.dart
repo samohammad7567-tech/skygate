@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_field_decoration.dart';
 import 'package:skygate/core/components/labeled_field.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/group_booking/models/group_traveler_model.dart';
 
 class GroupGuardianField extends StatelessWidget {
@@ -36,7 +37,7 @@ class GroupGuardianField extends StatelessWidget {
         // chrome puts in the suffix slot is the only marker on the row.
         icon: const SizedBox.shrink(),
         dropdownColor: Theme.of(context).colorScheme.surface,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(10.s),
         decoration: appInputDecoration(
           context,
           hint: 'guardian_name'.tr(),
@@ -71,16 +72,20 @@ class GroupGuardianNote extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 14.s, vertical: 10.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surfaceContainerHighest,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Row(
         children: [
-          Icon(Icons.info_outline, size: 22, color: theme.colorScheme.primary),
-          const Gap(10),
+          Icon(
+            Icons.info_outline,
+            size: 22.s,
+            color: theme.colorScheme.primary,
+          ),
+          Gap(10.s),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,

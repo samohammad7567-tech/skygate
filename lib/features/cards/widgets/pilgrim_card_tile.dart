@@ -6,6 +6,7 @@ import 'package:skygate/core/components/app_document_actions.dart';
 import 'package:skygate/core/components/empty_state.dart';
 import 'package:skygate/core/constants/card_assets.dart';
 import 'package:skygate/core/utils/app_format.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/cards/models/pilgrim_card_model.dart';
 import 'package:skygate/features/cards/models/trip_pilgrim_model.dart';
 
@@ -38,21 +39,21 @@ class PilgrimCardTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
-      return const Padding(
-        padding: EdgeInsets.symmetric(vertical: 28),
-        child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
+      return Padding(
+        padding: EdgeInsets.symmetric(vertical: 28.s),
+        child: Center(child: CircularProgressIndicator(strokeWidth: 2.s)),
       );
     }
 
     if (error case final message?) {
       return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16),
+        padding: EdgeInsets.symmetric(vertical: 16.s),
         child: EmptyState(message: message.tr(), onRetry: onRetry),
       );
     }
 
     return AppCard(
-      padding: const EdgeInsets.fromLTRB(12, 2, 12, 12),
+      padding: EdgeInsets.fromLTRB(12.s, 2.s, 12.s, 12.s),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -87,7 +88,7 @@ class PilgrimCardTile extends StatelessWidget {
             value: card?.madinah?.name,
             showDivider: false,
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: 10.s),
           AppDocumentActions(
             isDownloading: isDownloading,
             onDownload: onDownload,

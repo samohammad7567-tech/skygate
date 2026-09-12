@@ -8,6 +8,7 @@ import 'package:skygate/core/components/sheet_handle.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/card_assets.dart';
 import 'package:skygate/core/utils/app_format.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/cards/models/luggage_tag_model.dart';
 import 'package:skygate/features/cards/models/trip_pilgrim_model.dart';
 import 'package:skygate/features/cards/widgets/card_field_row.dart';
@@ -51,20 +52,20 @@ class LuggageCardSheet extends StatelessWidget {
 
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 12, 20, 20),
+        padding: EdgeInsets.fromLTRB(20.s, 12.s, 20.s, 20.s),
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               const SheetHandle(),
-              const Gap(14),
+              Gap(14.s),
               Text(
                 'luggage_card_preview'.tr(),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: theme.textTheme.titleLarge,
               ),
-              const Gap(16),
+              Gap(16.s),
               AppIdCard(
                 header: const CardTitleBand(
                   titleKey: 'luggage_card',
@@ -75,7 +76,7 @@ class LuggageCardSheet extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     _Number(value: tag.shortNumber),
-                    const Gap(14),
+                    Gap(14.s),
                     const AppCardRule(),
                     CardFieldRow(
                       asset: CardAssets.pilgrimName,
@@ -92,7 +93,7 @@ class LuggageCardSheet extends StatelessWidget {
                       startLabelKey: 'trip_date',
                       startValue: AppFormat.numericDate(tripDate),
                     ),
-                    const Gap(14),
+                    Gap(14.s),
                     _Footer(qr: tag.qrUrl),
                   ],
                 ),
@@ -122,13 +123,13 @@ class _Number extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: theme.textTheme.bodyMedium?.copyWith(color: AppColors.primary),
         ),
-        const Gap(4),
+        Gap(4.s),
         Text(
           value ?? '—',
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: theme.textTheme.headlineSmall?.copyWith(
-            fontSize: 40,
+            fontSize: 40.fs,
             color: AppColors.primary,
           ),
         ),
@@ -149,8 +150,8 @@ class _Footer extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        CardQr(url: qr, size: 86),
-        AppImage(CardAssets.brandMark, height: 30),
+        CardQr(url: qr, size: 86.s),
+        AppImage(CardAssets.brandMark, height: 30.s),
       ],
     );
   }

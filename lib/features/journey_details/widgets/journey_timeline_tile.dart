@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/components/dashed_line.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class JourneyTimelineTile extends StatelessWidget {
   const JourneyTimelineTile({
@@ -44,15 +45,15 @@ class JourneyTimelineTile extends StatelessWidget {
                   ),
                   child: AppImage(
                     icon,
-                    height: 17,
-                    width: 17,
+                    height: 17.s,
+                    width: 17.s,
                     color: iconColor ?? Colors.white,
                   ),
                 ),
                 if (!isLast)
-                  const Expanded(
+                  Expanded(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 4),
+                      padding: EdgeInsets.symmetric(vertical: 4.s),
                       child: DashedLine(axis: Axis.vertical),
                     ),
                   ),
@@ -61,7 +62,7 @@ class JourneyTimelineTile extends StatelessWidget {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 14),
+              padding: EdgeInsets.only(bottom: 14.s),
               child: child,
             ),
           ),

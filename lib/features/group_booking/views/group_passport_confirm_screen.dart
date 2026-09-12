@@ -8,6 +8,7 @@ import 'package:skygate/core/components/form_section_title.dart';
 import 'package:skygate/core/components/passport_fields_form.dart';
 import 'package:skygate/core/components/passport_scan_banner.dart';
 import 'package:skygate/core/components/scan_launcher.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/core/components/booking_section_title.dart';
 import 'package:skygate/core/components/booking_step_scaffold.dart';
@@ -63,28 +64,28 @@ class _GroupPassportConfirmScreenState
                   ? 'first_traveler_data'.tr()
                   : 'complete_traveler_data'.tr(),
             ),
-            const Gap(16),
+            Gap(16.s),
             AppPanel(
-              padding: const EdgeInsets.fromLTRB(16, 20, 16, 20),
+              padding: EdgeInsets.fromLTRB(16.s, 20.s, 16.s, 20.s),
               child: Form(
                 key: _formKey,
                 child: Column(
                   children: [
                     if (cubit.isScanned) ...[
                       const PassportScanBanner(),
-                      const Gap(18),
+                      Gap(18.s),
                     ],
                     FormSectionTitle(text: 'confirm_data_below'.tr()),
-                    const Gap(14),
+                    Gap(14.s),
                     PassportFieldsForm(
                       form: cubit.passportForm,
                       labeled: true,
                       onChanged: cubit.passportChanged,
                     ),
                     if (!isLeader) ...[
-                      const Gap(18),
+                      Gap(18.s),
                       const GroupGuardianNote(),
-                      const Gap(12),
+                      Gap(12.s),
                       GroupGuardianField(
                         adults: cubit.adults,
                         value: cubit.draftGuardianId,
@@ -92,9 +93,9 @@ class _GroupPassportConfirmScreenState
                         isRequired: cubit.draftAudience.needsGuardian,
                       ),
                     ],
-                    const Gap(22),
+                    Gap(22.s),
                     ScanLauncher(onTap: _rescan),
-                    const Gap(22),
+                    Gap(22.s),
                     AppOutlinedButton(label: 'rescan'.tr(), onPressed: _rescan),
                   ],
                 ),

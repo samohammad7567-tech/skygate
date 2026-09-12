@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/models/umrah_document_model.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class DocumentCriteriaList extends StatelessWidget {
   const DocumentCriteriaList({super.key});
@@ -12,10 +13,10 @@ class DocumentCriteriaList extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 12.s, vertical: 10.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Column(
@@ -27,14 +28,14 @@ class DocumentCriteriaList extends StatelessWidget {
               color: theme.colorScheme.primary,
             ),
           ),
-          const Gap(6),
+          Gap(6.s),
           for (final key in UmrahDocumentModel.criteriaKeys) ...[
             Text(
               '• ${key.tr()}',
               textAlign: TextAlign.end,
               style: theme.textTheme.bodySmall,
             ),
-            const Gap(4),
+            Gap(4.s),
           ],
         ],
       ),

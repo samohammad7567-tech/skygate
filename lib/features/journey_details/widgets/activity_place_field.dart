@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 /// A place on an activity card: the caption, then the address in its tinted
 /// box with the pin at the far end.
@@ -25,11 +26,11 @@ class ActivityPlaceField extends StatelessWidget {
       children: [
         AppImage(
           asset,
-          height: 18,
-          width: 18,
+          height: 18.s,
+          width: 18.s,
           color: theme.colorScheme.primary,
         ),
-        const SizedBox(width: 6),
+        SizedBox(width: 6.s),
         Text(
           labelKey.tr(),
           maxLines: 1,
@@ -38,13 +39,13 @@ class ActivityPlaceField extends StatelessWidget {
             color: theme.colorScheme.primary,
           ),
         ),
-        const SizedBox(width: 8),
+        SizedBox(width: 8.s),
         Expanded(
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+            padding: EdgeInsets.symmetric(horizontal: 8.s, vertical: 6.s),
             decoration: BoxDecoration(
               color: theme.colorScheme.surfaceContainerHighest,
-              borderRadius: BorderRadius.circular(6),
+              borderRadius: BorderRadius.circular(6.s),
             ),
             child: Row(
               children: [
@@ -56,11 +57,11 @@ class ActivityPlaceField extends StatelessWidget {
                     style: theme.textTheme.bodySmall,
                   ),
                 ),
-                const SizedBox(width: 6),
+                SizedBox(width: 6.s),
                 AppImage(
                   JourneyAssets.pinpoint,
-                  height: 14,
-                  width: 14,
+                  height: 14.s,
+                  width: 14.s,
                   color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
                 ),
               ],

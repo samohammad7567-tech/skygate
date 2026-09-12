@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_image.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class GroupDetailRow extends StatelessWidget {
   const GroupDetailRow({
@@ -24,16 +25,16 @@ class GroupDetailRow extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
+          padding: EdgeInsets.symmetric(vertical: 10.s),
           child: Row(
             children: [
               AppImage(
                 icon,
-                height: 20,
-                width: 20,
+                height: 20.s,
+                width: 20.s,
                 color: theme.colorScheme.primary,
               ),
-              const Gap(12),
+              Gap(12.s),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -48,7 +49,7 @@ class GroupDetailRow extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const Gap(2),
+                    Gap(2.s),
                     Text(
                       value == null || value!.isEmpty ? '—' : value!,
                       maxLines: 1,
@@ -63,7 +64,7 @@ class GroupDetailRow extends StatelessWidget {
             ],
           ),
         ),
-        if (showDivider) const Divider(height: 1),
+        if (showDivider) Divider(height: 1.s),
       ],
     );
   }

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/booking/models/booking_summary_model.dart';
 import 'package:skygate/core/components/payment_detail_row.dart';
 
@@ -16,19 +17,17 @@ class PaymentDetailsCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(14.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
-            padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
+            padding: EdgeInsets.fromLTRB(14.s, 12.s, 14.s, 12.s),
             decoration: BoxDecoration(
               color: theme.colorScheme.surfaceContainerHighest,
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(13),
-              ),
+              borderRadius: BorderRadius.vertical(top: Radius.circular(13.s)),
             ),
             child: Text(
               'booking_details'.tr(),
@@ -38,7 +37,7 @@ class PaymentDetailsCard extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14),
+            padding: EdgeInsets.symmetric(horizontal: 14.s),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -46,34 +45,34 @@ class PaymentDetailsCard extends StatelessWidget {
                   labelKey: 'summary_trip',
                   value: summary.tripTitle,
                 ),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 PaymentDetailRow(
                   labelKey: 'summary_route',
                   value: summary.routeName,
                 ),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 PaymentDetailRow(
                   labelKey: 'summary_type',
                   child: BookingTypeChip(
                     labelKey: summary.bookingType.labelKey,
                   ),
                 ),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 PaymentDetailRow(
                   labelKey: 'room_type',
                   value: summary.roomType,
                 ),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 PaymentDetailRow(
                   labelKey: 'summary_madinah_hotel',
                   value: summary.madinahHotel,
                 ),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 PaymentDetailRow(
                   labelKey: 'summary_makkah_hotel',
                   value: summary.makkahHotel,
                 ),
-                const Divider(height: 1),
+                Divider(height: 1.s),
                 PaymentDetailRow(
                   labelKey: 'summary_final_total',
                   value: total == null

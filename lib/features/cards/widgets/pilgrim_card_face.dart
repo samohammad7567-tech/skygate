@@ -5,6 +5,7 @@ import 'package:skygate/core/components/pilgrim_avatar.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/card_assets.dart';
 import 'package:skygate/core/utils/app_format.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/cards/models/pilgrim_card_model.dart';
 import 'package:skygate/features/cards/models/trip_pilgrim_model.dart';
 import 'package:skygate/features/cards/widgets/card_field_row.dart';
@@ -39,10 +40,10 @@ class PilgrimCardFace extends StatelessWidget {
           ),
           _Stay(labelKey: 'makkah_hotel', stay: card?.makkah),
           _Stay(labelKey: 'madinah_hotel', stay: card?.madinah),
-          const SizedBox(height: 6),
+          SizedBox(height: 6.s),
           const AppCardRule(),
-          const SizedBox(height: 12),
-          AppImage(CardAssets.brandMark, height: 34),
+          SizedBox(height: 12.s),
+          AppImage(CardAssets.brandMark, height: 34.s),
         ],
       ),
     );
@@ -62,10 +63,10 @@ class _Header extends StatelessWidget {
       children: [
         PilgrimAvatar(
           photo: pilgrim.photo,
-          size: 62,
+          size: 62.s,
           ringColor: AppColors.accent,
         ),
-        const SizedBox(width: 12),
+        SizedBox(width: 12.s),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,7 +81,7 @@ class _Header extends StatelessWidget {
                     color: AppColors.surface,
                   ),
                 ),
-                const SizedBox(height: 2),
+                SizedBox(height: 2.s),
               ],
               Text(
                 pilgrim.displayName,

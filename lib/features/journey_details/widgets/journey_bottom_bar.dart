@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/custom_button.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class JourneyBottomBar extends StatelessWidget {
   const JourneyBottomBar({super.key, required this.label, this.onPressed});
@@ -19,11 +20,11 @@ class JourneyBottomBar extends StatelessWidget {
       child: SafeArea(
         top: false,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 14, 20, 14),
+          padding: EdgeInsets.fromLTRB(20.s, 14.s, 20.s, 14.s),
           child: CustomButton(
             label: label,
             onPressed: onPressed,
-            height: 48,
+            height: 48.s,
             width: double.infinity,
           ),
         ),

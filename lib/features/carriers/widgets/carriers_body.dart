@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skygate/core/components/app_page_header.dart';
 import 'package:skygate/core/components/app_search_bar.dart';
 import 'package:skygate/core/components/empty_state.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/carriers/controller/cubit/carriers_cubit.dart';
 import 'package:skygate/features/carriers/widgets/carrier_card.dart';
 
@@ -41,7 +42,7 @@ class _CarriersBodyState extends State<CarriersBody> {
                   onMenuTap: widget.onMenuTap,
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
+                  padding: EdgeInsets.fromLTRB(20.s, 0, 20.s, 12.s),
                   child: AppSearchBar(
                     controller: _searchController,
                     hintKey: cubit.category.searchHintKey,
@@ -67,9 +68,9 @@ class _CarriersBodyState extends State<CarriersBody> {
       builder: (_) => RefreshIndicator(
         onRefresh: cubit.getCarriers,
         child: ListView.separated(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+          padding: EdgeInsets.fromLTRB(20.s, 0, 20.s, 20.s),
           itemCount: cubit.carriers.length,
-          separatorBuilder: (_, _) => const SizedBox(height: 14),
+          separatorBuilder: (_, _) => SizedBox(height: 14.s),
           itemBuilder: (_, index) => CarrierCard(
             carrier: cubit.carriers[index],
             transport: cubit.category.vehicle,

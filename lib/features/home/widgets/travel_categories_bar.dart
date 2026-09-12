@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/home/models/travel_category_model.dart';
 
 class TravelCategoriesBar extends StatelessWidget {
@@ -24,9 +25,9 @@ class TravelCategoriesBar extends StatelessWidget {
       height: _pillHeight + 12,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+        padding: EdgeInsets.symmetric(horizontal: 20.s, vertical: 4.s),
         itemCount: categories.length,
-        separatorBuilder: (_, _) => const SizedBox(width: 14),
+        separatorBuilder: (_, _) => SizedBox(width: 14.s),
         itemBuilder: (_, index) {
           final category = categories[index];
           return _CategoryPill(
@@ -57,7 +58,7 @@ class _CategoryPill extends StatelessWidget {
     final foreground = isSelected
         ? theme.colorScheme.secondary
         : theme.colorScheme.primary;
-    final radius = BorderRadius.circular(10);
+    final radius = BorderRadius.circular(10.s);
 
     return Material(
       color: theme.colorScheme.surface,
@@ -68,7 +69,7 @@ class _CategoryPill extends StatelessWidget {
         onTap: onTap,
         borderRadius: radius,
         child: SizedBox(
-          width: 68,
+          width: 68.s,
           child: Column(
             children: [
               Expanded(
@@ -77,13 +78,13 @@ class _CategoryPill extends StatelessWidget {
                   children: [
                     AppImage(
                       category.icon,
-                      width: 24,
-                      height: 24,
+                      width: 24.s,
+                      height: 24.s,
                       color: foreground,
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: 8.s),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 4),
+                      padding: EdgeInsets.symmetric(horizontal: 4.s),
                       child: Text(
                         category.titleKey.tr(),
                         maxLines: 1,
@@ -102,13 +103,13 @@ class _CategoryPill extends StatelessWidget {
               ),
               // Orange underline marks the active category.
               Container(
-                height: 5,
+                height: 5.s,
                 decoration: BoxDecoration(
                   color: isSelected
                       ? theme.colorScheme.secondary
                       : Colors.transparent,
-                  borderRadius: const BorderRadius.vertical(
-                    bottom: Radius.circular(10),
+                  borderRadius: BorderRadius.vertical(
+                    bottom: Radius.circular(10.s),
                   ),
                 ),
               ),

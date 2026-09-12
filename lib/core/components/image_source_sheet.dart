@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:skygate/core/components/app_sheet.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 Future<ImageSource?> showImageSourceSheet(BuildContext context) {
   return showAppSheet<ImageSource>(
@@ -21,7 +22,7 @@ Future<ImageSource?> showImageSourceSheet(BuildContext context) {
             label: 'take_photo'.tr(),
             source: ImageSource.camera,
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8.s),
         ],
       ),
     ),

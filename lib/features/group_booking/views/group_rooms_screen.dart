@@ -7,6 +7,7 @@ import 'package:skygate/core/components/app_outlined_button.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/components/empty_state.dart';
 import 'package:skygate/core/components/toast.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/core/models/booking_city.dart';
 import 'package:skygate/core/components/booking_section_title.dart';
@@ -100,11 +101,11 @@ class _GroupRoomsScreenState extends State<GroupRoomsScreen> {
               title: 'select_rooms_title'.tr(),
               subtitle: 'select_rooms_desc'.tr(),
             ),
-            const Gap(16),
+            Gap(16.s),
             if (cubit.rooms.isEmpty)
               CustomButton(
                 label: 'select_rooms_action'.tr(),
-                height: 48,
+                height: 48.s,
                 width: double.infinity,
                 onPressed: _editCounts,
               )
@@ -113,10 +114,10 @@ class _GroupRoomsScreenState extends State<GroupRoomsScreen> {
                 label: 'edit_rooms_action'.tr(),
                 onPressed: _editCounts,
               ),
-            const Gap(18),
+            Gap(18.s),
             if (state is GroupRoomPricesLoading)
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 60),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 60.s),
                 child: Center(child: CircularProgressIndicator()),
               )
             else
@@ -133,12 +134,12 @@ class _GroupRoomsScreenState extends State<GroupRoomsScreen> {
                         onAssign: () => _assign(i),
                         onDelete: () => _delete(i),
                       ),
-                      const Gap(16),
+                      Gap(16.s),
                     ],
                   ],
                 ),
                 fallback: (_) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 50),
+                  padding: EdgeInsets.symmetric(vertical: 50.s),
                   child: EmptyState(
                     message: state is GroupRoomPricesError
                         ? state.message.tr()

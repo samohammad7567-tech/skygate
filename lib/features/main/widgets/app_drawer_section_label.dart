@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/constants/app_colors.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class AppDrawerSectionLabel extends StatelessWidget {
   const AppDrawerSectionLabel({super.key, required this.titleKey});
@@ -13,7 +14,7 @@ class AppDrawerSectionLabel extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+      padding: EdgeInsets.fromLTRB(20.s, 20.s, 20.s, 10.s),
       child: Row(
         children: [
           Text(
@@ -24,9 +25,9 @@ class AppDrawerSectionLabel extends StatelessWidget {
               color: AppColors.accent,
             ),
           ),
-          const Gap(10),
-          const Expanded(
-            child: Divider(color: AppColors.accentSoft, height: 1),
+          Gap(10.s),
+          Expanded(
+            child: Divider(color: AppColors.accentSoft, height: 1.s),
           ),
         ],
       ),

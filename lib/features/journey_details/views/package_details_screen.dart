@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skygate/core/components/app_title_header.dart';
 import 'package:skygate/core/components/empty_state.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/booking/views/booking_type_screen.dart';
 import 'package:skygate/features/cards/views/trip_cards_screen.dart';
@@ -97,8 +98,8 @@ class _PackageDetailsBody extends StatelessWidget {
         bottom: false,
         child: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.fromLTRB(20, 12, 20, 0),
+            Padding(
+              padding: EdgeInsets.fromLTRB(20.s, 12.s, 20.s, 0),
               child: AppTitleHeader(showBack: true),
             ),
             Expanded(child: _content(context)),
@@ -137,12 +138,12 @@ class _PackageDetailsBody extends StatelessWidget {
             // The design opens on the trip itself rather than on a photo:
             // which trip is running, its number, and both ends of it.
             Padding(
-              padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
+              padding: EdgeInsets.fromLTRB(20.s, 12.s, 20.s, 0),
               child: CurrentTripCard(package: package),
             ),
             if (package == null)
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 60),
+                padding: EdgeInsets.symmetric(vertical: 60.s),
                 child: EmptyState(
                   message: state is PackageError
                       ? state.message.tr()
@@ -152,7 +153,7 @@ class _PackageDetailsBody extends StatelessWidget {
               )
             else ...[
               Padding(
-                padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
+                padding: EdgeInsets.fromLTRB(20.s, 16.s, 20.s, 0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -161,23 +162,23 @@ class _PackageDetailsBody extends StatelessWidget {
                     // book it. On a trip already held, the design goes
                     // straight from the four facts to what is inside it.
                     if (canBook) ...[
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8.s),
                       JourneySupervisorsCard(supervisors: package.supervisors),
                     ],
-                    const SizedBox(height: 20),
+                    SizedBox(height: 20.s),
                     Text(
                       'trip_details'.tr(),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: theme.textTheme.titleLarge,
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: 12.s),
                   ],
                 ),
               ),
               for (final section in sections)
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
+                  padding: EdgeInsets.fromLTRB(20.s, 0, 20.s, 12.s),
                   child: JourneySectionTile(
                     section: section,
                     onTap: () => _openSection(context, section.section),
@@ -185,7 +186,7 @@ class _PackageDetailsBody extends StatelessWidget {
                 ),
               if (bookingId != null) ...[
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 8, 20, 12),
+                  padding: EdgeInsets.fromLTRB(20.s, 8.s, 20.s, 12.s),
                   child: Text(
                     'my_bookings_and_payments'.tr(),
                     maxLines: 2,
@@ -195,7 +196,7 @@ class _PackageDetailsBody extends StatelessWidget {
                 ),
                 for (final section in JourneySectionModel.bookingCatalogue)
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
+                    padding: EdgeInsets.fromLTRB(20.s, 0, 20.s, 12.s),
                     child: JourneySectionTile(
                       section: section,
                       onTap: () => _openSection(context, section.section),
@@ -203,7 +204,7 @@ class _PackageDetailsBody extends StatelessWidget {
                   ),
               ],
             ],
-            const SizedBox(height: 12),
+            SizedBox(height: 12.s),
           ],
         );
       },

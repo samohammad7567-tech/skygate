@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/empty_state.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/booking/controller/cubit/booking_cubit.dart';
 import 'package:skygate/core/models/booking_city.dart';
@@ -54,10 +55,10 @@ class _BookingRoomTypeScreenState extends State<BookingRoomTypeScreen> {
               title: 'select_room_type'.tr(),
               subtitle: 'select_room_type_desc'.tr(),
             ),
-            const Gap(16),
+            Gap(16.s),
             if (state is RoomTypesLoading)
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 60),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 60.s),
                 child: Center(child: CircularProgressIndicator()),
               )
             else
@@ -72,12 +73,12 @@ class _BookingRoomTypeScreenState extends State<BookingRoomTypeScreen> {
                         isSelected: i == cubit.selectedRoomIndex,
                         onTap: () => cubit.selectRoom(i),
                       ),
-                      const Gap(16),
+                      Gap(16.s),
                     ],
                   ],
                 ),
                 fallback: (_) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 60),
+                  padding: EdgeInsets.symmetric(vertical: 60.s),
                   child: EmptyState(
                     message: state is RoomTypesError
                         ? state.message.tr()

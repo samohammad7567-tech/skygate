@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/my_trips_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 /// The printed-card frame the app shows for a pilgrim's ID card and for a
 /// luggage tag: a navy band ruled off in gold, a white face, and a navy foot.
@@ -30,7 +31,7 @@ class AppIdCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
-            padding: const EdgeInsets.fromLTRB(18, 16, 18, 16),
+            padding: EdgeInsets.fromLTRB(18.s, 16.s, 18.s, 16.s),
             decoration: const BoxDecoration(
               color: AppColors.primaryDark,
               border: Border(
@@ -59,7 +60,7 @@ class AppIdCard extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 18, 16, 18),
+                  padding: EdgeInsets.fromLTRB(16.s, 18.s, 16.s, 18.s),
                   child: child,
                 ),
               ],
@@ -67,7 +68,7 @@ class AppIdCard extends StatelessWidget {
           ),
           // The foot is the card's own edge rather than a content row, so it
           // carries no padding — it only closes the face in navy.
-          Container(height: 18, color: AppColors.primaryDark),
+          Container(height: 18.s, color: AppColors.primaryDark),
         ],
       ),
     );
@@ -83,15 +84,19 @@ class AppCardRule extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Expanded(child: Divider(color: AppColors.accentSoft, height: 1)),
+        Expanded(
+          child: Divider(color: AppColors.accentSoft, height: 1.s),
+        ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 6),
+          padding: EdgeInsets.symmetric(horizontal: 6.s),
           child: Transform.rotate(
             angle: 0.785398,
-            child: Container(height: 6, width: 6, color: AppColors.accent),
+            child: Container(height: 6.s, width: 6.s, color: AppColors.accent),
           ),
         ),
-        const Expanded(child: Divider(color: AppColors.accentSoft, height: 1)),
+        Expanded(
+          child: Divider(color: AppColors.accentSoft, height: 1.s),
+        ),
       ],
     );
   }

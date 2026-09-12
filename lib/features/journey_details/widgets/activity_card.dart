@@ -5,6 +5,7 @@ import 'package:skygate/core/components/app_status_chip.dart';
 import 'package:skygate/core/components/icon_text_row.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
 import 'package:skygate/core/models/activity_model.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/journey_details/widgets/activity_action_button.dart';
 import 'package:skygate/features/journey_details/widgets/activity_place_field.dart';
 
@@ -33,7 +34,7 @@ class ActivityCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return AppCard(
-      padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
+      padding: EdgeInsets.fromLTRB(12.s, 10.s, 12.s, 10.s),
       onTap: onTap,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -50,27 +51,27 @@ class ActivityCard extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 8),
+              SizedBox(width: 8.s),
               _Chip(activity: activity),
             ],
           ),
-          const SizedBox(height: 8),
-          const Divider(height: 1),
-          const SizedBox(height: 8),
+          SizedBox(height: 8.s),
+          Divider(height: 1.s),
+          SizedBox(height: 8.s),
           ActivityPlaceField(
             asset: JourneyAssets.location,
             labelKey: 'activity_place',
             value: activity.place,
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8.s),
           ActivityPlaceField(
             asset: JourneyAssets.meetingPoint,
             labelKey: 'meeting_point',
             value: activity.meetingPoint,
           ),
-          const SizedBox(height: 8),
-          const Divider(height: 1),
-          const SizedBox(height: 8),
+          SizedBox(height: 8.s),
+          Divider(height: 1.s),
+          SizedBox(height: 8.s),
           Row(
             children: [
               Flexible(
@@ -79,7 +80,7 @@ class ActivityCard extends StatelessWidget {
                   text: 'from_hour'.tr(args: [activity.fromTime ?? '—']),
                 ),
               ),
-              const SizedBox(width: 12),
+              SizedBox(width: 12.s),
               Flexible(
                 child: IconTextRow(
                   asset: JourneyAssets.clockTo,
@@ -92,7 +93,7 @@ class ActivityCard extends StatelessWidget {
             ],
           ),
           if (onAction != null) ...[
-            const SizedBox(height: 10),
+            SizedBox(height: 10.s),
             ActivityActionButton(
               action: activity.action,
               isBusy: isBusy,
@@ -122,7 +123,7 @@ class _Chip extends StatelessWidget {
         labelKey: labelKey,
         background: progress.background,
         foreground: progress.foreground,
-        radius: 6,
+        radius: 6.s,
       );
     }
 
@@ -131,21 +132,21 @@ class _Chip extends StatelessWidget {
     if (activity.typeName == null) return const SizedBox.shrink();
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+      padding: EdgeInsets.symmetric(horizontal: 8.s, vertical: 3.s),
       decoration: BoxDecoration(
         color: activity.surfaceColor,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.s),
       ),
       // The chip sits beside a two-line title, so it takes at most a third of
       // the row rather than pushing the title into an ellipsis.
-      constraints: const BoxConstraints(maxWidth: 110),
+      constraints: BoxConstraints(maxWidth: 110.s),
       child: Text(
         activity.typeName!,
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
         style: theme.textTheme.bodySmall?.copyWith(
           color: activity.accentColor,
-          fontSize: 11,
+          fontSize: 11.fs,
         ),
       ),
     );

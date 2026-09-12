@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/components/sheet_handle.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/sos/models/lost_item_model.dart';
 import 'package:skygate/features/sos/widgets/lost_item_card.dart';
@@ -36,16 +37,16 @@ class LostItemDetailsSheet extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24.s)),
       ),
       child: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 10, 16, 16),
+          padding: EdgeInsets.fromLTRB(16.s, 10.s, 16.s, 16.s),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               const SheetHandle(),
-              const Gap(14),
+              Gap(14.s),
               Text(
                 'lost_details_title'.tr(),
                 textAlign: TextAlign.center,
@@ -53,13 +54,13 @@ class LostItemDetailsSheet extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: theme.textTheme.titleLarge,
               ),
-              const Gap(14),
+              Gap(14.s),
               LostItemCard(item: item),
-              const Gap(18),
+              Gap(18.s),
               if (actionKey != null)
                 CustomButton(
                   label: actionKey.tr(),
-                  height: 48,
+                  height: 48.s,
                   width: double.infinity,
                   onPressed: onAction,
                 )
@@ -71,7 +72,7 @@ class LostItemDetailsSheet extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.bodySmall,
                 ),
-              const Gap(6),
+              Gap(6.s),
               TextButton(
                 onPressed: () => NaivgatorHelper.popNavigation(context),
                 child: Text('close'.tr()),

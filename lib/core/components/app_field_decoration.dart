@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 InputDecoration appInputDecoration(
   BuildContext context, {
@@ -10,7 +11,7 @@ InputDecoration appInputDecoration(
 }) {
   final theme = Theme.of(context);
   final border = OutlineInputBorder(
-    borderRadius: BorderRadius.circular(10),
+    borderRadius: BorderRadius.circular(10.s),
     borderSide: BorderSide(color: theme.colorScheme.outline),
   );
 
@@ -24,23 +25,23 @@ InputDecoration appInputDecoration(
         ? theme.colorScheme.surfaceContainerHighest
         : theme.colorScheme.surface,
     isDense: true,
-    contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 15),
+    contentPadding: EdgeInsets.symmetric(horizontal: 14.s, vertical: 15.s),
     border: border,
     enabledBorder: border,
     focusedBorder: border.copyWith(
-      borderSide: BorderSide(color: theme.colorScheme.primary, width: 1.4),
+      borderSide: BorderSide(color: theme.colorScheme.primary, width: 1.4.s),
     ),
     errorBorder: border.copyWith(
       borderSide: BorderSide(color: theme.colorScheme.error),
     ),
     focusedErrorBorder: border.copyWith(
-      borderSide: BorderSide(color: theme.colorScheme.error, width: 1.4),
+      borderSide: BorderSide(color: theme.colorScheme.error, width: 1.4.s),
     ),
     errorStyle: theme.textTheme.bodySmall?.copyWith(
       color: theme.colorScheme.error,
     ),
     suffixIcon: AppFieldIcon(asset: icon, onTap: onIconTap),
-    suffixIconConstraints: const BoxConstraints(minWidth: 46),
+    suffixIconConstraints: BoxConstraints(minWidth: 46.s),
   );
 }
 
@@ -54,12 +55,12 @@ class AppFieldIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     final image = AppImage(
       asset,
-      height: 22,
+      height: 22.s,
       color: Theme.of(context).colorScheme.primary,
     );
 
     return Padding(
-      padding: const EdgeInsetsDirectional.only(end: 12, start: 8),
+      padding: EdgeInsetsDirectional.only(end: 12.s, start: 8.s),
       child: onTap == null
           ? image
           : GestureDetector(onTap: onTap, child: image),

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/journey_details/models/journey_route_model.dart';
 import 'package:skygate/features/journey_details/widgets/journey_duration_row.dart';
 import 'package:skygate/features/journey_details/widgets/journey_leg_row.dart';
@@ -19,12 +20,12 @@ class SegmentSummaryCard extends StatelessWidget {
           tripNumber: segment.tripNumber,
         ),
         Padding(
-          padding: const EdgeInsets.fromLTRB(14, 12, 14, 10),
+          padding: EdgeInsets.fromLTRB(14.s, 12.s, 14.s, 10.s),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               JourneyLegRow(from: segment.from, to: segment.to, showCode: true),
-              const SizedBox(height: 10),
+              SizedBox(height: 10.s),
               JourneyDurationRow(minutes: segment.durationMinutes),
             ],
           ),
@@ -45,10 +46,10 @@ class _CarrierStrip extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 14.s, vertical: 10.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surfaceContainerHighest,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(14)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(14.s)),
       ),
       child: Row(
         children: [
@@ -61,19 +62,19 @@ class _CarrierStrip extends StatelessWidget {
             ),
           ),
           if (tripNumber != null && tripNumber!.isNotEmpty) ...[
-            const SizedBox(width: 8),
+            SizedBox(width: 8.s),
             Text(
               '${'trip_number'.tr()} :',
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: theme.textTheme.titleSmall,
             ),
-            const SizedBox(width: 6),
+            SizedBox(width: 6.s),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+              padding: EdgeInsets.symmetric(horizontal: 12.s, vertical: 4.s),
               decoration: BoxDecoration(
                 color: theme.colorScheme.surface,
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(20.s),
                 border: Border.all(color: theme.colorScheme.primary),
               ),
               child: Text(

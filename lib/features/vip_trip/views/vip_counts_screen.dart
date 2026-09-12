@@ -6,6 +6,7 @@ import 'package:skygate/core/components/booking_section_title.dart';
 import 'package:skygate/core/components/booking_step_scaffold.dart';
 import 'package:skygate/core/constants/vip_trip_assets.dart';
 import 'package:skygate/core/models/traveler_audience.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/main/widgets/app_drawer.dart';
 import 'package:skygate/features/vip_trip/controller/cubit/vip_trip_cubit.dart';
@@ -45,7 +46,7 @@ class VipCountsScreen extends StatelessWidget {
           onContinue: cubit.hasTravelers ? () => _continue(context) : null,
           children: [
             BookingSectionTitle(title: 'select_people_count'.tr()),
-            const Gap(14),
+            Gap(14.s),
             VipCard(
               totalLabelKey: 'total_travelers_count',
               totalValue: 'travelers_count'.tr(

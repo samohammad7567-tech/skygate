@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/document_upload_card.dart';
 import 'package:skygate/core/components/image_source_sheet.dart';
 import 'package:skygate/core/components/toast.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/profile/controller/cubit/profile_cubit.dart';
 import 'package:skygate/features/profile/widgets/profile_form_actions.dart';
@@ -49,7 +50,7 @@ class EditFilesScreen extends StatelessWidget {
           onBack: () => _cancel(context),
           children: [
             AppSectionTitle(text: 'edit_files'.tr()),
-            const Gap(14),
+            Gap(14.s),
             for (final document in cubit.documentTypes) ...[
               DocumentUploadCard(
                 document: document,
@@ -57,9 +58,9 @@ class EditFilesScreen extends StatelessWidget {
                 onTap: () => _pick(context, document.id),
                 onRemove: () => cubit.removeDocument(document.id),
               ),
-              const Gap(14),
+              Gap(14.s),
             ],
-            const Gap(6),
+            Gap(6.s),
             ProfileFormActions(
               isSaving: state is DocumentsSaving,
               onSave: cubit.saveDocuments,

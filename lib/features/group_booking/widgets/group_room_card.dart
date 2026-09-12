@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
 import 'package:skygate/core/components/room_beds_row.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/group_booking/models/group_room_model.dart';
 import 'package:skygate/features/group_booking/models/group_room_seat.dart';
 import 'package:skygate/features/group_booking/widgets/group_add_traveler_button.dart';
@@ -34,7 +35,7 @@ class GroupRoomCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Column(
@@ -46,17 +47,17 @@ class GroupRoomCard extends StatelessWidget {
             onEdit: seats.isEmpty ? null : onAssign,
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(14, 4, 14, 14),
+            padding: EdgeInsets.fromLTRB(14.s, 4.s, 14.s, 14.s),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 if (seats.isEmpty) ..._priceSheet() else ..._occupants(),
                 if (room.price?.almostFull ?? false) ...[
-                  const Gap(10),
+                  Gap(10.s),
                   const Align(child: AlmostFullChip()),
                 ],
                 if (seats.isEmpty) ...[
-                  const Gap(12),
+                  Gap(12.s),
                   Align(
                     child: GroupAddTravelerButton(
                       onTap: onAssign,
@@ -127,7 +128,7 @@ class GroupRoomCard extends StatelessWidget {
         currency: room.currency,
         count: room.lockedBeds,
       ),
-    const Divider(height: 18),
+    Divider(height: 18.s),
     GroupTotalRow(
       total: total,
       labelKey: 'room_final_total',

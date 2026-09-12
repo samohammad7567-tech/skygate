@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_card.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class SegmentInstructionsCard extends StatelessWidget {
   const SegmentInstructionsCard({super.key, required this.instructions});
@@ -13,7 +14,7 @@ class SegmentInstructionsCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return AppCard(
-      padding: const EdgeInsets.all(14),
+      padding: EdgeInsets.all(14.s),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -25,25 +26,25 @@ class SegmentInstructionsCard extends StatelessWidget {
               color: theme.colorScheme.primary,
             ),
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8.s),
           for (final instruction in instructions)
             Padding(
-              padding: const EdgeInsets.only(bottom: 6),
+              padding: EdgeInsets.only(bottom: 6.s),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 5),
+                    padding: EdgeInsets.only(top: 5.s),
                     child: Container(
-                      height: 4,
-                      width: 4,
+                      height: 4.s,
+                      width: 4.s,
                       decoration: BoxDecoration(
                         color: theme.colorScheme.primary,
                         shape: BoxShape.circle,
                       ),
                     ),
                   ),
-                  const SizedBox(width: 8),
+                  SizedBox(width: 8.s),
                   Expanded(
                     child: Text(
                       instruction,

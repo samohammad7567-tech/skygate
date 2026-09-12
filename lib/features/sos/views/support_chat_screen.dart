@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/empty_state.dart';
 import 'package:skygate/core/components/toast.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/sos/controller/cubit/support_chat_cubit.dart';
 import 'package:skygate/features/sos/widgets/chat_bubble.dart';
 import 'package:skygate/features/sos/widgets/chat_composer.dart';
@@ -96,7 +97,7 @@ class _SupportChatScreenState extends State<SupportChatScreen> {
       condition: cubit.messages.isNotEmpty,
       builder: (_) => ListView.builder(
         controller: _scroll,
-        padding: const EdgeInsets.only(top: 12, bottom: 12),
+        padding: EdgeInsets.only(top: 12.s, bottom: 12.s),
         // One extra row at the top: the standing notice, and the spinner while
         // an older page is on its way.
         itemCount: cubit.messages.length + 1,
@@ -124,22 +125,22 @@ class _Header extends StatelessWidget {
     return Column(
       children: [
         if (isLoadingMore)
-          const Padding(
-            padding: EdgeInsets.only(bottom: 12),
+          Padding(
+            padding: EdgeInsets.only(bottom: 12.s),
             child: SizedBox(
-              height: 20,
-              width: 20,
-              child: CircularProgressIndicator(strokeWidth: 2),
+              height: 20.s,
+              width: 20.s,
+              child: CircularProgressIndicator(strokeWidth: 2.s),
             ),
           ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.s),
           child: SosNoteBanner(
             titleKey: 'sos_chat_bot_title',
             messageKey: 'sos_chat_bot_desc',
           ),
         ),
-        const Gap(8),
+        Gap(8.s),
       ],
     );
   }

@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_glyph_plate.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class HotelDetailRow extends StatelessWidget {
   const HotelDetailRow({
@@ -21,12 +22,12 @@ class HotelDetailRow extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12),
+      padding: EdgeInsets.symmetric(vertical: 12.s),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AppGlyphPlate(asset: asset, size: 42, glyphSize: 20),
-          const SizedBox(width: 12),
+          AppGlyphPlate(asset: asset, size: 42.s, glyphSize: 20.s),
+          SizedBox(width: 12.s),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,14 +41,14 @@ class HotelDetailRow extends StatelessWidget {
                     color: theme.colorScheme.primary,
                   ),
                 ),
-                const SizedBox(height: 2),
+                SizedBox(height: 2.s),
                 Text(
                   value,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.titleMedium,
                 ),
-                if (child != null) ...[const SizedBox(height: 10), child!],
+                if (child != null) ...[SizedBox(height: 10.s), child!],
               ],
             ),
           ),

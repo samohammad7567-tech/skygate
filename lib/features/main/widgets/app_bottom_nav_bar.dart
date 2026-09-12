@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/main/models/nav_item_model.dart';
 
 class AppBottomNavBar extends StatelessWidget {
@@ -20,11 +21,11 @@ class AppBottomNavBar extends StatelessWidget {
     return SafeArea(
       top: false,
       child: Container(
-        margin: const EdgeInsets.fromLTRB(16, 0, 16, 12),
-        padding: const EdgeInsets.all(6),
+        margin: EdgeInsets.fromLTRB(16.s, 0, 16.s, 12.s),
+        padding: EdgeInsets.all(6.s),
         decoration: BoxDecoration(
           color: theme.colorScheme.primary,
-          borderRadius: BorderRadius.circular(24),
+          borderRadius: BorderRadius.circular(24.s),
         ),
         child: Row(
           children: [
@@ -61,20 +62,20 @@ class _NavTab extends StatelessWidget {
 
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(16.s),
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 2),
+        padding: EdgeInsets.symmetric(vertical: 8.s, horizontal: 2.s),
         decoration: BoxDecoration(
           color: isSelected
               ? foreground.withValues(alpha: 0.22)
               : Colors.transparent,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(16.s),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            AppImage(item.icon, width: 22, height: 22, color: foreground),
-            const SizedBox(height: 4),
+            AppImage(item.icon, width: 22.s, height: 22.s, color: foreground),
+            SizedBox(height: 4.s),
             Text(
               item.labelKey.tr(),
               maxLines: 1,

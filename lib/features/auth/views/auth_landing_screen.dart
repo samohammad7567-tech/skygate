@@ -6,6 +6,7 @@ import 'package:skygate/core/components/app_outlined_button.dart';
 import 'package:skygate/core/components/app_title_header.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/components/or_divider.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/auth/views/login_screen.dart';
 import 'package:skygate/features/auth/views/register_screen.dart';
@@ -19,24 +20,24 @@ class AuthLandingScreen extends StatelessWidget {
       body: AppBackground(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
+            padding: EdgeInsets.symmetric(horizontal: 24.s),
             child: Column(
               children: [
-                const Gap(56),
+                Gap(56.s),
                 const AppTitleHeader(),
                 const Spacer(flex: 3),
                 CustomButton(
                   label: 'login'.tr(),
                   width: double.infinity,
-                  height: 48,
+                  height: 48.s,
                   onPressed: () => NaivgatorHelper.pushNavigation(
                     context,
                     const LoginScreen(),
                   ),
                 ),
-                const Gap(16),
+                Gap(16.s),
                 const OrDivider(),
-                const Gap(16),
+                Gap(16.s),
                 AppOutlinedButton(
                   label: 'create_account'.tr(),
                   onPressed: () => NaivgatorHelper.pushNavigation(

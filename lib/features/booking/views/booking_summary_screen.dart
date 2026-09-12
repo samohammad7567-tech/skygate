@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/empty_state.dart';
 import 'package:skygate/core/components/toast.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/booking/controller/cubit/booking_cubit.dart';
 import 'package:skygate/features/booking/models/booking_summary_model.dart';
@@ -57,15 +58,15 @@ class _BookingSummaryScreenState extends State<BookingSummaryScreen> {
               title: 'booking_summary'.tr(),
               subtitle: 'review_your_booking'.tr(),
             ),
-            const Gap(16),
+            Gap(16.s),
             if (state is BookingSummaryLoading)
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 60),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 60.s),
                 child: Center(child: CircularProgressIndicator()),
               )
             else if (summary == null)
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 60),
+                padding: EdgeInsets.symmetric(vertical: 60.s),
                 child: EmptyState(
                   message: state is BookingSummaryError
                       ? state.message.tr()
@@ -102,10 +103,10 @@ class _SummaryContent extends StatelessWidget {
               ? 1
               : installments.first.number ?? 1,
         ),
-        const Gap(16),
+        Gap(16.s),
         PaymentDetailsCard(summary: summary),
         if (installments.isNotEmpty) ...[
-          const Gap(16),
+          Gap(16.s),
           PaymentScheduleCard(installments: installments),
         ],
       ],

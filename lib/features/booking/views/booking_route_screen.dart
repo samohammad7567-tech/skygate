@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/empty_state.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/booking/controller/cubit/booking_cubit.dart';
 import 'package:skygate/features/booking/views/booking_room_type_screen.dart';
@@ -49,10 +50,10 @@ class _BookingRouteScreenState extends State<BookingRouteScreen> {
               title: 'select_route'.tr(),
               subtitle: 'select_route_desc'.tr(),
             ),
-            const Gap(16),
+            Gap(16.s),
             if (state is BookingRoutesLoading)
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 60),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 60.s),
                 child: Center(child: CircularProgressIndicator()),
               )
             else
@@ -68,12 +69,12 @@ class _BookingRouteScreenState extends State<BookingRouteScreen> {
                         isSelected: i == cubit.selectedRouteIndex,
                         onTap: () => cubit.selectRoute(i),
                       ),
-                      const Gap(16),
+                      Gap(16.s),
                     ],
                   ],
                 ),
                 fallback: (_) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 60),
+                  padding: EdgeInsets.symmetric(vertical: 60.s),
                   child: EmptyState(
                     message: state is BookingRoutesError
                         ? state.message.tr()

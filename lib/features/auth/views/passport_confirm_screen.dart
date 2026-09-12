@@ -11,6 +11,7 @@ import 'package:skygate/core/components/form_section_title.dart';
 import 'package:skygate/core/components/passport_fields_form.dart';
 import 'package:skygate/core/components/passport_scan_banner.dart';
 import 'package:skygate/core/components/scan_launcher.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/auth/controller/cubit/register_cubit.dart';
 import 'package:skygate/features/auth/views/umrah_documents_screen.dart';
@@ -53,44 +54,44 @@ class _PassportConfirmScreenState extends State<PassportConfirmScreen> {
               final cubit = context.read<RegisterCubit>();
 
               return SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(24, 32, 24, 32),
+                padding: EdgeInsets.fromLTRB(24.s, 32.s, 24.s, 32.s),
                 child: Column(
                   children: [
                     AppTitleHeader(
                       title: 'confirm_passport_data'.tr(),
                       showBack: true,
                     ),
-                    const Gap(24),
+                    Gap(24.s),
                     AppPanel(
                       child: Form(
                         key: _formKey,
                         child: Column(
                           children: [
                             const RegisterStepper(currentStep: 2),
-                            const Gap(18),
+                            Gap(18.s),
                             if (cubit.isScanned) ...[
                               const PassportScanBanner(),
-                              const Gap(18),
+                              Gap(18.s),
                             ],
                             FormSectionTitle(text: 'confirm_data_below'.tr()),
-                            const Gap(14),
+                            Gap(14.s),
                             PassportFieldsForm(
                               form: cubit.passportForm,
                               labeled: true,
                               onChanged: cubit.passportChanged,
                             ),
-                            const Gap(22),
+                            Gap(22.s),
                             ScanLauncher(onTap: _rescan),
-                            const Gap(22),
+                            Gap(22.s),
                             AppOutlinedButton(
                               label: 'rescan'.tr(),
                               onPressed: _rescan,
                             ),
-                            const Gap(12),
+                            Gap(12.s),
                             CustomButton(
                               label: 'create_account_action'.tr(),
                               width: double.infinity,
-                              height: 48,
+                              height: 48.s,
                               onPressed: _continue,
                             ),
                           ],

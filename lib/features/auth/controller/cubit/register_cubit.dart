@@ -17,6 +17,7 @@ import 'package:skygate/features/auth/controller/cubit/auth_cubit.dart';
 import 'package:skygate/features/auth/models/auth_user_model.dart';
 
 part 'register_state.dart';
+
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitial());
 
@@ -82,6 +83,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     passportForm.pledgeAccepted = value ?? false;
     emit(PassportFieldChanged());
   }
+
   Future<void> scanPassportFrom(ImageSource source) async {
     final file = await ImagePickerService.pick(source);
     if (file == null) {
@@ -94,6 +96,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     }
     await scanPassport(file);
   }
+
   Future<void> scanPassport(File image) async {
     emit(PassportScanLoading());
     return DioService.post(
@@ -117,6 +120,7 @@ class RegisterCubit extends Cubit<RegisterState> {
           emit(PassportScanError(message: AuthCubit.messageOf(error)));
         });
   }
+
   void resetScan() {
     passportForm.resetScan();
     emit(PassportFieldChanged());
@@ -163,6 +167,7 @@ class RegisterCubit extends Cubit<RegisterState> {
       emit(RegisterError(message: AuthCubit.messageOf(error)));
     }
   }
+
   Map<String, dynamic> registerBody() {
     final passportData = passport;
 
@@ -184,12 +189,14 @@ class RegisterCubit extends Cubit<RegisterState> {
       'issue_date': _date(passportData.issueDate),
     };
   }
+
   static String? _date(DateTime? value) =>
       value?.toIso8601String().split('T').first;
   Future<void> skipDocuments() {
     documents.clear();
     return submit();
   }
+
   Future<void> _uploadDocuments() async {
     if (documents.isEmpty) return;
     final int? pilgrimId =

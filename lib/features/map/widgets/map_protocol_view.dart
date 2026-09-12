@@ -7,6 +7,7 @@ import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/constants/map_assets.dart';
 import 'package:skygate/core/services/location_service.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/map/controller/cubit/map_cubit.dart';
 import 'package:skygate/features/map/models/map_feature_model.dart';
 import 'package:skygate/features/map/widgets/map_feature_strip.dart';
@@ -23,26 +24,26 @@ class MapProtocolView extends StatelessWidget {
         final cubit = context.read<MapCubit>();
 
         return ListView(
-          padding: const EdgeInsets.fromLTRB(20, 8, 20, 120),
+          padding: EdgeInsets.fromLTRB(20.s, 8.s, 20.s, 120.s),
           children: [
             AppCard(
               padding: EdgeInsets.zero,
-              radius: 16,
+              radius: 16.s,
               child: Column(
                 children: [
                   ClipRRect(
-                    borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(16),
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(16.s),
                     ),
                     child: AppImage(
                       MapAssets.protocolShield,
-                      height: 190,
+                      height: 190.vs,
                       width: double.infinity,
                       fit: BoxFit.contain,
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(18, 4, 18, 18),
+                    padding: EdgeInsets.fromLTRB(18.s, 4.s, 18.s, 18.s),
                     child: Column(
                       children: [
                         Text(
@@ -52,7 +53,7 @@ class MapProtocolView extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: theme.textTheme.titleLarge,
                         ),
-                        const Gap(10),
+                        Gap(10.s),
                         Text(
                           'map_protocol_desc'.tr(),
                           textAlign: TextAlign.center,
@@ -62,12 +63,12 @@ class MapProtocolView extends StatelessWidget {
                             color: theme.colorScheme.onSurface.withValues(
                               alpha: 0.65,
                             ),
-                            height: 1.7,
+                            height: 1.7.s,
                           ),
                         ),
-                        const Gap(16),
-                        const Divider(height: 1),
-                        const Gap(16),
+                        Gap(16.s),
+                        Divider(height: 1.s),
+                        Gap(16.s),
                         const MapFeatureStrip(
                           features: MapFeatureModel.protocol,
                         ),
@@ -77,15 +78,15 @@ class MapProtocolView extends StatelessWidget {
                 ],
               ),
             ),
-            const Gap(20),
+            Gap(20.s),
             CustomButton(
               label: _label(cubit.access),
-              height: 48,
+              height: 48.s,
               isLoading: state is MapPermissionRequesting,
               onPressed: cubit.acceptProtocol,
             ),
             if (state is MapPermissionDenied) ...[
-              const Gap(12),
+              Gap(12.s),
               Text(
                 _denialCopy(state.access),
                 textAlign: TextAlign.center,

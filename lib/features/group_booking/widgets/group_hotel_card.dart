@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/cached_image.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
 import 'package:skygate/core/models/hotel_model.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/group_booking/models/group_room_allocation.dart';
 import 'package:skygate/core/components/hotel_summary.dart';
 import 'package:skygate/features/group_booking/widgets/group_room_chip.dart';
@@ -25,10 +26,10 @@ class GroupHotelCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.all(10),
+      padding: EdgeInsets.all(10.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(14.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Column(
@@ -38,19 +39,19 @@ class GroupHotelCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(child: HotelSummary(hotel: hotel)),
-              const Gap(10),
+              Gap(10.s),
               ClipRRect(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(10.s),
                 child: CachedImage(
                   url: hotel.image,
                   fallbackAsset: JourneyAssets.hotelPhoto,
-                  height: 116,
-                  width: 124,
+                  height: 116.s,
+                  width: 124.s,
                 ),
               ),
             ],
           ),
-          const Gap(10),
+          Gap(10.s),
           Align(
             alignment: AlignmentDirectional.centerStart,
             child: _AllocateButton(
@@ -59,9 +60,9 @@ class GroupHotelCard extends StatelessWidget {
             ),
           ),
           if (!allocation.isEmpty) ...[
-            const Gap(10),
-            const Divider(height: 1),
-            const Gap(10),
+            Gap(10.s),
+            Divider(height: 1.s),
+            Gap(10.s),
             GroupRoomChips(allocation: allocation),
           ],
         ],
@@ -84,7 +85,7 @@ class _AllocateButton extends StatelessWidget {
       onPressed: onTap,
       icon: Icon(
         isAllocated ? Icons.edit_outlined : Icons.add_circle_outline,
-        size: 18,
+        size: 18.s,
         color: theme.colorScheme.primary,
       ),
       label: Text(
@@ -97,8 +98,10 @@ class _AllocateButton extends StatelessWidget {
       ),
       style: OutlinedButton.styleFrom(
         side: BorderSide(color: theme.colorScheme.primary),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24.s),
+        ),
+        padding: EdgeInsets.symmetric(horizontal: 16.s, vertical: 8.s),
       ),
     );
   }

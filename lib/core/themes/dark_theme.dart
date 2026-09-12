@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../constants/app_colors.dart';
 import '../constants/app_fonts.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class DarkTheme {
   DarkTheme._();
@@ -35,7 +36,7 @@ class DarkTheme {
       headerBackgroundColor: AppColors.darkSurface,
       headerForegroundColor: AppColors.darkTextPrimary,
       todayBorder: const BorderSide(color: AppColors.primarySoft),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.s)),
     ),
     checkboxTheme: CheckboxThemeData(
       fillColor: WidgetStateProperty.resolveWith(
@@ -44,34 +45,34 @@ class DarkTheme {
             : Colors.transparent,
       ),
       checkColor: const WidgetStatePropertyAll(Colors.white),
-      side: const BorderSide(color: AppColors.primarySoft, width: 1.5),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+      side: BorderSide(color: AppColors.primarySoft, width: 1.5.s),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.s)),
     ),
-    textTheme: const TextTheme(
+    textTheme: TextTheme(
       headlineSmall: TextStyle(
-        fontSize: 22,
+        fontSize: 22.fs,
         fontWeight: FontWeight.w700,
         color: AppColors.primarySoft,
       ),
       titleLarge: TextStyle(
-        fontSize: 18,
+        fontSize: 18.fs,
         fontWeight: FontWeight.w700,
         color: AppColors.primarySoft,
       ),
       titleMedium: TextStyle(
-        fontSize: 15,
+        fontSize: 15.fs,
         fontWeight: FontWeight.w700,
         color: AppColors.darkTextPrimary,
       ),
       titleSmall: TextStyle(
-        fontSize: 13,
+        fontSize: 13.fs,
         fontWeight: FontWeight.w700,
         color: AppColors.darkTextPrimary,
       ),
-      bodyMedium: TextStyle(fontSize: 13, color: AppColors.darkTextPrimary),
-      bodySmall: TextStyle(fontSize: 11, color: AppColors.darkTextSecondary),
+      bodyMedium: TextStyle(fontSize: 13.fs, color: AppColors.darkTextPrimary),
+      bodySmall: TextStyle(fontSize: 11.fs, color: AppColors.darkTextSecondary),
       labelLarge: TextStyle(
-        fontSize: 14,
+        fontSize: 14.fs,
         fontWeight: FontWeight.w700,
         color: Colors.white,
       ),

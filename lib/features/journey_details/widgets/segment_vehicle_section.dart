@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/cached_image.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
 import 'package:skygate/core/models/journey_transport.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/journey_details/models/journey_route_model.dart';
 import 'package:skygate/core/components/vehicle_spec_tile.dart';
 
@@ -29,7 +30,7 @@ class SegmentVehicleSection extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: theme.textTheme.titleLarge,
         ),
-        const SizedBox(height: 12),
+        SizedBox(height: 12.s),
         Row(
           children: [
             Expanded(
@@ -51,17 +52,17 @@ class SegmentVehicleSection extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(width: 12),
+            SizedBox(width: 12.s),
             CachedImage(
               url: vehicle?.companyLogo,
               fallbackAsset: transport.fallbackLogo,
-              height: 34,
-              width: 84,
+              height: 34.s,
+              width: 84.s,
               fit: BoxFit.contain,
             ),
           ],
         ),
-        const SizedBox(height: 14),
+        SizedBox(height: 14.s),
         // The three values wrap to different line counts, so the tallest tile
         // sets the height and the others stretch to match it.
         IntrinsicHeight(
@@ -75,7 +76,7 @@ class SegmentVehicleSection extends StatelessWidget {
                   value: transport.labelKey.tr(),
                 ),
               ),
-              const SizedBox(width: 10),
+              SizedBox(width: 10.s),
               Expanded(
                 child: VehicleSpecTile(
                   asset: transport.modelIcon,
@@ -83,7 +84,7 @@ class SegmentVehicleSection extends StatelessWidget {
                   value: vehicle?.model ?? '—',
                 ),
               ),
-              const SizedBox(width: 10),
+              SizedBox(width: 10.s),
               Expanded(
                 child: VehicleSpecTile(
                   asset: JourneyAssets.seat,

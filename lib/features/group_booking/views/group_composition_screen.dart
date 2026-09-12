@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/empty_state.dart';
 import 'package:skygate/core/components/toast.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/core/components/booking_section_title.dart';
 import 'package:skygate/core/components/booking_step_scaffold.dart';
@@ -59,21 +60,21 @@ class GroupCompositionScreen extends StatelessWidget {
               title: 'group_composition'.tr(),
               subtitle: 'group_composition_desc'.tr(),
             ),
-            const Gap(16),
+            Gap(16.s),
             GroupCountsCard(
               counts: {
                 for (final audience in TravelerAudience.values)
                   audience: cubit.countOf(audience),
               },
             ),
-            const Gap(18),
+            Gap(18.s),
             Center(
               child: GroupAddTravelerButton(
                 onTap: () => _addTraveler(context),
                 filled: !isComplete,
               ),
             ),
-            const Gap(18),
+            Gap(18.s),
             BuildCondition(
               condition: cubit.travelers.isNotEmpty,
               builder: (_) => Column(
@@ -87,12 +88,12 @@ class GroupCompositionScreen extends StatelessWidget {
                           .travelerOf(cubit.travelers[i].guardianLocalId)
                           ?.name,
                     ),
-                    const Gap(16),
+                    Gap(16.s),
                   ],
                 ],
               ),
               fallback: (_) => Padding(
-                padding: const EdgeInsets.symmetric(vertical: 40),
+                padding: EdgeInsets.symmetric(vertical: 40.s),
                 child: EmptyState(message: 'no_travelers'.tr()),
               ),
             ),

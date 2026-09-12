@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_card.dart';
 import 'package:skygate/core/components/app_glyph_plate.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/journey_details/models/journey_package_model.dart';
 
 class JourneySectionTile extends StatelessWidget {
@@ -16,16 +17,16 @@ class JourneySectionTile extends StatelessWidget {
 
     return AppCard(
       onTap: onTap,
-      padding: const EdgeInsets.all(14),
+      padding: EdgeInsets.all(14.s),
       child: Row(
         children: [
           AppGlyphPlate(
             asset: section.asset,
             icon: section.icon,
-            size: 44,
-            glyphSize: 22,
+            size: 44.s,
+            glyphSize: 22.s,
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: 12.s),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,12 +47,12 @@ class JourneySectionTile extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(width: 8),
+          SizedBox(width: 8.s),
           // `arrow_forward_ios` is a directional glyph, so it turns itself
           // around under RTL and keeps pointing "onwards".
           Icon(
             Icons.arrow_forward_ios_rounded,
-            size: 16,
+            size: 16.s,
             color: theme.colorScheme.primary,
           ),
         ],

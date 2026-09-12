@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/constants/home_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/home/widgets/custom_trip_artwork.dart';
 import 'package:skygate/features/home/widgets/custom_trip_feature.dart';
 import 'package:skygate/features/home/widgets/custom_trip_notice.dart';
@@ -24,7 +25,7 @@ class CustomTripSection extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.symmetric(horizontal: 20.s),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -35,13 +36,13 @@ class CustomTripSection extends StatelessWidget {
             textAlign: TextAlign.center,
             style: theme.textTheme.titleLarge,
           ),
-          const SizedBox(height: 14),
+          SizedBox(height: 14.s),
           Container(
             height: _cardHeight,
             clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(
               color: theme.colorScheme.surface,
-              borderRadius: BorderRadius.circular(18),
+              borderRadius: BorderRadius.circular(18.s),
               border: Border.all(color: theme.colorScheme.outline),
             ),
             child: Row(
@@ -76,7 +77,7 @@ class _Content extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
+      padding: EdgeInsets.fromLTRB(12.s, 16.s, 12.s, 16.s),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,14 +85,14 @@ class _Content extends StatelessWidget {
           Row(
             children: [
               // The orange plate behind the crown is part of the export.
-              AppImage(HomeAssets.crown, width: 34, height: 34),
-              const SizedBox(width: 10),
+              AppImage(HomeAssets.crown, width: 34.s, height: 34.s),
+              SizedBox(width: 10.s),
               Expanded(
                 child: Text(
                   'design_your_own_trip'.tr(),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.titleLarge?.copyWith(fontSize: 16),
+                  style: theme.textTheme.titleLarge?.copyWith(fontSize: 16.fs),
                 ),
               ),
             ],
@@ -109,7 +110,7 @@ class _Content extends StatelessWidget {
             onPressed: onRequest,
             isLoading: isSubmitting,
             backgroundColor: theme.colorScheme.secondary,
-            radius: 8,
+            radius: 8.s,
           ),
         ],
       ),

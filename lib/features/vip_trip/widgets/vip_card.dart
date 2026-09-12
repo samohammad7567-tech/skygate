@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class VipCard extends StatelessWidget {
   const VipCard({
@@ -16,13 +17,13 @@ class VipCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final radius = BorderRadius.circular(16);
+    final radius = BorderRadius.circular(16.s);
 
     final rule = Divider(
-      height: 1,
-      thickness: 1,
-      indent: 14,
-      endIndent: 14,
+      height: 1.s,
+      thickness: 1.s,
+      indent: 14.s,
+      endIndent: 14.s,
       color: theme.colorScheme.outline,
     );
 
@@ -45,10 +46,7 @@ class VipCard extends StatelessWidget {
             if (totalLabelKey != null) ...[
               rule,
               Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 14,
-                  vertical: 12,
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 14.s, vertical: 12.s),
                 child: Row(
                   children: [
                     Text(

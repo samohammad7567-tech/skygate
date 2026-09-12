@@ -5,6 +5,7 @@ import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/components/app_menu_button.dart';
 import 'package:skygate/core/constants/app_assets.dart';
 import 'package:skygate/core/constants/home_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({
@@ -24,20 +25,20 @@ class HomeHeader extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      height: height,
+      height: height.s,
       // 20 horizontal matches the header padding every other tab uses,
       // so the drawer handle does not shift sideways between tabs.
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      padding: EdgeInsets.symmetric(horizontal: 20.s, vertical: 8.s),
       decoration: BoxDecoration(
         color: theme.scaffoldBackgroundColor,
-        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(bottom: Radius.circular(20.s)),
         // The bar shares the page colour, so the shadow is what separates it
         // from the hero photo underneath.
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.06),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
+            blurRadius: 12.s,
+            offset: Offset(0, 4.s),
           ),
         ],
       ),
@@ -53,7 +54,7 @@ class HomeHeader extends StatelessWidget {
             badge: unreadCount,
           ),
           Expanded(
-            child: AppImage(AppAssets.logo, height: 44, fit: BoxFit.contain),
+            child: AppImage(AppAssets.logo, height: 44.s, fit: BoxFit.contain),
           ),
           AppMenuButton(onTap: onMenuTap),
         ],
@@ -87,24 +88,24 @@ class _HeaderIcon extends StatelessWidget {
         AppCircleIconButton(
           asset: asset,
           tooltip: tooltip,
-          size: AppMenuButton.size,
-          glyphSize: AppMenuButton.glyphSize,
+          size: AppMenuButton.size.s,
+          glyphSize: AppMenuButton.glyphSize.s,
           onTap: onTap,
         ),
         if (badge > 0)
           PositionedDirectional(
-            top: 2,
-            end: 2,
+            top: 2.s,
+            end: 2.s,
             // The dot is decoration over the button it counts for; the button
             // itself is what the reader taps.
             child: IgnorePointer(
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
-                constraints: const BoxConstraints(minWidth: 18),
+                padding: EdgeInsets.symmetric(horizontal: 5.s, vertical: 1.s),
+                constraints: BoxConstraints(minWidth: 18.s),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color: theme.colorScheme.secondary,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(20.s),
                 ),
                 child: Text(
                   badge > 99 ? '99+' : '$badge',
@@ -112,8 +113,8 @@ class _HeaderIcon extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: theme.colorScheme.onSecondary,
-                    fontSize: 10,
-                    height: 1.2,
+                    fontSize: 10.fs,
+                    height: 1.2.s,
                   ),
                 ),
               ),

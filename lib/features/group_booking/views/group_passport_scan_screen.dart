@@ -7,6 +7,7 @@ import 'package:skygate/core/components/app_background.dart';
 import 'package:skygate/core/components/app_title_header.dart';
 import 'package:skygate/core/components/passport_scan_preview.dart';
 import 'package:skygate/core/components/toast.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/group_booking/controller/cubit/group_booking_cubit.dart';
 import 'package:skygate/features/group_booking/views/group_passport_confirm_screen.dart';
@@ -67,14 +68,14 @@ class _GroupPassportScanScreenState extends State<GroupPassportScanScreen>
           child: BlocListener<GroupBookingCubit, GroupBookingState>(
             listener: _onState,
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(24, 32, 24, 32),
+              padding: EdgeInsets.fromLTRB(24.s, 32.s, 24.s, 32.s),
               child: Column(
                 children: [
                   AppTitleHeader(
                     title: 'extract_passport_data'.tr(),
                     showBack: true,
                   ),
-                  const Gap(36),
+                  Gap(36.s),
                   AnimatedBuilder(
                     animation: _sweep,
                     builder: (_, _) =>

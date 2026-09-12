@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_sheet.dart';
 import 'package:skygate/core/components/app_tab_bar.dart';
 import 'package:skygate/core/components/sheet_handle.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/cards/models/pilgrim_card_model.dart';
 import 'package:skygate/features/cards/models/trip_pilgrim_model.dart';
 import 'package:skygate/features/cards/widgets/pilgrim_card_back.dart';
@@ -46,20 +47,20 @@ class _PilgrimCardSheetState extends State<PilgrimCardSheet> {
 
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 12, 20, 20),
+        padding: EdgeInsets.fromLTRB(20.s, 12.s, 20.s, 20.s),
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               const SheetHandle(),
-              const Gap(14),
+              Gap(14.s),
               Text(
                 'pilgrim_card'.tr(),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: theme.textTheme.titleLarge,
               ),
-              const Gap(16),
+              Gap(16.s),
               AppTabBar(
                 tabs: [
                   AppTabItem(labelKey: 'card_face_front'),
@@ -67,12 +68,12 @@ class _PilgrimCardSheetState extends State<PilgrimCardSheet> {
                 ],
                 selectedIndex: _face,
                 onChanged: (index) => setState(() => _face = index),
-                padding: const EdgeInsets.symmetric(horizontal: 4),
-                tabPadding: const EdgeInsets.fromLTRB(4, 12, 4, 0),
+                padding: EdgeInsets.symmetric(horizontal: 4.s),
+                tabPadding: EdgeInsets.fromLTRB(4.s, 12.s, 4.s, 0),
                 underlineGap: 10,
                 textStyle: theme.textTheme.titleSmall,
               ),
-              const Gap(18),
+              Gap(18.s),
               if (_face == 0)
                 PilgrimCardFace(pilgrim: widget.pilgrim, card: widget.card)
               else

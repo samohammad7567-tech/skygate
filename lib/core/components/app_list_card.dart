@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 /// A bordered panel that stacks rows behind one rounded outline, hairlined
 /// between each pair.
@@ -7,15 +8,15 @@ import 'package:flutter/material.dart';
 /// information block, each of the settings screen's sections — so the rows
 /// stay dumb and only this decides where the dividers fall.
 class AppListCard extends StatelessWidget {
-  const AppListCard({super.key, required this.children, this.radius = 16});
+  const AppListCard({super.key, required this.children, this.radius});
 
   final List<Widget> children;
-  final double radius;
+  final double? radius;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final borderRadius = BorderRadius.circular(radius);
+    final borderRadius = BorderRadius.circular((radius ?? 16.s));
 
     return Material(
       color: theme.colorScheme.surface,
@@ -31,10 +32,10 @@ class AppListCard extends StatelessWidget {
             for (var index = 0; index < children.length; index++) ...[
               if (index > 0)
                 Divider(
-                  height: 1,
-                  thickness: 1,
-                  indent: 14,
-                  endIndent: 14,
+                  height: 1.s,
+                  thickness: 1.s,
+                  indent: 14.s,
+                  endIndent: 14.s,
                   color: theme.colorScheme.outline,
                 ),
               children[index],

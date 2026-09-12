@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/models/booking_type.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/booking/controller/cubit/booking_cubit.dart';
 import 'package:skygate/features/booking/views/booking_verify_screen.dart';
@@ -73,14 +74,14 @@ class _BookingTypeBody extends StatelessWidget {
               title: 'booking_type'.tr(),
               subtitle: 'booking_type_question'.tr(),
             ),
-            const Gap(16),
+            Gap(16.s),
             for (final option in cubit.options) ...[
               BookingTypeCard(
                 option: option,
                 isSelected: option.type == cubit.selectedType,
                 onTap: () => cubit.selectType(option.type),
               ),
-              const Gap(16),
+              Gap(16.s),
             ],
           ],
         );

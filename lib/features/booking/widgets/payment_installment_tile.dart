@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_circle_badge.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/utils/app_format.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/booking/models/booking_summary_model.dart';
 
 class PaymentInstallmentTile extends StatelessWidget {
@@ -21,12 +22,12 @@ class PaymentInstallmentTile extends StatelessWidget {
     final amount = installment.amount;
 
     return Container(
-      padding: const EdgeInsets.all(10),
+      padding: EdgeInsets.all(10.s),
       decoration: BoxDecoration(
         color: _isUrgent
             ? AppColors.accentSurface.withValues(alpha: 0.35)
             : theme.colorScheme.surfaceContainerHighest,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.s),
       ),
       child: Row(
         children: [
@@ -36,7 +37,7 @@ class PaymentInstallmentTile extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: theme.textTheme.titleMedium?.copyWith(color: accent),
           ),
-          const Gap(10),
+          Gap(10.s),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -50,19 +51,19 @@ class PaymentInstallmentTile extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.bodySmall,
                 ),
-                const Gap(2),
+                Gap(2.s),
                 Text(
                   'installment_due_by'.tr(),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.bodySmall,
                 ),
-                const Gap(2),
+                Gap(2.s),
                 _Deadline(installment: installment, accent: accent),
               ],
             ),
           ),
-          const Gap(10),
+          Gap(10.s),
           _PercentBadge(percentage: installment.percentage, color: accent),
         ],
       ),
@@ -97,10 +98,10 @@ class _Deadline extends StatelessWidget {
             style: theme.textTheme.titleSmall?.copyWith(color: accent),
           ),
         ),
-        const Gap(6),
+        Gap(6.s),
         Icon(
           hours != null ? Icons.schedule : Icons.calendar_month_outlined,
-          size: 14,
+          size: 14.s,
           color: accent,
         ),
       ],
@@ -118,7 +119,7 @@ class _PercentBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppCircleBadge(
       text: '${percentage ?? 0}%',
-      size: 48,
+      size: 48.s,
       background: color,
     );
   }

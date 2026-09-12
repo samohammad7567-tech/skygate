@@ -6,6 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/empty_state.dart';
 import 'package:skygate/core/components/toast.dart';
 import 'package:skygate/core/models/hotel_model.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/core/models/booking_city.dart';
 import 'package:skygate/core/components/booking_section_title.dart';
@@ -89,20 +90,20 @@ class _GroupHotelScreenState extends State<GroupHotelScreen> {
               title: 'select_hotel_in'.tr(args: [widget.city.labelKey.tr()]),
               subtitle: 'select_hotel_desc'.tr(),
             ),
-            const Gap(16),
+            Gap(16.s),
             GroupAllocationProgressCard(
               allocated: cubit.allocatedIn(widget.city),
               total: cubit.rooms.length,
             ),
-            const Gap(16),
+            Gap(16.s),
             BookingStayRow(
               city: widget.city,
               days: cubit.stayDays[widget.city],
             ),
-            const Gap(16),
+            Gap(16.s),
             if (state is GroupHotelsLoading)
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 60),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 60.s),
                 child: Center(child: CircularProgressIndicator()),
               )
             else
@@ -117,12 +118,12 @@ class _GroupHotelScreenState extends State<GroupHotelScreen> {
                         allocation: cubit.allocationOf(widget.city, hotel.id),
                         onAllocate: () => _allocate(hotel),
                       ),
-                      const Gap(14),
+                      Gap(14.s),
                     ],
                   ],
                 ),
                 fallback: (_) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 60),
+                  padding: EdgeInsets.symmetric(vertical: 60.s),
                   child: EmptyState(
                     message: state is GroupHotelsError
                         ? state.message.tr()

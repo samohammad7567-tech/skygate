@@ -8,6 +8,7 @@ import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/components/empty_state.dart';
 import 'package:skygate/core/components/toast.dart';
 import 'package:skygate/core/models/activity_model.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/journey_details/controller/cubit/activities_cubit.dart';
 import 'package:skygate/features/journey_details/controller/cubit/journey_details_cubit.dart';
@@ -108,8 +109,8 @@ class _ActivitiesBody extends StatelessWidget {
               children: [
                 // Always reachable, whether or not the trip header is drawn:
                 // this screen is only ever pushed, never a tab root.
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(20, 12, 20, 0),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(20.s, 12.s, 20.s, 0),
                   child: AppTitleHeader(showBack: true),
                 ),
                 if (hasTrip) const _TripHeader(),
@@ -120,7 +121,7 @@ class _ActivitiesBody extends StatelessWidget {
                   onSelected: cubit.selectDay,
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 12, 20, 10),
+                  padding: EdgeInsets.fromLTRB(20.s, 12.s, 20.s, 10.s),
                   child: Row(
                     children: [
                       Expanded(
@@ -155,10 +156,10 @@ class _ActivitiesBody extends StatelessWidget {
       bottomNavigationBar: SafeArea(
         top: false,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
+          padding: EdgeInsets.fromLTRB(20.s, 0, 20.s, 12.s),
           child: CustomButton(
             label: 'search_for_activities'.tr(),
-            height: 48,
+            height: 48.s,
             width: double.infinity,
             onPressed: () => _openSearch(context),
           ),
@@ -194,7 +195,7 @@ class _ActivitiesBody extends StatelessWidget {
     return BuildCondition(
       condition: activities.isNotEmpty,
       builder: (_) => ListView(
-        padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
+        padding: EdgeInsets.fromLTRB(20.s, 0, 20.s, 8.s),
         children: [
           for (var i = 0; i < activities.length; i++)
             JourneyTimelineTile(
@@ -228,7 +229,7 @@ class _TripHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<JourneyDetailsCubit, JourneyDetailsState>(
       builder: (context, _) => Padding(
-        padding: const EdgeInsets.fromLTRB(20, 12, 20, 4),
+        padding: EdgeInsets.fromLTRB(20.s, 12.s, 20.s, 4.s),
         child: CurrentTripCard(
           package: context.read<JourneyDetailsCubit>().package,
         ),

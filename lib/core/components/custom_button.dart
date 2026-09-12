@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
@@ -7,9 +8,9 @@ class CustomButton extends StatelessWidget {
     required this.onPressed,
     this.backgroundColor,
     this.foregroundColor,
-    this.height = 44,
+    this.height,
     this.width,
-    this.radius = 10,
+    this.radius,
     this.icon,
     this.isLoading = false,
   });
@@ -18,9 +19,9 @@ class CustomButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final Color? backgroundColor;
   final Color? foregroundColor;
-  final double height;
+  final double? height;
   final double? width;
-  final double radius;
+  final double? radius;
   final Widget? icon;
   final bool isLoading;
 
@@ -31,7 +32,7 @@ class CustomButton extends StatelessWidget {
     final foreground = foregroundColor ?? theme.colorScheme.onPrimary;
 
     return SizedBox(
-      height: height,
+      height: (height ?? 44.s),
       width: width,
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
@@ -40,17 +41,17 @@ class CustomButton extends StatelessWidget {
           foregroundColor: foreground,
           disabledBackgroundColor: background.withValues(alpha: 0.6),
           elevation: 0,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: 16.s),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(radius),
+            borderRadius: BorderRadius.circular((radius ?? 10.s)),
           ),
         ),
         child: isLoading
             ? SizedBox(
-                height: 18,
-                width: 18,
+                height: 18.s,
+                width: 18.s,
                 child: CircularProgressIndicator(
-                  strokeWidth: 2,
+                  strokeWidth: 2.s,
                   color: foreground,
                 ),
               )
@@ -67,7 +68,7 @@ class CustomButton extends StatelessWidget {
                       ),
                     ),
                   ),
-                  if (icon != null) ...[const SizedBox(width: 8), icon!],
+                  if (icon != null) ...[SizedBox(width: 8.s), icon!],
                 ],
               ),
       ),

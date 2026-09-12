@@ -5,6 +5,7 @@ import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/components/cached_image.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/card_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/cards/models/pilgrim_card_model.dart';
 
 /// "معاينة الوجه الخلفي" — the scannable face: the card's title, the QR a
@@ -25,11 +26,11 @@ class PilgrimCardBack extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
         children: [
-          const SizedBox(height: 8),
-          CardQr(url: card?.qrUrl, size: 170),
-          const SizedBox(height: 20),
+          SizedBox(height: 8.s),
+          CardQr(url: card?.qrUrl, size: 170.s),
+          SizedBox(height: 20.s),
           const AppCardRule(),
-          const SizedBox(height: 16),
+          SizedBox(height: 16.s),
           _EmergencyBox(phone: card?.emergencyPhone),
         ],
       ),
@@ -65,7 +66,7 @@ class CardTitleBand extends StatelessWidget {
             color: AppColors.surface,
           ),
         ),
-        const SizedBox(height: 2),
+        SizedBox(height: 2.s),
         Text(
           latinTitle,
           textAlign: TextAlign.center,
@@ -84,29 +85,29 @@ class CardTitleBand extends StatelessWidget {
 /// The QR the API publishes as an image URL. Nothing is generated on device —
 /// a card with no QR yet shows the outline glyph instead of a broken box.
 class CardQr extends StatelessWidget {
-  const CardQr({super.key, required this.url, this.size = 150});
+  const CardQr({super.key, required this.url, this.size});
 
   final String? url;
-  final double size;
+  final double? size;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        height: size,
-        width: size,
+        height: (size ?? 150.s),
+        width: (size ?? 150.s),
         child: url == null
             ? AppImage(
                 CardAssets.qr,
-                height: size,
-                width: size,
+                height: (size ?? 150.s),
+                width: (size ?? 150.s),
                 color: AppColors.textSecondary,
               )
             : CachedImage(
                 url: url,
                 fallbackAsset: CardAssets.qr,
-                height: size,
-                width: size,
+                height: (size ?? 150.s),
+                width: (size ?? 150.s),
                 fit: BoxFit.contain,
               ),
       ),
@@ -125,9 +126,9 @@ class _EmergencyBox extends StatelessWidget {
 
     return Center(
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: EdgeInsets.symmetric(horizontal: 16.s, vertical: 8.s),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(10.s),
           border: Border.all(color: AppColors.accent),
         ),
         child: Row(
@@ -135,11 +136,11 @@ class _EmergencyBox extends StatelessWidget {
           children: [
             AppImage(
               CardAssets.emergency,
-              height: 24,
-              width: 24,
+              height: 24.s,
+              width: 24.s,
               color: AppColors.primary,
             ),
-            const SizedBox(width: 10),
+            SizedBox(width: 10.s),
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [

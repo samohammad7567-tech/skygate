@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/constants/app_colors.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 void showToast(BuildContext context, String message, {bool isError = false}) {
   ScaffoldMessenger.of(context)
@@ -9,8 +10,10 @@ void showToast(BuildContext context, String message, {bool isError = false}) {
         content: Text(message, textAlign: TextAlign.center),
         backgroundColor: isError ? AppColors.error : AppColors.primary,
         behavior: SnackBarBehavior.floating,
-        margin: const EdgeInsets.all(16),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        margin: EdgeInsets.all(16.s),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.s),
+        ),
       ),
     );
 }

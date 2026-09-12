@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/payments/models/payment_currency.dart';
 
 class PaymentAmountField extends StatelessWidget {
@@ -33,10 +34,7 @@ class PaymentAmountField extends StatelessWidget {
       decoration: InputDecoration(
         filled: true,
         fillColor: theme.colorScheme.surface,
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 14,
-          vertical: 16,
-        ),
+        contentPadding: EdgeInsets.symmetric(horizontal: 14.s, vertical: 16.s),
         prefixIcon: _CurrencyChip(currency: currency),
         prefixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
         border: _border(theme.colorScheme.outline),
@@ -49,7 +47,7 @@ class PaymentAmountField extends StatelessWidget {
   }
 
   OutlineInputBorder _border(Color color) => OutlineInputBorder(
-    borderRadius: BorderRadius.circular(12),
+    borderRadius: BorderRadius.circular(12.s),
     borderSide: BorderSide(color: color),
   );
 }
@@ -64,12 +62,12 @@ class _CurrencyChip extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 8, 0),
+      padding: EdgeInsetsDirectional.fromSTEB(12.s, 0, 8.s, 0),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        padding: EdgeInsets.symmetric(horizontal: 10.s, vertical: 5.s),
         decoration: BoxDecoration(
           color: theme.colorScheme.surfaceContainerHighest,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(8.s),
         ),
         child: Text(
           currency.code,

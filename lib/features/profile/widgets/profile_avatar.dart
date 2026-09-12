@@ -5,19 +5,25 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/api_endpoints.dart';
 import 'package:skygate/core/constants/profile_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class ProfileAvatar extends StatelessWidget {
-  const ProfileAvatar({super.key, this.url, this.file, this.size = 92});
+  const ProfileAvatar({super.key, this.url, this.file, this.size});
   final String? url;
   final File? file;
 
-  final double size;
+  final double? size;
 
   @override
   Widget build(BuildContext context) {
     if (file != null) {
       return ClipOval(
-        child: Image.file(file!, height: size, width: size, fit: BoxFit.cover),
+        child: Image.file(
+          file!,
+          height: (size ?? 92.s),
+          width: (size ?? 92.s),
+          fit: BoxFit.cover,
+        ),
       );
     }
 
@@ -27,8 +33,8 @@ class ProfileAvatar extends StatelessWidget {
     return ClipOval(
       child: CachedNetworkImage(
         imageUrl: resolved,
-        height: size,
-        width: size,
+        height: (size ?? 92.s),
+        width: (size ?? 92.s),
         fit: BoxFit.cover,
         placeholder: (_, _) => _placeholder,
         errorWidget: (_, _, _) => _placeholder,
@@ -36,6 +42,9 @@ class ProfileAvatar extends StatelessWidget {
     );
   }
 
-  Widget get _placeholder =>
-      AppImage(ProfileAssets.avatar, height: size, width: size);
+  Widget get _placeholder => AppImage(
+    ProfileAssets.avatar,
+    height: (size ?? 92.s),
+    width: (size ?? 92.s),
+  );
 }

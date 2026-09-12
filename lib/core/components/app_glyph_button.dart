@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 /// A flat 36px tap target around a bundled glyph — the chevrons stepping the
 /// map's date bar, the attach and mic buttons of the support composer.
@@ -13,8 +14,8 @@ class AppGlyphButton extends StatelessWidget {
     required this.tooltip,
     required this.onTap,
     this.color,
-    this.size = 36,
-    this.glyphSize = 18,
+    this.size,
+    this.glyphSize,
     this.mirrorInRtl = false,
   });
 
@@ -28,8 +29,8 @@ class AppGlyphButton extends StatelessWidget {
   /// Tint of the glyph. Defaults to the theme's primary colour.
   final Color? color;
 
-  final double size;
-  final double glyphSize;
+  final double? size;
+  final double? glyphSize;
 
   /// Flips the glyph horizontally under RTL. Set it on a directional export —
   /// an arrow drawn the way an LTR reader expects — so that in either language
@@ -42,8 +43,8 @@ class AppGlyphButton extends StatelessWidget {
 
     Widget glyph = AppImage(
       asset,
-      height: glyphSize,
-      width: glyphSize,
+      height: (glyphSize ?? 18.s),
+      width: (glyphSize ?? 18.s),
       color: color ?? theme.colorScheme.primary,
     );
 
@@ -57,7 +58,10 @@ class AppGlyphButton extends StatelessWidget {
     return IconButton(
       onPressed: onTap,
       tooltip: tooltip,
-      constraints: BoxConstraints.tightFor(width: size, height: size),
+      constraints: BoxConstraints.tightFor(
+        width: (size ?? 36.s),
+        height: (size ?? 36.s),
+      ),
       padding: EdgeInsets.zero,
       icon: glyph,
     );

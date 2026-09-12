@@ -6,6 +6,7 @@ import 'package:skygate/core/components/app_glyph_button.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/map_assets.dart';
 import 'package:skygate/core/utils/app_format.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class MapDateBar extends StatelessWidget {
   const MapDateBar({
@@ -26,7 +27,7 @@ class MapDateBar extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 4, 16, 10),
+      padding: EdgeInsets.fromLTRB(16.s, 4.s, 16.s, 10.s),
       child: Row(
         children: [
           AppGlyphButton(
@@ -39,17 +40,17 @@ class MapDateBar extends StatelessWidget {
             child: Center(
               child: Material(
                 color: theme.colorScheme.surface,
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(20.s),
                 child: InkWell(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(20.s),
                   onTap: onPickDate,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 7,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 16.s,
+                      vertical: 7.s,
                     ),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(20.s),
                       border: Border.all(color: theme.colorScheme.primary),
                     ),
                     child: Row(
@@ -57,11 +58,11 @@ class MapDateBar extends StatelessWidget {
                       children: [
                         AppImage(
                           MapAssets.calendar,
-                          height: 16,
-                          width: 16,
+                          height: 16.s,
+                          width: 16.s,
                           color: theme.colorScheme.primary,
                         ),
-                        const SizedBox(width: 8),
+                        SizedBox(width: 8.s),
                         Text(
                           AppFormat.isoDate(date),
                           maxLines: 1,

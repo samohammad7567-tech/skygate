@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class RegisterStepper extends StatelessWidget {
   const RegisterStepper({super.key, required this.currentStep});
@@ -39,7 +40,7 @@ class _StepDot extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: isDone ? theme.colorScheme.primary : theme.colorScheme.surface,
-        border: Border.all(color: theme.colorScheme.primary, width: 1.6),
+        border: Border.all(color: theme.colorScheme.primary, width: 1.6.s),
       ),
       child: Text(
         '$number',

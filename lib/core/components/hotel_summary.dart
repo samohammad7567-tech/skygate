@@ -5,6 +5,7 @@ import 'package:skygate/core/components/icon_text_row.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
 import 'package:skygate/core/models/hotel_model.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class HotelSummary extends StatelessWidget {
   const HotelSummary({super.key, required this.hotel});
@@ -27,26 +28,26 @@ class HotelSummary extends StatelessWidget {
             color: theme.colorScheme.primary,
           ),
         ),
-        const Gap(2),
+        Gap(2.s),
         Text(
           hotel.city ?? '',
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: theme.textTheme.titleSmall,
         ),
-        const Gap(4),
+        Gap(4.s),
         IconTextRow(
           asset: JourneyAssets.star,
           iconColor: AppColors.accent,
           text: '${hotel.rating ?? '—'}',
           textStyle: theme.textTheme.bodySmall,
         ),
-        const Gap(4),
+        Gap(4.s),
         IconTextRow(
           asset: JourneyAssets.nights,
           text: 'nights_count'.tr(namedArgs: {'count': '${hotel.nights ?? 0}'}),
         ),
-        const Gap(4),
+        Gap(4.s),
         IconTextRow(asset: JourneyAssets.location, text: hotel.address ?? ''),
       ],
     );

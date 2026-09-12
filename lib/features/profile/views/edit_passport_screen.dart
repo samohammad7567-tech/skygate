@@ -11,6 +11,7 @@ import 'package:skygate/core/components/passport_fields_form.dart';
 import 'package:skygate/core/components/passport_scan_banner.dart';
 import 'package:skygate/core/components/toast.dart';
 import 'package:skygate/core/constants/profile_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/profile/controller/cubit/profile_cubit.dart';
 import 'package:skygate/features/profile/views/passport_scan_screen.dart';
@@ -77,12 +78,12 @@ class _EditPassportScreenState extends State<EditPassportScreen> {
           onBack: _cancel,
           children: [
             AppSectionTitle(text: 'edit_passport_information'.tr()),
-            const Gap(14),
+            Gap(14.s),
             if (hasVerdict) ...[
               PassportScanBanner(succeeded: cubit.isScanned),
-              const Gap(16),
+              Gap(16.s),
               FormSectionTitle(text: 'confirm_data_below'.tr()),
-              const Gap(14),
+              Gap(14.s),
               PassportScanTrigger(
                 caption:
                     (cubit.isScanned
@@ -97,21 +98,21 @@ class _EditPassportScreenState extends State<EditPassportScreen> {
                 caption: 'you_can_use_camera'.tr(),
                 onTap: _scan,
               ),
-              const Gap(16),
+              Gap(16.s),
               const CaptureInstructionsCard(),
             ],
-            const Gap(16),
+            Gap(16.s),
             CustomButton(
               label: 'capture_and_read_passport'.tr(),
-              height: 48,
-              icon: const AppImage(
+              height: 48.s,
+              icon: AppImage(
                 ProfileAssets.camera,
-                height: 18,
+                height: 18.s,
                 color: Colors.white,
               ),
               onPressed: _scan,
             ),
-            const Gap(18),
+            Gap(18.s),
             Form(
               key: _formKey,
               child: PassportFieldsForm(
@@ -120,7 +121,7 @@ class _EditPassportScreenState extends State<EditPassportScreen> {
                 onChanged: cubit.passportChanged,
               ),
             ),
-            const Gap(22),
+            Gap(22.s),
             ProfileFormActions(
               isSaving: state is PassportSaving,
               onSave: _save,

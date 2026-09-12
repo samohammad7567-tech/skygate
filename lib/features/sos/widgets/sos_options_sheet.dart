@@ -10,6 +10,7 @@ import 'package:skygate/core/components/sheet_handle.dart';
 import 'package:skygate/core/components/toast.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/sos_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/sos/controller/cubit/lost_items_cubit.dart';
 import 'package:skygate/features/sos/controller/cubit/sos_cubit.dart';
@@ -82,26 +83,26 @@ class SosOptionsSheet extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: theme.scaffoldBackgroundColor,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24.s)),
       ),
       child: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Gap(10),
+            Gap(10.s),
             const SheetHandle(),
-            const Gap(16),
+            Gap(16.s),
             for (final option in SosOption.values) ...[
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: EdgeInsets.symmetric(horizontal: 16.s),
                 child: _OptionRow(
                   option: option,
                   onTap: () => _open(context, option),
                 ),
               ),
-              const Gap(12),
+              Gap(12.s),
             ],
-            const Gap(4),
+            Gap(4.s),
           ],
         ),
       ),
@@ -122,14 +123,14 @@ class _OptionRow extends StatelessWidget {
 
     return Material(
       color: theme.colorScheme.surface,
-      borderRadius: BorderRadius.circular(14),
+      borderRadius: BorderRadius.circular(14.s),
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(14.s),
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+          padding: EdgeInsets.symmetric(horizontal: 12.s, vertical: 12.s),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(14.s),
             border: Border.all(color: theme.colorScheme.outline),
           ),
           child: Row(
@@ -140,12 +141,12 @@ class _OptionRow extends StatelessWidget {
                 flipX: Directionality.of(context) == TextDirection.rtl,
                 child: AppImage(
                   SosAssets.chevron,
-                  height: 18,
-                  width: 18,
+                  height: 18.s,
+                  width: 18.s,
                   color: theme.colorScheme.primary,
                 ),
               ),
-              const Gap(8),
+              Gap(8.s),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -165,7 +166,7 @@ class _OptionRow extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const Gap(4),
+                    Gap(4.s),
                     Text(
                       subtitleKey?.tr() ?? SosContacts.emergencyNumber,
                       textAlign: TextAlign.end,
@@ -183,8 +184,8 @@ class _OptionRow extends StatelessWidget {
                   ],
                 ),
               ),
-              const Gap(10),
-              AppGlyphPlate(asset: option.icon, size: 42, glyphSize: 20),
+              Gap(10.s),
+              AppGlyphPlate(asset: option.icon, size: 42.s, glyphSize: 20.s),
             ],
           ),
         ),
@@ -201,7 +202,7 @@ class _OnlineBadge extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsetsDirectional.only(end: 8),
+      padding: EdgeInsetsDirectional.only(end: 8.s),
       child: Text(
         'sos_online'.tr(),
         maxLines: 1,

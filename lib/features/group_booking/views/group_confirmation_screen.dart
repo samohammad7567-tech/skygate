@@ -6,6 +6,7 @@ import 'package:skygate/core/components/app_outlined_button.dart';
 import 'package:skygate/core/components/app_page_header.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/main/views/main_screen.dart';
 
@@ -29,10 +30,10 @@ class GroupConfirmationScreen extends StatelessWidget {
             ),
             Expanded(
               child: ListView(
-                padding: const EdgeInsets.fromLTRB(24, 20, 24, 20),
+                padding: EdgeInsets.fromLTRB(24.s, 20.s, 24.s, 20.s),
                 children: [
-                  const AppImage(AuthAssets.successCheck, height: 280),
-                  const Gap(28),
+                  AppImage(AuthAssets.successCheck, height: 280.vs),
+                  Gap(28.s),
                   Text(
                     'congratulations'.tr(),
                     textAlign: TextAlign.center,
@@ -40,7 +41,7 @@ class GroupConfirmationScreen extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: theme.textTheme.headlineSmall,
                   ),
-                  const Gap(12),
+                  Gap(12.s),
                   Text(
                     'booking_saved_note'.tr(),
                     textAlign: TextAlign.center,
@@ -52,23 +53,23 @@ class GroupConfirmationScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+              padding: EdgeInsets.fromLTRB(20.s, 0, 20.s, 20.s),
               child: Row(
                 children: [
                   Expanded(
                     child: CustomButton(
                       label: 'complete_payment'.tr(),
-                      height: 46,
+                      height: 46.s,
                       // Payment is not designed yet; the card closes onto the
                       // home tabs either way.
                       onPressed: () => _finish(context),
                     ),
                   ),
-                  const Gap(12),
+                  Gap(12.s),
                   Expanded(
                     child: AppOutlinedButton(
                       label: 'back_to_home'.tr(),
-                      height: 46,
+                      height: 46.s,
                       onPressed: () => _finish(context),
                     ),
                   ),

@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/core/utils/screen_size.dart';
 import 'package:skygate/features/home/controller/cubit/home_cubit.dart';
@@ -108,14 +109,14 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 RefreshIndicator(
                   onRefresh: cubit.getHome,
-                  edgeOffset: HomeHeader.height,
+                  edgeOffset: HomeHeader.height.s,
                   child: ListView(
-                    padding: const EdgeInsets.only(
+                    padding: EdgeInsets.only(
                       // The header is painted on top of the list so its shadow
                       // falls over the hero photo, so the list reserves its
                       // height here instead of holding it as an item.
-                      top: HomeHeader.height,
-                      bottom: 120,
+                      top: HomeHeader.height.s,
+                      bottom: 120.s,
                     ),
                     children: [
                       HeroSearchCard(
@@ -125,13 +126,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         onPickDate: _pickTravelDate,
                         onSearch: cubit.searchTrips,
                       ),
-                      const SizedBox(height: 12),
+                      SizedBox(height: 12.s),
                       TravelCategoriesBar(
                         categories: cubit.categories,
                         selectedId: cubit.selectedCategoryId,
                         onSelected: _selectCategory,
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8.s),
                       CurrentOffersSection(
                         offers: cubit.offers,
                         isLoading: state is HomeLoading,
@@ -142,9 +143,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         onViewAll: () {},
                         onOfferTap: _openOffer,
                       ),
-                      const SizedBox(height: 24),
+                      SizedBox(height: 24.s),
                       ServicesSection(services: cubit.services),
-                      const SizedBox(height: 24),
+                      SizedBox(height: 24.s),
                       CustomTripSection(onRequest: _requestPrivateTrip),
                     ],
                   ),

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skygate/core/components/confirm_dialog.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/drawer_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/auth/controller/cubit/auth_cubit.dart';
 import 'package:skygate/features/auth/views/auth_landing_screen.dart';
@@ -58,7 +59,7 @@ class AppDrawerBody extends StatelessWidget {
             const AppDrawerHeader(),
             Expanded(
               child: ListView(
-                padding: const EdgeInsets.only(top: 10, bottom: 8),
+                padding: EdgeInsets.only(top: 10.s, bottom: 8.s),
                 children: [
                   for (final section in DrawerSectionModel.catalogue) ...[
                     if (section.titleKey != null)

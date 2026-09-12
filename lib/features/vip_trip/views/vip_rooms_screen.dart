@@ -7,6 +7,7 @@ import 'package:skygate/core/components/booking_section_title.dart';
 import 'package:skygate/core/components/booking_step_scaffold.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/models/booking_city.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/main/widgets/app_drawer.dart';
 import 'package:skygate/features/group_booking/widgets/group_room_counter_sheet.dart';
@@ -63,7 +64,7 @@ class _VipRoomsScreenState extends State<VipRoomsScreen> {
               title: 'select_rooms_title'.tr(),
               subtitle: 'applies_to_both_cities'.tr(),
             ),
-            const Gap(16),
+            Gap(16.s),
             if (cubit.hasRooms)
               AppOutlinedButton(
                 label: 'edit_rooms_action'.tr(),
@@ -72,16 +73,16 @@ class _VipRoomsScreenState extends State<VipRoomsScreen> {
             else
               CustomButton(
                 label: 'select_rooms_action'.tr(),
-                height: 48,
+                height: 48.s,
                 width: double.infinity,
                 onPressed: _editCounts,
               ),
-            const Gap(20),
+            Gap(20.s),
             if (cubit.hasRooms)
               VipRoomsSummaryCard(counts: cubit.roomCounts)
             else
-              const Padding(
-                padding: EdgeInsets.only(top: 40),
+              Padding(
+                padding: EdgeInsets.only(top: 40.s),
                 child: VipRoomsEmptyArt(),
               ),
           ],

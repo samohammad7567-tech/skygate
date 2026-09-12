@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class PledgeCheckbox extends StatelessWidget {
   const PledgeCheckbox({
@@ -18,9 +19,9 @@ class PledgeCheckbox extends StatelessWidget {
 
     return InkWell(
       onTap: () => onChanged(!value),
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(8.s),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4),
+        padding: EdgeInsets.symmetric(vertical: 4.s),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -34,10 +35,10 @@ class PledgeCheckbox extends StatelessWidget {
                 ),
               ),
             ),
-            const Gap(10),
+            Gap(10.s),
             SizedBox(
-              height: 24,
-              width: 24,
+              height: 24.s,
+              width: 24.s,
               child: Checkbox(value: value, onChanged: onChanged),
             ),
           ],

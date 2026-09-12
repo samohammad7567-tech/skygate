@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class LabeledField extends StatelessWidget {
   const LabeledField({super.key, required this.label, required this.child});
@@ -13,7 +14,7 @@ class LabeledField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(label, style: Theme.of(context).textTheme.bodySmall),
-        const Gap(6),
+        Gap(6.s),
         child,
       ],
     );

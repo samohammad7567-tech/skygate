@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class BookingCriteriaList extends StatelessWidget {
   const BookingCriteriaList({super.key, required this.criteriaKeys});
@@ -22,14 +23,14 @@ class BookingCriteriaList extends StatelessWidget {
             color: theme.colorScheme.primary,
           ),
         ),
-        const Gap(6),
+        Gap(6.s),
         for (final key in criteriaKeys) ...[
           Text(
             '• ${key.tr()}',
             textAlign: TextAlign.end,
             style: theme.textTheme.bodySmall,
           ),
-          const Gap(4),
+          Gap(4.s),
         ],
       ],
     );

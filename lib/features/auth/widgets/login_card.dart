@@ -8,6 +8,7 @@ import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/components/or_divider.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
 import 'package:skygate/core/utils/app_phone.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/app_validators.dart';
 
 class LoginCard extends StatelessWidget {
@@ -46,7 +47,7 @@ class LoginCard extends StatelessWidget {
         child: Column(
           children: [
             Text('login_title'.tr(), style: theme.textTheme.headlineSmall),
-            const Gap(22),
+            Gap(22.s),
             AppTextField(
               controller: identifierController,
               hint: isPhoneLogin ? 'phone_number'.tr() : 'email'.tr(),
@@ -60,7 +61,7 @@ class LoginCard extends StatelessWidget {
                   ? AppValidators.phone
                   : AppValidators.email,
             ),
-            const Gap(12),
+            Gap(12.s),
             AppTextField(
               controller: passwordController,
               hint: 'password'.tr(),
@@ -70,7 +71,7 @@ class LoginCard extends StatelessWidget {
               textInputAction: TextInputAction.done,
               validator: AppValidators.password,
             ),
-            const Gap(8),
+            Gap(8.s),
             Align(
               alignment: AlignmentDirectional.centerStart,
               child: GestureDetector(
@@ -84,19 +85,19 @@ class LoginCard extends StatelessWidget {
                 ),
               ),
             ),
-            const Gap(16),
+            Gap(16.s),
             CustomButton(
               label: isPhoneLogin
                   ? 'login_with_phone'.tr()
                   : 'login_with_email'.tr(),
               width: double.infinity,
-              height: 48,
+              height: 48.s,
               isLoading: isLoading,
               onPressed: onSubmit,
             ),
-            const Gap(16),
+            Gap(16.s),
             const OrDivider(),
-            const Gap(16),
+            Gap(16.s),
             AppOutlinedButton(
               label: isPhoneLogin
                   ? 'login_with_email'.tr()

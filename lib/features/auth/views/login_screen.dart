@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_background.dart';
 import 'package:skygate/core/components/app_title_header.dart';
 import 'package:skygate/core/components/toast.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/auth/controller/cubit/auth_cubit.dart';
 import 'package:skygate/features/auth/widgets/login_card.dart';
@@ -63,11 +64,11 @@ class _LoginBodyState extends State<_LoginBody> {
               final cubit = context.read<AuthCubit>();
 
               return SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(24, 40, 24, 40),
+                padding: EdgeInsets.fromLTRB(24.s, 40.s, 24.s, 40.s),
                 child: Column(
                   children: [
                     const AppTitleHeader(showBack: true),
-                    const Gap(28),
+                    Gap(28.s),
                     LoginCard(
                       formKey: _formKey,
                       isPhoneLogin: cubit.isPhoneLogin,

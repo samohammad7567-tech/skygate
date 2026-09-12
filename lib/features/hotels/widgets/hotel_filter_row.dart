@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_glyph_plate.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class HotelFilterRow extends StatelessWidget {
   const HotelFilterRow({super.key, required this.asset, required this.child});
@@ -10,11 +11,11 @@ class HotelFilterRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 14),
+      padding: EdgeInsets.symmetric(vertical: 14.s),
       child: Row(
         children: [
-          AppGlyphPlate(asset: asset, size: 46, glyphSize: 22),
-          const SizedBox(width: 14),
+          AppGlyphPlate(asset: asset, size: 46.s, glyphSize: 22.s),
+          SizedBox(width: 14.s),
           Expanded(child: child),
         ],
       ),
@@ -40,7 +41,7 @@ class HotelFilterValue extends StatelessWidget {
 
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(8.s),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -51,7 +52,7 @@ class HotelFilterValue extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: theme.textTheme.bodySmall,
           ),
-          const SizedBox(height: 4),
+          SizedBox(height: 4.s),
           Text(
             value,
             maxLines: 1,

@@ -7,6 +7,7 @@ import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/components/dashed_box.dart';
 import 'package:skygate/core/components/upload_size_chip.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class ProfilePhotoPicker extends StatelessWidget {
   const ProfilePhotoPicker({
@@ -28,7 +29,7 @@ class ProfilePhotoPicker extends StatelessWidget {
 
     return DashedBox(
       onTap: onTap,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 22),
+      padding: EdgeInsets.symmetric(horizontal: 16.s, vertical: 22.s),
       child: Column(
         children: [
           if (image == null)
@@ -42,22 +43,22 @@ class ProfilePhotoPicker extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-          const Gap(14),
+          Gap(14.s),
           Text(
             'tap_to_upload_photo'.tr(),
             textAlign: TextAlign.center,
             style: theme.textTheme.titleMedium,
           ),
-          const Gap(4),
+          Gap(4.s),
           Text(
             'pick_from_gallery_or_camera'.tr(),
             textAlign: TextAlign.center,
             style: theme.textTheme.bodySmall,
           ),
-          const Gap(12),
+          Gap(12.s),
           const UploadSizeChip(),
           if (image != null) ...[
-            const Gap(8),
+            Gap(8.s),
             TextButton(
               onPressed: onRemove,
               child: Text(

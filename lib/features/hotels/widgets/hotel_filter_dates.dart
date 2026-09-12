@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/utils/app_format.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/hotels/widgets/hotel_filter_row.dart';
 
 class HotelFilterDates extends StatelessWidget {
@@ -32,7 +33,7 @@ class HotelFilterDates extends StatelessWidget {
               onTap: onPickFrom,
             ),
           ),
-          const VerticalDivider(width: 24, thickness: 1),
+          VerticalDivider(width: 24.s, thickness: 1.s),
           Expanded(
             child: HotelFilterValue(
               label: 'date_to'.tr(),

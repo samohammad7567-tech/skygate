@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 /// Opens a modal bottom sheet dressed the way every sheet in the app is: on
 /// the surface colour, with its top two corners rounded to 20.
@@ -15,8 +16,8 @@ Future<T?> showAppSheet<T>(
     context: context,
     isScrollControlled: isScrollControlled,
     backgroundColor: Theme.of(context).colorScheme.surface,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(20.s)),
     ),
     builder: builder,
   );

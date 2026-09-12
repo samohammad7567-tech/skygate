@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_sheet.dart';
 import 'package:skygate/core/components/sheet_handle.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/group_booking/models/group_room_seat.dart';
 import 'package:skygate/features/group_booking/widgets/group_room_seat_row.dart';
 
@@ -29,13 +30,13 @@ class _TravelersSheet extends StatelessWidget {
 
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 12, 20, 16),
+        padding: EdgeInsets.fromLTRB(20.s, 12.s, 20.s, 16.s),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SheetHandle(),
-            const Gap(14),
+            Gap(14.s),
             Text(
               'travelers_details'.tr(),
               textAlign: TextAlign.center,
@@ -45,12 +46,12 @@ class _TravelersSheet extends StatelessWidget {
                 color: theme.colorScheme.primary,
               ),
             ),
-            const Gap(12),
+            Gap(12.s),
             Flexible(
               child: ListView.separated(
                 shrinkWrap: true,
                 itemCount: seats.length,
-                separatorBuilder: (_, _) => const Divider(height: 1),
+                separatorBuilder: (_, _) => Divider(height: 1.s),
                 itemBuilder: (_, index) => GroupRoomSeatRow(
                   seat: seats[index],
                   position: index + 1,

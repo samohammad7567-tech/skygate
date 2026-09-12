@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class SectionHeader extends StatelessWidget {
   const SectionHeader({
@@ -32,11 +33,11 @@ class SectionHeader extends StatelessWidget {
             style: OutlinedButton.styleFrom(
               foregroundColor: theme.colorScheme.primary,
               side: BorderSide(color: theme.colorScheme.primary),
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-              minimumSize: const Size(0, 34),
+              padding: EdgeInsets.symmetric(horizontal: 16.s, vertical: 4.s),
+              minimumSize: Size(0, 34.s),
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(8.s),
               ),
             ),
             child: Text(

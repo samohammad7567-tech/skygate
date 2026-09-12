@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_tab_bar.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/trips/models/trips_tab.dart';
 
 /// The white bar at the top of "رحلاتي": three tabs, the picked one in blue
@@ -26,8 +27,8 @@ class TripsTabBar extends StatelessWidget {
       ],
       selectedIndex: selected.index,
       onChanged: (index) => onChanged(TripsTab.values[index]),
-      padding: const EdgeInsets.symmetric(horizontal: 4),
-      tabPadding: const EdgeInsets.fromLTRB(4, 12, 4, 0),
+      padding: EdgeInsets.symmetric(horizontal: 4.s),
+      tabPadding: EdgeInsets.fromLTRB(4.s, 12.s, 4.s, 0),
       underlineGap: 10,
       tapRadius: 10,
       textStyle: Theme.of(context).textTheme.titleSmall,

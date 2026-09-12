@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/constants/home_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/home/models/home_model.dart';
 
 class HeroSearchCard extends StatelessWidget {
@@ -27,11 +28,11 @@ class HeroSearchCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 28),
+      padding: EdgeInsets.symmetric(horizontal: 28.s),
       child: Stack(
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(14.s),
             child: AppImage(
               HomeAssets.heroBackground,
               height: _imageHeight,
@@ -40,9 +41,9 @@ class HeroSearchCard extends StatelessWidget {
             ),
           ),
           PositionedDirectional(
-            bottom: 12,
-            start: 8,
-            end: 8,
+            bottom: 12.s,
+            start: 8.s,
+            end: 8.s,
             child: _SearchCard(
               travelDate: travelDate,
               city: city,
@@ -78,11 +79,11 @@ class _SearchCard extends StatelessWidget {
 
     return Material(
       color: theme.colorScheme.surface,
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(16.s),
       elevation: 6,
       shadowColor: Colors.black.withValues(alpha: 0.12),
       child: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: EdgeInsets.all(10.s),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -95,7 +96,7 @@ class _SearchCard extends StatelessWidget {
                 value: city?.city ?? 'all_cities'.tr(),
                 onTap: onPickCity,
               ),
-              const Divider(height: 14),
+              Divider(height: 14.s),
             ],
             Row(
               children: [
@@ -111,15 +112,15 @@ class _SearchCard extends StatelessWidget {
                     onTap: onPickDate,
                   ),
                 ),
-                const SizedBox(width: 8),
+                SizedBox(width: 8.s),
                 CustomButton(
                   label: 'search'.tr(),
                   onPressed: onSearch,
-                  height: 42,
+                  height: 42.s,
                   icon: AppImage(
                     HomeAssets.search,
-                    width: 18,
-                    height: 18,
+                    width: 18.s,
+                    height: 18.s,
                     color: theme.colorScheme.onPrimary,
                   ),
                 ),
@@ -151,16 +152,16 @@ class _Field extends StatelessWidget {
 
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(8.s),
       child: Row(
         children: [
           AppImage(
             asset,
-            width: 26,
-            height: 26,
+            width: 26.s,
+            height: 26.s,
             color: theme.colorScheme.primary,
           ),
-          const SizedBox(width: 10),
+          SizedBox(width: 10.s),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -174,7 +175,7 @@ class _Field extends StatelessWidget {
                     color: theme.colorScheme.primary,
                   ),
                 ),
-                const SizedBox(height: 2),
+                SizedBox(height: 2.s),
                 Text(
                   value,
                   maxLines: 1,

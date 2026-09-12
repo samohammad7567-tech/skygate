@@ -10,6 +10,7 @@ import 'package:skygate/core/components/image_source_sheet.dart';
 import 'package:skygate/core/components/labeled_field.dart';
 import 'package:skygate/core/components/toast.dart';
 import 'package:skygate/core/constants/sos_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/sos/controller/cubit/lost_items_cubit.dart';
 import 'package:skygate/features/sos/widgets/lost_photo_picker.dart';
@@ -61,10 +62,10 @@ class _ReportLostItemScreenState extends State<ReportLostItemScreen> {
                   child: Form(
                     key: _formKey,
                     child: ListView(
-                      padding: const EdgeInsets.fromLTRB(20, 4, 20, 28),
+                      padding: EdgeInsets.fromLTRB(20.s, 4.s, 20.s, 28.s),
                       children: [
                         const SosNoteBanner(messageKey: 'lost_report_note'),
-                        const Gap(18),
+                        Gap(18.s),
                         LabeledField(
                           label: 'lost_field_description'.tr(),
                           child: AppTextField(
@@ -78,7 +79,7 @@ class _ReportLostItemScreenState extends State<ReportLostItemScreen> {
                                 : null,
                           ),
                         ),
-                        const Gap(16),
+                        Gap(16.s),
                         LabeledField(
                           label: 'lost_field_photo'.tr(),
                           child: LostPhotoPicker(
@@ -87,7 +88,7 @@ class _ReportLostItemScreenState extends State<ReportLostItemScreen> {
                             onRemove: cubit.removePhoto,
                           ),
                         ),
-                        const Gap(16),
+                        Gap(16.s),
                         LabeledField(
                           label: 'lost_field_place'.tr(),
                           child: Column(
@@ -97,7 +98,7 @@ class _ReportLostItemScreenState extends State<ReportLostItemScreen> {
                                 'lost_place_example'.tr(),
                                 style: Theme.of(context).textTheme.bodySmall,
                               ),
-                              const Gap(6),
+                              Gap(6.s),
                               AppTextField(
                                 hint: 'lost_hint_place'.tr(),
                                 icon: SosAssets.place,
@@ -107,7 +108,7 @@ class _ReportLostItemScreenState extends State<ReportLostItemScreen> {
                             ],
                           ),
                         ),
-                        const Gap(16),
+                        Gap(16.s),
                         LabeledField(
                           label: 'lost_field_time'.tr(),
                           child: AppDateField(
@@ -120,7 +121,7 @@ class _ReportLostItemScreenState extends State<ReportLostItemScreen> {
                             lastDate: now,
                           ),
                         ),
-                        const Gap(16),
+                        Gap(16.s),
                         LabeledField(
                           label: 'lost_field_notes'.tr(),
                           child: TextFormField(
@@ -133,10 +134,10 @@ class _ReportLostItemScreenState extends State<ReportLostItemScreen> {
                             ),
                           ),
                         ),
-                        const Gap(24),
+                        Gap(24.s),
                         CustomButton(
                           label: 'lost_submit'.tr(),
-                          height: 48,
+                          height: 48.s,
                           width: double.infinity,
                           isLoading: state is LostItemReportSending,
                           onPressed: _submit,

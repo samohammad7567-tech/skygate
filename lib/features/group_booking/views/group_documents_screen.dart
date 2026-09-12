@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/document_upload_card.dart';
 import 'package:skygate/core/components/image_source_sheet.dart';
 import 'package:skygate/core/components/toast.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/core/components/booking_section_title.dart';
 import 'package:skygate/core/components/booking_step_scaffold.dart';
@@ -65,7 +66,7 @@ class GroupDocumentsScreen extends StatelessWidget {
                   ? 'first_traveler_data'.tr()
                   : 'complete_traveler_data'.tr(),
             ),
-            const Gap(16),
+            Gap(16.s),
             for (final document in cubit.documentTypes) ...[
               DocumentUploadCard(
                 document: document,
@@ -73,7 +74,7 @@ class GroupDocumentsScreen extends StatelessWidget {
                 onTap: () => _pick(context, document.id),
                 onRemove: () => cubit.removeDocument(document.id),
               ),
-              const Gap(14),
+              Gap(14.s),
             ],
           ],
         );

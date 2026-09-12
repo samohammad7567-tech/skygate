@@ -7,6 +7,7 @@ import 'package:skygate/core/components/app_panel.dart';
 import 'package:skygate/core/components/app_title_header.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/main/views/main_screen.dart';
 
@@ -21,7 +22,7 @@ class RegisterSuccessScreen extends StatelessWidget {
       body: AppBackground(
         child: SafeArea(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(24, 32, 24, 32),
+            padding: EdgeInsets.fromLTRB(24.s, 32.s, 24.s, 32.s),
             child: Column(
               children: [
                 AppTitleHeader(
@@ -31,29 +32,29 @@ class RegisterSuccessScreen extends StatelessWidget {
                     const MainScreen(),
                   ),
                 ),
-                const Gap(24),
+                Gap(24.s),
                 AppPanel(
-                  padding: const EdgeInsets.fromLTRB(20, 28, 20, 28),
+                  padding: EdgeInsets.fromLTRB(20.s, 28.s, 20.s, 28.s),
                   child: Column(
                     children: [
                       Text(
                         'account_created'.tr(),
                         style: theme.textTheme.headlineSmall,
                       ),
-                      const Gap(24),
-                      const AppImage(AuthAssets.successCheck, height: 250),
-                      const Gap(28),
+                      Gap(24.s),
+                      AppImage(AuthAssets.successCheck, height: 250.vs),
+                      Gap(28.s),
                       CustomButton(
                         label: 'next'.tr(),
                         width: double.infinity,
-                        height: 48,
+                        height: 48.s,
                         onPressed: () =>
                             NaivgatorHelper.pushAndRemoveUntilNavigation(
                               context,
                               const MainScreen(),
                             ),
                       ),
-                      const Gap(40),
+                      Gap(40.s),
                     ],
                   ),
                 ),

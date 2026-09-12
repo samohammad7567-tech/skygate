@@ -7,6 +7,7 @@ import 'package:skygate/core/components/cached_image.dart';
 import 'package:skygate/core/components/icon_text_row.dart';
 import 'package:skygate/core/constants/sos_assets.dart';
 import 'package:skygate/core/utils/app_format.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/sos/models/lost_item_model.dart';
 
 class LostItemCard extends StatelessWidget {
@@ -20,23 +21,23 @@ class LostItemCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return AppCard(
-      padding: const EdgeInsets.all(10),
-      radius: 14,
+      padding: EdgeInsets.all(10.s),
+      radius: 14.s,
       onTap: onTap,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(10.s),
             child: CachedImage(
               url: item.photo,
               fallbackAsset: item.fallbackPhoto,
-              height: 92,
-              width: 100,
+              height: 92.s,
+              width: 100.s,
               fit: BoxFit.cover,
             ),
           ),
-          const Gap(12),
+          Gap(12.s),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -50,21 +51,21 @@ class LostItemCard extends StatelessWidget {
                     color: theme.colorScheme.primary,
                   ),
                 ),
-                const Gap(6),
+                Gap(6.s),
                 _EndAlignedRow(
                   asset: SosAssets.place,
                   text: item.locationHint ?? '—',
                 ),
-                const Gap(4),
+                Gap(4.s),
                 _EndAlignedRow(
                   asset: SosAssets.date,
                   text: AppFormat.isoDate(item.createdAt),
                 ),
-                const Gap(8),
+                Gap(8.s),
                 Row(
                   children: [
                     _StatusBadge(status: item.status),
-                    const Gap(8),
+                    Gap(8.s),
                     Expanded(
                       child: Text(
                         'lost_handled_by'.tr(args: [item.handledBy ?? '—']),
@@ -113,7 +114,7 @@ class _StatusBadge extends StatelessWidget {
       labelKey: status.labelKey,
       background: status.background,
       foreground: status.foreground,
-      radius: 8,
+      radius: 8.s,
     );
   }
 }

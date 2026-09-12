@@ -5,6 +5,7 @@ import 'package:skygate/core/components/cached_image.dart';
 import 'package:skygate/core/components/hotel_summary.dart';
 import 'package:skygate/core/constants/vip_trip_assets.dart';
 import 'package:skygate/core/models/hotel_model.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class VipHotelOptionCard extends StatelessWidget {
   const VipHotelOptionCard({
@@ -23,24 +24,24 @@ class VipHotelOptionCard extends StatelessWidget {
     return BookingSelectableCard(
       isSelected: isSelected,
       onTap: onTap,
-      padding: const EdgeInsets.all(10),
+      padding: EdgeInsets.all(10.s),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 4),
+            padding: EdgeInsets.only(top: 4.s),
             child: BookingRadio(isSelected: isSelected),
           ),
-          const Gap(10),
+          Gap(10.s),
           Expanded(child: HotelSummary(hotel: hotel)),
-          const Gap(10),
+          Gap(10.s),
           ClipRRect(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(10.s),
             child: CachedImage(
               url: hotel.image,
               fallbackAsset: VipTripAssets.hotelPhoto,
-              height: 116,
-              width: 124,
+              height: 116.s,
+              width: 124.s,
             ),
           ),
         ],

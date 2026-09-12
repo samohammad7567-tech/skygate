@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class GroupAddTravelerButton extends StatelessWidget {
   const GroupAddTravelerButton({
@@ -26,11 +27,11 @@ class GroupAddTravelerButton extends StatelessWidget {
       overflow: TextOverflow.ellipsis,
       style: theme.textTheme.labelLarge?.copyWith(color: foreground),
     );
-    final icon = Icon(Icons.add_circle_outline, size: 20, color: foreground);
+    final icon = Icon(Icons.add_circle_outline, size: 20.s, color: foreground);
     final shape = RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(24),
+      borderRadius: BorderRadius.circular(24.s),
     );
-    const padding = EdgeInsets.symmetric(horizontal: 22, vertical: 12);
+    final padding = EdgeInsets.symmetric(horizontal: 22.s, vertical: 12.s);
 
     return filled
         ? ElevatedButton.icon(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_glyph_plate.dart';
 import 'package:skygate/core/utils/app_format.dart';
 import 'package:skygate/core/models/activity_model.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class MapActivityRow extends StatelessWidget {
   const MapActivityRow({super.key, required this.activity, this.onTap});
@@ -17,17 +18,17 @@ class MapActivityRow extends StatelessWidget {
     return InkWell(
       onTap: activity.hasCoordinates ? onTap : null,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        padding: EdgeInsets.symmetric(horizontal: 20.s, vertical: 12.s),
         child: Row(
           children: [
             AppGlyphPlate(
               asset: activity.kind.icon,
-              size: 38,
-              glyphSize: 18,
+              size: 38.s,
+              glyphSize: 18.s,
               color: activity.accentColor,
               background: activity.surfaceColor,
             ),
-            const SizedBox(width: 12),
+            SizedBox(width: 12.s),
             Expanded(
               child: Text(
                 _hour(context),
@@ -36,7 +37,7 @@ class MapActivityRow extends StatelessWidget {
                 style: theme.textTheme.bodyMedium,
               ),
             ),
-            const SizedBox(width: 12),
+            SizedBox(width: 12.s),
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
@@ -49,7 +50,7 @@ class MapActivityRow extends StatelessWidget {
                     color: activity.accentColor,
                   ),
                 ),
-                const SizedBox(height: 2),
+                SizedBox(height: 2.s),
                 Text(
                   activity.place ?? '',
                   textAlign: TextAlign.end,

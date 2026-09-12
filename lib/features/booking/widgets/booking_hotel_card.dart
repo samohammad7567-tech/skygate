@@ -7,6 +7,7 @@ import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
 import 'package:skygate/core/models/hotel_model.dart';
 import 'package:skygate/core/components/booking_selectable_card.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class BookingHotelCard extends StatelessWidget {
   const BookingHotelCard({
@@ -27,15 +28,15 @@ class BookingHotelCard extends StatelessWidget {
     return BookingSelectableCard(
       isSelected: isSelected,
       onTap: onTap,
-      padding: const EdgeInsets.all(10),
+      padding: EdgeInsets.all(10.s),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 4),
+            padding: EdgeInsets.only(top: 4.s),
             child: BookingRadio(isSelected: isSelected),
           ),
-          const Gap(10),
+          Gap(10.s),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -49,28 +50,28 @@ class BookingHotelCard extends StatelessWidget {
                     color: theme.colorScheme.primary,
                   ),
                 ),
-                const Gap(2),
+                Gap(2.s),
                 Text(
                   hotel.city ?? '',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.titleSmall,
                 ),
-                const Gap(4),
+                Gap(4.s),
                 IconTextRow(
                   asset: JourneyAssets.star,
                   iconColor: AppColors.accent,
                   text: '${hotel.rating ?? '—'}',
                   textStyle: theme.textTheme.bodySmall,
                 ),
-                const Gap(4),
+                Gap(4.s),
                 IconTextRow(
                   asset: JourneyAssets.nights,
                   text: 'nights_count'.tr(
                     namedArgs: {'count': '${hotel.nights ?? 0}'},
                   ),
                 ),
-                const Gap(4),
+                Gap(4.s),
                 IconTextRow(
                   asset: JourneyAssets.location,
                   text: hotel.address ?? '',
@@ -78,14 +79,14 @@ class BookingHotelCard extends StatelessWidget {
               ],
             ),
           ),
-          const Gap(10),
+          Gap(10.s),
           ClipRRect(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(10.s),
             child: CachedImage(
               url: hotel.image,
               fallbackAsset: JourneyAssets.hotelPhoto,
-              height: 116,
-              width: 124,
+              height: 116.s,
+              width: 124.s,
             ),
           ),
         ],

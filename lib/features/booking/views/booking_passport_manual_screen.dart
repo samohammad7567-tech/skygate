@@ -8,6 +8,7 @@ import 'package:skygate/core/components/important_note_card.dart';
 import 'package:skygate/core/components/passport_fields_form.dart';
 import 'package:skygate/core/components/pledge_checkbox.dart';
 import 'package:skygate/core/components/toast.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/booking/controller/cubit/booking_cubit.dart';
 import 'package:skygate/features/booking/views/booking_documents_screen.dart';
@@ -57,26 +58,26 @@ class _BookingPassportManualScreenState
               title: 'data_verification'.tr(),
               subtitle: 'complete_personal_data'.tr(),
             ),
-            const Gap(16),
+            Gap(16.s),
             AppPanel(
-              padding: const EdgeInsets.fromLTRB(16, 20, 16, 20),
+              padding: EdgeInsets.fromLTRB(16.s, 20.s, 16.s, 20.s),
               child: Form(
                 key: _formKey,
                 child: Column(
                   children: [
                     FormSectionTitle(text: 'passport_info'.tr()),
-                    const Gap(14),
+                    Gap(14.s),
                     PassportFieldsForm(
                       form: cubit.passportForm,
                       labeled: false,
                       onChanged: cubit.passportChanged,
                     ),
-                    const Gap(16),
+                    Gap(16.s),
                     PledgeCheckbox(
                       value: cubit.pledgeAccepted,
                       onChanged: cubit.togglePledge,
                     ),
-                    const Gap(14),
+                    Gap(14.s),
                     const ImportantNoteCard(),
                   ],
                 ),

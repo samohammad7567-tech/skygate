@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_card.dart';
 import 'package:skygate/core/components/app_glyph_plate.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/sos/models/sos_option_model.dart';
 
 class SosAudienceCard extends StatelessWidget {
@@ -13,8 +14,8 @@ class SosAudienceCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return AppCard(
-      padding: const EdgeInsets.fromLTRB(14, 16, 14, 18),
-      radius: 16,
+      padding: EdgeInsets.fromLTRB(14.s, 16.s, 14.s, 18.s),
+      radius: 16.s,
       child: Column(
         children: [
           Text(
@@ -24,7 +25,7 @@ class SosAudienceCard extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: theme.textTheme.titleLarge,
           ),
-          const Gap(6),
+          Gap(6.s),
           Text(
             'sos_notify_desc'.tr(),
             textAlign: TextAlign.center,
@@ -32,7 +33,7 @@ class SosAudienceCard extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: theme.textTheme.bodySmall,
           ),
-          const Gap(16),
+          Gap(16.s),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -57,8 +58,8 @@ class _AudienceChip extends StatelessWidget {
 
     return Column(
       children: [
-        AppGlyphPlate(asset: party.icon, size: 42, glyphSize: 20),
-        const Gap(8),
+        AppGlyphPlate(asset: party.icon, size: 42.s, glyphSize: 20.s),
+        Gap(8.s),
         Text(
           party.titleKey.tr(),
           textAlign: TextAlign.center,

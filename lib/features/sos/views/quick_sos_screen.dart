@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_page_header.dart';
 import 'package:skygate/core/components/toast.dart';
 import 'package:skygate/core/constants/sos_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/sos/controller/cubit/sos_cubit.dart';
 import 'package:skygate/features/sos/widgets/sos_audience_card.dart';
 import 'package:skygate/features/sos/widgets/sos_hold_button.dart';
@@ -32,19 +33,19 @@ class QuickSosScreen extends StatelessWidget {
                 AppPageHeader(title: 'sos_option_quick'.tr()),
                 Expanded(
                   child: ListView(
-                    padding: const EdgeInsets.fromLTRB(20, 4, 20, 28),
-                    children: const [
+                    padding: EdgeInsets.fromLTRB(20.s, 4.s, 20.s, 28.s),
+                    children: [
                       SosNoteBanner(
                         titleKey: 'sos_system_title',
                         messageKey: 'sos_system_desc',
                       ),
-                      Gap(24),
+                      Gap(24.s),
                       Center(child: SosHoldButton()),
-                      Gap(24),
+                      Gap(24.s),
                       SosAudienceCard(),
-                      Gap(14),
+                      Gap(14.s),
                       SosStepsCard(),
-                      Gap(14),
+                      Gap(14.s),
                       SosNoteBanner(
                         messageKey: 'sos_keep_location_on',
                         icon: SosAssets.stepLocation,

@@ -5,6 +5,7 @@ import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/components/app_page_header.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/main/views/main_screen.dart';
 
@@ -21,15 +22,15 @@ class BookingConfirmationScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: ListView(
-          padding: const EdgeInsets.fromLTRB(24, 0, 24, 32),
+          padding: EdgeInsets.fromLTRB(24.s, 0, 24.s, 32.s),
           children: [
             AppPageHeader(
               title: 'booking_confirmation'.tr(),
               onBack: () => _finish(context),
             ),
-            const Gap(40),
-            const AppImage(AuthAssets.successCheck, height: 280),
-            const Gap(28),
+            Gap(40.s),
+            AppImage(AuthAssets.successCheck, height: 280.vs),
+            Gap(28.s),
             Text(
               'congratulations'.tr(),
               textAlign: TextAlign.center,
@@ -37,7 +38,7 @@ class BookingConfirmationScreen extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               style: theme.textTheme.headlineSmall,
             ),
-            const Gap(12),
+            Gap(12.s),
             Text(
               'booking_saved_note'.tr(),
               textAlign: TextAlign.center,
@@ -45,10 +46,10 @@ class BookingConfirmationScreen extends StatelessWidget {
                 color: theme.colorScheme.primary,
               ),
             ),
-            const Gap(36),
+            Gap(36.s),
             CustomButton(
               label: 'next'.tr(),
-              height: 48,
+              height: 48.s,
               width: double.infinity,
               onPressed: () => _finish(context),
             ),

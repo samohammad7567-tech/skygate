@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class EmptyState extends StatelessWidget {
   const EmptyState({super.key, required this.message, this.onRetry});
@@ -13,7 +14,7 @@ class EmptyState extends StatelessWidget {
 
     return Center(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 32),
+        padding: EdgeInsets.symmetric(horizontal: 32.s),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -27,7 +28,7 @@ class EmptyState extends StatelessWidget {
               ),
             ),
             if (onRetry != null) ...[
-              const SizedBox(height: 8),
+              SizedBox(height: 8.s),
               TextButton(onPressed: onRetry, child: Text('retry'.tr())),
             ],
           ],

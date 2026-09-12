@@ -5,6 +5,7 @@ import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/constants/vip_trip_assets.dart';
 import 'package:skygate/core/utils/app_format.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/vip_trip/models/private_trip_request_model.dart';
 import 'package:skygate/features/vip_trip/widgets/vip_status_chip.dart';
 
@@ -26,10 +27,10 @@ class VipRequestCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: EdgeInsets.all(12.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Column(
@@ -52,7 +53,7 @@ class VipRequestCard extends StatelessWidget {
                         color: theme.colorScheme.primary,
                       ),
                     ),
-                    const Gap(2),
+                    Gap(2.s),
                     Text(
                       request.reference,
                       maxLines: 1,
@@ -64,9 +65,9 @@ class VipRequestCard extends StatelessWidget {
               ),
             ],
           ),
-          const Gap(10),
-          const Divider(height: 1),
-          const Gap(10),
+          Gap(10.s),
+          Divider(height: 1.s),
+          Gap(10.s),
           Row(
             children: [
               Text(
@@ -90,9 +91,9 @@ class VipRequestCard extends StatelessWidget {
               ),
             ],
           ),
-          const Gap(10),
-          const Divider(height: 1),
-          const Gap(10),
+          Gap(10.s),
+          Divider(height: 1.s),
+          Gap(10.s),
           IntrinsicHeight(
             child: Row(
               children: [
@@ -102,7 +103,7 @@ class VipRequestCard extends StatelessWidget {
                     date: request.startDate,
                   ),
                 ),
-                const VerticalDivider(width: 20),
+                VerticalDivider(width: 20.s),
                 Expanded(
                   child: _DateBlock(
                     labelKey: 'end_date',
@@ -112,10 +113,10 @@ class VipRequestCard extends StatelessWidget {
               ],
             ),
           ),
-          const Gap(12),
+          Gap(12.s),
           CustomButton(
             label: 'view_details'.tr(),
-            height: 42,
+            height: 42.s,
             width: double.infinity,
             onPressed: onDetails,
           ),
@@ -140,10 +141,10 @@ class _DateBlock extends StatelessWidget {
       children: [
         AppImage(
           VipTripAssets.calendar,
-          height: 18,
+          height: 18.s,
           color: theme.colorScheme.primary,
         ),
-        const Gap(8),
+        Gap(8.s),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -156,7 +157,7 @@ class _DateBlock extends StatelessWidget {
                   color: theme.colorScheme.primary,
                 ),
               ),
-              const Gap(2),
+              Gap(2.s),
               Text(
                 AppFormat.numericDate(date),
                 maxLines: 1,

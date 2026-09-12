@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_circle_icon_button.dart';
 import 'package:skygate/core/constants/home_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 /// The drawer handle. Every screen that opens [AppDrawer] renders it through
 /// this widget so the chip keeps one shape and one size across the tabs — the
@@ -19,8 +20,8 @@ class AppMenuButton extends StatelessWidget {
   Widget build(BuildContext context) => AppCircleIconButton(
     asset: HomeAssets.menu,
     tooltip: 'menu'.tr(),
-    size: size,
-    glyphSize: glyphSize,
+    size: size.s,
+    glyphSize: glyphSize.s,
     onTap: onTap,
   );
 }

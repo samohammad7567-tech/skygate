@@ -1,34 +1,37 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class DashedBox extends StatelessWidget {
   const DashedBox({
     super.key,
     required this.child,
-    this.radius = 14,
+    this.radius,
     this.color,
     this.fillColor,
-    this.padding = const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+    this.padding,
     this.onTap,
   });
 
   final Widget child;
-  final double radius;
+  final double? radius;
   final Color? color;
   final Color? fillColor;
-  final EdgeInsetsGeometry padding;
+
+  /// Defaults to the design's 16/20 inset, scaled.
+  final EdgeInsetsGeometry? padding;
   final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final borderRadius = BorderRadius.circular(radius);
+    final borderRadius = BorderRadius.circular((radius ?? 14.s));
 
     return CustomPaint(
       painter: _DashedBorderPainter(
         color: color ?? theme.colorScheme.primary,
-        radius: radius,
+        radius: (radius ?? 14.s),
       ),
       child: Material(
         color: fillColor ?? theme.colorScheme.surfaceContainerHighest,
@@ -37,7 +40,9 @@ class DashedBox extends StatelessWidget {
           onTap: onTap,
           borderRadius: borderRadius,
           child: Padding(
-            padding: padding,
+            padding:
+                padding ??
+                EdgeInsets.symmetric(horizontal: 16.s, vertical: 20.s),
             child: SizedBox(width: double.infinity, child: child),
           ),
         ),

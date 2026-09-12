@@ -9,6 +9,7 @@ import 'package:skygate/core/components/empty_state.dart';
 import 'package:skygate/core/components/toast.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/vip_trip_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/vip_trip/controller/cubit/vip_requests_cubit.dart';
 import 'package:skygate/features/vip_trip/utils/vip_travelers_label.dart';
 import 'package:skygate/features/vip_trip/widgets/vip_summary_card.dart';
@@ -59,7 +60,7 @@ class VipRequestDetailsScreen extends StatelessWidget {
                   child: request == null
                       ? EmptyState(message: 'no_private_trip_requests'.tr())
                       : ListView(
-                          padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
+                          padding: EdgeInsets.fromLTRB(20.s, 8.s, 20.s, 20.s),
                           children: [
                             VipSummaryCard(
                               status: request.status,
@@ -76,7 +77,7 @@ class VipRequestDetailsScreen extends StatelessWidget {
                             // Only shown once the office has priced the
                             // request; nothing carries a quote before that.
                             if (request.quoteDetails.isNotEmpty) ...[
-                              const Gap(16),
+                              Gap(16.s),
                               _Quote(lines: request.quoteDetails),
                             ],
                           ],
@@ -98,10 +99,10 @@ class VipRequestDetailsScreen extends StatelessWidget {
           return SafeArea(
             top: false,
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
+              padding: EdgeInsets.fromLTRB(20.s, 8.s, 20.s, 16.s),
               child: CustomButton(
                 label: 'cancel_request'.tr(),
-                height: 48,
+                height: 48.s,
                 width: double.infinity,
                 isLoading: state is VipCancelLoading,
                 onPressed: () => _confirmCancel(context),
@@ -124,20 +125,20 @@ class _Quote extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
+      padding: EdgeInsets.fromLTRB(16.s, 14.s, 16.s, 14.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text('quote_details'.tr(), style: theme.textTheme.titleLarge),
-          const Gap(10),
+          Gap(10.s),
           for (final line in lines) ...[
             Text(line, style: theme.textTheme.bodyMedium),
-            const Gap(4),
+            Gap(4.s),
           ],
         ],
       ),

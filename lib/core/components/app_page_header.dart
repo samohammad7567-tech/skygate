@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_back_button.dart';
 import 'package:skygate/core/components/app_menu_button.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class AppPageHeader extends StatelessWidget {
   const AppPageHeader({
@@ -26,13 +27,13 @@ class AppPageHeader extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 12, 20, 12),
+      padding: EdgeInsets.fromLTRB(20.s, 12.s, 20.s, 12.s),
       child: ConstrainedBox(
         // The corner chips are AppMenuButton.size tall and sit positioned, so
         // they do not grow the stack. Without a floor it shrinks to the title
         // text, which differs per screen — the chips then overflow (clipped by
         // the stack) and land at a different height on every tab.
-        constraints: const BoxConstraints(minHeight: AppMenuButton.size),
+        constraints: BoxConstraints(minHeight: AppMenuButton.size.s),
         child: Stack(
           alignment: Alignment.center,
           children: [
@@ -42,8 +43,8 @@ class AppPageHeader extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppBackButton.size + 8,
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppBackButton.size.s + 8.s,
                 ),
                 child: Text(
                   title,

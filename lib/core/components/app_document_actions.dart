@@ -4,6 +4,7 @@ import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/my_trips_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 /// The "تحميل / معاينة" pair that closes every document card — a pilgrim
 /// card, a luggage tag, a visa, a ticket.
@@ -38,15 +39,15 @@ class AppDocumentActions extends StatelessWidget {
             height: _height,
             isLoading: isDownloading,
             onPressed: onDownload,
-            icon: const AppImage(
+            icon: AppImage(
               MyTripsAssets.download,
-              height: 18,
-              width: 18,
+              height: 18.s,
+              width: 18.s,
               color: AppColors.surface,
             ),
           ),
         ),
-        const SizedBox(width: 10),
+        SizedBox(width: 10.s),
         Expanded(
           child: SizedBox(
             height: _height,
@@ -55,9 +56,9 @@ class AppDocumentActions extends StatelessWidget {
               style: OutlinedButton.styleFrom(
                 backgroundColor: theme.colorScheme.surface,
                 side: BorderSide(color: theme.colorScheme.primary),
-                padding: const EdgeInsets.symmetric(horizontal: 8),
+                padding: EdgeInsets.symmetric(horizontal: 8.s),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(10.s),
                 ),
               ),
               child: Row(
@@ -73,11 +74,11 @@ class AppDocumentActions extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 8),
+                  SizedBox(width: 8.s),
                   AppImage(
                     MyTripsAssets.preview,
-                    height: 18,
-                    width: 18,
+                    height: 18.s,
+                    width: 18.s,
                     color: theme.colorScheme.primary,
                   ),
                 ],

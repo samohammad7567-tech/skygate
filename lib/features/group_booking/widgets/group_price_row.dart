@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_circle_badge.dart';
 import 'package:skygate/core/components/app_image.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class GroupPriceRow extends StatelessWidget {
   const GroupPriceRow({
@@ -25,16 +26,16 @@ class GroupPriceRow extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 7),
+      padding: EdgeInsets.symmetric(vertical: 7.s),
       child: Row(
         children: [
           AppImage(
             asset,
-            height: 18,
-            width: 18,
+            height: 18.s,
+            width: 18.s,
             color: theme.colorScheme.primary,
           ),
-          const Gap(10),
+          Gap(10.s),
           Flexible(
             child: Text(
               labelKey.tr(),
@@ -45,7 +46,7 @@ class GroupPriceRow extends StatelessWidget {
               ),
             ),
           ),
-          if (count != null) ...[const Gap(6), _CountBadge(count: count!)],
+          if (count != null) ...[Gap(6.s), _CountBadge(count: count!)],
           const Spacer(),
           Text(
             price == null ? '—' : '$price${currency ?? ''}',
@@ -78,7 +79,7 @@ class GroupTotalRow extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: EdgeInsets.symmetric(vertical: 8.s),
       child: Row(
         children: [
           Flexible(

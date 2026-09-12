@@ -7,6 +7,7 @@ import 'package:skygate/core/components/booking_section_title.dart';
 import 'package:skygate/core/components/booking_step_scaffold.dart';
 import 'package:skygate/core/components/empty_state.dart';
 import 'package:skygate/core/models/booking_city.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/main/widgets/app_drawer.dart';
 import 'package:skygate/features/vip_trip/controller/cubit/vip_trip_cubit.dart';
@@ -65,11 +66,13 @@ class _VipHotelScreenState extends State<VipHotelScreen> {
             BookingSectionTitle(
               title: 'select_hotel_in'.tr(args: [widget.city.labelKey.tr()]),
             ),
-            const Gap(16),
+            Gap(16.s),
             if (state is VipHotelsLoading)
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 60),
-                child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 60.s),
+                child: Center(
+                  child: CircularProgressIndicator(strokeWidth: 2.s),
+                ),
               )
             else
               BuildCondition(
@@ -83,12 +86,12 @@ class _VipHotelScreenState extends State<VipHotelScreen> {
                         isSelected: selected?.id == hotel.id,
                         onTap: () => cubit.selectHotel(widget.city, hotel),
                       ),
-                      const Gap(14),
+                      Gap(14.s),
                     ],
                   ],
                 ),
                 fallback: (_) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 60),
+                  padding: EdgeInsets.symmetric(vertical: 60.s),
                   child: EmptyState(
                     message: state is VipHotelsError
                         ? state.message.tr()

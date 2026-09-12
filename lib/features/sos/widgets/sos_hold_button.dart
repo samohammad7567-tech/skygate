@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/sos_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/sos/controller/cubit/sos_cubit.dart';
 
 class SosHoldButton extends StatelessWidget {
@@ -77,7 +78,7 @@ class _Disc extends StatelessWidget {
     return Container(
       height: SosHoldButton._size,
       width: SosHoldButton._size,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         shape: BoxShape.circle,
         // The design's disc is lit from the top, which a flat fill loses.
         gradient: RadialGradient(
@@ -89,11 +90,11 @@ class _Disc extends StatelessWidget {
       ),
       child: Center(
         child: isSending
-            ? const SizedBox(
-                height: 34,
-                width: 34,
+            ? SizedBox(
+                height: 34.s,
+                width: 34.s,
                 child: CircularProgressIndicator(
-                  strokeWidth: 3,
+                  strokeWidth: 3.s,
                   color: Colors.white,
                 ),
               )
@@ -102,11 +103,11 @@ class _Disc extends StatelessWidget {
                 children: [
                   AppImage(
                     isRaised ? SosAssets.read : SosAssets.quickSos,
-                    height: 30,
-                    width: 30,
+                    height: 30.s,
+                    width: 30.s,
                     color: Colors.white,
                   ),
-                  const SizedBox(height: 6),
+                  SizedBox(height: 6.s),
                   Text(
                     'sos'.tr(),
                     maxLines: 1,
@@ -116,9 +117,9 @@ class _Disc extends StatelessWidget {
                       letterSpacing: 1.5,
                     ),
                   ),
-                  const SizedBox(height: 2),
+                  SizedBox(height: 2.s),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 18),
+                    padding: EdgeInsets.symmetric(horizontal: 18.s),
                     child: Text(
                       isRaised ? 'sos_raised_short'.tr() : 'sos_hold_hint'.tr(),
                       textAlign: TextAlign.center,

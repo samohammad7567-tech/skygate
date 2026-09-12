@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skygate/core/components/empty_state.dart';
 import 'package:skygate/core/components/activity_legend_bar.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/map/controller/cubit/map_cubit.dart';
 import 'package:skygate/features/map/widgets/map_activity_row.dart';
 import 'package:skygate/features/map/widgets/map_canvas.dart';
@@ -30,7 +31,7 @@ class MapLiveView extends StatelessWidget {
               onPickDate: onPickDate,
             ),
             SizedBox(
-              height: 260,
+              height: 260.vs,
               child: MapCanvas(
                 position: cubit.currentPoint,
                 activities: cubit.pinnedActivities,
@@ -45,13 +46,18 @@ class MapLiveView extends StatelessWidget {
                 child: BuildCondition(
                   condition: cubit.activities.isNotEmpty,
                   builder: (_) => ListView.separated(
-                    padding: const EdgeInsets.only(bottom: 8),
+                    padding: EdgeInsets.only(bottom: 8.s),
                     itemCount: cubit.activities.length + 1,
                     separatorBuilder: (_, index) =>
                         index == 0 ? const SizedBox.shrink() : const Divider(),
                     itemBuilder: (_, index) => index == 0
                         ? Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 14, 20, 10),
+                            padding: EdgeInsets.fromLTRB(
+                              20.s,
+                              14.s,
+                              20.s,
+                              10.s,
+                            ),
                             child: Text(
                               'map_today_activities'.tr(),
                               textAlign: TextAlign.end,
@@ -70,7 +76,7 @@ class MapLiveView extends StatelessWidget {
                   // A scrollable fallback so pull-to-refresh still works on a
                   // day with nothing scheduled.
                   fallback: (_) => ListView(
-                    padding: const EdgeInsets.only(top: 60),
+                    padding: EdgeInsets.only(top: 60.s),
                     children: [
                       EmptyState(
                         message:
@@ -85,7 +91,7 @@ class MapLiveView extends StatelessWidget {
             ActivityLegendBar(kinds: cubit.legend),
             // The shell draws its floating navigation bar over this screen, so
             // the legend has to end above it rather than under it.
-            const SizedBox(height: 88),
+            SizedBox(height: 88.s),
           ],
         );
       },

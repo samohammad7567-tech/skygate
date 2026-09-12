@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/sos_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class SosNoteBanner extends StatelessWidget {
   const SosNoteBanner({
@@ -22,10 +23,10 @@ class SosNoteBanner extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      padding: EdgeInsets.symmetric(horizontal: 14.s, vertical: 12.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surfaceContainerHighest,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Row(
@@ -45,7 +46,7 @@ class SosNoteBanner extends StatelessWidget {
                       color: theme.colorScheme.primary,
                     ),
                   ),
-                  const Gap(4),
+                  Gap(4.s),
                 ],
                 Text(
                   messageKey.tr(),
@@ -59,11 +60,11 @@ class SosNoteBanner extends StatelessWidget {
               ],
             ),
           ),
-          const Gap(10),
+          Gap(10.s),
           AppImage(
             icon ?? SosAssets.quickSos,
-            height: 20,
-            width: 20,
+            height: 20.s,
+            width: 20.s,
             color: theme.colorScheme.primary,
           ),
         ],

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/sos_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/sos/controller/cubit/sos_cubit.dart';
 import 'package:skygate/features/sos/widgets/sos_options_sheet.dart';
 
@@ -36,13 +37,13 @@ class SosButton extends StatelessWidget {
               customBorder: const CircleBorder(),
               onTap: () => SosOptionsSheet.show(context),
               child: SizedBox(
-                height: size,
-                width: size,
+                height: size.s,
+                width: size.s,
                 child: Center(
                   child: AppImage(
                     SosAssets.sos,
-                    height: 26,
-                    width: 26,
+                    height: 26.s,
+                    width: 26.s,
                     color: theme.colorScheme.onPrimary,
                   ),
                 ),

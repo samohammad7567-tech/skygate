@@ -8,6 +8,7 @@ import 'package:skygate/core/components/labeled_field.dart';
 import 'package:skygate/core/components/toast.dart';
 import 'package:skygate/core/constants/profile_assets.dart';
 import 'package:skygate/core/utils/app_phone.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/app_validators.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/profile/controller/cubit/profile_cubit.dart';
@@ -67,14 +68,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           onBack: _cancel,
           children: [
             AppSectionTitle(text: 'edit_account_information'.tr()),
-            const Gap(14),
+            Gap(14.s),
             ProfilePhotoField(
               image: cubit.profileImage,
               url: cubit.user?.avatar,
               onTap: _pickPhoto,
               onRemove: cubit.removeProfileImage,
             ),
-            const Gap(20),
+            Gap(20.s),
             Form(
               key: _formKey,
               child: Column(
@@ -89,7 +90,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       validator: AppValidators.required,
                     ),
                   ),
-                  const Gap(14),
+                  Gap(14.s),
                   LabeledField(
                     label: 'phone_number'.tr(),
                     child: AppTextField(
@@ -102,7 +103,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       validator: AppValidators.phone,
                     ),
                   ),
-                  const Gap(14),
+                  Gap(14.s),
                   LabeledField(
                     label: 'email'.tr(),
                     child: AppTextField(
@@ -117,7 +118,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ],
               ),
             ),
-            const Gap(22),
+            Gap(22.s),
             ProfileFormActions(
               isSaving: state is AccountSaving,
               onSave: _save,

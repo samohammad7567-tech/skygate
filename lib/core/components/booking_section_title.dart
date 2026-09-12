@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class BookingSectionTitle extends StatelessWidget {
   const BookingSectionTitle({super.key, required this.title, this.subtitle});
@@ -21,7 +22,7 @@ class BookingSectionTitle extends StatelessWidget {
           style: theme.textTheme.titleLarge,
         ),
         if (subtitle != null) ...[
-          const Gap(4),
+          Gap(4.s),
           Text(
             subtitle!,
             maxLines: 2,

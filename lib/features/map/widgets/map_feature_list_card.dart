@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_card.dart';
 import 'package:skygate/core/components/app_glyph_plate.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/map/models/map_feature_model.dart';
 
 class MapFeatureListCard extends StatelessWidget {
@@ -17,12 +18,12 @@ class MapFeatureListCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppCard(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-      radius: 16,
+      padding: EdgeInsets.symmetric(horizontal: 14.s, vertical: 6.s),
+      radius: 16.s,
       child: Column(
         children: [
           for (var i = 0; i < features.length; i++) ...[
-            if (i > 0) const Divider(height: 1),
+            if (i > 0) Divider(height: 1.s),
             _FeatureRow(feature: features[i], accent: accent),
           ],
         ],
@@ -43,7 +44,7 @@ class _FeatureRow extends StatelessWidget {
     final subtitleKey = feature.subtitleKey;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12),
+      padding: EdgeInsets.symmetric(vertical: 12.s),
       child: Row(
         children: [
           Expanded(
@@ -58,7 +59,7 @@ class _FeatureRow extends StatelessWidget {
                   style: theme.textTheme.titleMedium?.copyWith(color: accent),
                 ),
                 if (subtitleKey != null) ...[
-                  const SizedBox(height: 4),
+                  SizedBox(height: 4.s),
                   Text(
                     subtitleKey.tr(),
                     textAlign: TextAlign.end,
@@ -70,11 +71,11 @@ class _FeatureRow extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: 12.s),
           AppGlyphPlate(
             asset: feature.icon,
-            size: 40,
-            glyphSize: 20,
+            size: 40.s,
+            glyphSize: 20.s,
             color: accent,
             background: accent.withValues(alpha: 0.10),
           ),

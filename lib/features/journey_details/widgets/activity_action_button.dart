@@ -5,6 +5,7 @@ import 'package:skygate/core/components/custom_button.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/my_trips_assets.dart';
 import 'package:skygate/core/models/activity_model.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 /// The single button at the foot of an activity card.
 ///
@@ -28,7 +29,7 @@ class ActivityActionButton extends StatelessWidget {
 
     if (action.isDone) {
       return SizedBox(
-        height: 40,
+        height: 40.s,
         width: double.infinity,
         child: OutlinedButton.icon(
           // A settled card states its standing; tapping it does nothing.
@@ -36,13 +37,13 @@ class ActivityActionButton extends StatelessWidget {
           icon: action == ActivityAction.rated
               ? AppImage(
                   MyTripsAssets.thumbUp,
-                  height: 18,
-                  width: 18,
+                  height: 18.s,
+                  width: 18.s,
                   color: theme.colorScheme.primary,
                 )
               : Icon(
                   Icons.check_circle_outline,
-                  size: 18,
+                  size: 18.s,
                   color: theme.colorScheme.primary,
                 ),
           label: Text(
@@ -58,7 +59,7 @@ class ActivityActionButton extends StatelessWidget {
             disabledForegroundColor: theme.colorScheme.primary,
             side: BorderSide(color: theme.colorScheme.primary),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(10.s),
             ),
           ),
         ),
@@ -67,18 +68,18 @@ class ActivityActionButton extends StatelessWidget {
 
     return CustomButton(
       label: action.labelKey.tr(),
-      height: 40,
+      height: 40.s,
       width: double.infinity,
       isLoading: isBusy,
       onPressed: onPressed,
       icon: action == ActivityAction.rate
-          ? const AppImage(
+          ? AppImage(
               MyTripsAssets.thumbUp,
-              height: 18,
-              width: 18,
+              height: 18.s,
+              width: 18.s,
               color: AppColors.surface,
             )
-          : const Icon(Icons.check_circle_outline, size: 18),
+          : Icon(Icons.check_circle_outline, size: 18.s),
     );
   }
 }

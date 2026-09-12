@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/hotels/models/hotel_filter.dart';
 
 class HotelRatingSlider extends StatelessWidget {
@@ -38,8 +39,8 @@ class HotelRatingSlider extends StatelessWidget {
             ),
             AppImage(
               JourneyAssets.star,
-              height: 16,
-              width: 16,
+              height: 16.s,
+              width: 16.s,
               color: AppColors.accent,
             ),
           ],

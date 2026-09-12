@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/auth/views/auth_landing_screen.dart';
 import 'package:skygate/features/on_boarding/controller/cubit/on_boarding_cubit.dart';
@@ -60,7 +61,7 @@ class _OnBoardingBodyState extends State<_OnBoardingBody> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        minimum: const EdgeInsets.fromLTRB(42, 16, 42, 24),
+        minimum: EdgeInsets.fromLTRB(42.s, 16.s, 42.s, 24.s),
         child: BlocBuilder<OnBoardingCubit, OnBoardingState>(
           builder: (context, state) {
             final cubit = context.read<OnBoardingCubit>();
@@ -79,7 +80,7 @@ class _OnBoardingBodyState extends State<_OnBoardingBody> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 28),
+                SizedBox(height: 28.s),
                 OnBoardingActions(onSkip: _finish, onNext: _next),
               ],
             );

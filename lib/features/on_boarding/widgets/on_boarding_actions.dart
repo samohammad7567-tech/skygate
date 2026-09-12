@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/custom_button.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class OnBoardingActions extends StatelessWidget {
   const OnBoardingActions({super.key, this.onSkip, this.onNext});
@@ -25,7 +26,7 @@ class OnBoardingActions extends StatelessWidget {
             fixedSize: const Size(_buttonWidth, _buttonHeight),
             side: BorderSide(color: theme.colorScheme.primary),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(9),
+              borderRadius: BorderRadius.circular(9.s),
             ),
           ),
           child: Text(
@@ -43,7 +44,7 @@ class OnBoardingActions extends StatelessWidget {
           onPressed: onNext,
           width: _buttonWidth,
           height: _buttonHeight,
-          radius: 9,
+          radius: 9.s,
         ),
       ],
     );

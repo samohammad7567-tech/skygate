@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_page_header.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/features/payments/models/booking_details_model.dart';
 import 'package:skygate/features/payments/widgets/booking_details_card.dart';
 import 'package:skygate/features/payments/widgets/booking_travelers_sheet.dart';
@@ -24,7 +25,7 @@ class BookingDetailsScreen extends StatelessWidget {
             AppPageHeader(title: 'booking_details'.tr()),
             Expanded(
               child: ListView(
-                padding: const EdgeInsets.fromLTRB(20, 4, 20, 28),
+                padding: EdgeInsets.fromLTRB(20.s, 4.s, 20.s, 28.s),
                 children: [
                   BookingDetailsCard(
                     details: details,

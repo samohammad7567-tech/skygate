@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class ImportantNoteCard extends StatelessWidget {
   const ImportantNoteCard({super.key});
@@ -11,10 +12,10 @@ class ImportantNoteCard extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      padding: EdgeInsets.symmetric(horizontal: 14.s, vertical: 12.s),
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.s),
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Column(
@@ -26,7 +27,7 @@ class ImportantNoteCard extends StatelessWidget {
               color: theme.colorScheme.primary,
             ),
           ),
-          const Gap(6),
+          Gap(6.s),
           Text(
             '• ${'important_note_desc'.tr()}',
             textAlign: TextAlign.end,

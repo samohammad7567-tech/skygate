@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/dashed_box.dart';
 import 'package:skygate/core/components/placeholder_bar.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 
 class PassportMrzZone extends StatelessWidget {
   const PassportMrzZone({super.key});
@@ -13,22 +14,22 @@ class PassportMrzZone extends StatelessWidget {
 
     return DashedBox(
       fillColor: Colors.transparent,
-      padding: const EdgeInsets.fromLTRB(12, 14, 12, 12),
+      padding: EdgeInsets.fromLTRB(12.s, 14.s, 12.s, 12.s),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const PlaceholderBar(widthFactor: 1),
-          const Gap(9),
+          Gap(9.s),
           const PlaceholderBar(widthFactor: 0.9),
-          const Gap(9),
+          Gap(9.s),
           const PlaceholderBar(widthFactor: 0.75),
-          const Gap(12),
+          Gap(12.s),
           Center(
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              padding: EdgeInsets.symmetric(horizontal: 10.s, vertical: 4.s),
               decoration: BoxDecoration(
                 color: theme.colorScheme.surfaceContainerHighest,
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(8.s),
               ),
               child: Text(
                 'mrz_zone'.tr(),

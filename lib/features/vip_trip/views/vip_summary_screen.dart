@@ -5,6 +5,7 @@ import 'package:skygate/core/components/app_page_header.dart';
 import 'package:skygate/core/components/booking_bottom_bar.dart';
 import 'package:skygate/core/components/toast.dart';
 import 'package:skygate/core/models/booking_city.dart';
+import 'package:skygate/core/utils/app_scale.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/vip_trip/controller/cubit/vip_trip_cubit.dart';
 import 'package:skygate/features/vip_trip/utils/vip_travelers_label.dart';
@@ -37,7 +38,7 @@ class VipSummaryScreen extends StatelessWidget {
                 AppPageHeader(title: 'private_trip_request_details'.tr()),
                 Expanded(
                   child: ListView(
-                    padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
+                    padding: EdgeInsets.fromLTRB(20.s, 8.s, 20.s, 20.s),
                     children: [
                       VipSummaryCard(
                         travelers: vipTravelersLabel(cubit.counts),
