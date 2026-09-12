@@ -29,18 +29,25 @@ class SettingsPreferencesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final code = context.watch<SettingsCubit>().language;
+    // Owned here for the same reason as the switch sections: the caller
+    // builds this `const`, so a rebuild from above never reaches the row.
+    return BlocBuilder<SettingsCubit, SettingsState>(
+      builder: (context, state) {
+        final code = context.read<SettingsCubit>().language;
 
-    return AppListCard(
-      children: [
-        SettingsTile(
-          icon: SettingsAssets.language,
-          title: 'settings_language_title'.tr(),
-          subtitle: 'settings_language_desc'.tr(),
-          value: (settingsLanguages[code] ?? 'settings_language_arabic').tr(),
-          onTap: () => _changeLanguage(context),
-        ),
-      ],
+        return AppListCard(
+          children: [
+            SettingsTile(
+              icon: SettingsAssets.language,
+              title: 'settings_language_title'.tr(),
+              subtitle: 'settings_language_desc'.tr(),
+              value: (settingsLanguages[code] ?? 'settings_language_arabic')
+                  .tr(),
+              onTap: () => _changeLanguage(context),
+            ),
+          ],
+        );
+      },
     );
   }
 }

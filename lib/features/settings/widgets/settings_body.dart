@@ -1,11 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_page_header.dart';
 import 'package:skygate/core/components/app_section_title.dart';
 import 'package:skygate/core/utils/app_scale.dart';
-import 'package:skygate/features/settings/controller/cubit/settings_cubit.dart';
 import 'package:skygate/features/settings/widgets/settings_about_section.dart';
 import 'package:skygate/features/settings/widgets/settings_logout_button.dart';
 import 'package:skygate/features/settings/widgets/settings_notifications_section.dart';
@@ -33,35 +31,35 @@ class SettingsBody extends StatelessWidget {
               showBack: showBack,
             ),
             Expanded(
-              // Rebuilt from the cubit so every switch, and the language row,
-              // paint the value the cubit now holds.
-              child: BlocBuilder<SettingsCubit, SettingsState>(
-                builder: (context, state) => ListView(
-                  padding: EdgeInsets.fromLTRB(20.s, 8.s, 20.s, 28.s),
-                  children: [
-                    AppSectionTitle(text: 'notifications'.tr()),
-                    Gap(12.s),
-                    const SettingsNotificationsSection(),
-                    Gap(22.s),
-                    AppSectionTitle(text: 'settings_privacy_security'.tr()),
-                    Gap(12.s),
-                    const SettingsPrivacySection(),
-                    Gap(22.s),
-                    AppSectionTitle(text: 'settings_preferences'.tr()),
-                    Gap(12.s),
-                    const SettingsPreferencesSection(),
-                    Gap(22.s),
-                    AppSectionTitle(text: 'drawer_support_section'.tr()),
-                    Gap(12.s),
-                    const SettingsSupportSection(),
-                    Gap(22.s),
-                    AppSectionTitle(text: 'settings_about'.tr()),
-                    Gap(12.s),
-                    const SettingsAboutSection(),
-                    Gap(24.s),
-                    const SettingsLogoutButton(),
-                  ],
-                ),
+              // No BlocBuilder here on purpose. Each section that reads the
+              // cubit owns one, which is what lets them be `const` — a
+              // subscription at this level would be canonicalised away before
+              // it reached them, and a toggle would repaint the whole page.
+              child: ListView(
+                padding: EdgeInsets.fromLTRB(20.s, 8.s, 20.s, 28.s),
+                children: [
+                  AppSectionTitle(text: 'notifications'.tr()),
+                  Gap(12.s),
+                  const SettingsNotificationsSection(),
+                  Gap(22.s),
+                  AppSectionTitle(text: 'settings_privacy_security'.tr()),
+                  Gap(12.s),
+                  const SettingsPrivacySection(),
+                  Gap(22.s),
+                  AppSectionTitle(text: 'settings_preferences'.tr()),
+                  Gap(12.s),
+                  const SettingsPreferencesSection(),
+                  Gap(22.s),
+                  AppSectionTitle(text: 'drawer_support_section'.tr()),
+                  Gap(12.s),
+                  const SettingsSupportSection(),
+                  Gap(22.s),
+                  AppSectionTitle(text: 'settings_about'.tr()),
+                  Gap(12.s),
+                  const SettingsAboutSection(),
+                  Gap(24.s),
+                  const SettingsLogoutButton(),
+                ],
               ),
             ),
           ],

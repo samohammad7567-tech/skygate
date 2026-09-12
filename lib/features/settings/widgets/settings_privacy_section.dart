@@ -14,26 +14,35 @@ class SettingsPrivacySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<SettingsCubit>();
+    // The subscription belongs here rather than to a parent: this section is
+    // built `const`, so a rebuild above it is canonicalised away and never
+    // reaches these switches. Owning a BlocBuilder means the element repaints
+    // on its own whenever the cubit emits, whatever the caller does.
+    return BlocBuilder<SettingsCubit, SettingsState>(
+      builder: (context, state) {
+        final cubit = context.read<SettingsCubit>();
 
-    return AppListCard(
-      children: [
-        SettingsSwitchRow(
-          icon: SettingsAssets.biometric,
-          title: 'settings_biometric_title'.tr(),
-          subtitle: 'settings_biometric_desc'.tr(),
-          value: cubit.isOn(SettingsToggle.biometric),
-          onChanged: (value) => cubit.toggle(SettingsToggle.biometric, value),
-        ),
-        SettingsSwitchRow(
-          icon: SettingsAssets.liveLocation,
-          title: 'settings_live_location_title'.tr(),
-          subtitle: 'settings_live_location_desc'.tr(),
-          value: cubit.isOn(SettingsToggle.liveLocation),
-          onChanged: (value) =>
-              cubit.toggle(SettingsToggle.liveLocation, value),
-        ),
-      ],
+        return AppListCard(
+          children: [
+            SettingsSwitchRow(
+              icon: SettingsAssets.biometric,
+              title: 'settings_biometric_title'.tr(),
+              subtitle: 'settings_biometric_desc'.tr(),
+              value: cubit.isOn(SettingsToggle.biometric),
+              onChanged: (value) =>
+                  cubit.toggle(SettingsToggle.biometric, value),
+            ),
+            SettingsSwitchRow(
+              icon: SettingsAssets.liveLocation,
+              title: 'settings_live_location_title'.tr(),
+              subtitle: 'settings_live_location_desc'.tr(),
+              value: cubit.isOn(SettingsToggle.liveLocation),
+              onChanged: (value) =>
+                  cubit.toggle(SettingsToggle.liveLocation, value),
+            ),
+          ],
+        );
+      },
     );
   }
 }

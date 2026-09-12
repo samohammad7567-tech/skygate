@@ -13,32 +13,42 @@ class SettingsNotificationsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<SettingsCubit>();
+    // The subscription belongs here rather than to a parent: this section is
+    // built `const`, so a rebuild above it is canonicalised away and never
+    // reaches these switches. Owning a BlocBuilder means the element repaints
+    // on its own whenever the cubit emits, whatever the caller does.
+    return BlocBuilder<SettingsCubit, SettingsState>(
+      builder: (context, state) {
+        final cubit = context.read<SettingsCubit>();
 
-    return AppListCard(
-      children: [
-        SettingsSwitchRow(
-          icon: SettingsAssets.push,
-          title: 'settings_push_title'.tr(),
-          subtitle: 'settings_push_desc'.tr(),
-          value: cubit.isOn(SettingsToggle.push),
-          onChanged: (value) => cubit.toggle(SettingsToggle.push, value),
-        ),
-        SettingsSwitchRow(
-          icon: SettingsAssets.geofence,
-          title: 'settings_geofence_title'.tr(),
-          subtitle: 'settings_geofence_desc'.tr(),
-          value: cubit.isOn(SettingsToggle.geofence),
-          onChanged: (value) => cubit.toggle(SettingsToggle.geofence, value),
-        ),
-        SettingsSwitchRow(
-          icon: SettingsAssets.tripUpdates,
-          title: 'settings_trip_updates_title'.tr(),
-          subtitle: 'settings_trip_updates_desc'.tr(),
-          value: cubit.isOn(SettingsToggle.tripUpdates),
-          onChanged: (value) => cubit.toggle(SettingsToggle.tripUpdates, value),
-        ),
-      ],
+        return AppListCard(
+          children: [
+            SettingsSwitchRow(
+              icon: SettingsAssets.push,
+              title: 'settings_push_title'.tr(),
+              subtitle: 'settings_push_desc'.tr(),
+              value: cubit.isOn(SettingsToggle.push),
+              onChanged: (value) => cubit.toggle(SettingsToggle.push, value),
+            ),
+            SettingsSwitchRow(
+              icon: SettingsAssets.geofence,
+              title: 'settings_geofence_title'.tr(),
+              subtitle: 'settings_geofence_desc'.tr(),
+              value: cubit.isOn(SettingsToggle.geofence),
+              onChanged: (value) =>
+                  cubit.toggle(SettingsToggle.geofence, value),
+            ),
+            SettingsSwitchRow(
+              icon: SettingsAssets.tripUpdates,
+              title: 'settings_trip_updates_title'.tr(),
+              subtitle: 'settings_trip_updates_desc'.tr(),
+              value: cubit.isOn(SettingsToggle.tripUpdates),
+              onChanged: (value) =>
+                  cubit.toggle(SettingsToggle.tripUpdates, value),
+            ),
+          ],
+        );
+      },
     );
   }
 }
