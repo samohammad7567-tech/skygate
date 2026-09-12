@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_tab_bar.dart';
-import 'package:skygate/features/trips/models/booking_trip_model.dart';
+import 'package:skygate/features/trips/models/trips_tab.dart';
 
 /// The white bar at the top of "رحلاتي": three tabs, the picked one in blue
 /// over its own underline.

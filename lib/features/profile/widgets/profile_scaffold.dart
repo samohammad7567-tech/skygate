@@ -32,26 +32,32 @@ class ProfileScaffold extends StatelessWidget {
         builder: (context, state) {
           final user = context.read<ProfileCubit>().user;
 
-          return Column(
-            children: [
-              ProfileHeader(
-                title: title,
-                name: user?.fullName ?? '',
-                avatarUrl: user?.avatar,
-                onBack: onBack,
-                onMenuTap: onMenuTap,
-                showBack: showBack,
-              ),
-              Expanded(
-                child: SingleChildScrollView(
-                  padding: padding,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [...children, const Gap(8)],
+          return SafeArea(
+            // The header used to run under the status bar on its own coloured
+            // plate; with the plate gone the inset is the scaffold's to add,
+            // the same way every other tab adds it.
+            bottom: false,
+            child: Column(
+              children: [
+                ProfileHeader(
+                  title: title,
+                  name: user?.fullName ?? '',
+                  avatarUrl: user?.avatar,
+                  onBack: onBack,
+                  onMenuTap: onMenuTap,
+                  showBack: showBack,
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    padding: padding,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [...children, const Gap(8)],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           );
         },
       ),

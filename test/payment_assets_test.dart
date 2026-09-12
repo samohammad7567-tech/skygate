@@ -6,6 +6,7 @@ import 'package:skygate/features/payments/models/financial_transaction_model.dar
 import 'package:skygate/features/payments/models/payment_currency.dart';
 import 'package:skygate/features/payments/models/payment_method_model.dart';
 import 'package:skygate/features/trips/models/booking_trip_model.dart';
+import 'package:skygate/features/trips/models/trips_tab.dart';
 
 void main() {
   test('every PaymentAssets path exists on disk', () {

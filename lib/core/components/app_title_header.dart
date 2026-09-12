@@ -49,15 +49,17 @@ class AppTitleHeader extends StatelessWidget {
                       style: theme.textTheme.headlineSmall,
                     ),
             ),
-            if (onMenuTap != null)
-              PositionedDirectional(
-                start: 0,
-                child: AppMenuButton(onTap: onMenuTap),
-              ),
+            // Start corner — the right in Arabic — carries the way back, and
+            // the end corner the drawer handle. See [AppBackButton].
             if (showBack)
               PositionedDirectional(
-                end: 0,
+                start: 0,
                 child: AppBackButton(onTap: onBack),
+              ),
+            if (onMenuTap != null)
+              PositionedDirectional(
+                end: 0,
+                child: AppMenuButton(onTap: onMenuTap),
               ),
           ],
         ),

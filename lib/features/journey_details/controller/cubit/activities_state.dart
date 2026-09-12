@@ -16,3 +16,15 @@ final class ActivitiesError extends ActivitiesState {
 
   ActivitiesError({required this.message});
 }
+
+/// One-shot signals for the toast; the screen keeps rebuilding from the
+/// cubit's own fields either way.
+final class AttendanceConfirmed extends ActivitiesState {}
+
+final class FeedbackSubmitted extends ActivitiesState {}
+
+final class ActivityActionFailed extends ActivitiesState {
+  ActivityActionFailed({required this.message});
+
+  final String message;
+}

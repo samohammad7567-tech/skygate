@@ -41,18 +41,21 @@ class HomeHeader extends StatelessWidget {
           ),
         ],
       ),
+      // The drawer handle takes the end corner, the same corner it takes in
+      // every other header — `menu_button_placement_test` holds the five tabs
+      // to one rect, so this row and `AppPageHeader` have to agree.
       child: Row(
         children: [
-          AppMenuButton(onTap: onMenuTap),
-          Expanded(
-            child: AppImage(AppAssets.logo, height: 44, fit: BoxFit.contain),
-          ),
           _HeaderIcon(
             asset: HomeAssets.notifications,
             tooltip: 'notifications'.tr(),
             onTap: onNotificationsTap,
             badge: unreadCount,
           ),
+          Expanded(
+            child: AppImage(AppAssets.logo, height: 44, fit: BoxFit.contain),
+          ),
+          AppMenuButton(onTap: onMenuTap),
         ],
       ),
     );

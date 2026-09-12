@@ -26,12 +26,12 @@ void main() {
     }
   });
 
-  test('the drawer has eight rows across three groups', () {
+  test('the drawer has eleven rows across three groups', () {
     final sections = DrawerSectionModel.catalogue;
     expect(sections, hasLength(3));
     expect(sections.first.titleKey, isNull);
     expect(sections.skip(1).every((s) => s.titleKey != null), isTrue);
-    expect(sections.expand((s) => s.items), hasLength(8));
+    expect(sections.expand((s) => s.items), hasLength(11));
   });
 
   test('every drawer row has a bundled icon and a distinct label', () {
@@ -52,7 +52,9 @@ void main() {
         .where((item) => item.isTab)
         .toList();
 
-    expect(tabs.map((i) => i.tabIndex), [0, 1, 3]);
+    // الإعدادات is drawn with الدعم rather than with its siblings, so the
+    // tab rows are not contiguous.
+    expect(tabs.map((i) => i.tabIndex), [0, 1, 2, 3, 4]);
     for (final tab in tabs) {
       expect(tab.tabIndex, lessThan(NavItemModel.items.length));
       expect(tab.labelKey, NavItemModel.items[tab.tabIndex!].labelKey);

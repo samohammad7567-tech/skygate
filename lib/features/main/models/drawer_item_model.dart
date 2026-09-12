@@ -19,6 +19,10 @@ class DrawerSectionModel {
   final List<DrawerItemModel> items;
 
   const DrawerSectionModel({required this.items, this.titleKey});
+
+  /// The panel, top to bottom. The first group is the bottom bar's own five
+  /// destinations — الإعدادات sits with الدعم in the design rather than with
+  /// its siblings, but it still switches the tab instead of pushing a route.
   static const List<DrawerSectionModel> catalogue = [
     DrawerSectionModel(
       items: [
@@ -31,6 +35,11 @@ class DrawerSectionModel {
           labelKey: 'nav_trips',
           icon: DrawerAssets.trips,
           tabIndex: 1,
+        ),
+        DrawerItemModel(
+          labelKey: 'nav_map',
+          icon: DrawerAssets.map,
+          tabIndex: 2,
         ),
         DrawerItemModel(
           labelKey: 'nav_account',
@@ -47,6 +56,10 @@ class DrawerSectionModel {
           icon: DrawerAssets.lostItems,
         ),
         DrawerItemModel(
+          labelKey: 'drawer_amend_bookings',
+          icon: DrawerAssets.amendBookings,
+        ),
+        DrawerItemModel(
           labelKey: 'drawer_private_trips',
           icon: DrawerAssets.privateTrips,
         ),
@@ -58,6 +71,11 @@ class DrawerSectionModel {
       items: [
         DrawerItemModel(labelKey: 'drawer_support', icon: DrawerAssets.support),
         DrawerItemModel(labelKey: 'drawer_faq', icon: DrawerAssets.faq),
+        DrawerItemModel(
+          labelKey: 'nav_settings',
+          icon: DrawerAssets.settings,
+          tabIndex: 4,
+        ),
       ],
     ),
   ];

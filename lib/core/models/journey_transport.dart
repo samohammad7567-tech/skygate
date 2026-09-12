@@ -1,4 +1,5 @@
 import 'package:skygate/core/constants/journey_assets.dart';
+import 'package:skygate/core/constants/my_trips_assets.dart';
 
 enum JourneyTransport {
   plane(
@@ -42,6 +43,16 @@ enum JourneyTransport {
   final String typeIcon;
   final String modelIcon;
   final String fallbackLogo;
+
+  /// The map drawn on "تفاصيل القسم". The design traces the vehicle itself
+  /// along the route, so each mode gets its own artwork rather than one map
+  /// shared by all four.
+  String get routeMap => switch (this) {
+    JourneyTransport.plane => MyTripsAssets.routeMapAir,
+    JourneyTransport.bus => MyTripsAssets.routeMapLand,
+    JourneyTransport.train => MyTripsAssets.routeMapTrain,
+    JourneyTransport.ship => MyTripsAssets.routeMapSea,
+  };
 
   static JourneyTransport fromSlug(String? slug) => values.firstWhere(
     (transport) => transport.slug == slug,

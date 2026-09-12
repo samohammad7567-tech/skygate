@@ -11,7 +11,7 @@ import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/profile/controller/cubit/profile_cubit.dart';
 import 'package:skygate/features/profile/widgets/profile_form_actions.dart';
 import 'package:skygate/features/profile/widgets/profile_scaffold.dart';
-import 'package:skygate/features/profile/widgets/profile_section_title.dart';
+import 'package:skygate/core/components/app_section_title.dart';
 
 class EditPasswordScreen extends StatefulWidget {
   const EditPasswordScreen({super.key});
@@ -54,7 +54,7 @@ class _EditPasswordScreenState extends State<EditPasswordScreen> {
           title: 'edit_password'.tr(),
           onBack: _cancel,
           children: [
-            ProfileSectionTitle(text: 'edit_password'.tr()),
+            AppSectionTitle(text: 'edit_password'.tr()),
             const Gap(14),
             Form(
               key: _formKey,

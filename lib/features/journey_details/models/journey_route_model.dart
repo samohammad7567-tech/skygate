@@ -1,4 +1,5 @@
 import 'package:skygate/core/models/journey_transport.dart';
+import 'package:skygate/core/models/time_progress.dart';
 import 'package:skygate/core/models/trip_model.dart';
 
 class JourneyRouteModel {
@@ -53,6 +54,11 @@ class JourneySegmentModel {
   final JourneyPlaceModel? arrivalPlace;
   final List<String> instructions;
   String? get mapImage => null;
+
+  /// The itinerary publishes no standing for a leg, so where it sits against
+  /// the clock is worked out from its own departure and arrival.
+  TimeProgress get progress => TimeProgress.fromWindow(from?.at, to?.at);
+
   factory JourneySegmentModel.fromItinerary(TripItineraryModel leg) {
     final transport = JourneyTransport.fromApi(leg.transportType);
     final carrier = leg.carrier;

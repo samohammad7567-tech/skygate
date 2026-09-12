@@ -33,9 +33,10 @@ class JourneyHeroHeader extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (durationDays != null) _DurationBadge(days: durationDays!),
-                  const Spacer(),
+                  // Start corner, like every other header in the app.
                   const AppBackButton(),
+                  const Spacer(),
+                  if (durationDays != null) _DurationBadge(days: durationDays!),
                 ],
               ),
             ),

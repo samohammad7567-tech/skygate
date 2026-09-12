@@ -9,7 +9,7 @@ import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/profile/controller/cubit/profile_cubit.dart';
 import 'package:skygate/features/profile/widgets/profile_form_actions.dart';
 import 'package:skygate/features/profile/widgets/profile_scaffold.dart';
-import 'package:skygate/features/profile/widgets/profile_section_title.dart';
+import 'package:skygate/core/components/app_section_title.dart';
 
 class EditFilesScreen extends StatelessWidget {
   const EditFilesScreen({super.key});
@@ -48,7 +48,7 @@ class EditFilesScreen extends StatelessWidget {
           title: 'edit_account'.tr(),
           onBack: () => _cancel(context),
           children: [
-            ProfileSectionTitle(text: 'edit_files'.tr()),
+            AppSectionTitle(text: 'edit_files'.tr()),
             const Gap(14),
             for (final document in cubit.documentTypes) ...[
               DocumentUploadCard(

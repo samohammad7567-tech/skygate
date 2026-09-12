@@ -14,9 +14,9 @@ import 'package:skygate/features/profile/views/edit_password_screen.dart';
 import 'package:skygate/features/profile/views/edit_profile_screen.dart';
 import 'package:skygate/features/profile/views/passport_info_screen.dart';
 import 'package:skygate/features/profile/views/pilgrim_files_screen.dart';
-import 'package:skygate/features/profile/widgets/profile_card.dart';
+import 'package:skygate/core/components/app_list_card.dart';
 import 'package:skygate/features/profile/widgets/profile_scaffold.dart';
-import 'package:skygate/features/profile/widgets/profile_section_title.dart';
+import 'package:skygate/core/components/app_section_title.dart';
 import 'package:skygate/features/profile/widgets/profile_tile.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -109,9 +109,9 @@ class _ProfileViewState extends State<ProfileView> {
             // walks the reader to الرئيسية and then out.
             showBack: false,
             children: [
-              ProfileSectionTitle(text: 'profile_information'.tr()),
+              AppSectionTitle(text: 'profile_information'.tr()),
               const Gap(12),
-              ProfileCard(
+              AppListCard(
                 children: [
                   ProfileTile(
                     icon: ProfileAssets.account,
@@ -131,7 +131,7 @@ class _ProfileViewState extends State<ProfileView> {
                 ],
               ),
               const Gap(14),
-              ProfileCard(
+              AppListCard(
                 children: [
                   ProfileTile(
                     icon: ProfileAssets.passport,
@@ -143,7 +143,7 @@ class _ProfileViewState extends State<ProfileView> {
                 ],
               ),
               const Gap(14),
-              ProfileCard(
+              AppListCard(
                 children: [
                   ProfileTile(
                     icon: ProfileAssets.files,
@@ -155,9 +155,9 @@ class _ProfileViewState extends State<ProfileView> {
                 ],
               ),
               const Gap(22),
-              ProfileSectionTitle(text: 'account_management'.tr()),
+              AppSectionTitle(text: 'account_management'.tr()),
               const Gap(12),
-              ProfileCard(
+              AppListCard(
                 children: [
                   ProfileTile(
                     icon: ProfileAssets.lock,

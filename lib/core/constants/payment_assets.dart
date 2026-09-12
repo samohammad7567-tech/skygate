@@ -6,6 +6,7 @@ class PaymentAssets {
 
   // ── "رحلاتي" tabs ────────────────────────────────────────────────────────
   static const String calendar = '$_svgs/today.svg';
+  static const String upcoming = '$_svgs/flight_takeoff.svg';
   static const String duePayment = '$_svgs/credit_card_clock.svg';
   static const String done = '$_svgs/check_circle.svg';
 
@@ -16,13 +17,17 @@ class PaymentAssets {
   static const String ship = '$_svgs/sailing.svg';
   static const String bus = '$_svgs/local_taxi.svg';
   static const String group = '$_svgs/group.svg';
+
+  /// The six glyphs the "رحلاتي" card prints beside a trip's name: the four
+  /// ways of travelling, the stay, and the rites the trip is for. A fixed set
+  /// — it says what a trip includes, not which legs this one happens to have.
   static const List<String> inclusions = [
     plane,
     hotel,
     train,
     ship,
     bus,
-    group,
+    madinah,
   ];
 
   // ── "حجوزاتي و المدفوعات" ────────────────────────────────────────────────
@@ -48,6 +53,7 @@ class PaymentAssets {
   static const String starBurst = '$_svgs/star_burst.svg';
   static const List<String> all = [
     calendar,
+    upcoming,
     duePayment,
     done,
     ...inclusions,
@@ -60,8 +66,8 @@ class PaymentAssets {
     alHaram,
     routes,
     offers,
+    group,
     makkah,
-    madinah,
     arrowBack,
     starBurst,
   ];

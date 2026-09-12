@@ -44,7 +44,27 @@ class ApiEndpoints {
   // ── Trips ────────────────────────────────────────────────────────────────
   static String trip(int id) => 'app/trips/$id';
   static const String tripsSearch = 'app/trips/search';
+
+  /// "رحلاتي" — the pilgrim's own trips, one tab per `filter[status]`
+  /// (`current`, `upcoming`, `past`). The filter is required by the API.
+  static const String myTrips = 'app/my-trips';
   static const String activities = 'app/activities';
+
+  /// The two field actions on an activity card: "تأكيد الحضور" posts
+  /// `{status: present}`, and the rating sheet posts `{rating, comment}`.
+  static String activityAttendance(int id) => '$activities/$id/attendance';
+  static String activityFeedback(int id) => '$activities/$id/feedback';
+
+  // ── Trip cards & travel documents ────────────────────────────────────────
+  // What "تفاصيل البطاقات" and the تأشيرات / تذاكر tabs read. Each row names
+  // the pilgrim it belongs to through `booking_pilgrim_id`, so the screens
+  // fetch the whole trip's set once and group it per pilgrim.
+  static const String luggageTags = 'app/luggage-tags';
+  static const String pilgrimTickets = 'app/pilgrim-tickets';
+  static String pilgrimTicket(int id) => '$pilgrimTickets/$id';
+  static const String visas = 'app/visas';
+  static String pilgrimIdCard(int id) => 'app/pilgrims/$id/id-card';
+  static String pilgrimIdCardPdf(int id) => 'app/pilgrims/$id/id-card-pdf';
 
   // ── Booking ──────────────────────────────────────────────────────────────
   static const String bookings = 'app/bookings';
@@ -63,6 +83,12 @@ class ApiEndpoints {
   static String privateTripRequest(int id) => '$privateTripRequests/$id';
   static String cancelPrivateTripRequest(int id) =>
       '${privateTripRequest(id)}/cancel';
+
+  // ── Booking amendment requests ───────────────────────────────────────────
+  // "طلبات تعديل الحجوزات" — the pilgrim's standing requests to change a
+  // booking they already hold.
+  static const String bookingChangeRequests = 'app/booking-change-requests';
+  static String bookingChangeRequest(int id) => '$bookingChangeRequests/$id';
 
   // ── Map / geo-tracking ───────────────────────────────────────────────────
   static const String locationPings = 'app/location-pings';
@@ -102,10 +128,10 @@ class ApiEndpoints {
   //                                               withdraw a request, so wiring
   //                                               them would invent a flow the
   //                                               mockups do not have.
-  //   POST app/booking-change-requests          — booking amendment
   //   GET  app/room-assignments                 — room allocation
-  //   POST app/activities/{id}/attendance       — field attendance
-  //   POST app/activities/{id}/feedback         — field feedback
-  //   GET  app/visas, app/luggage-tags, app/pilgrim-tickets,
-  //        app/pilgrims/{id}/id-card, …
+  //   POST app/booking-change-requests          — raising an amendment. The
+  //                                               mockups only list and open
+  //                                               existing requests, so the
+  //                                               submit flow has no design to
+  //                                               build against yet.
 }

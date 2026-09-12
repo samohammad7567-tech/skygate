@@ -9,6 +9,7 @@ class AppCircleIconButton extends StatelessWidget {
     this.tooltip,
     this.size = 40,
     this.glyphSize = 18,
+    this.mirrorInRtl = false,
   });
 
   final String asset;
@@ -16,6 +17,11 @@ class AppCircleIconButton extends StatelessWidget {
   final String? tooltip;
   final double size;
   final double glyphSize;
+
+  /// Turns the glyph over under RTL. Set it for anything that points
+  /// somewhere — an arrow means "backwards", and backwards is to the right in
+  /// Arabic. Plain glyphs (a calendar, a menu) must leave it off.
+  final bool mirrorInRtl;
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +39,17 @@ class AppCircleIconButton extends StatelessWidget {
           height: size,
           width: size,
           child: Center(
-            child: AppImage(
-              asset,
-              height: glyphSize,
-              color: theme.colorScheme.primary,
+            child: Transform.scale(
+              scaleX:
+                  mirrorInRtl &&
+                      Directionality.of(context) == TextDirection.rtl
+                  ? -1
+                  : 1,
+              child: AppImage(
+                asset,
+                height: glyphSize,
+                color: theme.colorScheme.primary,
+              ),
             ),
           ),
         ),

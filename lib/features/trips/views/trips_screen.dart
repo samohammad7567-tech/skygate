@@ -5,12 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skygate/core/components/app_title_header.dart';
 import 'package:skygate/core/components/empty_state.dart';
 import 'package:skygate/core/components/toast.dart';
+import 'package:skygate/core/models/trip_model.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/journey_details/views/package_details_screen.dart';
-import 'package:skygate/features/payments/views/payments_screen.dart';
 import 'package:skygate/features/trips/controller/cubit/trips_cubit.dart';
-import 'package:skygate/features/trips/models/booking_trip_model.dart';
-import 'package:skygate/features/trips/widgets/trip_booking_card.dart';
+import 'package:skygate/features/trips/widgets/trip_card.dart';
 import 'package:skygate/features/trips/widgets/trips_tab_bar.dart';
 
 class TripsScreen extends StatelessWidget {
@@ -24,40 +23,67 @@ class TripsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => TripsCubit()..getBookings(),
+      create: (_) => TripsCubit()..getTrips(),
       child: _TripsBody(showBack: showBack, onMenuTap: onMenuTap),
     );
   }
 }
 
-class _TripsBody extends StatelessWidget {
+class _TripsBody extends StatefulWidget {
   const _TripsBody({required this.showBack, this.onMenuTap});
 
   final bool showBack;
   final VoidCallback? onMenuTap;
 
-  void _openTrip(BuildContext context, BookingTripModel booking) {
-    final tripId = booking.tripId;
+  @override
+  State<_TripsBody> createState() => _TripsBodyState();
+}
+
+class _TripsBodyState extends State<_TripsBody> {
+  final ScrollController _controller = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _controller
+      ..removeListener(_onScroll)
+      ..dispose();
+    super.dispose();
+  }
+
+  /// Asks for the next page a little before the list runs out, so the rows
+  /// are there by the time the user reaches them.
+  void _onScroll() {
+    if (!_controller.hasClients) return;
+    final position = _controller.position;
+    if (position.pixels >= position.maxScrollExtent - 240) {
+      context.read<TripsCubit>().loadMore();
+    }
+  }
+
+  void _openTrip(BuildContext context, TripModel trip) {
+    final tripId = trip.id;
     if (tripId == null) {
-      // `BookingResource` carries no trip, so a booking the API returns bare
-      // has nothing to open. Say so rather than pushing an empty screen.
+      // A row the API returns without an id has nothing to open. Say so
+      // rather than pushing an empty screen.
       showToast(context, 'no_trip_details'.tr(), isError: true);
       return;
     }
     NaivgatorHelper.pushNavigation(
       context,
-      // Handing the booking over is what puts "حجوزاتي و المدفوعات" on the
-      // overview and turns its action into "اضافة حجز جديد".
-      PackageDetailsScreen(tripId: tripId, bookingId: booking.id),
-    );
-  }
-
-  void _openPayments(BuildContext context, BookingTripModel booking) {
-    final bookingId = booking.id;
-    if (bookingId == null) return;
-    NaivgatorHelper.pushNavigation(
-      context,
-      PaymentsScreen(bookingId: bookingId),
+      // Every trip on "رحلاتي" is one the pilgrim booked, and `my-trips` nests
+      // that booking. Handing its id on is what scopes the roster, the cards,
+      // the visas and the tickets to this pilgrim on this trip — and what puts
+      // "تفاصيل الحجز" and "تفاصيل البطاقات" on the details screen.
+      PackageDetailsScreen.booked(
+        tripId: tripId,
+        bookingId: trip.booking?.id,
+      ),
     );
   }
 
@@ -76,8 +102,8 @@ class _TripsBody extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(20, 12, 20, 16),
                   child: AppTitleHeader(
                     title: 'nav_trips'.tr(),
-                    showBack: showBack,
-                    onMenuTap: onMenuTap,
+                    showBack: widget.showBack,
+                    onMenuTap: widget.onMenuTap,
                   ),
                 ),
                 Padding(
@@ -97,33 +123,42 @@ class _TripsBody extends StatelessWidget {
   }
 
   Widget _list(BuildContext context, TripsState state, TripsCubit cubit) {
-    if (state is BookingsLoading) {
+    if (state is TripsLoading) {
       return const Center(child: CircularProgressIndicator());
     }
 
     return BuildCondition(
-      condition: cubit.bookings.isNotEmpty,
+      condition: cubit.trips.isNotEmpty,
       builder: (_) => RefreshIndicator(
-        onRefresh: cubit.getBookings,
+        onRefresh: () => cubit.getTrips(refresh: true),
         child: ListView.separated(
+          controller: _controller,
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 100),
-          itemCount: cubit.bookings.length,
+          // One extra row at the foot while the next page is in flight.
+          itemCount: cubit.trips.length + (cubit.isLoadingMore ? 1 : 0),
           separatorBuilder: (_, _) => const SizedBox(height: 12),
           itemBuilder: (_, index) {
-            final booking = cubit.bookings[index];
-            return TripBookingCard(
-              booking: booking,
-              onDetails: () => _openTrip(context, booking),
-              onPay: () => _openPayments(context, booking),
+            if (index >= cubit.trips.length) {
+              return const Padding(
+                padding: EdgeInsets.symmetric(vertical: 16),
+                child: Center(child: CircularProgressIndicator()),
+              );
+            }
+
+            final trip = cubit.trips[index];
+            return TripCard(
+              trip: trip,
+              tab: cubit.tab,
+              onDetails: () => _openTrip(context, trip),
             );
           },
         ),
       ),
       fallback: (_) => EmptyState(
-        message: state is BookingsError
+        message: state is TripsError
             ? state.message.tr()
-            : 'no_bookings'.tr(),
-        onRetry: cubit.getBookings,
+            : cubit.tab.emptyKey.tr(),
+        onRetry: () => cubit.getTrips(refresh: true),
       ),
     );
   }

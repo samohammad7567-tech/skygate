@@ -288,11 +288,31 @@ void main() {
     );
   });
 
+  // The same trip reached from "رحلاتي": already the pilgrim's, so nothing on
+  // it is for sale and the booking rows take the offers row's place.
+  testWidgets('package details, booked', (t) async {
+    await shoot(
+      t,
+      const PackageDetailsScreen.booked(tripId: 1, bookingId: 7),
+      'goldens/38_package_details_booked.png',
+      const Size(412, 1084),
+    );
+  });
+
   testWidgets('itinerary', (t) async {
     await shoot(
       t,
       const ItineraryScreen(tripId: 1),
       'goldens/31_itinerary.png',
+      const Size(412, 1400),
+    );
+  });
+
+  testWidgets('itinerary, booked', (t) async {
+    await shoot(
+      t,
+      const ItineraryScreen(tripId: 1, bookingId: 7),
+      'goldens/39_itinerary_booked.png',
       const Size(412, 1400),
     );
   });

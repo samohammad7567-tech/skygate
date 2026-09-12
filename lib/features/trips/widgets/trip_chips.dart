@@ -5,19 +5,21 @@ import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/components/app_status_chip.dart';
 import 'package:skygate/core/constants/payment_assets.dart';
 import 'package:skygate/core/utils/app_format.dart';
-import 'package:skygate/features/trips/models/booking_trip_model.dart';
+import 'package:skygate/features/trips/models/trips_tab.dart';
 
+/// The badge over a card's photo. It repeats the tab the trip came back
+/// under — `my-trips` groups by `filter[status]`, so the tab is the status.
 class TripStatusChip extends StatelessWidget {
-  const TripStatusChip({super.key, required this.status});
+  const TripStatusChip({super.key, required this.tab});
 
-  final BookingStatus status;
+  final TripsTab tab;
 
   @override
   Widget build(BuildContext context) {
     return AppStatusChip(
-      labelKey: status.labelKey,
-      background: status.background,
-      foreground: status.foreground,
+      labelKey: tab.labelKey,
+      background: tab.background,
+      foreground: tab.foreground,
       borderAlpha: 0.5,
     );
   }
@@ -73,9 +75,15 @@ class TripDurationDivider extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
+    // Two gold rules with the length between them, the way the design rules
+    // off the stretch of time that separates the two dates.
+    final rule = Container(height: 1.4, color: theme.colorScheme.secondary);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        rule,
+        const Gap(6),
         Text(
           days == null ? '' : 'days_count'.tr(namedArgs: {'count': '$days'}),
           textAlign: TextAlign.center,
@@ -85,8 +93,8 @@ class TripDurationDivider extends StatelessWidget {
             color: theme.colorScheme.secondary,
           ),
         ),
-        const Gap(4),
-        Container(height: 1.4, color: theme.colorScheme.secondary),
+        const Gap(6),
+        rule,
       ],
     );
   }

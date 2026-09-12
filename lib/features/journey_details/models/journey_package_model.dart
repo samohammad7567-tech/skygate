@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
+import 'package:skygate/core/constants/card_assets.dart';
 import 'package:skygate/core/constants/payment_assets.dart';
 import 'package:skygate/core/models/trip_model.dart';
 
@@ -13,16 +14,43 @@ class JourneyPackageModel {
   List<JourneyStayModel> stays = const [];
   String? programPdfUrl;
 
+  // ── What the "الرحلة الحالية" header card prints ───────────────────────
+  String? tripNumber;
+  DateTime? startDate;
+  DateTime? endDate;
+
+  /// Where each direction sets off from: the first leg's origin, and the
+  /// origin of the last leg — which is the city the return departs.
+  String? departureCity;
+  String? returnCity;
+
+  int? pilgrimsCount;
+
   JourneyPackageModel.fromTrip(TripModel trip) {
     id = trip.id;
     title = trip.title;
     durationDays = trip.durationDays;
     programPdfUrl = trip.programPdfUrl;
+    tripNumber = trip.tripNumber;
+    startDate = trip.startDate;
+    endDate = trip.endDate;
+    pilgrimsCount = trip.pilgrimsCount;
+    departureCity = trip.itinerary.firstOrNull?.originCity;
+    returnCity = trip.itinerary.lastOrNull?.originCity;
     supervisors = [
       for (final member in trip.staff)
         JourneyStaffModel(name: member.name, role: member.role),
     ];
     stays = JourneyStayModel.fromTrip(trip);
+  }
+
+  /// "عدد الأيام المتبقية" — whole days left before the trip ends. A trip
+  /// already over reads zero rather than going negative.
+  int? get daysRemaining {
+    final end = endDate;
+    if (end == null) return null;
+    final left = end.difference(DateTime.now()).inDays;
+    return left < 0 ? 0 : left;
   }
 }
 
@@ -104,6 +132,8 @@ class JourneySectionModel {
     this.icon,
   });
 
+  /// What a trip being **browsed** offers: everything there is to look at,
+  /// including the packages on sale.
   static const List<JourneySectionModel> catalogue = [
     JourneySectionModel(
       section: JourneySection.routes,
@@ -130,12 +160,54 @@ class JourneySectionModel {
       asset: PaymentAssets.offers,
     ),
   ];
+
+  /// What a trip the pilgrim **already holds** offers. "عروض الرحلة" is
+  /// dropped: the packages on that screen exist to be bought, and nothing is
+  /// bought from "رحلاتي" — the trip is already theirs.
+  static const List<JourneySectionModel> bookedCatalogue = [
+    routes,
+    hotels,
+    activities,
+  ];
+
+  static const JourneySectionModel routes = JourneySectionModel(
+    section: JourneySection.routes,
+    titleKey: 'section_trip_routes',
+    descKey: 'section_trip_routes_desc',
+    asset: JourneyAssets.routes,
+  );
+
+  static const JourneySectionModel hotels = JourneySectionModel(
+    section: JourneySection.hotels,
+    titleKey: 'hotels',
+    descKey: 'section_hotels_desc',
+    asset: JourneyAssets.hotel,
+  );
+
+  static const JourneySectionModel activities = JourneySectionModel(
+    section: JourneySection.activities,
+    titleKey: 'section_activities',
+    descKey: 'section_activities_desc',
+    asset: JourneyAssets.activities,
+  );
+
+  /// The two rows under "حجوزاتي و المدفوعات". They only appear once the
+  /// screen was opened for a booking, so they sit outside [catalogue].
+  static const List<JourneySectionModel> bookingCatalogue = [booking, cards];
+
   static const JourneySectionModel booking = JourneySectionModel(
     section: JourneySection.booking,
     titleKey: 'booking_details',
     descKey: 'section_booking_desc',
     asset: PaymentAssets.bookingTicket,
   );
+
+  static const JourneySectionModel cards = JourneySectionModel(
+    section: JourneySection.cards,
+    titleKey: 'cards_details',
+    descKey: 'section_cards_desc',
+    asset: CardAssets.visas,
+  );
 }
 
-enum JourneySection { routes, hotels, activities, offers, booking }
+enum JourneySection { routes, hotels, activities, offers, booking, cards }

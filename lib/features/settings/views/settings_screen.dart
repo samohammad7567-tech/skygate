@@ -1,46 +1,29 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:skygate/core/components/app_page_header.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:skygate/features/auth/controller/cubit/auth_cubit.dart';
+import 'package:skygate/features/settings/controller/cubit/settings_cubit.dart';
+import 'package:skygate/features/settings/widgets/settings_body.dart';
 
-/// The tab still has no settings to show, but it carries the shell's own
-/// header rather than `ComingSoonView`'s plain `AppBar`, so the drawer handle
-/// lands in the same corner and at the same size as on every other tab.
+/// "الإعدادات" — every preference the pilgrim can turn, and the way out of
+/// the session.
 class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key, this.onMenuTap});
+  const SettingsScreen({super.key, this.onMenuTap, this.showBack = false});
 
   /// Opens the shell's drawer. The shell owns the panel, so a tab only
   /// forwards the tap.
   final VoidCallback? onMenuTap;
 
+  /// A tab root has nothing to pop; reached as a pushed route it does.
+  final bool showBack;
+
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Scaffold(
-      body: SafeArea(
-        bottom: false,
-        child: Column(
-          children: [
-            AppPageHeader(
-              title: 'nav_settings'.tr(),
-              onMenuTap: onMenuTap,
-              // A tab root has nothing to pop; the system back button is what
-              // walks the reader to الرئيسية and then out.
-              showBack: false,
-            ),
-            Expanded(
-              child: Center(
-                child: Text(
-                  'coming_soon'.tr(),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.titleLarge,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => SettingsCubit()..loadSettings()),
+        BlocProvider(create: (_) => AuthCubit()),
+      ],
+      child: SettingsBody(onMenuTap: onMenuTap, showBack: showBack),
     );
   }
 }

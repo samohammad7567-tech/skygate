@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/constants/app_colors.dart';
-import 'package:skygate/core/constants/payment_assets.dart';
 import 'package:skygate/core/models/journey_transport.dart';
 import 'package:skygate/core/utils/api_parse.dart';
 
@@ -39,22 +38,6 @@ enum BookingStatus {
     }
     return awaitingPayment;
   }
-}
-
-enum TripsTab {
-  current('trips_tab_current', PaymentAssets.calendar),
-  needsPayment('trips_tab_needs_payment', PaymentAssets.duePayment),
-  completed('trips_tab_completed', PaymentAssets.done);
-
-  const TripsTab(this.labelKey, this.icon);
-
-  final String labelKey;
-  final String icon;
-  bool accepts(BookingTripModel booking) => switch (this) {
-    TripsTab.current => booking.status == BookingStatus.active,
-    TripsTab.needsPayment => booking.status == BookingStatus.awaitingPayment,
-    TripsTab.completed => booking.status == BookingStatus.completed,
-  };
 }
 
 class BookingTripModel {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:skygate/core/components/app_back_button.dart';
-import 'package:skygate/core/components/app_menu_button.dart';
+import 'package:skygate/core/components/app_page_header.dart';
 import 'package:skygate/features/profile/widgets/profile_avatar.dart';
 
 class ProfileHeader extends StatelessWidget {
@@ -30,76 +29,32 @@ class ProfileHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.fromLTRB(
-        20,
-        // The plate runs under the status bar, so the row — not the plate —
-        // is what the inset pushes down.
-        MediaQuery.paddingOf(context).top + 12,
-        20,
-        26,
-      ),
-      decoration: BoxDecoration(
-        color: theme.colorScheme.primary,
-        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(34)),
-      ),
-      child: Column(
-        children: [
-          ConstrainedBox(
-            // The corner chips are AppMenuButton.size tall and sit positioned, so
-            // they do not grow the stack. Without a floor it shrinks to the title
-            // text, which differs per screen — the chips then overflow (clipped by
-            // the stack) and land at a different height on every tab.
-            constraints: const BoxConstraints(minHeight: AppMenuButton.size),
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                SizedBox(
-                  width: double.infinity,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppBackButton.size + 8,
-                    ),
-                    child: Text(
-                      title,
-                      textAlign: TextAlign.center,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.titleLarge?.copyWith(
-                        color: theme.colorScheme.onPrimary,
-                      ),
-                    ),
-                  ),
-                ),
-                if (onMenuTap != null)
-                  PositionedDirectional(
-                    start: 0,
-                    child: AppMenuButton(onTap: onMenuTap),
-                  ),
-                if (showBack)
-                  PositionedDirectional(
-                    end: 0,
-                    child: AppBackButton(onTap: onBack),
-                  ),
-              ],
-            ),
-          ),
-          const Gap(18),
-          ProfileAvatar(url: avatarUrl, size: 92),
-          const Gap(12),
-          Text(
+    return Column(
+      children: [
+        // The title row is the shared header, not a copy of it: the tab title
+        // has to carry the same colour and size on حسابي as it does on the
+        // other tabs, and reusing the widget is what keeps it that way.
+        AppPageHeader(
+          title: title,
+          onBack: onBack,
+          onMenuTap: onMenuTap,
+          showBack: showBack,
+        ),
+        const Gap(6),
+        ProfileAvatar(url: avatarUrl, size: 92),
+        const Gap(12),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Text(
             name,
             textAlign: TextAlign.center,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: theme.textTheme.headlineSmall?.copyWith(
-              color: theme.colorScheme.onPrimary,
-              fontSize: 20,
-            ),
+            style: theme.textTheme.headlineSmall?.copyWith(fontSize: 20),
           ),
-        ],
-      ),
+        ),
+        const Gap(20),
+      ],
     );
   }
 }

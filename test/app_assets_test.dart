@@ -3,13 +3,16 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:skygate/core/constants/app_assets.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
+import 'package:skygate/core/constants/card_assets.dart';
 import 'package:skygate/core/constants/drawer_assets.dart';
 import 'package:skygate/core/constants/first_section_assets.dart';
 import 'package:skygate/core/constants/home_assets.dart';
 import 'package:skygate/core/constants/journey_assets.dart';
 import 'package:skygate/core/constants/map_assets.dart';
+import 'package:skygate/core/constants/my_trips_assets.dart';
 import 'package:skygate/core/constants/payment_assets.dart';
 import 'package:skygate/core/constants/profile_assets.dart';
+import 'package:skygate/core/constants/settings_assets.dart';
 import 'package:skygate/core/constants/sos_assets.dart';
 import 'package:skygate/core/constants/splash_assets.dart';
 import 'package:skygate/core/constants/vip_trip_assets.dart';
@@ -18,13 +21,16 @@ import 'package:skygate/core/constants/vip_trip_assets.dart';
 final Set<String> _declared = {
   ...AppAssets.all,
   ...AuthAssets.all,
+  ...CardAssets.all,
   ...DrawerAssets.all,
   ...FirstSectionAssets.all,
   ...HomeAssets.all,
   ...JourneyAssets.all,
   ...MapAssets.all,
+  ...MyTripsAssets.all,
   ...PaymentAssets.all,
   ...ProfileAssets.all,
+  ...SettingsAssets.all,
   ...SosAssets.all,
   ...SplashAssets.all,
   ...VipTripAssets.all,
@@ -66,13 +72,16 @@ void main() {
     for (final list in [
       AppAssets.all,
       AuthAssets.all,
+      CardAssets.all,
       DrawerAssets.all,
       FirstSectionAssets.all,
       HomeAssets.all,
       JourneyAssets.all,
       MapAssets.all,
+      MyTripsAssets.all,
       PaymentAssets.all,
       ProfileAssets.all,
+      SettingsAssets.all,
       SosAssets.all,
       SplashAssets.all,
       VipTripAssets.all,

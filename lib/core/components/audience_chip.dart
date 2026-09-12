@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_circle_badge.dart';
 import 'package:skygate/core/components/app_status_chip.dart';

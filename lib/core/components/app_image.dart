@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:skygate/core/constants/app_assets.dart';
 
 class AppImage extends StatelessWidget {
   const AppImage(

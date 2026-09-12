@@ -2,6 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/models/journey_transport.dart';
 
+/// The strip of plates across a "رحلاتي" card: one per leg, in the order they
+/// are travelled, joined by the line between them.
+///
+/// Three standings, each an outlined circle on the card's own ground: legs
+/// already travelled ring in blue, the leg under way rings in gold, and the
+/// ones still ahead ring in grey. The joint behind a travelled leg is drawn
+/// heavy and blue, the rest hairline and pale.
+///
+/// [currentLeg] is the leg under way. `my-trips` sends the legs as modes only
+/// and says nothing about progress, so the rail is usually drawn without one —
+/// it then states the route, every plate ringed in blue and every joint pale.
 class TripProgressRail extends StatelessWidget {
   const TripProgressRail({super.key, required this.legs, this.currentLeg});
 
@@ -18,18 +29,18 @@ class TripProgressRail extends StatelessWidget {
         for (var i = 0; i < legs.length; i++) ...[
           _Plate(
             transport: legs[i],
-            // The leg under way is called out; the ones behind it are done and
-            // the ones ahead have not started, and both read as inactive.
             isCurrent: current != null && i == current,
-            isReached: current != null && i <= current,
+            isReached: current == null || i < current,
           ),
           if (i < legs.length - 1)
             Expanded(
               child: Container(
-                height: 2,
+                // The stretch already travelled is stated; the rest is only
+                // ruled in, so it stays out of the way.
+                height: current != null && i < current ? 3 : 1.5,
                 color: current != null && i < current
                     ? theme.colorScheme.primary
-                    : theme.colorScheme.outline,
+                    : theme.colorScheme.outline.withValues(alpha: 0.5),
               ),
             ),
         ],
@@ -46,7 +57,13 @@ class _Plate extends StatelessWidget {
   });
 
   final JourneyTransport transport;
+
+  /// The leg under way — the only one drawn in gold, and the only one whose
+  /// ring is thickened.
   final bool isCurrent;
+
+  /// A leg already behind the traveller, and every leg when progress is
+  /// unknown: the rail then reads as the route rather than as nothing done.
   final bool isReached;
 
   @override
@@ -57,23 +74,21 @@ class _Plate extends StatelessWidget {
         ? theme.colorScheme.secondary
         : isReached
         ? theme.colorScheme.primary
-        : theme.colorScheme.onSurface.withValues(alpha: 0.35);
+        : theme.colorScheme.outline;
 
     return Container(
-      height: 30,
-      width: 30,
+      height: 32,
+      width: 32,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: isCurrent
-            ? theme.colorScheme.secondary.withValues(alpha: 0.18)
-            : theme.colorScheme.surfaceContainerHighest,
+        color: theme.colorScheme.surface,
         shape: BoxShape.circle,
-        border: Border.all(color: foreground, width: 1.4),
+        border: Border.all(color: foreground, width: isCurrent ? 2.4 : 1.6),
       ),
       child: AppImage(
         transport.typeIcon,
-        height: 15,
-        width: 15,
+        height: 16,
+        width: 16,
         color: foreground,
       ),
     );

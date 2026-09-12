@@ -1,9 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:skygate/core/components/app_title_header.dart';
 import 'package:skygate/core/components/empty_state.dart';
 import 'package:skygate/core/utils/naivgator_helper.dart';
 import 'package:skygate/features/booking/views/booking_type_screen.dart';
+import 'package:skygate/features/cards/views/trip_cards_screen.dart';
 import 'package:skygate/features/journey_details/controller/cubit/journey_details_cubit.dart';
 import 'package:skygate/features/journey_details/models/journey_package_model.dart';
 import 'package:skygate/features/journey_details/views/activities_screen.dart';
@@ -11,31 +13,56 @@ import 'package:skygate/features/journey_details/views/hotels_screen.dart';
 import 'package:skygate/features/journey_details/views/itinerary_screen.dart';
 import 'package:skygate/features/journey_details/views/trip_offers_screen.dart';
 import 'package:skygate/features/journey_details/widgets/journey_bottom_bar.dart';
-import 'package:skygate/features/journey_details/widgets/journey_hero_header.dart';
+import 'package:skygate/features/journey_details/widgets/current_trip_card.dart';
 import 'package:skygate/features/journey_details/widgets/journey_section_tile.dart';
-import 'package:skygate/features/journey_details/widgets/journey_stays_row.dart';
+import 'package:skygate/features/journey_details/widgets/trip_stat_grid.dart';
 import 'package:skygate/features/journey_details/widgets/journey_supervisors_card.dart';
 import 'package:skygate/features/payments/views/payments_screen.dart';
 
+/// "تفاصيل الرحلة" — one trip, read two different ways.
+///
+/// The default constructor is a trip being **browsed**: everything is on show
+/// including its packages, and the page ends in "بدء الحجز".
+///
+/// [PackageDetailsScreen.booked] is a trip from "رحلاتي" — one the pilgrim
+/// already holds. Nothing is for sale there, so the offers row and the booking
+/// bar both go, and "حجوزاتي و المدفوعات" appears in their place.
 class PackageDetailsScreen extends StatelessWidget {
-  const PackageDetailsScreen({super.key, required this.tripId, this.bookingId});
+  const PackageDetailsScreen({super.key, required this.tripId})
+    : bookingId = null,
+      canBook = true;
+
+  const PackageDetailsScreen.booked({
+    super.key,
+    required this.tripId,
+    required this.bookingId,
+  }) : canBook = false;
 
   final int tripId;
+
+  /// The booking this pilgrim holds on the trip. Every screen reached from
+  /// here is scoped to it — the roster, the cards, the visas and the tickets
+  /// are all "whose", not "which trip's".
   final int? bookingId;
+
+  /// Whether the trip can still be bought from this page.
+  final bool canBook;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => JourneyDetailsCubit(tripId)..getPackage(),
-      child: _PackageDetailsBody(bookingId: bookingId),
+      child: _PackageDetailsBody(bookingId: bookingId, canBook: canBook),
     );
   }
 }
 
 class _PackageDetailsBody extends StatelessWidget {
-  const _PackageDetailsBody({required this.bookingId});
+  const _PackageDetailsBody({required this.bookingId, required this.canBook});
 
   final int? bookingId;
+  final bool canBook;
+
   void _startBooking(BuildContext context) {
     NaivgatorHelper.pushNavigation(
       context,
@@ -47,75 +74,126 @@ class _PackageDetailsBody extends StatelessWidget {
     final tripId = context.read<JourneyDetailsCubit>().tripId;
 
     NaivgatorHelper.pushNavigation(context, switch (section) {
-      JourneySection.routes => ItineraryScreen(tripId: tripId),
+      JourneySection.routes => ItineraryScreen(
+        tripId: tripId,
+        bookingId: bookingId,
+      ),
       JourneySection.hotels => HotelsScreen(tripId: tripId),
       JourneySection.activities => ActivitiesScreen(tripId: tripId),
       JourneySection.offers => TripOffersScreen(tripId: tripId),
-      // Only reachable while `bookingId` is set, which is what put the row on
-      // the page in the first place.
+      // Both are only ever reachable while `bookingId` is set, which is what
+      // put the rows on the page to begin with.
       JourneySection.booking => PaymentsScreen(bookingId: bookingId!),
+      JourneySection.cards => TripCardsScreen(bookingId: bookingId!),
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      // The header sits outside the scroll area on purpose: the way back has
+      // to stay reachable however far down the page the reader has got.
+      body: SafeArea(
+        bottom: false,
+        child: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.fromLTRB(20, 12, 20, 0),
+              child: AppTitleHeader(showBack: true),
+            ),
+            Expanded(child: _content(context)),
+          ],
+        ),
+      ),
+      // Nothing is bought from "رحلاتي"; the trip is already the pilgrim's.
+      bottomNavigationBar: canBook
+          ? JourneyBottomBar(
+              label: 'start_booking'.tr(),
+              onPressed: () => _startBooking(context),
+            )
+          : null,
+    );
+  }
+
+  Widget _content(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Scaffold(
-      body: BlocBuilder<JourneyDetailsCubit, JourneyDetailsState>(
-        builder: (context, state) {
-          final cubit = context.read<JourneyDetailsCubit>();
-          final package = cubit.package;
+    return BlocBuilder<JourneyDetailsCubit, JourneyDetailsState>(
+      builder: (context, state) {
+        final cubit = context.read<JourneyDetailsCubit>();
+        final package = cubit.package;
 
-          if (state is PackageLoading) {
-            return const Center(child: CircularProgressIndicator());
-          }
+        if (state is PackageLoading) {
+          return const Center(child: CircularProgressIndicator());
+        }
 
-          return ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              JourneyHeroHeader(
-                image: package?.image,
-                durationDays: package?.durationDays,
-              ),
-              if (package == null)
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 60),
-                  child: EmptyState(
-                    message: state is PackageError
-                        ? state.message.tr()
-                        : 'no_trip_details'.tr(),
-                    onRetry: cubit.getPackage,
-                  ),
-                )
-              else ...[
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        package.title ?? '',
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: theme.textTheme.titleLarge,
-                      ),
-                      const SizedBox(height: 12),
+        final sections = canBook
+            ? JourneySectionModel.catalogue
+            : JourneySectionModel.bookedCatalogue;
+
+        return ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            // The design opens on the trip itself rather than on a photo:
+            // which trip is running, its number, and both ends of it.
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
+              child: CurrentTripCard(package: package),
+            ),
+            if (package == null)
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 60),
+                child: EmptyState(
+                  message: state is PackageError
+                      ? state.message.tr()
+                      : 'no_trip_details'.tr(),
+                  onRetry: cubit.getPackage,
+                ),
+              )
+            else ...[
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    TripStatGrid(package: package),
+                    // Who is running the trip is part of deciding whether to
+                    // book it. On a trip already held, the design goes
+                    // straight from the four facts to what is inside it.
+                    if (canBook) ...[
+                      const SizedBox(height: 8),
                       JourneySupervisorsCard(supervisors: package.supervisors),
-                      const SizedBox(height: 12),
-                      JourneyStaysRow(stays: package.stays),
-                      const SizedBox(height: 20),
-                      Text(
-                        'trip_details'.tr(),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: theme.textTheme.titleLarge,
-                      ),
-                      const SizedBox(height: 12),
                     ],
+                    const SizedBox(height: 20),
+                    Text(
+                      'trip_details'.tr(),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.titleLarge,
+                    ),
+                    const SizedBox(height: 12),
+                  ],
+                ),
+              ),
+              for (final section in sections)
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
+                  child: JourneySectionTile(
+                    section: section,
+                    onTap: () => _openSection(context, section.section),
                   ),
                 ),
-                for (final section in cubit.sections)
+              if (bookingId != null) ...[
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 8, 20, 12),
+                  child: Text(
+                    'my_bookings_and_payments'.tr(),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.titleLarge,
+                  ),
+                ),
+                for (final section in JourneySectionModel.bookingCatalogue)
                   Padding(
                     padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
                     child: JourneySectionTile(
@@ -123,37 +201,12 @@ class _PackageDetailsBody extends StatelessWidget {
                       onTap: () => _openSection(context, section.section),
                     ),
                   ),
-                if (bookingId != null) ...[
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 8, 20, 12),
-                    child: Text(
-                      'my_bookings_and_payments'.tr(),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.titleLarge,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
-                    child: JourneySectionTile(
-                      section: JourneySectionModel.booking,
-                      onTap: () =>
-                          _openSection(context, JourneySection.booking),
-                    ),
-                  ),
-                ],
               ],
-              const SizedBox(height: 12),
             ],
-          );
-        },
-      ),
-      bottomNavigationBar: JourneyBottomBar(
-        label: bookingId == null
-            ? 'start_booking'.tr()
-            : 'add_new_booking'.tr(),
-        onPressed: () => _startBooking(context),
-      ),
+            const SizedBox(height: 12),
+          ],
+        );
+      },
     );
   }
 }

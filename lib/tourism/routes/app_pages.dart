@@ -96,11 +96,7 @@ class AppPages {
   static String INITIAL = Routes.SPLASH;
 
   static final routes = [
-    GetPage(
-      name: _Paths.HOME,
-      page: () => HomeView(),
-      binding: HomeBinding(),
-    ),
+    GetPage(name: _Paths.HOME, page: () => HomeView(), binding: HomeBinding()),
     GetPage(
       name: _Paths.SIGNIN,
       page: () => SigninView(),
@@ -146,11 +142,7 @@ class AppPages {
       page: () => EditProfileView(),
       binding: EditProfileBinding(),
     ),
-    GetPage(
-      name: _Paths.FAQS,
-      page: () => FaqsView(),
-      binding: FaqsBinding(),
-    ),
+    GetPage(name: _Paths.FAQS, page: () => FaqsView(), binding: FaqsBinding()),
     GetPage(
       name: _Paths.LOGOUT,
       page: () => const LogoutView(),
@@ -178,7 +170,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.MY_TRIPS,
-      page: () => MyTripsView(),
+      page: () => MyTripsAgendaView(),
       binding: MyTripsBinding(),
     ),
     GetPage(
@@ -347,16 +339,19 @@ class AppPages {
       binding: ChangeOperationBinding(),
     ),
     GetPage(
-        name: _Paths.CONFIRM_BOOKING_CONDITION,
-        page: () => ConfirmBookingCondiitonView(),
-        binding: MyBookingsRequestsBinding()),
+      name: _Paths.CONFIRM_BOOKING_CONDITION,
+      page: () => ConfirmBookingCondiitonView(),
+      binding: MyBookingsRequestsBinding(),
+    ),
     GetPage(
-        name: _Paths.ADD_PASSPORTS_VIEW,
-        page: () => AddPassportsView(),
-        binding: MyBookingsRequestsBinding()),
+      name: _Paths.ADD_PASSPORTS_VIEW,
+      page: () => AddPassportsView(),
+      binding: MyBookingsRequestsBinding(),
+    ),
     GetPage(
-        name: _Paths.PASSPORT_SCANNER_VIEW,
-        page: () => PassportScannerView(),
-        binding: MyBookingsRequestsBinding()),
+      name: _Paths.PASSPORT_SCANNER_VIEW,
+      page: () => PassportScannerView(),
+      binding: MyBookingsRequestsBinding(),
+    ),
   ];
 }

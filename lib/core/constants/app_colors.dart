@@ -38,6 +38,10 @@ class AppColors {
 
   static const Color darkFieldSurface = Color(0xFF1B2739);
 
+  // ── Document standings ───────────────────────────────────────────────────
+  static const Color errorSurface = Color(0xFFFBD9D9);
+  static const Color ritualText = Color(0xFF6D28D9);
+
   // ── Journey activities ───────────────────────────────────────────────────
   static const Color ritual = Color(0xFFB47FFB);
   static const Color ritualSurface = Color(0xFFE2CFFE);

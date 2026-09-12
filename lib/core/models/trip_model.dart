@@ -1,3 +1,5 @@
+import 'package:skygate/core/constants/api_endpoints.dart';
+import 'package:skygate/core/models/journey_transport.dart';
 import 'package:skygate/core/utils/api_parse.dart';
 
 class TripModel {
@@ -13,6 +15,38 @@ class TripModel {
   String? accessType;
   String? status;
   String? programPdfUrl;
+
+  /// Photo printed on the "رحلاتي" card. Absolute once resolved, so the card
+  /// hands it straight to [CachedImage].
+  String? imageUrl;
+  bool isVip = false;
+
+  /// The tab `my-trips` itself put the trip in — `current`, `upcoming` or
+  /// `past`. The card's badge repeats this rather than the tab being viewed,
+  /// so a trip that crossed a boundary between the request and the render
+  /// still reads correctly.
+  String? filterStatus;
+
+  /// Length as the API counts it. Only the list endpoint sends it; the detail
+  /// endpoint leaves it null and [durationDays] falls back to the two dates.
+  int? apiDurationDays;
+
+  /// The legs behind the progress rail on a "رحلاتي" card. The list endpoint
+  /// sends modes only — no times, no cities — so it cannot feed [itinerary].
+  List<JourneyTransport> transportModes = const [];
+
+  /// Index into [transportModes] of the leg under way. Not published yet, so
+  /// it is usually null and the rail draws the route without progress; read
+  /// leniently so it starts working the day the API adds the field.
+  int? currentLeg;
+
+  /// Present only on `my-trips`, where every trip is one the pilgrim booked.
+  /// It is what makes "تفاصيل الحجز" and "تفاصيل البطاقات" reachable.
+  TripBookingSummaryModel? booking;
+
+  /// "عدد المعتمرين" on the trip overview. Not in the published schema — it
+  /// arrives on the booked trip only — so the tile it feeds hides when null.
+  int? pilgrimsCount;
   TripPriceRangeModel? priceRange;
   num? mapCenterLat;
   num? mapCenterLng;
@@ -38,6 +72,23 @@ class TripModel {
     accessType = ApiParse.stringOf(json['access_type']);
     status = ApiParse.labelOf(json['status']);
     programPdfUrl = ApiParse.stringOf(json['trip_program_pdf_url']);
+    imageUrl = ApiEndpoints.mediaUrl(
+      ApiParse.stringOf(json['trip_image_url'] ?? json['image']),
+    );
+    isVip = ApiParse.boolOf(json['is_vip'], orElse: false);
+    filterStatus = ApiParse.labelOf(json['filter_status']);
+    apiDurationDays = ApiParse.intOf(json['duration_days']);
+    transportModes = [
+      for (final mode in ApiParse.stringsOf(json['transport_modes']))
+        JourneyTransport.fromApi(mode),
+    ];
+    currentLeg = ApiParse.intOf(
+      json['current_leg'] ?? json['current_segment_index'],
+    );
+    booking = TripBookingSummaryModel.of(json['booking']);
+    pilgrimsCount = ApiParse.intOf(
+      json['pilgrims_count'] ?? json['travelers_count'] ?? json['seats_taken'],
+    );
     priceRange = TripPriceRangeModel.of(json['price_range']);
     mapCenterLat = ApiParse.numOf(json['map_center_lat']);
     mapCenterLng = ApiParse.numOf(json['map_center_lng']);
@@ -64,7 +115,8 @@ class TripModel {
     );
   }
   String? get title => campaignName ?? tripNumber;
-  int? get durationDays => ApiParse.daysBetween(startDate, endDate);
+  int? get durationDays =>
+      apiDurationDays ?? ApiParse.daysBetween(startDate, endDate);
   bool get isBookingOpen =>
       bookingDeadline == null || bookingDeadline!.isAfter(DateTime.now());
   num? get lowestAdultPrice {
@@ -102,6 +154,54 @@ class TripPriceRangeModel {
   }
 
   num? get from => min ?? max;
+}
+
+/// The booking block `my-trips` nests inside each trip: one pilgrim's own
+/// standing on that trip, which is what the list is filtered by.
+///
+/// This is a summary, not the booking itself — enough to open the payments and
+/// cards screens and to say how much is still owed, nothing more.
+class TripBookingSummaryModel {
+  int? id;
+  String? reference;
+  String? status;
+
+  num? total;
+  num? paid;
+
+  /// What the API says is left, which is authoritative: a refund or a fee can
+  /// put it out of step with `total - paid`. [outstanding] falls back to the
+  /// subtraction only when the field is absent.
+  num? remainingAmount;
+
+  /// 0–100 as the API counts it, not recomputed here for the same reason.
+  num? paymentPercentage;
+  String? currency;
+
+  TripBookingSummaryModel.fromJson(Map<String, dynamic> json) {
+    id = ApiParse.intOf(json['id']);
+    reference = ApiParse.stringOf(json['booking_reference']);
+    status = ApiParse.labelOf(json['status']);
+    total = ApiParse.numOf(json['total_amount']);
+    paid = ApiParse.numOf(json['paid_amount']);
+    remainingAmount = ApiParse.numOf(json['remaining_amount']);
+    paymentPercentage = ApiParse.numOf(json['payment_percentage']);
+    currency = ApiParse.stringOf(json['currency']);
+  }
+
+  static TripBookingSummaryModel? of(dynamic value) =>
+      value is Map<String, dynamic>
+      ? TripBookingSummaryModel.fromJson(value)
+      : null;
+
+  num get outstanding {
+    final stated = remainingAmount;
+    if (stated != null) return stated < 0 ? 0 : stated;
+    final left = (total ?? 0) - (paid ?? 0);
+    return left < 0 ? 0 : left;
+  }
+
+  bool get isFullyPaid => outstanding <= 0;
 }
 
 class TripPackageModel {
@@ -320,6 +420,13 @@ class TripActivityModel {
   String? meetingPointText;
   String? status;
 
+  /// Whether this pilgrim has already checked in, and what they scored the
+  /// activity. Neither is in the published schema — both arrive once the
+  /// attendance and feedback endpoints have been posted to — so they are read
+  /// leniently and default to "not yet".
+  String? attendanceStatus;
+  num? feedbackRating;
+
   TripActivityTypeModel? activityType;
 
   TripActivityModel.fromJson(Map<String, dynamic> json) {
@@ -332,6 +439,12 @@ class TripActivityModel {
     meetingPointLng = ApiParse.numOf(json['meeting_point_lng']);
     meetingPointText = ApiParse.stringOf(json['meeting_point_text']);
     status = ApiParse.labelOf(json['status']);
+    attendanceStatus = ApiParse.labelOf(
+      json['attendance_status'] ?? json['attendance'],
+    );
+    feedbackRating = ApiParse.numOf(
+      json['feedback_rating'] ?? json['rating'] ?? json['my_rating'],
+    );
     activityType = TripActivityTypeModel.of(json['activity_type']);
   }
 }

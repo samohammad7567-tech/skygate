@@ -10,9 +10,9 @@ import 'package:skygate/features/profile/controller/cubit/profile_cubit.dart';
 import 'package:skygate/features/profile/views/edit_files_screen.dart';
 import 'package:skygate/features/profile/widgets/document_preview_sheet.dart';
 import 'package:skygate/features/profile/widgets/pilgrim_file_row.dart';
-import 'package:skygate/features/profile/widgets/profile_card.dart';
+import 'package:skygate/core/components/app_list_card.dart';
 import 'package:skygate/features/profile/widgets/profile_scaffold.dart';
-import 'package:skygate/features/profile/widgets/profile_section_title.dart';
+import 'package:skygate/core/components/app_section_title.dart';
 
 class PilgrimFilesScreen extends StatefulWidget {
   const PilgrimFilesScreen({super.key});
@@ -52,7 +52,7 @@ class _PilgrimFilesScreenState extends State<PilgrimFilesScreen> {
         return ProfileScaffold(
           title: 'nav_account'.tr(),
           children: [
-            ProfileSectionTitle(text: 'pilgrim_files'.tr()),
+            AppSectionTitle(text: 'pilgrim_files'.tr()),
             const Gap(12),
             if (state is DocumentsLoading)
               const Padding(
@@ -68,7 +68,7 @@ class _PilgrimFilesScreenState extends State<PilgrimFilesScreen> {
                 ),
               )
             else
-              ProfileCard(
+              AppListCard(
                 children: [
                   for (final document in cubit.documentTypes)
                     PilgrimFileRow(

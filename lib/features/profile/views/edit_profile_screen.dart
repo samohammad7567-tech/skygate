@@ -14,7 +14,7 @@ import 'package:skygate/features/profile/controller/cubit/profile_cubit.dart';
 import 'package:skygate/features/profile/widgets/profile_form_actions.dart';
 import 'package:skygate/features/profile/widgets/profile_photo_field.dart';
 import 'package:skygate/features/profile/widgets/profile_scaffold.dart';
-import 'package:skygate/features/profile/widgets/profile_section_title.dart';
+import 'package:skygate/core/components/app_section_title.dart';
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({super.key});
@@ -66,7 +66,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           title: 'edit_account'.tr(),
           onBack: _cancel,
           children: [
-            ProfileSectionTitle(text: 'edit_account_information'.tr()),
+            AppSectionTitle(text: 'edit_account_information'.tr()),
             const Gap(14),
             ProfilePhotoField(
               image: cubit.profileImage,

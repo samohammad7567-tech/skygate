@@ -17,7 +17,7 @@ import 'package:skygate/features/profile/views/passport_scan_screen.dart';
 import 'package:skygate/features/profile/widgets/passport_scan_trigger.dart';
 import 'package:skygate/features/profile/widgets/profile_form_actions.dart';
 import 'package:skygate/features/profile/widgets/profile_scaffold.dart';
-import 'package:skygate/features/profile/widgets/profile_section_title.dart';
+import 'package:skygate/core/components/app_section_title.dart';
 
 class EditPassportScreen extends StatefulWidget {
   const EditPassportScreen({super.key});
@@ -76,7 +76,7 @@ class _EditPassportScreenState extends State<EditPassportScreen> {
           title: 'edit_account'.tr(),
           onBack: _cancel,
           children: [
-            ProfileSectionTitle(text: 'edit_passport_information'.tr()),
+            AppSectionTitle(text: 'edit_passport_information'.tr()),
             const Gap(14),
             if (hasVerdict) ...[
               PassportScanBanner(succeeded: cubit.isScanned),

@@ -8,7 +8,7 @@ import 'package:skygate/features/profile/controller/cubit/profile_cubit.dart';
 import 'package:skygate/features/profile/views/edit_passport_screen.dart';
 import 'package:skygate/features/profile/widgets/passport_info_card.dart';
 import 'package:skygate/features/profile/widgets/profile_scaffold.dart';
-import 'package:skygate/features/profile/widgets/profile_section_title.dart';
+import 'package:skygate/core/components/app_section_title.dart';
 
 class PassportInfoScreen extends StatelessWidget {
   const PassportInfoScreen({super.key});
@@ -33,7 +33,7 @@ class PassportInfoScreen extends StatelessWidget {
         return ProfileScaffold(
           title: 'nav_account'.tr(),
           children: [
-            ProfileSectionTitle(text: 'passport_information'.tr()),
+            AppSectionTitle(text: 'passport_information'.tr()),
             const Gap(12),
             PassportInfoCard(passport: cubit.passport),
             const Gap(18),

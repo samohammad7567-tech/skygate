@@ -10,6 +10,21 @@ enum TravelerAudience {
   static const int infantMaxAge = 2;
   static const int childMaxAge = 12;
   bool get needsGuardian => this != adult;
+
+  /// Reads whatever the API labelled a traveller with. The field is spelled
+  /// differently per endpoint — a slug, an Arabic word, sometimes a bare age
+  /// band — so this matches leniently and falls back to an adult.
+  static TravelerAudience fromApi(Object? value) {
+    final label = value?.toString().toLowerCase().trim() ?? '';
+    if (label.isEmpty) return adult;
+
+    bool has(List<String> words) => words.any(label.contains);
+
+    if (has(['infant', 'baby', 'رضيع', 'رضع'])) return infant;
+    if (has(['child', 'kid', 'طفل', 'أطفال', 'اطفال'])) return child;
+    return adult;
+  }
+
   static TravelerAudience fromBirthDate(DateTime? birthDate) {
     if (birthDate == null) return adult;
 

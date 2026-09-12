@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:skygate/core/constants/profile_assets.dart';
 import 'package:skygate/core/models/passport_data_model.dart';
 import 'package:skygate/core/utils/app_format.dart';
-import 'package:skygate/features/profile/widgets/profile_card.dart';
+import 'package:skygate/core/components/app_list_card.dart';
 import 'package:skygate/features/profile/widgets/profile_tile.dart';
 
 class PassportInfoCard extends StatelessWidget {
@@ -17,7 +17,7 @@ class PassportInfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final gender = passport.gender;
 
-    return ProfileCard(
+    return AppListCard(
       children: [
         ProfileTile(
           icon: ProfileAssets.account,

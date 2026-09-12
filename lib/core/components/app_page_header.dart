@@ -54,15 +54,20 @@ class AppPageHeader extends StatelessWidget {
                 ),
               ),
             ),
-            if (onMenuTap != null)
-              PositionedDirectional(
-                start: 0,
-                child: AppMenuButton(onTap: onMenuTap),
-              ),
+            // Start corner — the right in Arabic. The way back lives here,
+            // where both platforms put it; a tab root has nothing to pop and
+            // lends the corner to its own action instead.
             if (action != null || showBack)
               PositionedDirectional(
-                end: 0,
+                start: 0,
                 child: action ?? AppBackButton(onTap: onBack),
+              ),
+            // End corner — the drawer handle, away from the way back so the
+            // two are never confused for one another.
+            if (onMenuTap != null)
+              PositionedDirectional(
+                end: 0,
+                child: AppMenuButton(onTap: onMenuTap),
               ),
           ],
         ),
