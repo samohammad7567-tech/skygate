@@ -19,7 +19,7 @@ class ImportantNoteCard extends StatelessWidget {
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'important_note'.tr(),

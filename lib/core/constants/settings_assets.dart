@@ -13,22 +13,22 @@ class SettingsAssets {
   static const String tripUpdates = '$_svgs/flight.svg';
 
   // ── الخصوصية والأمان ─────────────────────────────────────────────────────
-  static const String biometric = '$_svgs/lock.svg';
-  static const String liveLocation = '$_svgs/location_pin.svg';
+  static const String biometric = '$_svgs/key.svg';
+  static const String liveLocation = '$_svgs/direct_share_location.svg';
 
   // ── التفضيلات ────────────────────────────────────────────────────────────
-  static const String language = '$_svgs/globel.svg';
+  static const String language = '$_svgs/language.svg';
 
   // ── الدعم ────────────────────────────────────────────────────────────────
   static const String chat = '$_svgs/chat.svg';
   static const String call = '$_svgs/phone_enabled.svg';
   static const String faq = '$_pngs/drawer_faq.png';
-  static const String report = '$_svgs/description.svg';
+  static const String report = '$_svgs/report_issue.svg';
 
   // ── حول ──────────────────────────────────────────────────────────────────
-  static const String version = '$_svgs/info.svg';
-  static const String privacy = '$_svgs/shield.svg';
-  static const String terms = '$_svgs/menu_book.svg';
+  static const String version = '$_svgs/app_version.svg';
+  static const String privacy = '$_svgs/privecy_policy.svg';
+  static const String terms = '$_svgs/service_conditions.svg';
 
   // ── Footer ───────────────────────────────────────────────────────────────
   static const String logout = '$_svgs/logout.svg';

@@ -153,17 +153,12 @@ class _HotelContent extends StatelessWidget {
                   value: hotel.mapNote ?? '—',
                   // The map exports are 3:2; holding that ratio keeps the
                   // labels on them from being cropped away.
-                  child: AspectRatio(
-                    aspectRatio: 3 / 2,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12.s),
-                      child: CachedImage(
-                        url: hotel.mapImage,
-                        fallbackAsset: JourneyAssets.hotelMap,
-                        width: double.infinity,
-                      ),
-                    ),
-                  ),
+                  child: SizedBox(),
+                ),
+                CachedImage(
+                  url: hotel.mapImage,
+                  fallbackAsset: JourneyAssets.hotelMap,
+                  width: double.infinity,
                 ),
               ],
             ),

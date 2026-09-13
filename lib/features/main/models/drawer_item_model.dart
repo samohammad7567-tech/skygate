@@ -57,7 +57,7 @@ class DrawerSectionModel {
         ),
         DrawerItemModel(
           labelKey: 'drawer_amend_bookings',
-          icon: DrawerAssets.amendBookings,
+          icon: DrawerAssets.updateBooking,
         ),
         DrawerItemModel(
           labelKey: 'drawer_private_trips',

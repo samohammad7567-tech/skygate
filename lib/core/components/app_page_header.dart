@@ -11,12 +11,17 @@ class AppPageHeader extends StatelessWidget {
     this.onMenuTap,
     this.action,
     this.showBack = true,
+    this.titleColor,
   });
 
   final String title;
   final VoidCallback? onBack;
   final VoidCallback? onMenuTap;
   final Widget? action;
+
+  /// Left off, the title keeps the theme's colour. A header drawn on a
+  /// coloured plate passes the colour that reads against it.
+  final Color? titleColor;
 
   /// A tab root has nothing to pop, so the shell's tabs clear this. Every
   /// pushed screen leaves it on.
@@ -51,7 +56,9 @@ class AppPageHeader extends StatelessWidget {
                   textAlign: TextAlign.center,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.titleLarge,
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    color: titleColor,
+                  ),
                 ),
               ),
             ),

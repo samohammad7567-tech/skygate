@@ -157,14 +157,15 @@ class _PackageDetailsBody extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+                    if (canBook) ...[
+                      JourneySupervisorsCard(supervisors: package.supervisors),
+                      SizedBox(height: 8.s),
+                    ],
                     TripStatGrid(package: package),
+
                     // Who is running the trip is part of deciding whether to
                     // book it. On a trip already held, the design goes
                     // straight from the four facts to what is inside it.
-                    if (canBook) ...[
-                      SizedBox(height: 8.s),
-                      JourneySupervisorsCard(supervisors: package.supervisors),
-                    ],
                     SizedBox(height: 20.s),
                     Text(
                       'trip_details'.tr(),

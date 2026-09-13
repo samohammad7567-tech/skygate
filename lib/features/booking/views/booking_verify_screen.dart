@@ -72,7 +72,7 @@ class BookingVerifyScreen extends StatelessWidget {
             children: [
               Text(
                 'passport_info'.tr(),
-                textAlign: TextAlign.end,
+                textAlign: TextAlign.start,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: theme.textTheme.titleLarge?.copyWith(
@@ -85,11 +85,12 @@ class BookingVerifyScreen extends StatelessWidget {
               const CaptureInstructionsCard(),
               Gap(16.s),
               CustomButton(
+                
                 label: 'capture_and_read_passport'.tr(),
                 height: 48.s,
                 onPressed: () => _scan(context),
                 icon: AppImage(
-                  AuthAssets.imageScanner,
+                  AuthAssets.camera,
                   height: 20.s,
                   color: theme.colorScheme.onPrimary,
                 ),

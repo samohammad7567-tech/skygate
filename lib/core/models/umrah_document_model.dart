@@ -19,7 +19,7 @@ class UmrahDocumentModel {
     UmrahDocumentModel(
       id: 'personal_photo',
       titleKey: 'doc_personal_photo',
-      icon: AuthAssets.accountCircle,
+      icon: AuthAssets.personBook,
     ),
     UmrahDocumentModel(
       id: 'mahram_marriage_contract',
@@ -49,7 +49,7 @@ class UmrahDocumentModel {
     UmrahDocumentModel(
       id: 'personal_id',
       titleKey: 'doc_personal_id',
-      icon: AuthAssets.personBook,
+      icon: AuthAssets.idCard,
     ),
   ];
   static const List<String> criteriaKeys = [

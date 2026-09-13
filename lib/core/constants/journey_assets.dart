@@ -29,7 +29,7 @@ class JourneyAssets {
   static const String sort = '$_svgs/sort.svg';
   static const String star = '$_svgs/star_shine.svg';
   static const String nights = '$_svgs/helal.svg';
-  static const String location = '$_svgs/location_on.svg';
+  static const String location = '$_svgs/location.svg';
   static const String city = '$_svgs/location_city.svg';
   static const String bed = '$_svgs/bed.svg';
   static const String roomType = '$_svgs/bedroom_child.svg';

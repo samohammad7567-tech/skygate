@@ -34,15 +34,6 @@ class BookingBottomBar extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                child: CustomButton(
-                  label: continueLabel ?? 'continue_step'.tr(),
-                  onPressed: onContinue,
-                  isLoading: isLoading,
-                  height: 46.s,
-                ),
-              ),
-              SizedBox(width: 12.s),
-              Expanded(
                 child: SizedBox(
                   height: 46.s,
                   child: OutlinedButton(
@@ -64,6 +55,16 @@ class BookingBottomBar extends StatelessWidget {
                       ),
                     ),
                   ),
+                ),
+              ),
+              SizedBox(width: 12.s),
+
+              Expanded(
+                child: CustomButton(
+                  label: continueLabel ?? 'continue_step'.tr(),
+                  onPressed: onContinue,
+                  isLoading: isLoading,
+                  height: 46.s,
                 ),
               ),
             ],

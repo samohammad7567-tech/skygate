@@ -92,7 +92,7 @@ class GroupVerifyScreen extends StatelessWidget {
                 height: 48.s,
                 onPressed: () => _scan(context),
                 icon: AppImage(
-                  AuthAssets.imageScanner,
+                  AuthAssets.camera,
                   height: 20.s,
                   color: theme.colorScheme.onPrimary,
                 ),

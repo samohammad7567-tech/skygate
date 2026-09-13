@@ -84,34 +84,34 @@ class _CompanyRow extends StatelessWidget {
     // The lockup sits on the start side with the two text lines pushed up
     // against it, so the empty half of the row falls on the end side.
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        Spacer(),
         CachedImage(
           url: carrier.logo,
           fallbackAsset: transport.fallbackLogo,
-          height: 34.s,
-          width: 84.s,
+
           fit: BoxFit.contain,
         ),
         SizedBox(width: 12.s),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'vehicle_company'.tr(),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: theme.textTheme.bodySmall,
-              ),
-              Text(
-                carrier.name ?? '',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: theme.textTheme.titleSmall,
-              ),
-            ],
-          ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'vehicle_company'.tr(),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: theme.textTheme.bodySmall,
+            ),
+            Text(
+              carrier.name ?? '',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: theme.textTheme.titleSmall,
+            ),
+          ],
         ),
+        Spacer(),
       ],
     );
   }

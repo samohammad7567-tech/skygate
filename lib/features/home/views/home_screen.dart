@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
     if (tripId == null) return;
     NaivgatorHelper.pushNavigation(
       context,
-      PackageDetailsScreen(tripId: tripId),
+      PackageDetailsScreen(tripId: tripId,),
     );
   }
 

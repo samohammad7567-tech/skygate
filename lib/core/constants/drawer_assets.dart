@@ -17,7 +17,7 @@ class DrawerAssets {
 
   // ── خدمات المعتمر ────────────────────────────────────────────────────────
   static const String lostItems = '$_pngs/drawer_lost_items.png';
-  static const String amendBookings = '$_svgs/description.svg';
+  static const String updateBooking = '$_svgs/update_booking.svg';
   static const String privateTrips = '$_pngs/drawer_private_trips.png';
   static const String alerts = '$_pngs/drawer_alerts.png';
 
@@ -34,7 +34,7 @@ class DrawerAssets {
     account,
     settings,
     lostItems,
-    amendBookings,
+    updateBooking,
     privateTrips,
     alerts,
     support,

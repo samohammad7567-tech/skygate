@@ -19,7 +19,7 @@ class AuthAssets {
   static const String cornerTopRight = '$_svgs/top_right.svg';
   static const String cornerBottomLeft = '$_svgs/buttom_left.svg';
   static const String cornerBottomRight = '$_svgs/buttom_right.svg';
-  static const String imageScanner = '$_svgs/image_scanner.svg';
+  static const String camera = '$_svgs/camera.svg';
 
   // ── Form field icons ─────────────────────────────────────────────────────
   static const String accountCircle = '$_svgs/account_circle.svg';
@@ -52,7 +52,7 @@ class AuthAssets {
     cornerTopRight,
     cornerBottomLeft,
     cornerBottomRight,
-    imageScanner,
+    camera,
     accountCircle,
     phone,
     mail,

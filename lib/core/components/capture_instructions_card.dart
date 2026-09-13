@@ -24,7 +24,7 @@ class CaptureInstructionsCard extends StatelessWidget {
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'capture_instructions'.tr(),
@@ -55,14 +55,6 @@ class _Bullet extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(
-          child: Text(
-            text,
-            textAlign: TextAlign.end,
-            style: theme.textTheme.bodySmall,
-          ),
-        ),
-        Gap(8.s),
         Padding(
           padding: EdgeInsets.only(top: 5.s),
           child: Container(
@@ -72,6 +64,15 @@ class _Bullet extends StatelessWidget {
               color: theme.colorScheme.primary,
               shape: BoxShape.circle,
             ),
+          ),
+        ),
+        Gap(8.s),
+
+        Expanded(
+          child: Text(
+            text,
+            textAlign: TextAlign.start,
+            style: theme.textTheme.bodySmall,
           ),
         ),
       ],

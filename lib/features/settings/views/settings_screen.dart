@@ -23,7 +23,9 @@ class SettingsScreen extends StatelessWidget {
         BlocProvider(create: (_) => SettingsCubit()..loadSettings()),
         BlocProvider(create: (_) => AuthCubit()),
       ],
-      child: SettingsBody(onMenuTap: onMenuTap, showBack: showBack),
+      child: SafeArea(
+        child: SettingsBody(onMenuTap: onMenuTap, showBack: showBack),
+      ),
     );
   }
 }

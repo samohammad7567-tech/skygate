@@ -75,34 +75,36 @@ class _Title extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Row(
-      children: [
-        Expanded(
-          child: Text(
+    return Align(
+      alignment: AlignmentDirectional.centerStart,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            height: 40.s,
+            width: 40.s,
+            decoration: BoxDecoration(
+              color: theme.colorScheme.surfaceContainerHighest,
+              shape: BoxShape.circle,
+            ),
+            child: Center(
+              child: AppImage(
+                document.icon,
+                height: 20.s,
+                color: theme.colorScheme.primary,
+              ),
+            ),
+          ),
+          Gap(10.s),
+
+          Text(
             document.titleKey.tr(),
-            textAlign: TextAlign.end,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: theme.textTheme.titleMedium,
           ),
-        ),
-        Gap(10.s),
-        Container(
-          height: 36.s,
-          width: 36.s,
-          decoration: BoxDecoration(
-            color: theme.colorScheme.surfaceContainerHighest,
-            shape: BoxShape.circle,
-          ),
-          child: Center(
-            child: AppImage(
-              document.icon,
-              height: 20.s,
-              color: theme.colorScheme.primary,
-            ),
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

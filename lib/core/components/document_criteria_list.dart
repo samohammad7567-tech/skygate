@@ -20,7 +20,7 @@ class DocumentCriteriaList extends StatelessWidget {
         border: Border.all(color: theme.colorScheme.outline),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'accepted_criteria'.tr(),
@@ -32,7 +32,7 @@ class DocumentCriteriaList extends StatelessWidget {
           for (final key in UmrahDocumentModel.criteriaKeys) ...[
             Text(
               '• ${key.tr()}',
-              textAlign: TextAlign.end,
+              textAlign: TextAlign.start,
               style: theme.textTheme.bodySmall,
             ),
             Gap(4.s),

@@ -43,11 +43,11 @@ class SettingsRow extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              height: 40.s,
-              width: 40.s,
+              height: 45.s,
+              width: 45.s,
               decoration: BoxDecoration(
                 color: accent.withValues(alpha: 0.10),
-                borderRadius: BorderRadius.circular(12.s),
+                shape: BoxShape.circle,
               ),
               child: Center(
                 child: AppImage(icon, height: 20.s, color: accent),

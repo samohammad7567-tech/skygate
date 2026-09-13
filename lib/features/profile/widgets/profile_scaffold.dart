@@ -36,9 +36,9 @@ class ProfileScaffold extends StatelessWidget {
           final user = context.read<ProfileCubit>().user;
 
           return SafeArea(
-            // The header used to run under the status bar on its own coloured
-            // plate; with the plate gone the inset is the scaffold's to add,
-            // the same way every other tab adds it.
+            // The header's plate runs up under the status bar and adds that
+            // inset itself, so the scaffold must not add it a second time.
+            top: false,
             bottom: false,
             child: Column(
               children: [
@@ -56,7 +56,7 @@ class ProfileScaffold extends StatelessWidget {
                         padding ?? EdgeInsets.fromLTRB(20.s, 22.s, 20.s, 32.s),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [...children, Gap(8.s)],
+                      children: [...children, Gap(60.s)],
                     ),
                   ),
                 ),

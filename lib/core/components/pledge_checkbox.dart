@@ -25,21 +25,22 @@ class PledgeCheckbox extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(
+              height: 24.s,
+              width: 24.s,
+              child: Checkbox(value: value, onChanged: onChanged),
+            ),
+            Gap(10.s),
+
             Expanded(
               child: Text(
                 'passport_pledge'.tr(),
-                textAlign: TextAlign.end,
+                textAlign: TextAlign.start,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: theme.colorScheme.primary,
                   fontWeight: FontWeight.w600,
                 ),
               ),
-            ),
-            Gap(10.s),
-            SizedBox(
-              height: 24.s,
-              width: 24.s,
-              child: Checkbox(value: value, onChanged: onChanged),
             ),
           ],
         ),

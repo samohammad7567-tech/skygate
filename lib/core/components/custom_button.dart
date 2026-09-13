@@ -58,6 +58,8 @@ class CustomButton extends StatelessWidget {
             : Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  if (icon != null) ...[icon!, SizedBox(width: 8.s)],
+
                   Flexible(
                     child: Text(
                       label,
@@ -68,7 +70,6 @@ class CustomButton extends StatelessWidget {
                       ),
                     ),
                   ),
-                  if (icon != null) ...[SizedBox(width: 8.s), icon!],
                 ],
               ),
       ),

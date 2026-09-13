@@ -8,9 +8,10 @@ class CustomTripFeatures extends StatelessWidget {
   const CustomTripFeatures({super.key});
 
   static const List<(String, String)> _features = [
-    (HomeAssets.tripBag, 'feature_custom_trip'),
-    (HomeAssets.calendar, 'feature_flexible_dates'),
     (HomeAssets.supportAgent, 'feature_direct_contact'),
+    (HomeAssets.calendar, 'feature_flexible_dates'),
+
+    (HomeAssets.tripBag, 'feature_custom_trip'),
   ];
 
   @override

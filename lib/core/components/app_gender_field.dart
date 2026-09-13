@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:skygate/core/components/app_field_decoration.dart';
+import 'package:skygate/core/components/app_image.dart';
 import 'package:skygate/core/constants/auth_assets.dart';
 import 'package:skygate/core/utils/app_scale.dart';
 
@@ -29,7 +30,7 @@ class AppGenderField extends StatelessWidget {
       onChanged: onChanged,
       validator: validator,
       isExpanded: true,
-      icon: const SizedBox.shrink(),
+      icon: AppImage(AuthAssets.man),
       dropdownColor: theme.colorScheme.surface,
       borderRadius: BorderRadius.circular(10.s),
       style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),

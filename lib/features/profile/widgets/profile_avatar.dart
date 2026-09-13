@@ -28,7 +28,7 @@ class ProfileAvatar extends StatelessWidget {
     }
 
     final resolved = ApiEndpoints.mediaUrl(url);
-    if (resolved == null) return _placeholder;
+    if (resolved == null) return _placeholder(context);
 
     return ClipOval(
       child: CachedNetworkImage(
@@ -36,15 +36,33 @@ class ProfileAvatar extends StatelessWidget {
         height: (size ?? 92.s),
         width: (size ?? 92.s),
         fit: BoxFit.cover,
-        placeholder: (_, _) => _placeholder,
-        errorWidget: (_, _, _) => _placeholder,
+        placeholder: (_, _) => _placeholder(context),
+        errorWidget: (_, _, _) => _placeholder(context),
       ),
     );
   }
 
-  Widget get _placeholder => AppImage(
-    ProfileAssets.avatar,
-    height: (size ?? 92.s),
-    width: (size ?? 92.s),
-  );
+  /// A portrait that is missing is still a portrait-shaped hole: the glyph
+  /// keeps the disc the photo would have filled, so the header does not
+  /// change shape the moment one is uploaded.
+  Widget _placeholder(BuildContext context) {
+    final theme = Theme.of(context);
+    final dimension = size ?? 92.s;
+
+    return Container(
+      height: dimension,
+      width: dimension,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: theme.colorScheme.surfaceContainerHighest,
+      ),
+      child: AppImage(
+        ProfileAssets.avatar,
+        height: dimension * 0.42,
+        width: dimension * 0.42,
+        color: theme.colorScheme.primary,
+      ),
+    );
+  }
 }

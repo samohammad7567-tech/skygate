@@ -85,8 +85,6 @@ class _Content extends StatelessWidget {
           Row(
             children: [
               // The orange plate behind the crown is part of the export.
-              AppImage(HomeAssets.crown, width: 34.s, height: 34.s),
-              SizedBox(width: 10.s),
               Expanded(
                 child: Text(
                   'design_your_own_trip'.tr(),
@@ -95,6 +93,8 @@ class _Content extends StatelessWidget {
                   style: theme.textTheme.titleLarge?.copyWith(fontSize: 16.fs),
                 ),
               ),
+              AppImage(HomeAssets.crown, width: 34.s, height: 34.s),
+              SizedBox(width: 10.s),
             ],
           ),
           Text(

@@ -33,19 +33,17 @@ class BookingTypeCard extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(14.s, 14.s, 14.s, 12.s),
             child: Row(
               children: [
-                BookingRadio(isSelected: isSelected),
-                Gap(12.s),
-                Expanded(
-                  child: Text(
-                    option.titleKey.tr(),
-                    textAlign: TextAlign.end,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: theme.textTheme.titleLarge,
-                  ),
-                ),
-                Gap(10.s),
                 AppGlyphPlate(asset: option.icon, size: 40.s, glyphSize: 20.s),
+                Gap(12.s),
+                Text(
+                  option.titleKey.tr(),
+                  textAlign: TextAlign.end,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.titleLarge,
+                ),
+                Spacer(),
+                BookingRadio(isSelected: isSelected),
               ],
             ),
           ),

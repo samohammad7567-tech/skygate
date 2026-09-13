@@ -27,7 +27,7 @@ class ScanLauncher extends StatelessWidget {
           borderRadius: BorderRadius.circular(14.s),
           child: Padding(
             padding: EdgeInsets.all(4.s),
-            child: AppImage(AuthAssets.imageScanner, height: 82.s),
+            child: AppImage(AuthAssets.camera, height: 82.s),
           ),
         ),
       ],
