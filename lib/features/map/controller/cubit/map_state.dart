@@ -27,6 +27,13 @@ final class MapReconnectFailed extends MapState {
 
 final class MapPositionChanged extends MapState {}
 
+/// A fresh `location.updated` for the trip leader arrived on the socket.
+final class MapLeaderMoved extends MapState {}
+
+/// The safe-area circles were re-read, or the local inside/outside verdict
+/// flipped. Purely a UI courtesy — the server owns the real alert.
+final class MapSafeAreaChanged extends MapState {}
+
 final class MapDateSelected extends MapState {}
 
 final class MapActivityFocused extends MapState {}

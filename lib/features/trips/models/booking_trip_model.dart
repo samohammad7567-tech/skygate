@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/models/journey_transport.dart';
+import 'package:skygate/core/models/trip_lifecycle.dart';
 import 'package:skygate/core/utils/api_parse.dart';
 
 enum BookingStatus {
@@ -56,6 +57,12 @@ class BookingTripModel {
   String? currency;
 
   BookingStatus status = BookingStatus.awaitingPayment;
+
+  /// The trip's own lifecycle, which is not the booking's status: a booking can
+  /// be confirmed for weeks before the trip is `started`. Tracking and chat
+  /// gate on this, never on [status].
+  TripLifecycle tripStatus = TripLifecycle.unknown;
+
   List<JourneyTransport> legs = const [];
   int? currentLeg;
 
@@ -69,6 +76,7 @@ class BookingTripModel {
     final trip = json['trip'];
     final tripJson = trip is Map<String, dynamic> ? trip : const {};
     tripId = ApiParse.intOf(tripJson['id'] ?? json['trip_id']);
+    tripStatus = TripLifecycle.fromApi(tripJson['status']);
     tripTitle = ApiParse.stringOf(
       tripJson['campaign_name'] ?? json['campaign_name'],
     );
@@ -89,6 +97,11 @@ class BookingTripModel {
     currentLeg = ApiParse.intOf(json['current_leg']);
   }
   String? get title => tripTitle ?? tripNumber;
+
+  /// Pings and the live location channels need the trip to be exactly
+  /// `started`; the chat also accepts `almost-done`.
+  bool get allowsTracking => tripStatus.allowsTracking;
+  bool get allowsChat => tripStatus.allowsChat;
   int? get durationDays => ApiParse.daysBetween(startDate, endDate);
   num get remaining {
     final outstanding = (total ?? 0) - (paid ?? 0);

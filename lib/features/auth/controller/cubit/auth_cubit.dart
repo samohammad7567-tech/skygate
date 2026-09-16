@@ -1,8 +1,10 @@
+import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skygate/core/constants/api_endpoints.dart';
 import 'package:skygate/core/services/dio_service.dart';
+import 'package:skygate/core/services/realtime_service.dart';
 import 'package:skygate/core/services/trip_service.dart';
 import 'package:skygate/core/utils/api_error.dart';
 import 'package:skygate/core/utils/app_phone.dart';
@@ -123,6 +125,9 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   static void clearSession() {
+    // A forgotten socket keeps draining the battery long after the session is
+    // gone, and would keep delivering another account's trip traffic.
+    unawaited(RealtimeService.shutdown());
     TripService.clear();
     CacheUtil.remove(key: tokenKey);
     CacheUtil.remove(key: pilgrimIdKey);

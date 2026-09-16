@@ -1,11 +1,19 @@
+import 'dart:math' as math;
+
 import 'package:skygate/core/utils/api_parse.dart';
 
+/// One safe area drawn by the trip leader, as returned by
+/// `GET app/trip-safe-area`.
+///
+/// The endpoint returns a list, not a single circle: a leader may draw one ring
+/// around the Haram and another around the hotel. Draw every one of them.
 class TripGeofenceModel {
   int? id;
   String? name;
   double? latitude;
   double? longitude;
   double? radiusMeters;
+  bool isActive = true;
 
   TripGeofenceModel.fromJson(Map<String, dynamic> json) {
     id = ApiParse.intOf(json['id']);
@@ -15,49 +23,43 @@ class TripGeofenceModel {
     radiusMeters = ApiParse.numOf(
       json['radius_meters'] ?? json['radius'],
     )?.toDouble();
+    isActive = ApiParse.boolOf(json['is_active'], orElse: true);
   }
+
+  /// A disabled circle is a historical record, not a live boundary — drawing
+  /// one would show the pilgrim a line that alerts nobody when crossed. The
+  /// server already filters them out; this guards against the ones it doesn't.
   bool get isDrawable =>
-      latitude != null && longitude != null && (radiusMeters ?? 0) > 0;
-}
+      isActive &&
+      latitude != null &&
+      longitude != null &&
+      (radiusMeters ?? 0) > 0;
 
-class GeofenceBreachModel {
-  int? pilgrimId;
-  String? pilgrimName;
-  String? geofenceName;
-  String? lastLocationText;
+  /// Metres from this circle's centre to a point, on a spherical earth.
+  double? distanceTo(double latitude, double longitude) {
+    final centreLat = this.latitude;
+    final centreLng = this.longitude;
+    if (centreLat == null || centreLng == null) return null;
 
-  double? latitude;
-  double? longitude;
-  DateTime? lastSeenAt;
+    const double earthRadius = 6371000;
+    final dLat = _radians(latitude - centreLat);
+    final dLng = _radians(longitude - centreLng);
 
-  GeofenceBreachModel.fromJson(Map<String, dynamic> json) {
-    final pilgrim = json['pilgrim'];
-    final pilgrimJson = pilgrim is Map ? pilgrim : const {};
+    final a =
+        math.sin(dLat / 2) * math.sin(dLat / 2) +
+        math.cos(_radians(centreLat)) *
+            math.cos(_radians(latitude)) *
+            math.sin(dLng / 2) *
+            math.sin(dLng / 2);
 
-    pilgrimId = ApiParse.intOf(json['pilgrim_id'] ?? pilgrimJson['id']);
-    pilgrimName = ApiParse.stringOf(
-      json['pilgrim_name'] ?? pilgrimJson['full_name'] ?? json['full_name'],
-    );
-    geofenceName = ApiParse.stringOf(
-      json['geofence_name'] ?? json['name'] ?? json['trip_geofence_name'],
-    );
-    lastLocationText = ApiParse.stringOf(
-      json['last_location'] ??
-          json['last_known_location'] ??
-          json['address'] ??
-          json['location_text'],
-    );
-    latitude = ApiParse.numOf(
-      json['latitude'] ?? json['last_latitude'],
-    )?.toDouble();
-    longitude = ApiParse.numOf(
-      json['longitude'] ?? json['last_longitude'],
-    )?.toDouble();
-    lastSeenAt = ApiParse.dateOf(
-      json['last_seen_at'] ??
-          json['last_ping_at'] ??
-          json['recorded_at'] ??
-          json['created_at'],
-    );
+    return earthRadius * 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a));
   }
+
+  bool contains(double latitude, double longitude) {
+    if (!isDrawable) return false;
+    final metres = distanceTo(latitude, longitude);
+    return metres != null && metres <= radiusMeters!;
+  }
+
+  static double _radians(double degrees) => degrees * math.pi / 180;
 }

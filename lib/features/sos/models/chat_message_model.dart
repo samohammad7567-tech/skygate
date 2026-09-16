@@ -26,10 +26,37 @@ class TripChatModel {
   }
 }
 
+/// One page of thread history, plus where the next page starts.
+class TripChatPage {
+  const TripChatPage({
+    required this.messages,
+    required this.hasMore,
+    this.nextBeforeId,
+  });
+
+  final List<ChatMessageModel> messages;
+  final bool hasMore;
+  final int? nextBeforeId;
+
+  static TripChatPage fromJson(dynamic data) {
+    final body = data is Map ? data : const {};
+    final meta = body['meta'] is Map ? body['meta'] as Map : const {};
+
+    return TripChatPage(
+      messages: ApiParse.rowsOf(body, ChatMessageModel.fromJson),
+      // Trust the server's own word on whether more exists; a full page is not
+      // proof of one, and an empty page is not proof of none.
+      hasMore: ApiParse.boolOf(meta['has_more'], orElse: false),
+      nextBeforeId: ApiParse.intOf(meta['next_before_id']),
+    );
+  }
+}
+
 class ChatMessageModel {
   int? id;
   int? chatId;
   int? senderPilgrimId;
+  int? senderUserId;
   String? senderName;
   bool isMine = false;
 
@@ -41,6 +68,7 @@ class ChatMessageModel {
     id = ApiParse.intOf(json['id']);
     chatId = ApiParse.intOf(json['trip_chat_id']);
     senderPilgrimId = ApiParse.intOf(json['sender_pilgrim_id']);
+    senderUserId = ApiParse.intOf(json['sender_user_id']);
     senderName = ApiParse.stringOf(json['sender_name']);
     isMine = ApiParse.boolOf(json['is_mine'], orElse: false);
     body = ApiParse.stringOf(json['body'] ?? json['message']);
@@ -54,6 +82,16 @@ class ChatMessageModel {
     isPending = true;
   }
   bool isPending = false;
+
+  /// A message from `sender_user_id` came from staff, not a fellow pilgrim.
+  bool get isStaff => senderUserId != null && senderPilgrimId == null;
+
+  /// Socket payloads carry no `is_mine` — unlike the REST reply — so decide it
+  /// here by comparing against our own pilgrim id.
+  void resolveMine(int? myPilgrimId) {
+    if (myPilgrimId == null || senderPilgrimId == null) return;
+    isMine = senderPilgrimId == myPilgrimId;
+  }
 
   String? get attachment => ApiEndpoints.mediaUrl(attachmentUrl);
   static Map<String, dynamic> sendBody(String text, {String? attachmentUrl}) =>

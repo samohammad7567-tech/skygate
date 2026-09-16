@@ -64,7 +64,7 @@ class MapGpsAlertView extends StatelessWidget {
                   ),
                   Gap(14.s),
                   Text(
-                    cubit.breach?.pilgrimName ?? cubit.user?.fullName ?? '—',
+                    cubit.user?.fullName ?? '—',
                     textAlign: TextAlign.center,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -135,9 +135,8 @@ class MapGpsAlertView extends StatelessWidget {
   }
 
   String _lastPlace(MapCubit cubit) {
-    final named = cubit.breach?.lastLocationText;
-    if (named != null && named.isNotEmpty) return named;
-
+    // The breach list is the leader's route (403 for a pilgrim), so the last
+    // place we can name is the last ping the server accepted from us.
     final ping = cubit.lastPing;
     if (ping?.latitude != null && ping?.longitude != null) {
       return '${ping!.latitude}, ${ping.longitude}';

@@ -93,6 +93,11 @@ class _SupportChatScreenState extends State<SupportChatScreen> {
       return const Center(child: CircularProgressIndicator());
     }
 
+    // The trip is over, so there is nothing to retry — offer no retry button.
+    if (state is SupportChatClosed) {
+      return EmptyState(message: 'sos_chat_closed'.tr());
+    }
+
     return BuildCondition(
       condition: cubit.messages.isNotEmpty,
       builder: (_) => ListView.builder(

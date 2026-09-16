@@ -12,6 +12,7 @@ import 'package:skygate/features/map/widgets/map_inactive_view.dart';
 import 'package:skygate/features/map/widgets/map_live_view.dart';
 import 'package:skygate/features/map/widgets/map_protocol_view.dart';
 import 'package:skygate/features/map/widgets/map_stopped_view.dart';
+import 'package:skygate/features/map/widgets/map_wrapping_up_view.dart';
 
 class MapScreen extends StatelessWidget {
   const MapScreen({super.key, this.onMenuTap});
@@ -84,6 +85,7 @@ class _MapBodyState extends State<_MapBody> {
     MapTrackingStatus.consent => const MapProtocolView(),
     MapTrackingStatus.active => MapLiveView(onPickDate: _pickDate),
     MapTrackingStatus.disconnected => const MapGpsAlertView(),
+    MapTrackingStatus.wrappingUp => const MapWrappingUpView(),
     MapTrackingStatus.inactive => MapInactiveView(
       onBrowseTrips: () => _goToTab(1),
     ),

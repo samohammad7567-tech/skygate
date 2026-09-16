@@ -62,8 +62,10 @@ class ApiEndpoints {
   static const String bookingChangeRequests = 'app/booking-change-requests';
   static String bookingChangeRequest(int id) => '$bookingChangeRequests/$id';
   static const String locationPings = 'app/location-pings';
-  static const String tripGeofences = 'app/trip-geofences';
-  static const String geofenceBreaches = '$tripGeofences/breaches';
+
+  /// Read-only view of the active safe areas on the pilgrim's own trip.
+  /// The `app/trip-geofences` routes are the leader's and answer 403 here.
+  static const String tripSafeArea = 'app/trip-safe-area';
   static const String sosEvents = 'app/sos-events';
   static String sosEvent(int id) => '$sosEvents/$id';
   static const String lostItems = 'app/lost-items';

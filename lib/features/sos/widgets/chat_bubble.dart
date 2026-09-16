@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skygate/core/components/app_glyph_plate.dart';
 import 'package:skygate/core/components/app_image.dart';
+import 'package:skygate/core/constants/app_colors.dart';
 import 'package:skygate/core/constants/sos_assets.dart';
 import 'package:skygate/core/utils/app_format.dart';
 import 'package:skygate/core/utils/app_scale.dart';
@@ -57,14 +58,28 @@ class ChatBubble extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   if (message.senderName != null) ...[
-                    Text(
-                      message.senderName!,
-                      textAlign: TextAlign.end,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.titleSmall?.copyWith(
-                        color: isMine ? foreground : theme.colorScheme.primary,
-                      ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Flexible(
+                          child: Text(
+                            message.senderName!,
+                            textAlign: TextAlign.end,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: theme.textTheme.titleSmall?.copyWith(
+                              color: isMine
+                                  ? foreground
+                                  : theme.colorScheme.primary,
+                            ),
+                          ),
+                        ),
+                        // `sender_user_id` without a pilgrim id means staff.
+                        if (message.isStaff) ...[
+                          Gap(6.s),
+                          _StaffBadge(isMine: isMine),
+                        ],
+                      ],
                     ),
                     Gap(4.s),
                   ],
@@ -92,6 +107,32 @@ class ChatBubble extends StatelessWidget {
             ),
           ],
         ],
+      ),
+    );
+  }
+}
+
+class _StaffBadge extends StatelessWidget {
+  const _StaffBadge({required this.isMine});
+
+  final bool isMine;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final tint = isMine ? theme.colorScheme.onPrimary : AppColors.accent;
+
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 6.s, vertical: 2.s),
+      decoration: BoxDecoration(
+        color: tint.withValues(alpha: 0.14),
+        borderRadius: BorderRadius.circular(6.s),
+      ),
+      child: Text(
+        'sos_chat_staff'.tr(),
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: theme.textTheme.bodySmall?.copyWith(color: tint, fontSize: 9.fs),
       ),
     );
   }

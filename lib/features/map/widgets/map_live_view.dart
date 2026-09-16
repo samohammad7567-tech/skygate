@@ -9,6 +9,7 @@ import 'package:skygate/features/map/controller/cubit/map_cubit.dart';
 import 'package:skygate/features/map/widgets/map_activity_row.dart';
 import 'package:skygate/features/map/widgets/map_canvas.dart';
 import 'package:skygate/features/map/widgets/map_date_bar.dart';
+import 'package:skygate/features/map/widgets/map_safe_area_banner.dart';
 
 class MapLiveView extends StatelessWidget {
   const MapLiveView({super.key, required this.onPickDate});
@@ -30,6 +31,7 @@ class MapLiveView extends StatelessWidget {
               onNext: () => cubit.stepDay(1),
               onPickDate: onPickDate,
             ),
+            if (cubit.isOutsideSafeArea) const MapSafeAreaBanner(),
             SizedBox(
               height: 260.vs,
               child: MapCanvas(
@@ -38,6 +40,8 @@ class MapLiveView extends StatelessWidget {
                 geofences: cubit.geofences,
                 avatarUrl: cubit.user?.avatar,
                 focused: cubit.focusedActivity,
+                leaderPosition: cubit.leaderPoint,
+                leaderOutside: cubit.leaderOutsideSafeArea,
               ),
             ),
             Expanded(
