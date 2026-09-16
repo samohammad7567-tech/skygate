@@ -1,0 +1,90 @@
+import 'dart:io';
+
+import 'package:flutter_test/flutter_test.dart';
+import 'package:skygate/core/constants/app_assets.dart';
+import 'package:skygate/core/constants/auth_assets.dart';
+import 'package:skygate/core/constants/card_assets.dart';
+import 'package:skygate/core/constants/drawer_assets.dart';
+import 'package:skygate/core/constants/first_section_assets.dart';
+import 'package:skygate/core/constants/home_assets.dart';
+import 'package:skygate/core/constants/journey_assets.dart';
+import 'package:skygate/core/constants/map_assets.dart';
+import 'package:skygate/core/constants/my_trips_assets.dart';
+import 'package:skygate/core/constants/payment_assets.dart';
+import 'package:skygate/core/constants/profile_assets.dart';
+import 'package:skygate/core/constants/settings_assets.dart';
+import 'package:skygate/core/constants/sos_assets.dart';
+import 'package:skygate/core/constants/splash_assets.dart';
+import 'package:skygate/core/constants/vip_trip_assets.dart';
+
+final Set<String> _declared = {
+  ...AppAssets.all,
+  ...AuthAssets.all,
+  ...CardAssets.all,
+  ...DrawerAssets.all,
+  ...FirstSectionAssets.all,
+  ...HomeAssets.all,
+  ...JourneyAssets.all,
+  ...MapAssets.all,
+  ...MyTripsAssets.all,
+  ...PaymentAssets.all,
+  ...ProfileAssets.all,
+  ...SettingsAssets.all,
+  ...SosAssets.all,
+  ...SplashAssets.all,
+  ...VipTripAssets.all,
+};
+
+void main() {
+  test('every AppAssets path exists on disk', () {
+    final missing = AppAssets.all
+        .where((path) => !File(path).existsSync())
+        .toList();
+    expect(missing, isEmpty, reason: 'Missing asset files: $missing');
+  });
+
+  test('AppAssets.all has no duplicates', () {
+    expect(AppAssets.all.toSet().length, AppAssets.all.length);
+  });
+
+  test('every bundled image is claimed by a registry', () {
+    final onDisk = Directory('assets/images')
+        .listSync(recursive: true)
+        .whereType<File>()
+        .map((file) => file.path.replaceAll(Platform.pathSeparator, '/'))
+        .toSet();
+
+    expect(
+      onDisk.difference(_declared),
+      isEmpty,
+      reason: 'Unreferenced image files — delete them or declare them',
+    );
+  });
+
+  test('no two registries claim the same file under different names', () {
+    final counts = <String, int>{};
+    for (final list in [
+      AppAssets.all,
+      AuthAssets.all,
+      CardAssets.all,
+      DrawerAssets.all,
+      FirstSectionAssets.all,
+      HomeAssets.all,
+      JourneyAssets.all,
+      MapAssets.all,
+      MyTripsAssets.all,
+      PaymentAssets.all,
+      ProfileAssets.all,
+      SettingsAssets.all,
+      SosAssets.all,
+      SplashAssets.all,
+      VipTripAssets.all,
+    ]) {
+      for (final path in list.toSet()) {
+        counts[path] = (counts[path] ?? 0) + 1;
+      }
+    }
+    final missing = counts.keys.where((p) => !File(p).existsSync()).toList();
+    expect(missing, isEmpty, reason: 'Declared but absent: $missing');
+  });
+}

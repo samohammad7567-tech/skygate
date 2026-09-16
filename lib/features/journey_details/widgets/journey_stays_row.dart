@@ -1,0 +1,79 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:skygate/core/components/app_card.dart';
+import 'package:skygate/core/components/app_glyph_plate.dart';
+import 'package:skygate/core/utils/app_scale.dart';
+import 'package:skygate/features/journey_details/models/journey_package_model.dart';
+
+class JourneyStaysRow extends StatelessWidget {
+  const JourneyStaysRow({super.key, required this.stays});
+
+  final List<JourneyStayModel> stays;
+
+  @override
+  Widget build(BuildContext context) {
+    if (stays.isEmpty) return const SizedBox.shrink();
+    return IntrinsicHeight(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          for (var i = 0; i < stays.length; i++) ...[
+            Expanded(child: _StayChip(stay: stays[i])),
+            if (i < stays.length - 1) SizedBox(width: 12.s),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _StayChip extends StatelessWidget {
+  const _StayChip({required this.stay});
+
+  final JourneyStayModel stay;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return AppCard(
+      padding: EdgeInsets.all(10.s),
+      child: Row(
+        children: [
+          AppGlyphPlate(asset: stay.icon, size: 36.s, glyphSize: 18.s),
+          SizedBox(width: 10.s),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  stay.city ?? '',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.titleSmall,
+                ),
+                Text(
+                  'nights_count'.tr(namedArgs: {'count': '${stay.days ?? 0}'}),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.bodySmall,
+                ),
+                if (stay.hotels.isNotEmpty)
+                  Text(
+                    stay.hotels.join('، '),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                      fontSize: 11.fs,
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

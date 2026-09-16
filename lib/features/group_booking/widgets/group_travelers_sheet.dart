@@ -1,0 +1,67 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:skygate/core/components/app_sheet.dart';
+import 'package:skygate/core/components/sheet_handle.dart';
+import 'package:skygate/core/utils/app_scale.dart';
+import 'package:skygate/features/group_booking/models/group_room_seat.dart';
+import 'package:skygate/features/group_booking/widgets/group_room_seat_row.dart';
+
+Future<void> showGroupTravelersSheet(
+  BuildContext context, {
+  required List<GroupRoomSeat> seats,
+  required String? currency,
+}) {
+  return showAppSheet<void>(
+    context,
+    builder: (_) => _TravelersSheet(seats: seats, currency: currency),
+  );
+}
+
+class _TravelersSheet extends StatelessWidget {
+  const _TravelersSheet({required this.seats, required this.currency});
+
+  final List<GroupRoomSeat> seats;
+  final String? currency;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return SafeArea(
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(20.s, 12.s, 20.s, 16.s),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const SheetHandle(),
+            Gap(14.s),
+            Text(
+              'travelers_details'.tr(),
+              textAlign: TextAlign.center,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: theme.textTheme.titleMedium?.copyWith(
+                color: theme.colorScheme.primary,
+              ),
+            ),
+            Gap(12.s),
+            Flexible(
+              child: ListView.separated(
+                shrinkWrap: true,
+                itemCount: seats.length,
+                separatorBuilder: (_, _) => Divider(height: 1.s),
+                itemBuilder: (_, index) => GroupRoomSeatRow(
+                  seat: seats[index],
+                  position: index + 1,
+                  currency: currency,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

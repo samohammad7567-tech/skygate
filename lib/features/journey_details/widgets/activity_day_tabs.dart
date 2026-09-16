@@ -1,0 +1,123 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:skygate/core/utils/app_format.dart';
+import 'package:skygate/core/models/activity_model.dart';
+import 'package:skygate/core/utils/app_scale.dart';
+
+class ActivityDayTabs extends StatelessWidget {
+  const ActivityDayTabs({
+    super.key,
+    required this.days,
+    required this.selectedIndex,
+    required this.todayIndex,
+    required this.onSelected,
+  });
+
+  final List<ActivityDayModel> days;
+  final int selectedIndex;
+  final int todayIndex;
+  final ValueChanged<int> onSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    if (days.isEmpty) return const SizedBox.shrink();
+
+    return SizedBox(
+      height: 86.s,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        padding: EdgeInsets.symmetric(horizontal: 20.s),
+        itemCount: days.length,
+        separatorBuilder: (_, _) => SizedBox(width: 10.s),
+        itemBuilder: (context, index) => _DayTab(
+          day: days[index],
+          isSelected: index == selectedIndex,
+          isToday: index == todayIndex,
+          onTap: () => onSelected(index),
+        ),
+      ),
+    );
+  }
+}
+
+class _DayTab extends StatelessWidget {
+  const _DayTab({
+    required this.day,
+    required this.isSelected,
+    required this.isToday,
+    required this.onTap,
+  });
+
+  final ActivityDayModel day;
+  final bool isSelected;
+  final bool isToday;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final locale = context.locale.languageCode;
+    final radius = BorderRadius.circular(12.s);
+    final onTint = isSelected
+        ? theme.colorScheme.onPrimary
+        : theme.colorScheme.primary;
+
+    return Material(
+      color: isSelected ? theme.colorScheme.primary : theme.colorScheme.surface,
+      borderRadius: radius,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: radius,
+        child: Container(
+          width: 74.s,
+          padding: EdgeInsets.symmetric(vertical: 8.s),
+          decoration: BoxDecoration(
+            borderRadius: radius,
+            border: Border.all(
+              color: isToday && !isSelected
+                  ? theme.colorScheme.primary
+                  : theme.colorScheme.outline,
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'day'.tr(),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: isSelected ? theme.colorScheme.onPrimary : null,
+                ),
+              ),
+              Text(
+                '${day.number}',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: theme.textTheme.headlineSmall?.copyWith(color: onTint),
+              ),
+              Text(
+                AppFormat.dayMonth(day.date, locale),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: isSelected ? theme.colorScheme.onPrimary : null,
+                ),
+              ),
+              if (isToday && !isSelected)
+                Container(
+                  margin: EdgeInsets.only(top: 3.s),
+                  height: 5.s,
+                  width: 5.s,
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.primary,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

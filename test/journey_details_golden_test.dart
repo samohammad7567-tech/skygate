@@ -1,0 +1,352 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
+import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:skygate/core/models/hotel_model.dart';
+import 'package:skygate/core/models/trip_model.dart';
+import 'package:skygate/core/services/dio_service.dart';
+import 'package:skygate/core/services/trip_service.dart';
+import 'package:skygate/core/themes/light_theme.dart';
+import 'package:skygate/core/utils/cache_util.dart';
+import 'package:skygate/features/journey_details/models/journey_route_model.dart';
+import 'package:skygate/features/journey_details/views/activities_screen.dart';
+import 'package:skygate/features/journey_details/views/hotel_details_screen.dart';
+import 'package:skygate/features/journey_details/views/hotels_screen.dart';
+import 'package:skygate/features/journey_details/views/itinerary_screen.dart';
+import 'package:skygate/features/journey_details/views/package_details_screen.dart';
+import 'package:skygate/features/journey_details/views/segment_details_screen.dart';
+import 'package:skygate/features/journey_details/views/trip_offers_screen.dart';
+import 'package:skygate/generated/codegen_loader.g.dart';
+
+final Map<String, Map<String, dynamic>> _responses = {
+  'app/trips/1': {'data': _trip},
+  'app/activities': {'data': _activities},
+};
+
+final Map<String, dynamic> _trip = {
+  'id': 1,
+  'trip_number': 'TR-1044',
+  'campaign_name': 'رحلة مكة',
+  'start_date_g': '2026-03-03',
+  'end_date_g': '2026-03-09',
+  'start_date_h': '1447-09-14',
+  'end_date_h': '1447-09-20',
+  'access_type': 'public',
+  'status': 'published',
+  'booking_deadline': '2026-02-24 12:06:16',
+  'trip_program_pdf_url': null,
+  'map_center_lat': '21.3891000',
+  'map_center_lng': '39.8579000',
+  'staff': [
+    for (var i = 0; i < 4; i++)
+      {
+        'id': i + 1,
+        'name': 'الشيخ محمد محمد حسان',
+        'role': i.isEven ? 'مشرف الرحلة' : 'قائد المجموعة',
+      },
+  ],
+  'packages': _packages,
+  'packages_by_itinerary': [
+    {
+      'itinerary_id': 18,
+      'itinerary_name': 'المسار البري',
+      'segment_type': null,
+      'packages': _packages,
+    },
+  ],
+  'hotels': [for (var i = 0; i < 4; i++) _hotel(101 + i)],
+  'cities_summary': [
+    {
+      'city': 'مكة المكرمة',
+      'nights': 4,
+      'hotels': ['فندق إطلالة مكة الفاخر'],
+      'check_in': '2026-08-18',
+      'check_out': '2026-08-22',
+    },
+    {
+      'city': 'المدينة المنورة',
+      'nights': 3,
+      'hotels': ['فندق طيبة'],
+      'check_in': '2026-08-22',
+      'check_out': '2026-08-25',
+    },
+  ],
+  'itinerary': [
+    _leg(11, 1, 'flight', 'السورية للطيران', 'جدة', 'الرياض'),
+    _leg(12, 2, 'land', 'مواصلات جدة', 'الرياض', 'المدينة المنورة'),
+    _leg(13, 3, 'train', 'السورية للقطارات', 'المدينة المنورة', 'جدة'),
+    _leg(14, 4, 'cruise', 'سفن جدة', 'جدة', 'مكة المكرمة'),
+  ],
+  'activities': _activities,
+  'payment_schedules': [
+    {
+      'id': 57,
+      'type': 'date',
+      'installment_name': 'دفعة أولى',
+      'min_amount_percent': 25,
+      'duration_in_hours': null,
+      'due_date': '2026-02-16',
+    },
+    {
+      'id': 59,
+      'type': 'duration',
+      'installment_name': 'المبلغ المتبقي',
+      'min_amount_percent': 100,
+      'duration_in_hours': 48,
+      'due_date': null,
+    },
+  ],
+};
+final List<Map<String, dynamic>> _packages = [
+  for (var i = 0; i < 3; i++)
+    {
+      'id': i + 1,
+      'room_type': ['twin', 'quad', 'quint'][i],
+      'audience': 'group',
+      'audience_labels': {
+        'individual': false,
+        'group': true,
+        'individual_label': null,
+        'group_label': 'حجز مجموعة',
+      },
+      'itinerary_id': 18,
+      'price_adult': '750.00',
+      'price_child': '600.00',
+      'price_infant': '100.00',
+      'price_infant_with_seat': '250.00',
+      'bed_lock_fee': '150.00',
+      'currency': 'SAR',
+      'available_rooms': 10 - i,
+    },
+];
+
+Map<String, dynamic> _leg(
+  int id,
+  int order,
+  String type,
+  String carrier,
+  String from,
+  String to,
+) => {
+  'id': id,
+  'sequence_order': order,
+  'segment_type': type,
+  'origin_city': from,
+  'destination_city': to,
+  'carrier': {
+    'id': order,
+    'name': carrier,
+    'logo_url': null,
+    'carrier_type': type,
+  },
+  'flight_number': type == 'flight' ? 'SY-1$order' : null,
+  'vehicle_ref': type == 'land' ? 'BUS-00$order' : null,
+  'train_ref': type == 'train' ? 'TR-00$order' : null,
+  'vehicle': {'vehicle_type': 'VIP Bus', 'capacity': 33},
+  'departure_time': '2026-03-03 08:00:00',
+  'arrival_time': '2026-03-03 10:15:00',
+};
+
+Map<String, dynamic> _hotel(int id) => {
+  'id': id,
+  'name': 'فندق إطلالة مكة الفاخر',
+  'city': id.isOdd ? 'مكة المكرمة' : 'المدينة المنورة',
+  'rating': '4.5',
+  'latitude': '21.42251',
+  'longitude': '39.82616',
+  'address_details': ['شارع الملك فيصل الطريق الأول', 'مكة المكرمة'],
+  'contact_phone': '+966500000000',
+  'check_in_date': '2026-08-18',
+  'check_out_date': '2026-08-22',
+  'is_default': id == 101,
+};
+
+final List<Map<String, dynamic>> _activities = [
+  for (var day = 0; day < 5; day++)
+    for (final type in ['إقامة', 'مناسك', 'صلاة'])
+      {
+        'id': day * 10 + type.length,
+        'title': 'مناسك العمرة - أول طواف',
+        'activity_date': '2026-03-0${day + 3}',
+        'start_time': '00:30',
+        'end_time': '04:00',
+        'meeting_point_lat': '21.42251',
+        'meeting_point_lng': '39.82616',
+        'meeting_point_text': 'شارع الملك فيصل الطريق الأول ، مكة',
+        'status': 'scheduled',
+        'activity_type': {'id': 1, 'name': type},
+      },
+];
+
+class _StubAdapter implements HttpClientAdapter {
+  @override
+  Future<ResponseBody> fetch(
+    RequestOptions options,
+    Stream<Uint8List>? requestStream,
+    Future<void>? cancelFuture,
+  ) async {
+    final path = options.uri.path.replaceFirst(
+      RegExp(r'^/api/v1/(guest/)?'),
+      '',
+    );
+    final body = _responses[path];
+    return ResponseBody.fromString(
+      jsonEncode(body ?? {}),
+      body == null ? 404 : 200,
+      headers: {
+        Headers.contentTypeHeader: [Headers.jsonContentType],
+      },
+    );
+  }
+
+  @override
+  void close({bool force = false}) {}
+}
+
+void main() {
+  setUpAll(() async {
+    SharedPreferences.setMockInitialValues({});
+    TestWidgetsFlutterBinding.ensureInitialized();
+    await EasyLocalization.ensureInitialized();
+    await CacheUtil.init();
+    DioService.init();
+    DioService.dio.httpClientAdapter = _StubAdapter();
+  });
+  setUp(TripService.clear);
+
+  Widget host(Widget child) => EasyLocalization(
+    supportedLocales: const [Locale('ar'), Locale('en')],
+    path: 'assets/lang',
+    fallbackLocale: const Locale('ar'),
+    startLocale: const Locale('ar'),
+    assetLoader: const CodegenLoader(),
+    child: Builder(
+      builder: (context) => MaterialApp(
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        theme: LightTheme.theme,
+        home: child,
+      ),
+    ),
+  );
+
+  Future<void> shoot(
+    WidgetTester tester,
+    Widget screen,
+    String name,
+    Size size,
+  ) async {
+    tester.view.physicalSize = size;
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+
+    await tester.pumpWidget(host(screen));
+    await tester.pumpAndSettle();
+    await _decodeImages(tester);
+
+    await expectLater(find.byType(MaterialApp), matchesGoldenFile(name));
+  }
+
+  JourneySegmentModel firstLeg() => JourneySegmentModel.fromItinerary(
+    TripItineraryModel.fromJson(
+      _leg(11, 1, 'flight', 'السورية للطيران', 'جدة', 'الرياض'),
+    ),
+  );
+  HotelModel firstHotel() =>
+      HotelModel.fromTripHotel(TripHotelModel.fromJson(_hotel(101)));
+
+  testWidgets('package details', (t) async {
+    await shoot(
+      t,
+      const PackageDetailsScreen(tripId: 1),
+      'goldens/30_package_details.png',
+      const Size(412, 1084),
+    );
+  });
+  testWidgets('package details, booked', (t) async {
+    await shoot(
+      t,
+      const PackageDetailsScreen.booked(tripId: 1, bookingId: 7),
+      'goldens/38_package_details_booked.png',
+      const Size(412, 1084),
+    );
+  });
+
+  testWidgets('itinerary', (t) async {
+    await shoot(
+      t,
+      const ItineraryScreen(tripId: 1),
+      'goldens/31_itinerary.png',
+      const Size(412, 1400),
+    );
+  });
+
+  testWidgets('itinerary, booked', (t) async {
+    await shoot(
+      t,
+      const ItineraryScreen(tripId: 1, bookingId: 7),
+      'goldens/39_itinerary_booked.png',
+      const Size(412, 1400),
+    );
+  });
+
+  testWidgets('segment details', (t) async {
+    await shoot(
+      t,
+      SegmentDetailsScreen(tripId: 1, segment: firstLeg()),
+      'goldens/32_segment_details.png',
+      const Size(412, 1400),
+    );
+  });
+
+  testWidgets('hotels', (t) async {
+    await shoot(
+      t,
+      const HotelsScreen(tripId: 1),
+      'goldens/33_hotels.png',
+      const Size(412, 917),
+    );
+  });
+
+  testWidgets('hotel details', (t) async {
+    await shoot(
+      t,
+      HotelDetailsScreen(tripId: 1, hotel: firstHotel()),
+      'goldens/34_hotel_details.png',
+      const Size(412, 1400),
+    );
+  });
+
+  testWidgets('activities', (t) async {
+    await shoot(
+      t,
+      const ActivitiesScreen(tripId: 1),
+      'goldens/35_activities.png',
+      const Size(412, 917),
+    );
+  });
+
+  testWidgets('trip offers', (t) async {
+    await shoot(
+      t,
+      const TripOffersScreen(tripId: 1),
+      'goldens/36_trip_offers.png',
+      const Size(412, 917),
+    );
+  });
+}
+
+Future<void> _decodeImages(WidgetTester tester) async {
+  await tester.runAsync(() async {
+    for (final element in tester.elementList(find.byType(Image))) {
+      final image = element.widget as Image;
+      await precacheImage(image.image, element);
+    }
+  });
+  await tester.pumpAndSettle();
+}

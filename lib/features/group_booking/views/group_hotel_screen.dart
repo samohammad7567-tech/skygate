@@ -1,0 +1,140 @@
+import 'package:buildcondition/buildcondition.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
+import 'package:skygate/core/components/empty_state.dart';
+import 'package:skygate/core/components/toast.dart';
+import 'package:skygate/core/models/hotel_model.dart';
+import 'package:skygate/core/utils/app_scale.dart';
+import 'package:skygate/core/utils/naivgator_helper.dart';
+import 'package:skygate/core/models/booking_city.dart';
+import 'package:skygate/core/components/booking_section_title.dart';
+import 'package:skygate/core/components/booking_stay_row.dart';
+import 'package:skygate/core/components/booking_step_scaffold.dart';
+import 'package:skygate/features/group_booking/controller/cubit/group_booking_cubit.dart';
+import 'package:skygate/features/group_booking/views/group_summary_screen.dart';
+import 'package:skygate/features/group_booking/widgets/group_allocation_progress_card.dart';
+import 'package:skygate/features/group_booking/widgets/group_hotel_card.dart';
+import 'package:skygate/features/group_booking/widgets/group_room_counter_sheet.dart';
+
+class GroupHotelScreen extends StatefulWidget {
+  const GroupHotelScreen({super.key, required this.city});
+
+  final BookingCity city;
+
+  @override
+  State<GroupHotelScreen> createState() => _GroupHotelScreenState();
+}
+
+class _GroupHotelScreenState extends State<GroupHotelScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<GroupBookingCubit>().getHotels(widget.city);
+  }
+
+  Future<void> _allocate(HotelModel hotel) async {
+    final cubit = context.read<GroupBookingCubit>();
+    final hotelId = hotel.id;
+    if (hotelId == null) return;
+
+    final counts = await showGroupRoomCounterSheet(
+      context,
+      types: cubit.roomCounts.keys.toList(),
+      initial: cubit.allocationOf(widget.city, hotelId).counts,
+      maxCounts: cubit.availableIn(widget.city, hotelId),
+    );
+    if (counts != null) cubit.allocateRooms(widget.city, hotelId, counts);
+  }
+
+  void _continue() {
+    final cubit = context.read<GroupBookingCubit>();
+    if (!cubit.isCityAllocated(widget.city)) {
+      showToast(context, 'assign_all_rooms'.tr(), isError: true);
+      return;
+    }
+
+    final next = widget.city.next;
+    if (next != null) {
+      NaivgatorHelper.pushNavigation(
+        context,
+        BlocProvider.value(
+          value: cubit,
+          child: GroupHotelScreen(city: next),
+        ),
+      );
+      return;
+    }
+
+    cubit.goToStep(9);
+    NaivgatorHelper.pushNavigation(
+      context,
+      BlocProvider.value(value: cubit, child: const GroupSummaryScreen()),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<GroupBookingCubit, GroupBookingState>(
+      builder: (context, state) {
+        final cubit = context.read<GroupBookingCubit>();
+        final hotels = cubit.hotelsIn(widget.city);
+
+        return BookingStepScaffold(
+          step: 8,
+          total: GroupBookingCubit.totalSteps,
+          onContinue: _continue,
+          children: [
+            BookingSectionTitle(
+              title: 'select_hotel_in'.tr(args: [widget.city.labelKey.tr()]),
+              subtitle: 'select_hotel_desc'.tr(),
+            ),
+            Gap(16.s),
+            GroupAllocationProgressCard(
+              allocated: cubit.allocatedIn(widget.city),
+              total: cubit.rooms.length,
+            ),
+            Gap(16.s),
+            BookingStayRow(
+              city: widget.city,
+              days: cubit.stayDays[widget.city],
+            ),
+            Gap(16.s),
+            if (state is GroupHotelsLoading)
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 60.s),
+                child: Center(child: CircularProgressIndicator()),
+              )
+            else
+              BuildCondition(
+                condition: hotels.isNotEmpty,
+                builder: (_) => Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    for (final hotel in hotels) ...[
+                      GroupHotelCard(
+                        hotel: hotel,
+                        allocation: cubit.allocationOf(widget.city, hotel.id),
+                        onAllocate: () => _allocate(hotel),
+                      ),
+                      Gap(14.s),
+                    ],
+                  ],
+                ),
+                fallback: (_) => Padding(
+                  padding: EdgeInsets.symmetric(vertical: 60.s),
+                  child: EmptyState(
+                    message: state is GroupHotelsError
+                        ? state.message.tr()
+                        : 'no_hotels'.tr(),
+                    onRetry: () => cubit.getHotels(widget.city),
+                  ),
+                ),
+              ),
+          ],
+        );
+      },
+    );
+  }
+}

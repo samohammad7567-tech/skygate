@@ -1,0 +1,113 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:skygate/core/components/app_card.dart';
+import 'package:skygate/core/components/cached_image.dart';
+import 'package:skygate/core/constants/journey_assets.dart';
+import 'package:skygate/core/models/journey_transport.dart';
+import 'package:skygate/core/utils/app_scale.dart';
+import 'package:skygate/features/carriers/models/carrier_model.dart';
+import 'package:skygate/core/components/vehicle_spec_tile.dart';
+
+class CarrierCard extends StatelessWidget {
+  const CarrierCard({
+    super.key,
+    required this.carrier,
+    required this.transport,
+  });
+
+  final CarrierModel carrier;
+  final JourneyTransport transport;
+
+  @override
+  Widget build(BuildContext context) {
+    return AppCard(
+      padding: EdgeInsets.fromLTRB(14.s, 14.s, 14.s, 16.s),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          _CompanyRow(carrier: carrier, transport: transport),
+          SizedBox(height: 12.s),
+          Divider(height: 1.s),
+          SizedBox(height: 14.s),
+          IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(
+                  child: VehicleSpecTile(
+                    asset: transport.typeIcon,
+                    labelKey: 'vehicle_type',
+                    value: transport.labelKey.tr(),
+                  ),
+                ),
+                SizedBox(width: 10.s),
+                Expanded(
+                  child: VehicleSpecTile(
+                    asset: transport.modelIcon,
+                    labelKey: 'vehicle_model',
+                    value: carrier.model ?? '—',
+                  ),
+                ),
+                SizedBox(width: 10.s),
+                Expanded(
+                  child: VehicleSpecTile(
+                    asset: JourneyAssets.seat,
+                    labelKey: 'vehicle_capacity',
+                    value: carrier.capacity == null
+                        ? '—'
+                        : 'seats_count'.tr(
+                            namedArgs: {'count': '${carrier.capacity}'},
+                          ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _CompanyRow extends StatelessWidget {
+  const _CompanyRow({required this.carrier, required this.transport});
+
+  final CarrierModel carrier;
+  final JourneyTransport transport;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Spacer(),
+        CachedImage(
+          url: carrier.logo,
+          fallbackAsset: transport.fallbackLogo,
+
+          fit: BoxFit.contain,
+        ),
+        SizedBox(width: 12.s),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'vehicle_company'.tr(),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: theme.textTheme.bodySmall,
+            ),
+            Text(
+              carrier.name ?? '',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: theme.textTheme.titleSmall,
+            ),
+          ],
+        ),
+        Spacer(),
+      ],
+    );
+  }
+}

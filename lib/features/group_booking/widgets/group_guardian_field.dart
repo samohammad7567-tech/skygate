@@ -1,0 +1,113 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:skygate/core/components/app_field_decoration.dart';
+import 'package:skygate/core/components/labeled_field.dart';
+import 'package:skygate/core/constants/auth_assets.dart';
+import 'package:skygate/core/utils/app_scale.dart';
+import 'package:skygate/features/group_booking/models/group_traveler_model.dart';
+
+class GroupGuardianField extends StatelessWidget {
+  const GroupGuardianField({
+    super.key,
+    required this.adults,
+    required this.value,
+    required this.onChanged,
+    required this.isRequired,
+  });
+
+  final List<GroupTravelerModel> adults;
+  final int? value;
+
+  final ValueChanged<int?> onChanged;
+  final bool isRequired;
+
+  @override
+  Widget build(BuildContext context) {
+    final selected = adults.any((adult) => adult.localId == value)
+        ? value
+        : null;
+
+    return LabeledField(
+      label: 'guardian_name'.tr(),
+      child: DropdownButtonFormField<int>(
+        initialValue: selected,
+        isExpanded: true,
+        icon: const SizedBox.shrink(),
+        dropdownColor: Theme.of(context).colorScheme.surface,
+        borderRadius: BorderRadius.circular(10.s),
+        decoration: appInputDecoration(
+          context,
+          hint: 'guardian_name'.tr(),
+          icon: AuthAssets.man,
+        ),
+        items: [
+          for (final adult in adults)
+            DropdownMenuItem(
+              value: adult.localId,
+              child: Text(
+                adult.name,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+            ),
+        ],
+        onChanged: onChanged,
+        validator: (picked) =>
+            isRequired && picked == null ? 'field_required'.tr() : null,
+      ),
+    );
+  }
+}
+
+class GroupGuardianNote extends StatelessWidget {
+  const GroupGuardianNote({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(horizontal: 14.s, vertical: 10.s),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceContainerHighest,
+        borderRadius: BorderRadius.circular(12.s),
+        border: Border.all(color: theme.colorScheme.outline),
+      ),
+      child: Row(
+        children: [
+          Icon(
+            Icons.info_outline,
+            size: 22.s,
+            color: theme.colorScheme.primary,
+          ),
+          Gap(10.s),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  'important_note'.tr(),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    color: theme.colorScheme.primary,
+                  ),
+                ),
+                Text(
+                  '• ${'guardian_note'.tr()}',
+                  textAlign: TextAlign.end,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.bodySmall,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

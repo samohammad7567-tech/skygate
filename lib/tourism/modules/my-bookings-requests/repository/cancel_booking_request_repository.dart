@@ -1,0 +1,42 @@
+import 'package:dartz/dartz.dart';
+import 'package:skygate/tourism/core/utils/constants/constants.dart';
+import 'package:skygate/tourism/core/utils/failures/base_failure.dart';
+import 'package:skygate/tourism/core/utils/helpers/http_helper.dart';
+import 'package:get/get.dart';
+import 'package:skygate/tourism/data/model/base_response/base_response.dart';
+import 'package:skygate/tourism/data/shared/shared_class.dart';
+
+class CancelBookingRequestRepository {
+  late HttpHelper httpHelper;
+
+  CancelBookingRequestRepository() {
+    httpHelper = Get.find<HttpHelper>();
+  }
+
+  Future<Either<Failure, BaseResponse<bool>>> cancel({
+    String? booking_request_id,
+  }) async {
+    Map<String, dynamic> requestBody = {};
+
+    requestBody["booking_request_id"] = booking_request_id;
+
+    try {
+      return right(
+        await httpHelper.post(
+          NetworkRoutesControl.cancelBookingRequest,
+          headers: HttpHelper.basicHeaderWithToken(SharedClass.apiToken),
+          body: requestBody,
+          decoder: (json) {
+            if (json != null) {
+              return json;
+            } else {
+              return false;
+            }
+          },
+        ),
+      );
+    } on Failure catch (e) {
+      return left(e);
+    }
+  }
+}

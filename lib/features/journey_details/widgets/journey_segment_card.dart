@@ -1,0 +1,127 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:skygate/core/components/app_card.dart';
+import 'package:skygate/core/components/app_status_chip.dart';
+import 'package:skygate/core/models/time_progress.dart';
+import 'package:skygate/core/utils/app_format.dart';
+import 'package:skygate/core/utils/app_scale.dart';
+import 'package:skygate/features/journey_details/models/journey_route_model.dart';
+import 'package:skygate/features/journey_details/widgets/journey_leg_row.dart';
+
+class JourneySegmentCard extends StatelessWidget {
+  const JourneySegmentCard({
+    super.key,
+    required this.segment,
+    required this.position,
+    this.onTap,
+  });
+
+  final JourneySegmentModel segment;
+  final int position;
+
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final progress = segment.progress;
+
+    return AppCard(
+      color: progress == TimeProgress.finished
+          ? theme.colorScheme.surfaceContainerHighest
+          : null,
+      padding: EdgeInsets.fromLTRB(12.s, 10.s, 12.s, 10.s),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  segment.title ??
+                      AppFormat.ordinalTitle('segment_title', position),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.titleLarge,
+                ),
+              ),
+              if (progress.labelKey case final labelKey?) ...[
+                SizedBox(width: 8.s),
+                AppStatusChip(
+                  labelKey: labelKey,
+                  background: progress.background,
+                  foreground: progress.foreground,
+                  radius: 6.s,
+                ),
+              ],
+            ],
+          ),
+          SizedBox(height: 8.s),
+          JourneyLegRow(from: segment.from, to: segment.to),
+          SizedBox(height: 8.s),
+          Divider(height: 1.s),
+          SizedBox(height: 10.s),
+          Row(
+            children: [
+              Flexible(child: _Duration(minutes: segment.durationMinutes)),
+              const Spacer(),
+              _DetailsButton(onTap: onTap),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _DetailsButton extends StatelessWidget {
+  const _DetailsButton({required this.onTap});
+
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return OutlinedButton(
+      onPressed: onTap,
+      style: OutlinedButton.styleFrom(
+        backgroundColor: theme.colorScheme.surface,
+        side: BorderSide(color: theme.colorScheme.primary),
+        padding: EdgeInsets.symmetric(horizontal: 14.s),
+        minimumSize: Size(0, 32.s),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.s)),
+      ),
+      child: Text(
+        'view_details'.tr(),
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: theme.textTheme.bodySmall?.copyWith(
+          color: theme.colorScheme.primary,
+        ),
+      ),
+    );
+  }
+}
+
+class _Duration extends StatelessWidget {
+  const _Duration({required this.minutes});
+
+  final int? minutes;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Text(
+      '${'trip_duration'.tr()}: ${AppFormat.duration(minutes)}',
+      textAlign: TextAlign.end,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
+      style: theme.textTheme.titleSmall?.copyWith(
+        color: theme.colorScheme.secondary,
+      ),
+    );
+  }
+}

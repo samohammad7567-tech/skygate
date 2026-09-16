@@ -1,0 +1,126 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:skygate/core/components/app_image.dart';
+import 'package:skygate/core/constants/app_colors.dart';
+import 'package:skygate/core/utils/app_scale.dart';
+
+class CardFieldRow extends StatelessWidget {
+  const CardFieldRow({
+    super.key,
+    required this.asset,
+    required this.startLabelKey,
+    required this.startValue,
+    this.endLabelKey,
+    this.endValue,
+    this.startSubtitle,
+    this.endSubtitle,
+  });
+
+  final String asset;
+
+  final String startLabelKey;
+  final String? startValue;
+  final String? startSubtitle;
+
+  final String? endLabelKey;
+  final String? endValue;
+  final String? endSubtitle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 8.s),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          _Glyph(asset: asset),
+          SizedBox(width: 10.s),
+          Expanded(
+            child: _Pair(
+              labelKey: startLabelKey,
+              value: startValue,
+              subtitle: startSubtitle,
+            ),
+          ),
+          if (endLabelKey != null) ...[
+            SizedBox(width: 10.s),
+            Expanded(
+              child: _Pair(
+                labelKey: endLabelKey!,
+                value: endValue,
+                subtitle: endSubtitle,
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _Glyph extends StatelessWidget {
+  const _Glyph({required this.asset});
+
+  final String asset;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 34.s,
+      width: 34.s,
+      alignment: Alignment.center,
+      decoration: const BoxDecoration(
+        color: AppColors.primary,
+        shape: BoxShape.circle,
+      ),
+      child: AppImage(
+        asset,
+        height: 17.s,
+        width: 17.s,
+        color: AppColors.surface,
+      ),
+    );
+  }
+}
+
+class _Pair extends StatelessWidget {
+  const _Pair({required this.labelKey, this.value, this.subtitle});
+
+  final String labelKey;
+  final String? value;
+  final String? subtitle;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          labelKey.tr(),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: theme.textTheme.bodySmall?.copyWith(color: AppColors.primary),
+        ),
+        SizedBox(height: 2.s),
+        Text(
+          value ?? '—',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: theme.textTheme.titleSmall?.copyWith(color: AppColors.primary),
+        ),
+        if (subtitle != null)
+          Text(
+            subtitle!,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: AppColors.primarySoft,
+            ),
+          ),
+      ],
+    );
+  }
+}
