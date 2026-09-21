@@ -121,7 +121,7 @@ class ActivitiesCubit extends Cubit<ActivitiesState> {
     try {
       await DioService.post(
         ApiEndpoints.activityFeedback(id),
-        data: {'rating': rating, 'comment': ?comment},
+        data: {'rating_stars': rating, 'comment': ?comment},
       );
       activity.hasRated = true;
       busyActivityId = null;

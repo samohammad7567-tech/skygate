@@ -84,6 +84,16 @@ class VipTripCubit extends Cubit<VipTripState> {
   int get totalRooms => roomCounts.values.fold(0, (sum, count) => sum + count);
 
   bool get hasRooms => totalRooms > 0;
+
+  /// The distinct room types the traveller picked, as backend ids.
+  ///
+  /// Walks `GroupRoomType.values` rather than `roomCounts.keys` so the payload
+  /// is ordered by room size regardless of the order the picker sheet handed
+  /// the counts over. `rooms` carries how many of each; this carries which.
+  List<int> get selectedRoomTypeIds => [
+    for (final type in GroupRoomType.values)
+      if (roomsOf(type) > 0) type.id,
+  ];
   void setRoomCounts(Map<GroupRoomType, int> next) {
     roomCounts
       ..clear()
@@ -127,6 +137,7 @@ class VipTripCubit extends Cubit<VipTripState> {
         data: body(),
       );
       final data = response.data['data'];
+      print(data);
       requestId = data is Map ? _intOf(data['id']) : null;
       emit(VipSubmitted());
     } catch (error) {
@@ -137,6 +148,7 @@ class VipTripCubit extends Cubit<VipTripState> {
 
   Map<String, dynamic> body() {
     final hotelIds = [for (final hotel in selectedHotels.values) ?hotel.id];
+    final roomTypeIds = selectedRoomTypeIds;
 
     return <String, dynamic>{
       'people_count': totalTravelers,
@@ -147,8 +159,9 @@ class VipTripCubit extends Cubit<VipTripState> {
       'preferred_end_date': _date(endDate),
       if (hotelIds.isNotEmpty) 'hotel_ids': hotelIds,
       'requirements': _requirements(),
-      'makkah_nights': nightsIn(BookingCity.makkah),
-      'madinah_nights': nightsIn(BookingCity.madinah),
+      'makkah_nights_count': nightsIn(BookingCity.makkah),
+      'madinah_nights_count': nightsIn(BookingCity.madinah),
+      if (roomTypeIds.isNotEmpty) 'room_type_ids': roomTypeIds,
       'rooms': [
         for (final entry in roomCounts.entries)
           {'room_type': entry.key.slug, 'count': entry.value},
